@@ -122,42 +122,63 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 19:09",
+  "fecha": "28/05/2026 19:11",
   "games": [
     {
       "status_emoji": "🔴",
-      "team": "Toronto Blue Jays",
+      "team": "Toronto Blue Jays @ Baltimore Orioles",
       "state": "Top 9th",
       "result_text": "2-1",
-      "result": "live"
+      "result": "live",
+      "label": "🎯"
     },
     {
       "status_emoji": "🔴",
-      "team": "Pittsburgh Pirates",
+      "team": "Chicago Cubs @ Pittsburgh Pirates",
       "state": "Top 8th",
       "result_text": "5-2",
-      "result": "live"
+      "result": "live",
+      "label": "🎯"
+    },
+    {
+      "status_emoji": "❌",
+      "team": "Los Angeles Angels @ Detroit Tigers",
+      "state": "Final",
+      "result_text": "7-1",
+      "result": "loss",
+      "label": "🎯"
+    },
+    {
+      "status_emoji": "✅",
+      "team": "Atlanta Braves @ Boston Red Sox",
+      "state": "Final",
+      "result_text": "10-2",
+      "result": "win",
+      "label": "🎯"
+    },
+    {
+      "status_emoji": "✅",
+      "team": "Minnesota Twins @ Chicago White Sox",
+      "state": "Final",
+      "result_text": "2-6",
+      "result": "win",
+      "label": "🎯"
     },
     {
       "status_emoji": "⏳",
-      "team": "Texas Rangers",
+      "team": "Colorado Rockies @ Los Angeles Dodgers",
       "state": "Pend.",
       "result_text": "—",
-      "result": "pending"
-    },
-    {
-      "status_emoji": "⏳",
-      "team": "Los Angeles Dodgers",
-      "state": "Pend.",
-      "result_text": "—",
-      "result": "pending"
+      "result": "pending",
+      "label": "🎯"
     },
     {
       "status_emoji": "🔴",
-      "team": "Texas Rangers",
-      "state": "End 3rd",
+      "team": "Houston Astros @ Texas Rangers",
+      "state": "Top 4th",
       "result_text": "5-1",
-      "result": "live"
+      "result": "live",
+      "label": "🎯"
     }
   ],
   "bot_username": "ApuestasAP_Bot",
@@ -186,17 +207,23 @@ function render() {
   // Games
   const gamesEl = document.getElementById('games-list');
   if (!DATA.games || DATA.games.length === 0) {
-    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin partidos pendientes</div>';
+    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin partidos</div>';
   } else {
-    gamesEl.innerHTML = DATA.games.map(g => {
+    const recs = DATA.games.filter(g => g.label === '🎯');
+    const infos = DATA.games.filter(g => g.label !== '🎯');
+    const sorted = [...recs, ...infos];
+    gamesEl.innerHTML = sorted.map(g => {
       const cls = g.result === 'win' ? 'win' : g.result === 'loss' ? 'loss' : 'pending';
       return `<div class="game-row">
         <div class="game-status">${g.status_emoji}</div>
-        <div class="game-team">${g.team}</div>
+        <div class="game-team">${g.label} ${g.team}</div>
         <div class="game-state">${g.state}</div>
         <div class="game-result ${cls}">${g.result_text}</div>
       </div>`;
     }).join('');
+    if (recs.length === 0 && infos.length > 0) {
+      // all informational
+    }
   }
 
   // Stats
