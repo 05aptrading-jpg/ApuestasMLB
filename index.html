@@ -40,7 +40,7 @@
 
   .game-row {
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto 1fr auto;
     gap: 10px;
     align-items: center;
     padding: 10px 0;
@@ -51,19 +51,12 @@
   .game-status {
     width: 24px; text-align: center; font-size: 16px;
   }
-  .game-team { font-weight: 500; color: #e1e8ed; }
+  .game-team { font-weight: 500; color: #e1e8ed; min-width: 0; word-break: break-word; line-height: 1.4; }
   .game-state {
     font-size: 12px; color: #71767b;
     background: #262d3d; padding: 2px 8px;
     border-radius: 6px; text-align: center;
   }
-  .game-result {
-    font-weight: 600; text-align: right;
-    font-size: 14px;
-  }
-  .game-result.win { color: #00ba7c; }
-  .game-result.loss { color: #f4212e; }
-  .game-result.pending { color: #71767b; }
 
   .stat-grid {
     display: grid; gap: 10px;
@@ -122,61 +115,75 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 20:03",
+  "fecha": "28/05/2026 20:08",
   "games": [
     {
       "status_emoji": "✅",
-      "team": "Toronto Blue Jays @ Baltimore Orioles",
+      "fav_team": "Toronto Blue Jays",
+      "opp_team": "Baltimore Orioles",
+      "score_fav": "2",
+      "score_opp": "1",
       "state": "Final",
-      "result_text": "2-1",
       "result": "win",
       "label": "🎯"
     },
     {
       "status_emoji": "❌",
-      "team": "Chicago Cubs @ Pittsburgh Pirates",
+      "fav_team": "Pittsburgh Pirates",
+      "opp_team": "Chicago Cubs",
+      "score_fav": "2",
+      "score_opp": "7",
       "state": "Final",
-      "result_text": "2-7",
       "result": "loss",
       "label": "📋"
     },
     {
       "status_emoji": "❌",
-      "team": "Los Angeles Angels @ Detroit Tigers",
+      "fav_team": "Detroit Tigers",
+      "opp_team": "Los Angeles Angels",
+      "score_fav": "1",
+      "score_opp": "7",
       "state": "Final",
-      "result_text": "1-7",
       "result": "loss",
       "label": "📋"
     },
     {
       "status_emoji": "✅",
-      "team": "Atlanta Braves @ Boston Red Sox",
+      "fav_team": "Atlanta Braves",
+      "opp_team": "Boston Red Sox",
+      "score_fav": "10",
+      "score_opp": "2",
       "state": "Final",
-      "result_text": "10-2",
       "result": "win",
       "label": "📋"
     },
     {
       "status_emoji": "✅",
-      "team": "Minnesota Twins @ Chicago White Sox",
+      "fav_team": "Chicago White Sox",
+      "opp_team": "Minnesota Twins",
+      "score_fav": "6",
+      "score_opp": "2",
       "state": "Final",
-      "result_text": "6-2",
       "result": "win",
       "label": "📋"
     },
     {
       "status_emoji": "⏳",
-      "team": "Colorado Rockies @ Los Angeles Dodgers",
+      "fav_team": "Colorado Rockies",
+      "opp_team": "Los Angeles Dodgers",
+      "score_fav": "—",
+      "score_opp": "",
       "state": "Pend.",
-      "result_text": "—",
       "result": "pending",
       "label": "📋"
     },
     {
       "status_emoji": "🔴",
-      "team": "Houston Astros @ Texas Rangers",
+      "fav_team": "Texas Rangers",
+      "opp_team": "Houston Astros",
+      "score_fav": "1",
+      "score_opp": "5",
       "state": "Bottom 7th",
-      "result_text": "1-5",
       "result": "live",
       "label": "📋"
     }
@@ -207,12 +214,23 @@ function render() {
   // Games
   function renderGameRow(g) {
     const cls = g.result === 'win' ? 'win' : g.result === 'loss' ? 'loss' : 'pending';
-    return `<div class="game-row">
-      <div class="game-status">${g.status_emoji}</div>
-      <div class="game-team">${g.team}</div>
-      <div class="game-state">${g.state}</div>
-      <div class="game-result ${cls}">${g.result_text}</div>
-    </div>`;
+    const isRec = g.label === '🎯';
+    const score = g.score_fav !== '—' && g.score_opp !== ''
+      ? g.score_fav + '-' + g.score_opp
+      : '';
+    let teamHtml;
+    if (isRec) {
+      teamHtml = '<span style="font-weight:700;color:#f5a623">' + g.fav_team + '</span>'
+        + (score ? ' <span style="font-weight:600">' + score + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>'
+                 : ' <span style="color:#8b98a5">' + g.opp_team + '</span>');
+    } else {
+      teamHtml = g.fav_team + (score ? ' ' + score + ' ' + g.opp_team : ' ' + g.opp_team);
+    }
+    return '<div class="game-row">'
+      + '<div class="game-status">' + g.status_emoji + '</div>'
+      + '<div class="game-team">' + teamHtml + '</div>'
+      + '<div class="game-state">' + g.state + '</div>'
+      + '</div>';
   }
   const gamesEl = document.getElementById('games-list');
   if (!DATA.games || DATA.games.length === 0) {
