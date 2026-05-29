@@ -77,7 +77,20 @@
     margin-left: 8px;
   }
 
-
+  .date-tabs {
+    display: flex; gap: 6px; margin: 12px 0;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .date-tab {
+    background: #1a1f2e; color: #8b98a5;
+    border: 1px solid #2a3040; border-radius: 8px;
+    padding: 6px 14px; font-size: 12px; font-weight: 500;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .date-tab:hover { background: #262d3d; }
+  .date-tab.active {
+    background: #1d9bf0; color: #fff; border-color: #1d9bf0;
+  }
 
   .footer {
     text-align: center; padding: 16px 0;
@@ -100,6 +113,8 @@
   <span>🚫 Pospuesto</span>
 </div>
 
+<div id="date-tabs" class="date-tabs"></div>
+
 <div class="card" id="games-card">
   <div class="card-title">📋 Partidos</div>
   <div id="games-list"></div>
@@ -116,9 +131,114 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 22:34",
+  "fecha": "28/05/2026 22:50",
+  "dias": [
+    "2026-05-29",
+    "2026-05-28",
+    "2026-05-27"
+  ],
   "games": [
     {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "Miami Marlins",
+      "opp_team": "Toronto Blue Jays",
+      "score_fav": "1",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "Washington Nationals",
+      "opp_team": "Cleveland Guardians",
+      "score_fav": "2",
+      "score_opp": "3",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "St. Louis Cardinals",
+      "opp_team": "Milwaukee Brewers",
+      "score_fav": "1",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "Seattle Mariners",
+      "opp_team": "Athletics",
+      "score_fav": "9",
+      "score_opp": "1",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "Arizona Diamondbacks",
+      "opp_team": "San Francisco Giants",
+      "score_fav": "3",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "Philadelphia Phillies",
+      "opp_team": "San Diego Padres",
+      "score_fav": "3",
+      "score_opp": "0",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "Tampa Bay Rays",
+      "opp_team": "Baltimore Orioles",
+      "score_fav": "2",
+      "score_opp": "11",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "Cincinnati Reds",
+      "opp_team": "New York Mets",
+      "score_fav": "2",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-27",
+      "status_emoji": "❌",
+      "fav_team": "New York Yankees",
+      "opp_team": "Kansas City Royals",
+      "score_fav": "7",
+      "score_opp": "0",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-28",
       "status_emoji": "✅",
       "fav_team": "Toronto Blue Jays",
       "opp_team": "Baltimore Orioles",
@@ -129,6 +249,7 @@ const DATA = {
       "label": "🎯"
     },
     {
+      "game_date": "2026-05-28",
       "status_emoji": "❌",
       "fav_team": "Pittsburgh Pirates",
       "opp_team": "Chicago Cubs",
@@ -139,6 +260,7 @@ const DATA = {
       "label": "📊"
     },
     {
+      "game_date": "2026-05-28",
       "status_emoji": "❌",
       "fav_team": "Detroit Tigers",
       "opp_team": "Los Angeles Angels",
@@ -149,6 +271,7 @@ const DATA = {
       "label": "📊"
     },
     {
+      "game_date": "2026-05-28",
       "status_emoji": "✅",
       "fav_team": "Atlanta Braves",
       "opp_team": "Boston Red Sox",
@@ -159,6 +282,7 @@ const DATA = {
       "label": "📊"
     },
     {
+      "game_date": "2026-05-28",
       "status_emoji": "✅",
       "fav_team": "Chicago White Sox",
       "opp_team": "Minnesota Twins",
@@ -169,16 +293,7 @@ const DATA = {
       "label": "📊"
     },
     {
-      "status_emoji": "⏳",
-      "fav_team": "Texas Rangers",
-      "opp_team": "Houston Astros",
-      "score_fav": "—",
-      "score_opp": "",
-      "state": "Pend.",
-      "result": "pending",
-      "label": "📋"
-    },
-    {
+      "game_date": "2026-05-28",
       "status_emoji": "⏳",
       "fav_team": "Los Angeles Dodgers",
       "opp_team": "Colorado Rockies",
@@ -189,6 +304,7 @@ const DATA = {
       "label": "📊"
     },
     {
+      "game_date": "2026-05-28",
       "status_emoji": "❌",
       "fav_team": "Texas Rangers",
       "opp_team": "Houston Astros",
@@ -197,6 +313,171 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📊"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Texas Rangers",
+      "opp_team": "Houston Astros",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Atlanta Braves",
+      "opp_team": "Cincinnati Reds",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Minnesota Twins",
+      "opp_team": "Pittsburgh Pirates",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "San Diego Padres",
+      "opp_team": "Washington Nationals",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Los Angeles Angels",
+      "opp_team": "Tampa Bay Rays",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Boston Red Sox",
+      "opp_team": "Cleveland Guardians",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Miami Marlins",
+      "opp_team": "New York Mets",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Chicago Cubs",
+      "opp_team": "St. Louis Cardinals",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Detroit Tigers",
+      "opp_team": "Chicago White Sox",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Kansas City Royals",
+      "opp_team": "Texas Rangers",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Milwaukee Brewers",
+      "opp_team": "Houston Astros",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "San Francisco Giants",
+      "opp_team": "Colorado Rockies",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "New York Yankees",
+      "opp_team": "Athletics",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Arizona Diamondbacks",
+      "opp_team": "Seattle Mariners",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "game_date": "2026-05-29",
+      "status_emoji": "⏳",
+      "fav_team": "Philadelphia Phillies",
+      "opp_team": "Los Angeles Dodgers",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
     }
   ],
   "bot_username": "ApuestasAP_Bot",
@@ -254,77 +535,134 @@ const DATA = {
   }
 })();
 
-function render() {
-  document.getElementById('fecha').textContent = DATA.fecha || '—';
+var selectedDate = (DATA.dias && DATA.dias.length > 0) ? DATA.dias[0] : '';
 
-  // Games
-  function renderGameRow(g) {
-    const score = g.score_fav !== '—' && g.score_opp !== ''
-      ? g.score_fav + '-' + g.score_opp
-      : '';
-    const sep = score ? score : 'Vs';
-    let teamHtml;
-    if (g.label === '🎯') {
-      teamHtml = '<span style="font-weight:700;color:#f5a623">' + g.fav_team + '</span>'
-        + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
-    } else if (g.label === '📊') {
-      teamHtml = '<span style="font-weight:600;color:#ffd866">' + g.fav_team + '</span>'
-        + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
-    } else {
-      teamHtml = g.fav_team + ' ' + sep + ' ' + g.opp_team;
-    }
-    return '<div class="game-row">'
-      + '<div class="game-status">' + g.status_emoji + '</div>'
-      + '<div class="game-team">' + teamHtml + '</div>'
-      + '<div class="game-state">' + g.state + '</div>'
-      + '</div>';
-  }
-  const gamesEl = document.getElementById('games-list');
-  if (!DATA.games || DATA.games.length === 0) {
-    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin partidos</div>';
-  } else {
-    const recs  = DATA.games.filter(g => g.label === '🎯');
-    const meds  = DATA.games.filter(g => g.label === '📊');
-    const infos = DATA.games.filter(g => g.label === '📋');
-    let html = '';
-    if (recs.length > 0) {
-      html += '<div style="font-size:11px;font-weight:600;color:#f5a623;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin-bottom:2px">🎯 RECOMENDADAS</div>';
-      html += recs.map(renderGameRow).join('');
-    }
-    if (meds.length > 0) {
-      html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📊 CONFIANZA MEDIA</div>';
-      html += meds.map(renderGameRow).join('');
-    }
-    if (infos.length > 0) {
-      html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📋 SOLO INFORMATIVOS</div>';
-      html += infos.map(renderGameRow).join('');
-    }
-    gamesEl.innerHTML = html;
-  }
-
-  // Stats
-  const statsEl = document.getElementById('stats-list');
-  if (!DATA.stats) return;
-  const s = DATA.stats;
-  statsEl.innerHTML = '';
-  const stats = [
-    { label: '🌐 Global', value: `${s.acertados}✅ ${s.fallidos}❌`, sub: `(${s.total}) ${s.win_rate}%` },
-    { label: '🎯 Recomendadas', value: `${s.alta_acertados}✅ ${s.alta_fallidos}❌`, sub: `(${s.alta_total}) ${s.alta_win_rate}%`, fire: s.alta_win_rate >= 65 },
-    { label: '📊 Conf. Media', value: `${s.media_acertados}✅ ${s.media_fallidos}❌`, sub: `(${s.media_total}) ${s.media_win_rate}%` },
-    { label: '📋 Solo Inform.', value: `${s.baja_acertados}✅ ${s.baja_fallidos}❌`, sub: `(${s.baja_total}) ${s.baja_win_rate}%` },
-    { label: '⭐ Señales Valor', value: `${s.valor_ok}/${s.valor_total}`, sub: `${s.valor_rate}%` },
-  ];
-  stats.forEach(st => {
-    if (!st.sub.startsWith('(0)') || st.label === '🌐 Global') {
-      statsEl.innerHTML += `<div class="stat-item">
-        <span class="stat-label">${st.label}</span>
-        <span class="stat-value">${st.value} <span class="stat-sub">${st.sub}</span>${st.fire ? '<span class="fire">🔥</span>' : ''}</span>
-      </div>`;
-    }
-  });
+function formatearFecha(iso) {
+  if (!iso) return iso;
+  var partes = iso.split('-');
+  if (partes.length !== 3) return iso;
+  var diasSem = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  var meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  var d = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
+  var hoy = new Date();
+  var ayer = new Date(hoy);
+  ayer.setDate(hoy.getDate()-1);
+  var manana = new Date(hoy);
+  manana.setDate(hoy.getDate()+1);
+  var label = diasSem[d.getDay()] + ' ' + parseInt(partes[2]) + ' ' + meses[parseInt(partes[1])-1];
+  if (d.toDateString() === hoy.toDateString()) return 'Hoy (' + parseInt(partes[2]) + ' ' + meses[parseInt(partes[1])-1] + ')';
+  if (d.toDateString() === ayer.toDateString()) return 'Ayer (' + parseInt(partes[2]) + ' ' + meses[parseInt(partes[1])-1] + ')';
+  if (d.toDateString() === manana.toDateString()) return 'Mañana (' + parseInt(partes[2]) + ' ' + meses[parseInt(partes[1])-1] + ')';
+  return label;
 }
 
-render();
+function renderDateTabs() {
+  var container = document.getElementById('date-tabs');
+  if (!DATA.dias || DATA.dias.length <= 1) {
+    container.innerHTML = '';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < DATA.dias.length; i++) {
+    var d = DATA.dias[i];
+    var active = d === selectedDate ? ' active' : '';
+    html += '<div class="date-tab' + active + '" data-date="' + d + '" onclick="selectDate(\'' + d + '\')">' + formatearFecha(d) + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function selectDate(date) {
+  selectedDate = date;
+  renderDateTabs();
+  renderGames();
+}
+
+function renderDateLabel() {
+  var el = document.getElementById('fecha');
+  if (selectedDate && DATA.dias && DATA.dias.length > 1) {
+    el.textContent = formatearFecha(selectedDate) + ' — ' + (DATA.fecha || '');
+  } else {
+    el.textContent = DATA.fecha || '—';
+  }
+}
+
+function renderGameRow(g) {
+  var score = g.score_fav !== '—' && g.score_opp !== ''
+    ? g.score_fav + '-' + g.score_opp
+    : '';
+  var sep = score ? score : 'Vs';
+  var teamHtml;
+  if (g.label === '🎯') {
+    teamHtml = '<span style="font-weight:700;color:#f5a623">' + g.fav_team + '</span>'
+      + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
+  } else if (g.label === '📊') {
+    teamHtml = '<span style="font-weight:600;color:#ffd866">' + g.fav_team + '</span>'
+      + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
+  } else {
+    teamHtml = g.fav_team + ' ' + sep + ' ' + g.opp_team;
+  }
+  return '<div class="game-row">'
+    + '<div class="game-status">' + g.status_emoji + '</div>'
+    + '<div class="game-team">' + teamHtml + '</div>'
+    + '<div class="game-state">' + g.state + '</div>'
+    + '</div>';
+}
+
+function renderGames() {
+  var gamesEl = document.getElementById('games-list');
+  var filtered = DATA.games.filter(function(g) {
+    return g.game_date === selectedDate;
+  });
+  if (filtered.length === 0) {
+    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin partidos</div>';
+    return;
+  }
+  var recs  = filtered.filter(function(g) { return g.label === '🎯'; });
+  var meds  = filtered.filter(function(g) { return g.label === '📊'; });
+  var infos = filtered.filter(function(g) { return g.label === '📋'; });
+  var html = '';
+  if (recs.length > 0) {
+    html += '<div style="font-size:11px;font-weight:600;color:#f5a623;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin-bottom:2px">🎯 RECOMENDADAS</div>';
+    html += recs.map(renderGameRow).join('');
+  }
+  if (meds.length > 0) {
+    html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📊 CONFIANZA MEDIA</div>';
+    html += meds.map(renderGameRow).join('');
+  }
+  if (infos.length > 0) {
+    html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📋 SOLO INFORMATIVOS</div>';
+    html += infos.map(renderGameRow).join('');
+  }
+  gamesEl.innerHTML = html;
+}
+
+function renderStats() {
+  var statsEl = document.getElementById('stats-list');
+  if (!DATA.stats) return;
+  var s = DATA.stats;
+  statsEl.innerHTML = '';
+  var stats = [
+    { label: '🌐 Global', value: s.acertados + '✅ ' + s.fallidos + '❌', sub: '(' + s.total + ') ' + s.win_rate + '%' },
+    { label: '🎯 Recomendadas', value: s.alta_acertados + '✅ ' + s.alta_fallidos + '❌', sub: '(' + s.alta_total + ') ' + s.alta_win_rate + '%', fire: s.alta_win_rate >= 65 },
+    { label: '📊 Conf. Media', value: s.media_acertados + '✅ ' + s.media_fallidos + '❌', sub: '(' + s.media_total + ') ' + s.media_win_rate + '%' },
+    { label: '📋 Solo Inform.', value: s.baja_acertados + '✅ ' + s.baja_fallidos + '❌', sub: '(' + s.baja_total + ') ' + s.baja_win_rate + '%' },
+    { label: '⭐ Señales Valor', value: s.valor_ok + '/' + s.valor_total, sub: s.valor_rate + '%' },
+  ];
+  for (var i = 0; i < stats.length; i++) {
+    var st = stats[i];
+    if (!st.sub.startsWith('(0)') || st.label === '🌐 Global') {
+      statsEl.innerHTML += '<div class="stat-item">'
+        + '<span class="stat-label">' + st.label + '</span>'
+        + '<span class="stat-value">' + st.value + ' <span class="stat-sub">' + st.sub + '</span>' + (st.fire ? '<span class="fire">🔥</span>' : '') + '</span>'
+        + '</div>';
+    }
+  }
+}
+
+renderDateTabs();
+renderDateLabel();
+renderGames();
+renderStats();
 
 // Auto-refresh cada 90s
 setTimeout(function(){ location.reload(); }, 300000);
