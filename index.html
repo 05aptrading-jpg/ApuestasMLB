@@ -115,7 +115,7 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 20:11",
+  "fecha": "28/05/2026 20:12",
   "games": [
     {
       "status_emoji": "✅",
@@ -216,17 +216,16 @@ function render() {
     const score = g.score_fav !== '—' && g.score_opp !== ''
       ? g.score_fav + '-' + g.score_opp
       : '';
+    const sep = score ? score : 'Vs';
     let teamHtml;
     if (g.label === '🎯') {
       teamHtml = '<span style="font-weight:700;color:#f5a623">' + g.fav_team + '</span>'
-        + (score ? ' <span>' + score + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>'
-                 : ' <span style="color:#8b98a5">' + g.opp_team + '</span>');
+        + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
     } else if (g.label === '📊') {
       teamHtml = '<span style="font-weight:600;color:#ffd866">' + g.fav_team + '</span>'
-        + (score ? ' <span>' + score + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>'
-                 : ' <span style="color:#8b98a5">' + g.opp_team + '</span>');
+        + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
     } else {
-      teamHtml = g.fav_team + (score ? ' ' + score + ' ' + g.opp_team : ' ' + g.opp_team);
+      teamHtml = g.fav_team + ' ' + sep + ' ' + g.opp_team;
     }
     return '<div class="game-row">'
       + '<div class="game-status">' + g.status_emoji + '</div>'
