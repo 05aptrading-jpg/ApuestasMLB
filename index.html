@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MLB BOT</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f1419; color: #e1e8ed;
+    padding: 16px; min-height: 100vh;
+  }
+  .header {
+    text-align: center; padding: 16px 0 8px;
+  }
+  .header h1 {
+    font-size: 20px; font-weight: 700;
+    background: linear-gradient(135deg, #1d9bf0, #8b5cf6);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header .date { font-size: 13px; color: #71767b; margin-top: 4px; }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    justify-content: center; margin: 12px 0;
+    font-size: 12px; color: #71767b;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 3px; }
+
+  .card {
+    background: #1a1f2e; border-radius: 12px;
+    padding: 12px; margin-bottom: 12px;
+    border: 1px solid #2a3040;
+  }
+  .card-title {
+    font-size: 13px; font-weight: 600; color: #8b98a5;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  .game-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a3040;
+    font-size: 14px;
+  }
+  .game-row:last-child { border-bottom: none; }
+  .game-status {
+    width: 24px; text-align: center; font-size: 16px;
+  }
+  .game-team { font-weight: 500; color: #e1e8ed; }
+  .game-state {
+    font-size: 12px; color: #71767b;
+    background: #262d3d; padding: 2px 8px;
+    border-radius: 6px; text-align: center;
+  }
+  .game-result {
+    font-weight: 600; text-align: right;
+    font-size: 14px;
+  }
+  .game-result.win { color: #00ba7c; }
+  .game-result.loss { color: #f4212e; }
+  .game-result.pending { color: #71767b; }
+
+  .stat-grid {
+    display: grid; gap: 10px;
+  }
+  .stat-item {
+    display: flex; justify-content: space-between;
+    align-items: center; padding: 6px 0;
+    border-bottom: 1px solid #2a3040;
+  }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-label { font-size: 14px; color: #8b98a5; }
+  .stat-value { font-size: 14px; font-weight: 600; }
+  .stat-value .winrate { color: #00ba7c; }
+  .stat-value .fire { margin-left: 4px; }
+  .stat-sub {
+    font-size: 12px; color: #71767b;
+    margin-left: 8px;
+  }
+
+  .refresh-btn {
+    display: block; width: 100%;
+    padding: 12px; margin-top: 8px;
+    background: #1d9bf0; color: #fff;
+    border: none; border-radius: 10px;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: opacity 0.2s;
+  }
+  .refresh-btn:active { opacity: 0.7; }
+
+  .footer {
+    text-align: center; padding: 16px 0;
+    font-size: 11px; color: #3a4150;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚾ MLB BOT</h1>
+  <div class="date" id="fecha">—</div>
+</div>
+
+<div class="legend">
+  <span>✅ Acertado</span>
+  <span>❌ Fallido</span>
+  <span>🔴 En vivo</span>
+  <span>⏳ Pendiente</span>
+  <span>🚫 Pospuesto</span>
+</div>
+
+<div class="card" id="games-card">
+  <div class="card-title">📋 Partidos</div>
+  <div id="games-list"></div>
+</div>
+
+<div class="card" id="stats-card">
+  <div class="card-title">📊 Rendimiento</div>
+  <div class="stat-grid" id="stats-list"></div>
+</div>
+
+<button class="refresh-btn" onclick="location.reload()">🔄 Actualizar</button>
+
+<div class="footer">MLB Bot — Análisis académico</div>
+
+<script>
+const DATA = {
+  "fecha": "28/05/2026 18:22",
+  "games": [],
+  "stats": {
+    "total": 0,
+    "acertados": 0,
+    "fallidos": 0,
+    "win_rate": 0,
+    "rec_total": 0,
+    "rec_acertados": 0,
+    "rec_fallidos": 0,
+    "rec_win_rate": 0,
+    "media_total": 0,
+    "media_acertados": 0,
+    "media_fallidos": 0,
+    "media_win_rate": 0,
+    "valor_ok": 0,
+    "valor_total": 0,
+    "valor_rate": 0
+  }
+};
+
+function render() {
+  document.getElementById('fecha').textContent = DATA.fecha || '—';
+
+  // Games
+  const gamesEl = document.getElementById('games-list');
+  if (!DATA.games || DATA.games.length === 0) {
+    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin partidos pendientes</div>';
+  } else {
+    gamesEl.innerHTML = DATA.games.map(g => {
+      const cls = g.result === 'win' ? 'win' : g.result === 'loss' ? 'loss' : 'pending';
+      return `<div class="game-row">
+        <div class="game-status">${g.status_emoji}</div>
+        <div class="game-team">${g.team}</div>
+        <div class="game-state">${g.state}</div>
+        <div class="game-result ${cls}">${g.result_text}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Stats
+  const statsEl = document.getElementById('stats-list');
+  if (!DATA.stats) return;
+  const s = DATA.stats;
+  statsEl.innerHTML = '';
+  const stats = [
+    { label: '🌐 Global', value: `${s.acertados}✅ ${s.fallidos}❌`, sub: `(${s.total}) ${s.win_rate}%` },
+    { label: '🎯 Recomendadas', value: `${s.rec_acertados}✅ ${s.rec_fallidos}❌`, sub: `(${s.rec_total}) ${s.rec_win_rate}%`, fire: s.rec_win_rate >= 65 },
+    { label: '📊 Conf. Media', value: `${s.media_acertados}✅ ${s.media_fallidos}❌`, sub: `(${s.media_total}) ${s.media_win_rate}%` },
+    { label: '⭐ Señales Valor', value: `${s.valor_ok}/${s.valor_total}`, sub: `${s.valor_rate}%` },
+  ];
+  stats.forEach(st => {
+    if (!st.sub.startsWith('(0)') || st.label === '🌐 Global') {
+      statsEl.innerHTML += `<div class="stat-item">
+        <span class="stat-label">${st.label}</span>
+        <span class="stat-value">${st.value} <span class="stat-sub">${st.sub}</span>${st.fire ? '<span class="fire">🔥</span>' : ''}</span>
+      </div>`;
+    }
+  });
+}
+
+render();
+</script>
+</body>
+</html>
