@@ -116,7 +116,7 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 21:59",
+  "fecha": "28/05/2026 22:00",
   "games": [
     {
       "status_emoji": "✅",
@@ -200,6 +200,7 @@ const DATA = {
     }
   ],
   "bot_username": "ApuestasAP_Bot",
+  "precio_stars": 650,
   "autorizados": [
     6099564810
   ],
@@ -239,7 +240,7 @@ const DATA = {
       + '<div style="font-size:48px;margin-bottom:16px">🔒</div>'
       + '<h2 style="font-size:18px;margin-bottom:8px;color:#e1e8ed">Acceso Restringido</h2>'
       + '<p style="font-size:14px;color:#8b98a5;margin-bottom:24px;line-height:1.5">Esta aplicación es de uso exclusivo para suscriptores del plan mensual MLB Bot.</p>'
-      + '<a href="' + botLink + '" style="display:inline-block;background:#1d9bf0;color:#fff;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none">⭐ Suscribirse por ' + (DATA.precio_stars || '650') + ' Stars/mes</a>'
+      + '<button onclick="window.Telegram?.WebApp?.openTelegramLink(\'' + botLink + '\')" style="background:#1d9bf0;color:#fff;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;border:none;cursor:pointer">⭐ Suscribirse por ' + (DATA.precio_stars || '650') + ' Stars/mes</button>'
       + '<div style="margin-top:24px;font-size:11px;color:#536471">Tu ID: ' + (userId || 'No disponible') + '</div>'
       + '</div>';
     return;
