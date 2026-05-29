@@ -116,7 +116,7 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 21:45",
+  "fecha": "28/05/2026 21:50",
   "games": [
     {
       "status_emoji": "✅",
@@ -200,6 +200,7 @@ const DATA = {
     }
   ],
   "bot_username": "ApuestasAP_Bot",
+  "precio_stars": 650,
   "autorizados": [
     6099564810
   ],
@@ -234,12 +235,12 @@ const DATA = {
   const acceso = userId && autorizados.includes(userId);
 
   if (!acceso) {
+    const botLink = 'https://t.me/' + (DATA.bot_username || 'ApuestasAP_Bot') + '?start=pagar';
     document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;padding:32px;text-align:center">'
       + '<div style="font-size:48px;margin-bottom:16px">🔒</div>'
       + '<h2 style="font-size:18px;margin-bottom:8px;color:#e1e8ed">Acceso Restringido</h2>'
       + '<p style="font-size:14px;color:#8b98a5;margin-bottom:24px;line-height:1.5">Esta aplicación es de uso exclusivo para suscriptores del plan mensual MLB Bot.</p>'
-      + '<div style="background:#1d9bf0;color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600">'
-      + 'Contacta a @' + (DATA.bot_username || 'admin') + ' para contratar</div>'
+      + '<a href="' + botLink + '" style="display:inline-block;background:#1d9bf0;color:#fff;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none">⭐ Suscribirse por ' + (DATA.precio_stars || '650') + ' Stars/mes</a>'
       + '<div style="margin-top:24px;font-size:11px;color:#536471">Tu ID: ' + (userId || 'No disponible') + '</div>'
       + '</div>';
     return;
