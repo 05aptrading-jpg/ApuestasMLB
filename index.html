@@ -115,7 +115,7 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 20:19",
+  "fecha": "28/05/2026 20:22",
   "games": [
     {
       "status_emoji": "✅",
@@ -193,7 +193,7 @@ const DATA = {
       "opp_team": "Houston Astros",
       "score_fav": "1",
       "score_opp": "5",
-      "state": "Top 8th",
+      "state": "Bottom 8th",
       "result": "live",
       "label": "📊"
     },
@@ -413,8 +413,9 @@ function render() {
   statsEl.innerHTML = '';
   const stats = [
     { label: '🌐 Global', value: `${s.acertados}✅ ${s.fallidos}❌`, sub: `(${s.total}) ${s.win_rate}%` },
-    { label: '🎯 Recomendadas', value: `${s.rec_acertados}✅ ${s.rec_fallidos}❌`, sub: `(${s.rec_total}) ${s.rec_win_rate}%`, fire: s.rec_win_rate >= 65 },
+    { label: '🎯 Recomendadas', value: `${s.alta_acertados}✅ ${s.alta_fallidos}❌`, sub: `(${s.alta_total}) ${s.alta_win_rate}%`, fire: s.alta_win_rate >= 65 },
     { label: '📊 Conf. Media', value: `${s.media_acertados}✅ ${s.media_fallidos}❌`, sub: `(${s.media_total}) ${s.media_win_rate}%` },
+    { label: '📋 Solo Inform.', value: `${s.baja_acertados}✅ ${s.baja_fallidos}❌`, sub: `(${s.baja_total}) ${s.baja_win_rate}%` },
     { label: '⭐ Señales Valor', value: `${s.valor_ok}/${s.valor_total}`, sub: `${s.valor_rate}%` },
   ];
   stats.forEach(st => {
