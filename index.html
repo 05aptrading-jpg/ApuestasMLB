@@ -122,7 +122,7 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 19:11",
+  "fecha": "28/05/2026 19:13",
   "games": [
     {
       "status_emoji": "🔴",
@@ -175,7 +175,7 @@ const DATA = {
     {
       "status_emoji": "🔴",
       "team": "Houston Astros @ Texas Rangers",
-      "state": "Top 4th",
+      "state": "Middle 4th",
       "result_text": "5-1",
       "result": "live",
       "label": "🎯"
@@ -205,25 +205,31 @@ function render() {
   document.getElementById('fecha').textContent = DATA.fecha || '—';
 
   // Games
+  function renderGameRow(g) {
+    const cls = g.result === 'win' ? 'win' : g.result === 'loss' ? 'loss' : 'pending';
+    return `<div class="game-row">
+      <div class="game-status">${g.status_emoji}</div>
+      <div class="game-team">${g.team}</div>
+      <div class="game-state">${g.state}</div>
+      <div class="game-result ${cls}">${g.result_text}</div>
+    </div>`;
+  }
   const gamesEl = document.getElementById('games-list');
   if (!DATA.games || DATA.games.length === 0) {
     gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin partidos</div>';
   } else {
     const recs = DATA.games.filter(g => g.label === '🎯');
     const infos = DATA.games.filter(g => g.label !== '🎯');
-    const sorted = [...recs, ...infos];
-    gamesEl.innerHTML = sorted.map(g => {
-      const cls = g.result === 'win' ? 'win' : g.result === 'loss' ? 'loss' : 'pending';
-      return `<div class="game-row">
-        <div class="game-status">${g.status_emoji}</div>
-        <div class="game-team">${g.label} ${g.team}</div>
-        <div class="game-state">${g.state}</div>
-        <div class="game-result ${cls}">${g.result_text}</div>
-      </div>`;
-    }).join('');
-    if (recs.length === 0 && infos.length > 0) {
-      // all informational
+    let html = '';
+    if (recs.length > 0) {
+      html += '<div style="font-size:13px;font-weight:600;color:#e1e8ed;padding:8px 0 4px 0;border-bottom:1px solid #2f3336;margin-bottom:4px">🎯 RECOMENDADAS</div>';
+      html += recs.map(renderGameRow).join('');
     }
+    if (infos.length > 0) {
+      html += '<div style="font-size:13px;font-weight:600;color:#8b98a5;padding:8px 0 4px 0;border-bottom:1px solid #2f3336;margin:8px 0 4px 0">📋 SOLO INFORMATIVOS</div>';
+      html += infos.map(renderGameRow).join('');
+    }
+    gamesEl.innerHTML = html;
   }
 
   // Stats
