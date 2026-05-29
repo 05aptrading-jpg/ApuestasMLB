@@ -115,42 +115,227 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 20:18",
+  "fecha": "28/05/2026 20:19",
   "games": [
     {
       "status_emoji": "✅",
-      "team": "Toronto Blue Jays",
+      "fav_team": "Toronto Blue Jays",
+      "opp_team": "Baltimore Orioles",
+      "score_fav": "2",
+      "score_opp": "1",
       "state": "Final",
-      "result_text": "2-1",
-      "result": "win"
+      "result": "win",
+      "label": "🎯"
     },
     {
       "status_emoji": "❌",
-      "team": "Pittsburgh Pirates",
+      "fav_team": "Pittsburgh Pirates",
+      "opp_team": "Chicago Cubs",
+      "score_fav": "2",
+      "score_opp": "7",
       "state": "Final",
-      "result_text": "7-2",
-      "result": "loss"
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "status_emoji": "❌",
+      "fav_team": "Detroit Tigers",
+      "opp_team": "Los Angeles Angels",
+      "score_fav": "1",
+      "score_opp": "7",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "status_emoji": "✅",
+      "fav_team": "Atlanta Braves",
+      "opp_team": "Boston Red Sox",
+      "score_fav": "10",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "status_emoji": "✅",
+      "fav_team": "Chicago White Sox",
+      "opp_team": "Minnesota Twins",
+      "score_fav": "6",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
     },
     {
       "status_emoji": "⏳",
-      "team": "Texas Rangers",
+      "fav_team": "Texas Rangers",
+      "opp_team": "Houston Astros",
+      "score_fav": "—",
+      "score_opp": "",
       "state": "Pend.",
-      "result_text": "—",
-      "result": "pending"
+      "result": "pending",
+      "label": "📋"
     },
     {
       "status_emoji": "⏳",
-      "team": "Los Angeles Dodgers",
+      "fav_team": "Los Angeles Dodgers",
+      "opp_team": "Colorado Rockies",
+      "score_fav": "—",
+      "score_opp": "",
       "state": "Pend.",
-      "result_text": "—",
-      "result": "pending"
+      "result": "pending",
+      "label": "📊"
     },
     {
       "status_emoji": "🔴",
-      "team": "Texas Rangers",
+      "fav_team": "Texas Rangers",
+      "opp_team": "Houston Astros",
+      "score_fav": "1",
+      "score_opp": "5",
       "state": "Top 8th",
-      "result_text": "5-1",
-      "result": "live"
+      "result": "live",
+      "label": "📊"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Atlanta Braves",
+      "opp_team": "Cincinnati Reds",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Minnesota Twins",
+      "opp_team": "Pittsburgh Pirates",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "San Diego Padres",
+      "opp_team": "Washington Nationals",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Los Angeles Angels",
+      "opp_team": "Tampa Bay Rays",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Boston Red Sox",
+      "opp_team": "Cleveland Guardians",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Miami Marlins",
+      "opp_team": "New York Mets",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Chicago Cubs",
+      "opp_team": "St. Louis Cardinals",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Detroit Tigers",
+      "opp_team": "Chicago White Sox",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Kansas City Royals",
+      "opp_team": "Texas Rangers",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Milwaukee Brewers",
+      "opp_team": "Houston Astros",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "San Francisco Giants",
+      "opp_team": "Colorado Rockies",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "New York Yankees",
+      "opp_team": "Athletics",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Arizona Diamondbacks",
+      "opp_team": "Seattle Mariners",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
+    },
+    {
+      "status_emoji": "⏳",
+      "fav_team": "Philadelphia Phillies",
+      "opp_team": "Los Angeles Dodgers",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋"
     }
   ],
   "bot_username": "ApuestasAP_Bot",
