@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>MLB BOT</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -115,7 +116,7 @@
 
 <script>
 const DATA = {
-  "fecha": "28/05/2026 20:39",
+  "fecha": "28/05/2026 20:44",
   "games": [
     {
       "status_emoji": "✅",
@@ -193,12 +194,15 @@ const DATA = {
       "opp_team": "Houston Astros",
       "score_fav": "1",
       "score_opp": "5",
-      "state": "Top 9th",
+      "state": "Middle 9th",
       "result": "live",
       "label": "📊"
     }
   ],
   "bot_username": "ApuestasAP_Bot",
+  "autorizados": [
+    123456789
+  ],
   "stats": {
     "total": 58,
     "acertados": 32,
@@ -221,6 +225,26 @@ const DATA = {
     "valor_rate": 0
   }
 };
+
+// ── Control de acceso ──────────────────────────────────────────────
+(function() {
+  const tg = window.Telegram?.WebApp;
+  const userId = tg?.initDataUnsafe?.user?.id;
+  const autorizados = DATA.autorizados || [];
+  const acceso = userId && autorizados.includes(userId);
+
+  if (!acceso) {
+    document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;padding:32px;text-align:center">'
+      + '<div style="font-size:48px;margin-bottom:16px">🔒</div>'
+      + '<h2 style="font-size:18px;margin-bottom:8px;color:#e1e8ed">Acceso Restringido</h2>'
+      + '<p style="font-size:14px;color:#8b98a5;margin-bottom:24px;line-height:1.5">Esta aplicación es de uso exclusivo para suscriptores del plan mensual MLB Bot.</p>'
+      + '<div style="background:#1d9bf0;color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600">'
+      + 'Contacta a @' + (DATA.bot_username || 'admin') + ' para contratar</div>'
+      + '<div style="margin-top:24px;font-size:11px;color:#536471">Tu ID: ' + (userId || 'No disponible') + '</div>'
+      + '</div>';
+    return;
+  }
+})();
 
 function render() {
   document.getElementById('fecha').textContent = DATA.fecha || '—';
