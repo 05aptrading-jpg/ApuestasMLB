@@ -128,11 +128,11 @@
 
 <div style="text-align:center;font-size:12px;color:#e1e8ed;margin-top:8px">⏳ Los datos se actualizan automáticamente</div>
 
-<div class="footer">MLB Bot — Análisis académico</div>
+<div class="footer">MLB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.</div>
 
 <script>
 const DATA = {
-  "fecha": "29/05/2026 11:14",
+  "fecha": "29/05/2026 16:51",
   "dias": [
     "2026-05-30",
     "2026-05-29",
@@ -207,24 +207,24 @@ const DATA = {
     },
     {
       "game_date": "2026-05-29",
-      "status_emoji": "⏳",
+      "status_emoji": "🔴",
       "fav_team": "Atlanta Braves",
       "opp_team": "Cincinnati Reds",
-      "score_fav": "—",
-      "score_opp": "",
-      "state": "Pend.",
-      "result": "pending",
+      "score_fav": "1",
+      "score_opp": "0",
+      "state": "Bottom 1st",
+      "result": "live",
       "label": "🎯"
     },
     {
       "game_date": "2026-05-29",
-      "status_emoji": "⏳",
+      "status_emoji": "🔴",
       "fav_team": "Minnesota Twins",
       "opp_team": "Pittsburgh Pirates",
-      "score_fav": "—",
-      "score_opp": "",
-      "state": "Pend.",
-      "result": "pending",
+      "score_fav": "1",
+      "score_opp": "0",
+      "state": "Top 1st",
+      "result": "live",
       "label": "🎯"
     },
     {
@@ -273,13 +273,13 @@ const DATA = {
     },
     {
       "game_date": "2026-05-29",
-      "status_emoji": "⏳",
+      "status_emoji": "🔴",
       "fav_team": "Washington Nationals",
       "opp_team": "San Diego Padres",
-      "score_fav": "—",
-      "score_opp": "",
-      "state": "Pend.",
-      "result": "pending",
+      "score_fav": "0",
+      "score_opp": "0",
+      "state": "Top 1st",
+      "result": "live",
       "label": "📋"
     },
     {
@@ -536,7 +536,7 @@ const DATA = {
       "label": "📋"
     }
   ],
-  "bot_username": "ApuestasAP_Bot",
+  "bot_username": "MLBAnalyticsAPBot",
   "precio_stars": 650,
   "autorizados": [
     6099564810,
@@ -679,7 +679,7 @@ function renderGames() {
   var infos = filtered.filter(function(g) { return g.label === '📋'; });
   var html = '';
   if (recs.length > 0) {
-    html += '<div style="font-size:11px;font-weight:600;color:#f5a623;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin-bottom:2px">🎯 RECOMENDADAS</div>';
+    html += '<div style="font-size:11px;font-weight:600;color:#f5a623;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin-bottom:2px">🎯 ALTA CONFIANZA</div>';
     html += recs.map(renderGameRow).join('');
   }
   if (meds.length > 0) {
@@ -700,7 +700,7 @@ function renderStats() {
   statsEl.innerHTML = '';
   var stats = [
     { label: '🌐 Global', value: s.acertados + '✅ ' + s.fallidos + '❌', sub: '(' + s.total + ') ' + s.win_rate + '%' },
-    { label: '🎯 Recomendadas', value: s.alta_acertados + '✅ ' + s.alta_fallidos + '❌', sub: '(' + s.alta_total + ') ' + s.alta_win_rate + '%', fire: s.alta_win_rate >= 65 },
+    { label: '🎯 Alta Confianza', value: s.alta_acertados + '✅ ' + s.alta_fallidos + '❌', sub: '(' + s.alta_total + ') ' + s.alta_win_rate + '%', fire: s.alta_win_rate >= 65 },
     { label: '📊 Conf. Media', value: s.media_acertados + '✅ ' + s.media_fallidos + '❌', sub: '(' + s.media_total + ') ' + s.media_win_rate + '%' },
     { label: '📋 Solo Inform.', value: s.baja_acertados + '✅ ' + s.baja_fallidos + '❌', sub: '(' + s.baja_total + ') ' + s.baja_win_rate + '%' },
     { label: '⭐ Señales Valor', value: s.valor_ok + '/' + s.valor_total, sub: s.valor_rate + '%' },
