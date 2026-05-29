@@ -21,6 +21,7 @@
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
   .header .date { font-size: 13px; color: #71767b; margin-top: 4px; }
+  .header .next-update { font-size: 11px; color: #536471; margin-top: 2px; }
   .legend {
     display: flex; flex-wrap: wrap; gap: 6px;
     justify-content: center; margin: 12px 0;
@@ -103,6 +104,7 @@
 <div class="header">
   <h1>⚾ MLB BOT</h1>
   <div class="date" id="fecha">—</div>
+  <div class="next-update" id="next-update">📡 Próxima actualización: —</div>
 </div>
 
 <div class="legend">
@@ -126,13 +128,13 @@
   <div class="stat-grid" id="stats-list"></div>
 </div>
 
-<div style="text-align:center;font-size:12px;color:#e1e8ed;margin-top:8px">⏳ Los datos se actualizan automáticamente</div>
+<div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Actualización automática cada 5 min</div>
 
 <div class="footer">MLB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.</div>
 
 <script>
 const DATA = {
-  "fecha": "29/05/2026 17:33",
+  "fecha": "29/05/2026 17:49",
   "dias": [
     "2026-05-30",
     "2026-05-29",
@@ -211,8 +213,8 @@ const DATA = {
       "fav_team": "Atlanta Braves",
       "opp_team": "Cincinnati Reds",
       "score_fav": "4",
-      "score_opp": "0",
-      "state": "End 3rd",
+      "score_opp": "1",
+      "state": "Bottom 4th",
       "result": "live",
       "label": "🎯"
     },
@@ -221,9 +223,9 @@ const DATA = {
       "status_emoji": "🔴",
       "fav_team": "Minnesota Twins",
       "opp_team": "Pittsburgh Pirates",
-      "score_fav": "3",
-      "score_opp": "3",
-      "state": "Top 3rd",
+      "score_fav": "5",
+      "score_opp": "4",
+      "state": "Bottom 3rd",
       "result": "live",
       "label": "🎯"
     },
@@ -233,8 +235,8 @@ const DATA = {
       "fav_team": "Miami Marlins",
       "opp_team": "New York Mets",
       "score_fav": "0",
-      "score_opp": "2",
-      "state": "Bottom 1st",
+      "score_opp": "4",
+      "state": "Bottom 2nd",
       "result": "live",
       "label": "🎯"
     },
@@ -245,19 +247,19 @@ const DATA = {
       "opp_team": "Cleveland Guardians",
       "score_fav": "0",
       "score_opp": "4",
-      "state": "Top 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "🎯"
     },
     {
       "game_date": "2026-05-29",
-      "status_emoji": "⏳",
+      "status_emoji": "🔴",
       "fav_team": "Detroit Tigers",
       "opp_team": "Chicago White Sox",
-      "score_fav": "—",
-      "score_opp": "",
-      "state": "Pend.",
-      "result": "pending",
+      "score_fav": "0",
+      "score_opp": "0",
+      "state": "Bottom 1st",
+      "result": "live",
       "label": "📊"
     },
     {
@@ -265,9 +267,9 @@ const DATA = {
       "status_emoji": "🔴",
       "fav_team": "Chicago Cubs",
       "opp_team": "St. Louis Cardinals",
-      "score_fav": "3",
-      "score_opp": "0",
-      "state": "Bottom 1st",
+      "score_fav": "4",
+      "score_opp": "3",
+      "state": "Top 2nd",
       "result": "live",
       "label": "📋"
     },
@@ -276,9 +278,9 @@ const DATA = {
       "status_emoji": "🔴",
       "fav_team": "Washington Nationals",
       "opp_team": "San Diego Padres",
-      "score_fav": "3",
-      "score_opp": "1",
-      "state": "Top 3rd",
+      "score_fav": "4",
+      "score_opp": "2",
+      "state": "Bottom 3rd",
       "result": "live",
       "label": "📋"
     },
@@ -289,7 +291,7 @@ const DATA = {
       "opp_team": "Baltimore Orioles",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Bottom 2nd",
+      "state": "Bottom 3rd",
       "result": "live",
       "label": "📋"
     },
@@ -300,7 +302,7 @@ const DATA = {
       "opp_team": "Los Angeles Angels",
       "score_fav": "1",
       "score_opp": "0",
-      "state": "Middle 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "📋"
     },
@@ -714,6 +716,12 @@ function renderStats() {
         + '</div>';
     }
   }
+}
+
+// Mostrar próxima actualización
+var nextUpdateEl = document.getElementById('next-update');
+if (nextUpdateEl && DATA.proxima_actualizacion) {
+  nextUpdateEl.textContent = '📡 Próxima actualización: ' + DATA.proxima_actualizacion + ' MT';
 }
 
 renderDateTabs();
