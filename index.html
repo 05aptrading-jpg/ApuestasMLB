@@ -22,6 +22,7 @@
   }
   .header .date { font-size: 13px; color: #71767b; margin-top: 4px; }
   .header .next-update { font-size: 22px; color: #f5a623; margin-top: 2px; }
+.header .next-update .update-time { font-size: 14px; color: #8b98a5; }
   .legend {
     display: flex; flex-wrap: wrap; gap: 6px;
     justify-content: center; margin: 12px 0;
@@ -107,7 +108,7 @@
 <div class="header">
 
   <div class="date" id="fecha">—</div>
-  <div class="next-update" id="next-update">Actualización para toma de decisiones<br>📡 MLB: — | 🇲🇽 LMB: —</div>
+  <div class="next-update" id="next-update">Actualización para toma de decisiones<br><span class="update-time">📡 MLB: — | 🇲🇽 LMB: —</span></div>
 </div>
 
 <div class="legend">
@@ -141,8 +142,8 @@
 
 <script>
 const DATA = {
-  "fecha": "30/05/2026 10:17",
-  "proxima_actualizacion": "11:10",
+  "fecha": "30/05/2026 10:20",
+  "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "18:00",
   "dias": [
     "2026-05-30",
@@ -1057,7 +1058,7 @@ var nextUpdateEl = document.getElementById('next-update');
 if (nextUpdateEl) {
   var mlbTime = DATA.proxima_actualizacion || '—';
   var lmbTime = DATA.proxima_actualizacion_lmb || '—';
-  nextUpdateEl.innerHTML = 'Actualización para toma de decisiones<br>📡 MLB: ' + mlbTime + ' MT | 🇲🇽 LMB: ' + lmbTime + ' MT';
+  nextUpdateEl.innerHTML = 'Actualización para toma de decisiones<br><span class="update-time">📡 MLB: ' + mlbTime + ' MT | 🇲🇽 LMB: ' + lmbTime + ' MT</span>';
 }
 
 renderLigaTabs();
