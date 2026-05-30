@@ -78,19 +78,22 @@
     margin-left: 8px;
   }
 
-  .date-tabs {
+  .liga-tabs, .date-tabs {
     display: flex; gap: 6px; margin: 12px 0;
     justify-content: center; flex-wrap: wrap;
   }
-  .date-tab {
+  .liga-tab, .date-tab {
     background: #1a1f2e; color: #8b98a5;
     border: 1px solid #2a3040; border-radius: 8px;
     padding: 6px 14px; font-size: 12px; font-weight: 500;
     cursor: pointer; transition: all 0.15s;
   }
-  .date-tab:hover { background: #262d3d; }
-  .date-tab.active {
+  .liga-tab:hover, .date-tab:hover { background: #262d3d; }
+  .liga-tab.active, .date-tab.active {
     background: #1d9bf0; color: #fff; border-color: #1d9bf0;
+  }
+  .liga-tab.active-lmb {
+    background: #f59e0b; color: #fff; border-color: #f59e0b;
   }
 
   .footer {
@@ -102,7 +105,7 @@
 <body>
 
 <div class="header">
-  <h1>⚾ MLB BOT</h1>
+  <h1 id="app-title">⚾ MLB BOT | 🇲🇽 LMB</h1>
   <div class="date" id="fecha">—</div>
   <div class="next-update" id="next-update">📡 Próxima actualización: —</div>
 </div>
@@ -116,6 +119,7 @@
   <span>🏁 Final</span>
 </div>
 
+<div id="liga-tabs" class="liga-tabs"></div>
 <div id="date-tabs" class="date-tabs"></div>
 
 <div class="card" id="games-card">
@@ -130,11 +134,11 @@
 
 <div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Actualización automática cada 5 min</div>
 
-<div class="footer">MLB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.</div>
+<div class="footer">MLB &amp; LMB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.</div>
 
 <script>
 const DATA = {
-  "fecha": "29/05/2026 17:49",
+  "fecha": "29/05/2026 18:03",
   "dias": [
     "2026-05-30",
     "2026-05-29",
@@ -213,8 +217,8 @@ const DATA = {
       "fav_team": "Atlanta Braves",
       "opp_team": "Cincinnati Reds",
       "score_fav": "4",
-      "score_opp": "1",
-      "state": "Bottom 4th",
+      "score_opp": "2",
+      "state": "Top 5th",
       "result": "live",
       "label": "🎯"
     },
@@ -225,7 +229,7 @@ const DATA = {
       "opp_team": "Pittsburgh Pirates",
       "score_fav": "5",
       "score_opp": "4",
-      "state": "Bottom 3rd",
+      "state": "Bottom 4th",
       "result": "live",
       "label": "🎯"
     },
@@ -234,9 +238,9 @@ const DATA = {
       "status_emoji": "🔴",
       "fav_team": "Miami Marlins",
       "opp_team": "New York Mets",
-      "score_fav": "0",
+      "score_fav": "1",
       "score_opp": "4",
-      "state": "Bottom 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "🎯"
     },
@@ -247,7 +251,7 @@ const DATA = {
       "opp_team": "Cleveland Guardians",
       "score_fav": "0",
       "score_opp": "4",
-      "state": "Top 3rd",
+      "state": "Top 4th",
       "result": "live",
       "label": "🎯"
     },
@@ -258,7 +262,7 @@ const DATA = {
       "opp_team": "Chicago White Sox",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Bottom 1st",
+      "state": "Middle 2nd",
       "result": "live",
       "label": "📊"
     },
@@ -269,7 +273,7 @@ const DATA = {
       "opp_team": "St. Louis Cardinals",
       "score_fav": "4",
       "score_opp": "3",
-      "state": "Top 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "📋"
     },
@@ -280,7 +284,7 @@ const DATA = {
       "opp_team": "San Diego Padres",
       "score_fav": "4",
       "score_opp": "2",
-      "state": "Bottom 3rd",
+      "state": "Top 4th",
       "result": "live",
       "label": "📋"
     },
@@ -290,8 +294,8 @@ const DATA = {
       "fav_team": "Toronto Blue Jays",
       "opp_team": "Baltimore Orioles",
       "score_fav": "0",
-      "score_opp": "0",
-      "state": "Bottom 3rd",
+      "score_opp": "2",
+      "state": "Middle 4th",
       "result": "live",
       "label": "📋"
     },
@@ -301,8 +305,8 @@ const DATA = {
       "fav_team": "Tampa Bay Rays",
       "opp_team": "Los Angeles Angels",
       "score_fav": "1",
-      "score_opp": "0",
-      "state": "Top 3rd",
+      "score_opp": "1",
+      "state": "Top 4th",
       "result": "live",
       "label": "📋"
     },
@@ -594,7 +598,21 @@ const DATA = {
   }
 })();
 
+// ── Estado ──────────────────────────────────────────────────────────
+var selectedLiga = 'general';
 var selectedDate = (DATA.dias && DATA.dias.length > 0) ? DATA.dias[0] : '';
+
+// ── Funciones helper ──────────────────────────────────────────────
+function getStatsForLiga(liga) {
+  if (liga === 'mlb') return DATA.stats_mlb || DATA.stats;
+  if (liga === 'lmb') return DATA.stats_lmb || {total:0,acertados:0,fallidos:0,win_rate:0};
+  return DATA.stats || {total:0,acertados:0,fallidos:0,win_rate:0};
+}
+
+function hasGamesForLiga(liga) {
+  if (liga === 'general') return DATA.games && DATA.games.length > 0;
+  return DATA.games && DATA.games.some(function(g) { return (g.liga || 'MLB').toLowerCase() === liga; });
+}
 
 function formatearFecha(iso) {
   if (!iso) return iso;
@@ -615,19 +633,61 @@ function formatearFecha(iso) {
   return label;
 }
 
+// ── Render tabs ────────────────────────────────────────────────────
+function renderLigaTabs() {
+  var container = document.getElementById('liga-tabs');
+  var tabs = [
+    { id: 'general', label: '📊 General' },
+    { id: 'mlb', label: '⚾ MLB' },
+    { id: 'lmb', label: '🇲🇽 LMB' },
+  ];
+  var html = '';
+  for (var i = 0; i < tabs.length; i++) {
+    var t = tabs[i];
+    var active = t.id === selectedLiga ? ' active' : '';
+    var extra = t.id === 'lmb' && active ? ' active-lmb' : '';
+    html += '<div class="liga-tab' + active + extra + '" onclick="selectLiga(\'' + t.id + '\')">' + t.label + '</div>';
+  }
+  container.innerHTML = html;
+}
+
 function renderDateTabs() {
   var container = document.getElementById('date-tabs');
-  if (!DATA.dias || DATA.dias.length <= 1) {
+  var ligaFilter = selectedLiga === 'general' ? null : selectedLiga;
+  var fechas = {};
+  for (var i = 0; i < (DATA.games || []).length; i++) {
+    var g = DATA.games[i];
+    if (ligaFilter && (g.liga || 'MLB').toLowerCase() !== ligaFilter) continue;
+    fechas[g.game_date] = true;
+  }
+  var dias = Object.keys(fechas).sort().reverse();
+  if (dias.length <= 1) {
     container.innerHTML = '';
     return;
   }
+  if (dias.indexOf(selectedDate) === -1) {
+    selectedDate = dias[0];
+  }
   var html = '';
-  for (var i = 0; i < DATA.dias.length; i++) {
-    var d = DATA.dias[i];
+  for (var j = 0; j < dias.length; j++) {
+    var d = dias[j];
     var active = d === selectedDate ? ' active' : '';
     html += '<div class="date-tab' + active + '" data-date="' + d + '" onclick="selectDate(\'' + d + '\')">' + formatearFecha(d) + '</div>';
   }
   container.innerHTML = html;
+}
+
+function selectLiga(liga) {
+  selectedLiga = liga;
+  var title = '⚾ MLB BOT | 🇲🇽 LMB';
+  if (liga === 'mlb') title = '⚾ MLB';
+  else if (liga === 'lmb') title = '🇲🇽 LMB';
+  else title = '⚾ MLB BOT | 🇲🇽 LMB';
+  document.getElementById('app-title').textContent = title;
+  renderLigaTabs();
+  renderDateTabs();
+  renderGames();
+  renderStats();
 }
 
 function selectDate(date) {
@@ -645,6 +705,7 @@ function renderDateLabel() {
   }
 }
 
+// ── Render games ───────────────────────────────────────────────────
 function renderGameRow(g) {
   var score = g.score_fav !== '—' && g.score_opp !== ''
     ? g.score_fav + '-' + g.score_opp
@@ -670,10 +731,14 @@ function renderGameRow(g) {
 function renderGames() {
   var gamesEl = document.getElementById('games-list');
   var filtered = DATA.games.filter(function(g) {
-    return g.game_date === selectedDate;
+    if (g.game_date !== selectedDate) return false;
+    if (selectedLiga === 'general') return true;
+    return (g.liga || 'MLB').toLowerCase() === selectedLiga;
   });
   if (filtered.length === 0) {
-    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin partidos</div>';
+    var msg = 'Sin partidos';
+    if (selectedLiga === 'lmb') msg = 'Sin partidos LMB — horario dinámico según primer juego del día';
+    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">' + msg + '</div>';
     return;
   }
   var recs  = filtered.filter(function(g) { return g.label === '🎯'; });
@@ -695,10 +760,11 @@ function renderGames() {
   gamesEl.innerHTML = html;
 }
 
+// ── Render stats ───────────────────────────────────────────────────
 function renderStats() {
   var statsEl = document.getElementById('stats-list');
-  if (!DATA.stats) return;
-  var s = DATA.stats;
+  var s = getStatsForLiga(selectedLiga);
+  if (!s) return;
   statsEl.innerHTML = '';
   var stats = [
     { label: '🌐 Global', value: s.acertados + '✅ ' + s.fallidos + '❌', sub: '(' + s.total + ') ' + s.win_rate + '%' },
@@ -720,16 +786,19 @@ function renderStats() {
 
 // Mostrar próxima actualización
 var nextUpdateEl = document.getElementById('next-update');
-if (nextUpdateEl && DATA.proxima_actualizacion) {
-  nextUpdateEl.textContent = '📡 Próxima actualización: ' + DATA.proxima_actualizacion + ' MT';
+if (nextUpdateEl) {
+  var mlbTime = DATA.proxima_actualizacion || '—';
+  var lmbTime = DATA.proxima_actualizacion_lmb || '—';
+  nextUpdateEl.innerHTML = '📡 MLB: ' + mlbTime + ' MT | 🇲🇽 LMB: ' + lmbTime + ' MT';
 }
 
+renderLigaTabs();
 renderDateTabs();
 renderDateLabel();
 renderGames();
 renderStats();
 
-// Auto-refresh cada 90s
+// Auto-refresh cada 5 min
 setTimeout(function(){ location.reload(); }, 300000);
 </script>
 </body>
