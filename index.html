@@ -142,7 +142,7 @@
 
 <script>
 const DATA = {
-  "fecha": "30/05/2026 10:21",
+  "fecha": "30/05/2026 10:26",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "18:00",
   "dias": [
@@ -948,11 +948,6 @@ function renderDateTabs() {
 
 function selectLiga(liga) {
   selectedLiga = liga;
-  var title = '⚾ MLB BOT | 🇲🇽 LMB';
-  if (liga === 'mlb') title = '⚾ MLB';
-  else if (liga === 'lmb') title = '🇲🇽 LMB';
-  else title = '⚾ MLB BOT | 🇲🇽 LMB';
-  document.getElementById('app-title').textContent = title;
   renderLigaTabs();
   renderDateTabs();
   renderGames();
