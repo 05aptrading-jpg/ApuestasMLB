@@ -107,7 +107,7 @@
 <div class="header">
   <h1 id="app-title">⚾ MLB BOT | 🇲🇽 LMB</h1>
   <div class="date" id="fecha">—</div>
-  <div class="next-update" id="next-update">📡 Próxima actualización: —</div>
+  <div class="next-update" id="next-update">Actualización para toma de decisiones<br>📡 MLB: — | 🇲🇽 LMB: —</div>
 </div>
 
 <div class="legend">
@@ -141,8 +141,8 @@
 
 <script>
 const DATA = {
-  "fecha": "30/05/2026 08:08",
-  "proxima_actualizacion": "12:10",
+  "fecha": "30/05/2026 08:14",
+  "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "18:00",
   "dias": [
     "2026-05-30",
@@ -764,7 +764,6 @@ const DATA = {
     }
   ],
   "bot_username": "MLBAnalyticsAPBot",
-  "precio_stars": 650,
   "autorizados": [
     6099564810,
     8025636859,
@@ -1046,7 +1045,7 @@ var nextUpdateEl = document.getElementById('next-update');
 if (nextUpdateEl) {
   var mlbTime = DATA.proxima_actualizacion || '—';
   var lmbTime = DATA.proxima_actualizacion_lmb || '—';
-  nextUpdateEl.innerHTML = '📡 MLB: ' + mlbTime + ' MT | 🇲🇽 LMB: ' + lmbTime + ' MT';
+  nextUpdateEl.innerHTML = 'Actualización para toma de decisiones<br>📡 MLB: ' + mlbTime + ' MT | 🇲🇽 LMB: ' + lmbTime + ' MT';
 }
 
 renderLigaTabs();
