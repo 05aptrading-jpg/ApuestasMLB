@@ -1,0 +1,6 @@
+# MLB BOT v3.0 — Dependencias
+# Instalar con: pip install -r requirements.txt
+
+requests>=2.31.0
+APScheduler>=3.10.4
+pytz>=2024.1
