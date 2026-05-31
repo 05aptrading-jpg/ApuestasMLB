@@ -340,6 +340,26 @@ def _build_data() -> dict:
         g["game_date"] = eg["game_date"]
         games.append(g)
 
+    # ── Annotate linescore + game_pk from seguimiento ──
+    sg_map = {}
+    for sg in seguimiento:
+        pk = sg.get("game_pk", 0)
+        ls = sg.get("linescore")
+        if pk and ls:
+            key = (_norm(sg.get("game_date", "")[:10]), _norm(sg.get("away_team", "")), _norm(sg.get("home_team", "")))
+            sg_map[key] = {"game_pk": pk, "linescore": ls}
+    for g in games:
+        gd = g.get("game_date", "")
+        fav = _norm(g.get("fav_team", ""))
+        opp = _norm(g.get("opp_team", ""))
+        entry = sg_map.get((gd, opp, fav)) or sg_map.get((gd, fav, opp))
+        if entry:
+            g["game_pk"] = entry["game_pk"]
+            g["linescore"] = entry["linescore"]
+        else:
+            g.setdefault("game_pk", 0)
+            g.setdefault("linescore", {})
+
     # Ordenar partidos por fecha (más reciente primero) y dentro de cada fecha por label
     games.sort(key=lambda x: (x.get("game_date", ""), {"🎯":0,"📊":1,"📋":2}.get(x.get("label",""), 3)))
 
