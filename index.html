@@ -43,7 +43,7 @@
 
   .game-row {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     gap: 6px;
     align-items: center;
     padding: 6px 0;
@@ -97,6 +97,73 @@
     background: #f59e0b; color: #fff; border-color: #f59e0b;
   }
 
+  .game-state.live {
+    background: #1a3a2a; color: #00ba7c;
+    font-weight: 600;
+  }
+
+  .game-wrapper { margin-bottom: 0; }
+  .game-row { cursor: pointer; transition: background 0.15s; border-radius: 6px; }
+  .game-row:hover { background: #1f2538; }
+  .expand-icon { font-size: 10px; color: #536471; transition: transform 0.2s; margin-left: 4px; }
+  .expand-icon.open { transform: rotate(180deg); }
+  .scoreboard-expand {
+    display: none; overflow: hidden;
+    background: #131827; border-radius: 8px;
+    margin: 2px 0 6px 0; padding: 10px;
+    border: 1px solid #2a3040;
+  }
+  .scoreboard-expand.open { display: block; }
+  .sb-header { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #8b98a5; margin-bottom: 8px; }
+  .sb-status { font-weight: 600; }
+  .sb-status.live { color: #00ba7c; }
+  .sb-status.final { color: #f5a623; }
+  .sb-grid {
+    display: grid;
+    grid-template-columns: 80px repeat(auto-fit, minmax(22px, 1fr)) 32px 32px 32px;
+    gap: 2px; font-size: 12px; font-family: 'Courier New', monospace;
+    margin-bottom: 8px;
+  }
+  .sb-grid .sb-label { color: #536471; font-weight: 600; font-size: 10px; text-align: right; padding-right: 6px; }
+  .sb-grid .sb-inning { text-align: center; color: #536471; font-size: 10px; padding: 2px 0; }
+  .sb-grid .sb-inning.current { color: #f5a623; font-weight: 700; }
+  .sb-grid .sb-score { text-align: center; padding: 2px 0; }
+  .sb-grid .sb-score.away { color: #e1e8ed; }
+  .sb-grid .sb-score.home { color: #8b98a5; }
+  .sb-grid .sb-score.current { background: #1a2035; border-radius: 3px; }
+  .sb-grid .sb-total { text-align: center; font-weight: 700; }
+  .sb-grid .sb-total.away { color: #e1e8ed; }
+  .sb-grid .sb-total.home { color: #8b98a5; }
+  .sb-grid .sb-header-row { border-bottom: 1px solid #2a3040; padding-bottom: 4px; margin-bottom: 2px; }
+  .sb-meta {
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+    font-size: 13px; padding: 6px 0;
+  }
+  .sb-bases {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 18px; line-height: 1;
+  }
+  .sb-bases-row { display: flex; gap: 8px; }
+  .sb-diamond-base {
+    width: 10px; height: 10px; border-radius: 2px;
+    border: 2px solid #536471;
+  }
+  .sb-diamond-base.occupied { background: #f5a623; border-color: #f5a623; }
+  .sb-diamond-base.empty { background: transparent; }
+  .sb-outs {
+    display: flex; gap: 4px; align-items: center;
+  }
+  .sb-out-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #2a3040; border: 1px solid #536471;
+  }
+  .sb-out-dot.recorded { background: #e1e8ed; border-color: #e1e8ed; }
+  .sb-count { font-size: 13px; color: #8b98a5; }
+  .sb-count span { font-weight: 600; color: #e1e8ed; }
+  .sb-inning-label { font-size: 14px; font-weight: 600; color: #f5a623; }
+  .sb-loading { text-align: center; padding: 10px; color: #536471; font-size: 12px; }
+  .sb-pitcher { font-size: 12px; color: #8b98a5; margin-top: 2px; }
+
   .footer {
     text-align: center; padding: 16px 0;
     font-size: 12px; color: #e1e8ed;
@@ -142,87 +209,15 @@
 
 <script>
 const DATA = {
-  "fecha": "30/05/2026 23:34",
-  "proxima_actualizacion": "23:19",
+  "fecha": "31/05/2026 07:47",
+  "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "dias": [
+    "2026-05-31",
     "2026-05-30",
-    "2026-05-29",
-    "2026-05-28"
+    "2026-05-29"
   ],
   "games": [
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-28",
-      "status_emoji": "🏁",
-      "fav_team": "Los Angeles Angels",
-      "opp_team": "Detroit Tigers",
-      "score_fav": "7",
-      "score_opp": "1",
-      "state": "Final",
-      "result": "completed",
-      "label": "📋"
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-28",
-      "status_emoji": "🏁",
-      "fav_team": "Minnesota Twins",
-      "opp_team": "Chicago White Sox",
-      "score_fav": "2",
-      "score_opp": "6",
-      "state": "Final",
-      "result": "completed",
-      "label": "📋"
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-28",
-      "status_emoji": "🏁",
-      "fav_team": "Atlanta Braves",
-      "opp_team": "Boston Red Sox",
-      "score_fav": "10",
-      "score_opp": "2",
-      "state": "Final",
-      "result": "completed",
-      "label": "📋"
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-28",
-      "status_emoji": "🏁",
-      "fav_team": "Toronto Blue Jays",
-      "opp_team": "Baltimore Orioles",
-      "score_fav": "2",
-      "score_opp": "1",
-      "state": "Final",
-      "result": "completed",
-      "label": "📋"
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-28",
-      "status_emoji": "🏁",
-      "fav_team": "Chicago Cubs",
-      "opp_team": "Pittsburgh Pirates",
-      "score_fav": "7",
-      "score_opp": "2",
-      "state": "Final",
-      "result": "completed",
-      "label": "📋"
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-28",
-      "status_emoji": "🏁",
-      "fav_team": "Houston Astros",
-      "opp_team": "Texas Rangers",
-      "score_fav": "5",
-      "score_opp": "1",
-      "state": "Final",
-      "result": "completed",
-      "label": "📋"
-    },
     {
       "liga": "MLB",
       "game_date": "2026-05-29",
@@ -233,7 +228,9 @@ const DATA = {
       "score_opp": "3",
       "state": "Final",
       "result": "win",
-      "label": "🎯"
+      "label": "🎯",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -245,7 +242,9 @@ const DATA = {
       "score_opp": "7",
       "state": "Final",
       "result": "loss",
-      "label": "🎯"
+      "label": "🎯",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -257,7 +256,9 @@ const DATA = {
       "score_opp": "9",
       "state": "Final",
       "result": "loss",
-      "label": "🎯"
+      "label": "🎯",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -269,7 +270,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "loss",
-      "label": "🎯"
+      "label": "🎯",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -281,7 +284,9 @@ const DATA = {
       "score_opp": "5",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -293,7 +298,9 @@ const DATA = {
       "score_opp": "6",
       "state": "Final",
       "result": "loss",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -305,7 +312,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "loss",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -317,7 +326,9 @@ const DATA = {
       "score_opp": "2",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -329,7 +340,9 @@ const DATA = {
       "score_opp": "",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -341,7 +354,9 @@ const DATA = {
       "score_opp": "12",
       "state": "Final",
       "result": "loss",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -353,7 +368,9 @@ const DATA = {
       "score_opp": "11",
       "state": "Final",
       "result": "loss",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -365,7 +382,9 @@ const DATA = {
       "score_opp": "9",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -377,7 +396,9 @@ const DATA = {
       "score_opp": "2",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -389,7 +410,9 @@ const DATA = {
       "score_opp": "2",
       "state": "Final",
       "result": "loss",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -401,7 +424,9 @@ const DATA = {
       "score_opp": "6",
       "state": "Final",
       "result": "loss",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -413,7 +438,9 @@ const DATA = {
       "score_opp": "5",
       "state": "Final",
       "result": "win",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -425,7 +452,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "loss",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -437,7 +466,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "loss",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -449,7 +480,9 @@ const DATA = {
       "score_opp": "9",
       "state": "Final",
       "result": "completed",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -461,7 +494,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "completed",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -473,7 +508,9 @@ const DATA = {
       "score_opp": "8",
       "state": "Final",
       "result": "completed",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -485,7 +522,9 @@ const DATA = {
       "score_opp": "2",
       "state": "Final",
       "result": "completed",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -497,7 +536,9 @@ const DATA = {
       "score_opp": "7",
       "state": "Final",
       "result": "completed",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -509,7 +550,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "completed",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -521,7 +564,9 @@ const DATA = {
       "score_opp": "2",
       "state": "Final",
       "result": "win",
-      "label": "🎯"
+      "label": "🎯",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -533,7 +578,9 @@ const DATA = {
       "score_opp": "1",
       "state": "Final",
       "result": "win",
-      "label": "🎯"
+      "label": "🎯",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -545,7 +592,9 @@ const DATA = {
       "score_opp": "6",
       "state": "Final",
       "result": "loss",
-      "label": "🎯"
+      "label": "🎯",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -557,7 +606,9 @@ const DATA = {
       "score_opp": "9",
       "state": "Final",
       "result": "loss",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -569,7 +620,9 @@ const DATA = {
       "score_opp": "7",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -581,7 +634,9 @@ const DATA = {
       "score_opp": "",
       "state": "Pend.",
       "result": "completed",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -593,7 +648,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -605,7 +662,9 @@ const DATA = {
       "score_opp": "3",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -617,19 +676,23 @@ const DATA = {
       "score_opp": "2",
       "state": "Final",
       "result": "win",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
       "game_date": "2026-05-30",
-      "status_emoji": "🏁",
+      "status_emoji": "❌",
       "fav_team": "Acereros del Norte",
       "opp_team": "Saraperos de Saltillo",
-      "score_fav": "",
-      "score_opp": "",
-      "state": "Pend.",
-      "result": "completed",
-      "label": "📊"
+      "score_fav": "4",
+      "score_opp": "5",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -641,7 +704,9 @@ const DATA = {
       "score_opp": "14",
       "state": "Final",
       "result": "loss",
-      "label": "📊"
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -653,7 +718,9 @@ const DATA = {
       "score_opp": "6",
       "state": "Final",
       "result": "loss",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -665,7 +732,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "loss",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -677,7 +746,9 @@ const DATA = {
       "score_opp": "1",
       "state": "Final",
       "result": "win",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -689,7 +760,9 @@ const DATA = {
       "score_opp": "2",
       "state": "Final",
       "result": "win",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -701,7 +774,9 @@ const DATA = {
       "score_opp": "8",
       "state": "Final",
       "result": "loss",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -713,7 +788,9 @@ const DATA = {
       "score_opp": "6",
       "state": "Final",
       "result": "win",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -725,7 +802,9 @@ const DATA = {
       "score_opp": "6",
       "state": "Final",
       "result": "loss",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -737,7 +816,9 @@ const DATA = {
       "score_opp": "4",
       "state": "Final",
       "result": "win",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -749,7 +830,9 @@ const DATA = {
       "score_opp": "9",
       "state": "Final",
       "result": "win",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -761,7 +844,9 @@ const DATA = {
       "score_opp": "1",
       "state": "Final",
       "result": "win",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "MLB",
@@ -773,7 +858,219 @@ const DATA = {
       "score_opp": "9",
       "state": "Final",
       "result": "loss",
-      "label": "📋"
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "New York Yankees",
+      "opp_team": "Athletics",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Los Angeles Dodgers",
+      "opp_team": "Philadelphia Phillies",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📊",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Seattle Mariners",
+      "opp_team": "Arizona Diamondbacks",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Colorado Rockies",
+      "opp_team": "San Francisco Giants",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Toronto Blue Jays",
+      "opp_team": "Baltimore Orioles",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Minnesota Twins",
+      "opp_team": "Pittsburgh Pirates",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "San Diego Padres",
+      "opp_team": "Washington Nationals",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Los Angeles Angels",
+      "opp_team": "Tampa Bay Rays",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Atlanta Braves",
+      "opp_team": "Cincinnati Reds",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Boston Red Sox",
+      "opp_team": "Cleveland Guardians",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Miami Marlins",
+      "opp_team": "New York Mets",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Detroit Tigers",
+      "opp_team": "Chicago White Sox",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Milwaukee Brewers",
+      "opp_team": "Houston Astros",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Kansas City Royals",
+      "opp_team": "Texas Rangers",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-31",
+      "status_emoji": "⏳",
+      "fav_team": "Chicago Cubs",
+      "opp_team": "St. Louis Cardinals",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 0,
+      "linescore": {}
     }
   ],
   "bot_username": "MLBAnalyticsAPBot",
@@ -786,16 +1083,16 @@ const DATA = {
   "stats": {
     "total": 46,
     "acertados": 20,
-    "fallidos": 18,
-    "win_rate": 52.6,
+    "fallidos": 19,
+    "win_rate": 51.3,
     "alta_total": 8,
     "alta_acertados": 4,
     "alta_fallidos": 4,
     "alta_win_rate": 50.0,
     "media_total": 20,
     "media_acertados": 9,
-    "media_fallidos": 9,
-    "media_win_rate": 50.0,
+    "media_fallidos": 10,
+    "media_win_rate": 47.4,
     "baja_total": 18,
     "baja_acertados": 7,
     "baja_fallidos": 5,
@@ -828,16 +1125,16 @@ const DATA = {
   "stats_lmb": {
     "total": 16,
     "acertados": 8,
-    "fallidos": 6,
-    "win_rate": 57.1,
+    "fallidos": 7,
+    "win_rate": 53.3,
     "alta_total": 0,
     "alta_acertados": 0,
     "alta_fallidos": 0,
     "alta_win_rate": 0,
     "media_total": 14,
     "media_acertados": 8,
-    "media_fallidos": 4,
-    "media_win_rate": 66.7,
+    "media_fallidos": 5,
+    "media_win_rate": 61.5,
     "baja_total": 2,
     "baja_acertados": 0,
     "baja_fallidos": 2,
@@ -985,10 +1282,16 @@ function renderGameRow(g) {
   } else {
     teamHtml = g.fav_team + ' ' + sep + ' ' + g.opp_team;
   }
-  return '<div class="game-row">'
+  var stateClass = g.result === 'live' ? 'live' : '';
+  var idx = (g.game_pk || 0) + '-' + (DATA.games.indexOf(g));
+  return '<div class="game-wrapper">'
+    + '<div class="game-row" onclick="toggleScoreboard(' + idx + ', this)" data-idx="' + idx + '">'
     + '<div class="game-status">' + g.status_emoji + '</div>'
     + '<div class="game-team">' + teamHtml + '</div>'
-    + '<div class="game-state">' + g.state + '</div>'
+    + '<div class="game-state ' + stateClass + '">' + g.state + '</div>'
+    + '<div class="expand-icon">▼</div>'
+    + '</div>'
+    + '<div class="scoreboard-expand" id="sb-' + idx + '"></div>'
     + '</div>';
 }
 
@@ -1054,6 +1357,151 @@ if (nextUpdateEl) {
   var mlbTime = DATA.proxima_actualizacion || '—';
   var lmbTime = DATA.proxima_actualizacion_lmb || '—';
   nextUpdateEl.innerHTML = 'Actualización para toma de decisiones<br><span class="update-time">📡 MLB: ' + mlbTime + ' MT | 🇲🇽 LMB: ' + lmbTime + ' MT</span>';
+}
+
+// ── Scoreboard Expandible ──────────────────────────────────────────────
+var sbTimers = {};
+
+function toggleScoreboard(idx, rowEl) {
+  var container = document.getElementById('sb-' + idx);
+  if (!container) return;
+  var isOpen = container.classList.contains('open');
+  var icon = rowEl.querySelector('.expand-icon');
+
+  if (isOpen) {
+    container.classList.remove('open');
+    if (icon) icon.classList.remove('open');
+    if (sbTimers[idx]) { clearInterval(sbTimers[idx]); delete sbTimers[idx]; }
+    return;
+  }
+
+  container.classList.add('open');
+  if (icon) icon.classList.add('open');
+
+  // Find game data
+  var g = null;
+  for (var i = 0; i < DATA.games.length; i++) {
+    var pk = (DATA.games[i].game_pk || 0) + '-' + i;
+    if (pk == idx) { g = DATA.games[i]; break; }
+  }
+  if (g && g.linescore && g.linescore.innings) {
+    renderScoreboard(g, container);
+  } else {
+    container.innerHTML = '<div class="sb-loading" style="color:#8b98a5">Scoreboard no disponible</div>';
+  }
+
+  // Auto-refresh every 15 seconds while open (reload page instead)
+  if (sbTimers[idx]) clearInterval(sbTimers[idx]);
+  sbTimers[idx] = setInterval(function() {
+    var c = document.getElementById('sb-' + idx);
+    if (c && c.classList.contains('open')) {
+      location.reload();
+    } else {
+      clearInterval(sbTimers[idx]);
+      delete sbTimers[idx];
+    }
+  }, 15000);
+}
+
+function renderScoreboard(g, container) {
+  var ls = g.linescore || {};
+  var innings = ls.innings || [];
+  var maxInnings = innings.length;
+  var totalInnings = maxInnings;
+  for (var i = innings.length - 1; i >= 8; i--) {
+    if (innings[i].away_runs === 0 && innings[i].home_runs === 0 && i >= 9) {
+      totalInnings = i;
+    } else {
+      break;
+    }
+  }
+  if (totalInnings < 9) totalInnings = 9;
+
+  var isLive = g.result === 'live';
+  var isFinal = g.result === 'win' || g.result === 'loss' || g.result === 'completed';
+  var statusClass = isLive ? 'live' : (isFinal ? 'final' : '');
+  var statusText = g.state || '';
+  if (ls.inning_ordinal && isLive) {
+    statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
+  }
+
+  // Team abbreviations
+  var awayName = g.opp_team || 'Away';
+  var homeName = g.fav_team || 'Home';
+  var awayAbbr = awayName.split(' ').pop();
+  var homeAbbr = homeName.split(' ').pop();
+
+  var html = '<div class="sb-header">';
+  html += '<span class="sb-status ' + statusClass + '">' + statusText + '</span>';
+  html += '</div>';
+
+  var numCols = Math.max(totalInnings, 9);
+  html += '<div class="sb-grid" style="grid-template-columns:80px repeat(' + numCols + ', minmax(22px,1fr)) 32px 32px 32px">';
+
+  // Header row
+  html += '<div class="sb-label sb-header-row"></div>';
+  for (var i = 1; i <= numCols; i++) {
+    var isCurrentInning = (i === ls.current_inning && isLive);
+    html += '<div class="sb-inning sb-header-row' + (isCurrentInning ? ' current' : '') + '">' + i + '</div>';
+  }
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">R</div>';
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
+
+  // Away row
+  html += '<div class="sb-label">' + awayAbbr + '</div>';
+  for (var i = 0; i < numCols; i++) {
+    var inn = innings[i] || {};
+    var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
+    html += '<div class="sb-score away' + cls + '">' + (inn.away_runs !== undefined ? inn.away_runs : '') + '</div>';
+  }
+  html += '<div class="sb-total away">' + (ls.away_runs !== undefined ? ls.away_runs : 0) + '</div>';
+  html += '<div class="sb-total away">' + (ls.away_hits || 0) + '</div>';
+  html += '<div class="sb-total away">' + (ls.away_errors || 0) + '</div>';
+
+  // Home row
+  html += '<div class="sb-label">' + homeAbbr + '</div>';
+  for (var i = 0; i < numCols; i++) {
+    var inn = innings[i] || {};
+    var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
+    html += '<div class="sb-score home' + cls + '">' + (inn.home_runs !== undefined ? inn.home_runs : '') + '</div>';
+  }
+  html += '<div class="sb-total home">' + (ls.home_runs !== undefined ? ls.home_runs : 0) + '</div>';
+  html += '<div class="sb-total home">' + (ls.home_hits || 0) + '</div>';
+  html += '<div class="sb-total home">' + (ls.home_errors || 0) + '</div>';
+  html += '</div>';
+
+  // Meta: bases + outs + count + inning
+  var bases = ls.bases || {};
+  html += '<div class="sb-meta">';
+
+  // Bases diamond
+  html += '<div class="sb-bases">';
+  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.second ? ' occupied' : ' empty') + '"></span></div>';
+  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.first ? ' occupied' : ' empty') + '"></span><span class="sb-diamond-base' + (bases.third ? ' occupied' : ' empty') + '"></span></div>';
+  html += '</div>';
+
+  // Outs
+  var outs = ls.outs || 0;
+  html += '<div class="sb-outs">';
+  for (var o = 0; o < 3; o++) {
+    html += '<span class="sb-out-dot' + (o < outs ? ' recorded' : '') + '"></span>';
+  }
+  html += '</div>';
+
+  // Balls/Strikes
+  if (isLive) {
+    html += '<div class="sb-count">B: <span>' + (ls.balls || 0) + '</span>  S: <span>' + (ls.strikes || 0) + '</span></div>';
+  }
+
+  if (isLive) {
+    var arrow = ls.is_top ? '↑' : '↓';
+    html += '<div class="sb-inning-label">' + arrow + ' ' + (ls.inning_ordinal || '') + '</div>';
+  }
+
+  html += '</div>';
+
+  container.innerHTML = html;
 }
 
 renderLigaTabs();
