@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MLB BOT</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f1419; color: #e1e8ed;
+    padding: 16px; min-height: 100vh;
+  }
+  .header {
+    text-align: center; padding: 16px 0 8px;
+  }
+  .header h1 {
+    font-size: 20px; font-weight: 700;
+    background: linear-gradient(135deg, #1d9bf0, #8b5cf6);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header .date { font-size: 13px; color: #71767b; margin-top: 4px; }
+  .header .next-update { font-size: 22px; color: #f5a623; margin-top: 2px; }
+.header .next-update .update-time { font-size: 16px; color: #f5a623; }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    justify-content: center; margin: 12px 0;
+    font-size: 12px; color: #71767b;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 3px; }
+
+  .card {
+    background: #1a1f2e; border-radius: 12px;
+    padding: 12px; margin-bottom: 12px;
+    border: 1px solid #2a3040;
+  }
+  .card-title {
+    font-size: 13px; font-weight: 600; color: #e1e8ed;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  .game-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 6px;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #2a3040;
+    font-size: 12px;
+  }
+  .game-row:last-child { border-bottom: none; }
+  .game-status {
+    width: 20px; text-align: center; font-size: 13px;
+  }
+  .game-team { font-weight: 500; color: #e1e8ed; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .game-state {
+    font-size: 12px; color: #71767b;
+    background: #262d3d; padding: 2px 8px;
+    border-radius: 6px; text-align: center;
+  }
+
+  .stat-grid {
+    display: grid; gap: 10px;
+  }
+  .stat-item {
+    display: flex; justify-content: space-between;
+    align-items: center; padding: 6px 0;
+    border-bottom: 1px solid #2a3040;
+  }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-label { font-size: 14px; color: #e1e8ed; }
+  .stat-value { font-size: 14px; font-weight: 600; }
+  .stat-value .winrate { color: #00ba7c; }
+  .stat-value .fire { margin-left: 4px; }
+  .stat-sub {
+    font-size: 12px; color: #8b98a5;
+    margin-left: 8px;
+  }
+
+  .liga-tabs, .date-tabs {
+    display: flex; gap: 6px; margin: 12px 0;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .liga-tab, .date-tab {
+    background: #1a1f2e; color: #8b98a5;
+    border: 1px solid #2a3040; border-radius: 8px;
+    padding: 6px 14px; font-size: 12px; font-weight: 500;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .liga-tab:hover, .date-tab:hover { background: #262d3d; }
+  .liga-tab.active, .date-tab.active {
+    background: #1d9bf0; color: #fff; border-color: #1d9bf0;
+  }
+  .liga-tab.active-lmb {
+    background: #f59e0b; color: #fff; border-color: #f59e0b;
+  }
+
+  .footer {
+    text-align: center; padding: 16px 0;
+    font-size: 12px; color: #e1e8ed;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+
+  <div class="date" id="fecha">—</div>
+  <div class="next-update" id="next-update">Actualización para toma de decisiones<br><span class="update-time">📡 MLB: — | 🇲🇽 LMB: —</span></div>
+</div>
+
+<div class="legend">
+  <span>✅ Acertado</span>
+  <span>❌ Fallido</span>
+  <span>🔴 En vivo</span>
+  <span>⏳ Pendiente</span>
+  <span>🚫 Pospuesto</span>
+  <span>🏁 Final</span>
+</div>
+
+<div id="liga-tabs" class="liga-tabs"></div>
+<div id="date-tabs" class="date-tabs"></div>
+
+<div class="card" id="games-card">
+  <div class="card-title">📋 Partidos</div>
+  <div id="games-list"></div>
+</div>
+
+<div class="card" id="stats-card">
+  <div class="card-title">📊 Rendimiento</div>
+  <div class="stat-grid" id="stats-list"></div>
+</div>
+
+<div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Actualización automática cada 5 min</div>
+
+<div class="footer">
+  MLB &amp; LMB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
+  <a href="privacy.html" style="color:#8b98a5;text-decoration:none">Privacidad</a> · <a href="terms.html" style="color:#8b98a5;text-decoration:none">Términos</a>
+</div>
+
+<script>
+const DATA = {
+  "fecha": "30/05/2026 23:34",
+  "proxima_actualizacion": "23:19",
+  "proxima_actualizacion_lmb": "12:30",
+  "dias": [
+    "2026-05-30",
+    "2026-05-29",
+    "2026-05-28"
+  ],
+  "games": [
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-28",
+      "status_emoji": "🏁",
+      "fav_team": "Los Angeles Angels",
+      "opp_team": "Detroit Tigers",
+      "score_fav": "7",
+      "score_opp": "1",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-28",
+      "status_emoji": "🏁",
+      "fav_team": "Minnesota Twins",
+      "opp_team": "Chicago White Sox",
+      "score_fav": "2",
+      "score_opp": "6",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-28",
+      "status_emoji": "🏁",
+      "fav_team": "Atlanta Braves",
+      "opp_team": "Boston Red Sox",
+      "score_fav": "10",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-28",
+      "status_emoji": "🏁",
+      "fav_team": "Toronto Blue Jays",
+      "opp_team": "Baltimore Orioles",
+      "score_fav": "2",
+      "score_opp": "1",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-28",
+      "status_emoji": "🏁",
+      "fav_team": "Chicago Cubs",
+      "opp_team": "Pittsburgh Pirates",
+      "score_fav": "7",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-28",
+      "status_emoji": "🏁",
+      "fav_team": "Houston Astros",
+      "opp_team": "Texas Rangers",
+      "score_fav": "5",
+      "score_opp": "1",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "✅",
+      "fav_team": "Atlanta Braves",
+      "opp_team": "Cincinnati Reds",
+      "score_fav": "8",
+      "score_opp": "3",
+      "state": "Final",
+      "result": "win",
+      "label": "🎯"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Washington Nationals",
+      "opp_team": "San Diego Padres",
+      "score_fav": "5",
+      "score_opp": "7",
+      "state": "Final",
+      "result": "loss",
+      "label": "🎯"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Miami Marlins",
+      "opp_team": "New York Mets",
+      "score_fav": "7",
+      "score_opp": "9",
+      "state": "Final",
+      "result": "loss",
+      "label": "🎯"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Boston Red Sox",
+      "opp_team": "Cleveland Guardians",
+      "score_fav": "3",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "loss",
+      "label": "🎯"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "✅",
+      "fav_team": "Toronto Blue Jays",
+      "opp_team": "Baltimore Orioles",
+      "score_fav": "6",
+      "score_opp": "5",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Minnesota Twins",
+      "opp_team": "Pittsburgh Pirates",
+      "score_fav": "5",
+      "score_opp": "6",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Detroit Tigers",
+      "opp_team": "Chicago White Sox",
+      "score_fav": "3",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "✅",
+      "fav_team": "Pericos de Puebla",
+      "opp_team": "Piratas de Campeche",
+      "score_fav": "5",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "✅",
+      "fav_team": "Diablos Rojos del Mexico",
+      "opp_team": "Conspiradores de Queretaro",
+      "score_fav": "",
+      "score_opp": "",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Tecos de los Dos Laredos",
+      "opp_team": "Caliente de Durango",
+      "score_fav": "5",
+      "score_opp": "12",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Bravos de Leon",
+      "opp_team": "Tigres de Quintana Roo",
+      "score_fav": "6",
+      "score_opp": "11",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "✅",
+      "fav_team": "Charros de Jalisco",
+      "opp_team": "Algodoneros Union Laguna",
+      "score_fav": "10",
+      "score_opp": "9",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "✅",
+      "fav_team": "Olmecas de Tabasco",
+      "opp_team": "Guerreros de Oaxaca",
+      "score_fav": "3",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Toros de Tijuana",
+      "opp_team": "Sultanes de Monterrey",
+      "score_fav": "0",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Chicago Cubs",
+      "opp_team": "St. Louis Cardinals",
+      "score_fav": "5",
+      "score_opp": "6",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "✅",
+      "fav_team": "Tampa Bay Rays",
+      "opp_team": "Los Angeles Angels",
+      "score_fav": "8",
+      "score_opp": "5",
+      "state": "Final",
+      "result": "win",
+      "label": "📋"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Leones de Yucatan",
+      "opp_team": "El Aguila de Veracruz",
+      "score_fav": "3",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-29",
+      "status_emoji": "❌",
+      "fav_team": "Acereros del Norte",
+      "opp_team": "Saraperos de Saltillo",
+      "score_fav": "1",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "🏁",
+      "fav_team": "Kansas City Royals",
+      "opp_team": "Texas Rangers",
+      "score_fav": "1",
+      "score_opp": "9",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "🏁",
+      "fav_team": "Milwaukee Brewers",
+      "opp_team": "Houston Astros",
+      "score_fav": "5",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "🏁",
+      "fav_team": "San Francisco Giants",
+      "opp_team": "Colorado Rockies",
+      "score_fav": "6",
+      "score_opp": "8",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "🏁",
+      "fav_team": "New York Yankees",
+      "opp_team": "Athletics",
+      "score_fav": "8",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "🏁",
+      "fav_team": "Arizona Diamondbacks",
+      "opp_team": "Seattle Mariners",
+      "score_fav": "6",
+      "score_opp": "7",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-29",
+      "status_emoji": "🏁",
+      "fav_team": "Philadelphia Phillies",
+      "opp_team": "Los Angeles Dodgers",
+      "score_fav": "2",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Atlanta Braves",
+      "opp_team": "Cincinnati Reds",
+      "score_fav": "5",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "win",
+      "label": "🎯"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Chicago Cubs",
+      "opp_team": "St. Louis Cardinals",
+      "score_fav": "6",
+      "score_opp": "1",
+      "state": "Final",
+      "result": "win",
+      "label": "🎯"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "❌",
+      "fav_team": "Miami Marlins",
+      "opp_team": "New York Mets",
+      "score_fav": "1",
+      "score_opp": "6",
+      "state": "Final",
+      "result": "loss",
+      "label": "🎯"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-30",
+      "status_emoji": "❌",
+      "fav_team": "Pericos de Puebla",
+      "opp_team": "Piratas de Campeche",
+      "score_fav": "5",
+      "score_opp": "9",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Diablos Rojos del Mexico",
+      "opp_team": "Conspiradores de Queretaro",
+      "score_fav": "8",
+      "score_opp": "7",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-30",
+      "status_emoji": "🏁",
+      "fav_team": "Bravos de Leon",
+      "opp_team": "Tigres de Quintana Roo",
+      "score_fav": "",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "completed",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Charros de Jalisco",
+      "opp_team": "Algodoneros Union Laguna",
+      "score_fav": "8",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Olmecas de Tabasco",
+      "opp_team": "Guerreros de Oaxaca",
+      "score_fav": "6",
+      "score_opp": "3",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Caliente de Durango",
+      "opp_team": "Tecos de los Dos Laredos",
+      "score_fav": "3",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "win",
+      "label": "📊"
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-05-30",
+      "status_emoji": "🏁",
+      "fav_team": "Acereros del Norte",
+      "opp_team": "Saraperos de Saltillo",
+      "score_fav": "",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "completed",
+      "label": "📊"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "❌",
+      "fav_team": "Tampa Bay Rays",
+      "opp_team": "Los Angeles Angels",
+      "score_fav": "3",
+      "score_opp": "14",
+      "state": "Final",
+      "result": "loss",
+      "label": "📊"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "❌",
+      "fav_team": "New York Yankees",
+      "opp_team": "Athletics",
+      "score_fav": "4",
+      "score_opp": "6",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "❌",
+      "fav_team": "Los Angeles Dodgers",
+      "opp_team": "Philadelphia Phillies",
+      "score_fav": "3",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Seattle Mariners",
+      "opp_team": "Arizona Diamondbacks",
+      "score_fav": "5",
+      "score_opp": "1",
+      "state": "Final",
+      "result": "win",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Houston Astros",
+      "opp_team": "Milwaukee Brewers",
+      "score_fav": "9",
+      "score_opp": "2",
+      "state": "Final",
+      "result": "win",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "❌",
+      "fav_team": "San Francisco Giants",
+      "opp_team": "Colorado Rockies",
+      "score_fav": "3",
+      "score_opp": "8",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Texas Rangers",
+      "opp_team": "Kansas City Royals",
+      "score_fav": "7",
+      "score_opp": "6",
+      "state": "Final",
+      "result": "win",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "❌",
+      "fav_team": "Toronto Blue Jays",
+      "opp_team": "Baltimore Orioles",
+      "score_fav": "5",
+      "score_opp": "6",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Washington Nationals",
+      "opp_team": "San Diego Padres",
+      "score_fav": "9",
+      "score_opp": "4",
+      "state": "Final",
+      "result": "win",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Pittsburgh Pirates",
+      "opp_team": "Minnesota Twins",
+      "score_fav": "10",
+      "score_opp": "9",
+      "state": "Final",
+      "result": "win",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "✅",
+      "fav_team": "Chicago White Sox",
+      "opp_team": "Detroit Tigers",
+      "score_fav": "7",
+      "score_opp": "1",
+      "state": "Final",
+      "result": "win",
+      "label": "📋"
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-05-30",
+      "status_emoji": "❌",
+      "fav_team": "Cleveland Guardians",
+      "opp_team": "Boston Red Sox",
+      "score_fav": "1",
+      "score_opp": "9",
+      "state": "Final",
+      "result": "loss",
+      "label": "📋"
+    }
+  ],
+  "bot_username": "MLBAnalyticsAPBot",
+  "autorizados": [
+    6099564810,
+    8025636859,
+    1992258520,
+    "6099564810"
+  ],
+  "stats": {
+    "total": 46,
+    "acertados": 20,
+    "fallidos": 18,
+    "win_rate": 52.6,
+    "alta_total": 8,
+    "alta_acertados": 4,
+    "alta_fallidos": 4,
+    "alta_win_rate": 50.0,
+    "media_total": 20,
+    "media_acertados": 9,
+    "media_fallidos": 9,
+    "media_win_rate": 50.0,
+    "baja_total": 18,
+    "baja_acertados": 7,
+    "baja_fallidos": 5,
+    "baja_win_rate": 58.3,
+    "valor_ok": 0,
+    "valor_total": 1,
+    "valor_rate": 0.0
+  },
+  "stats_mlb": {
+    "total": 30,
+    "acertados": 12,
+    "fallidos": 12,
+    "win_rate": 50.0,
+    "alta_total": 8,
+    "alta_acertados": 4,
+    "alta_fallidos": 4,
+    "alta_win_rate": 50.0,
+    "media_total": 6,
+    "media_acertados": 1,
+    "media_fallidos": 5,
+    "media_win_rate": 16.7,
+    "baja_total": 16,
+    "baja_acertados": 7,
+    "baja_fallidos": 3,
+    "baja_win_rate": 70.0,
+    "valor_ok": 0,
+    "valor_total": 1,
+    "valor_rate": 0.0
+  },
+  "stats_lmb": {
+    "total": 16,
+    "acertados": 8,
+    "fallidos": 6,
+    "win_rate": 57.1,
+    "alta_total": 0,
+    "alta_acertados": 0,
+    "alta_fallidos": 0,
+    "alta_win_rate": 0,
+    "media_total": 14,
+    "media_acertados": 8,
+    "media_fallidos": 4,
+    "media_win_rate": 66.7,
+    "baja_total": 2,
+    "baja_acertados": 0,
+    "baja_fallidos": 2,
+    "baja_win_rate": 0.0,
+    "valor_ok": 0,
+    "valor_total": 0,
+    "valor_rate": 0
+  }
+};
+
+// ── Control de acceso ──────────────────────────────────────────────
+(function() {
+  const tg = window.Telegram?.WebApp;
+  const userId = tg?.initDataUnsafe?.user?.id;
+  const autorizados = DATA.autorizados || [];
+  const acceso = userId && autorizados.includes(userId);
+
+  if (!acceso) {
+    document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;padding:32px;text-align:center">'
+      + '<div style="font-size:48px;margin-bottom:16px">🔒</div>'
+      + '<h2 style="font-size:18px;margin-bottom:8px;color:#e1e8ed">Acceso Restringido</h2>'
+      + '<p style="font-size:14px;color:#8b98a5;margin-bottom:24px;line-height:1.5">Esta aplicación es de uso exclusivo para suscriptores.</p>'
+      + '<p style="font-size:14px;color:#8b98a5;margin-bottom:8px;line-height:1.5">Contacta al administrador para obtener acceso.</p>'
+      + '<div style="margin-top:24px;font-size:11px;color:#536471">Tu ID: ' + (userId || 'No disponible') + '</div>'
+      + '</div>';
+    return;
+  }
+})();
+
+// ── Estado ──────────────────────────────────────────────────────────
+var selectedLiga = 'general';
+var selectedDate = (DATA.dias && DATA.dias.length > 0) ? DATA.dias[0] : '';
+
+// ── Funciones helper ──────────────────────────────────────────────
+function getStatsForLiga(liga) {
+  if (liga === 'mlb') return DATA.stats_mlb || DATA.stats;
+  if (liga === 'lmb') return DATA.stats_lmb || {total:0,acertados:0,fallidos:0,win_rate:0};
+  return DATA.stats || {total:0,acertados:0,fallidos:0,win_rate:0};
+}
+
+function hasGamesForLiga(liga) {
+  if (liga === 'general') return DATA.games && DATA.games.length > 0;
+  return DATA.games && DATA.games.some(function(g) { return (g.liga || 'MLB').toLowerCase() === liga; });
+}
+
+function formatearFecha(iso) {
+  if (!iso) return iso;
+  var partes = iso.split('-');
+  if (partes.length !== 3) return iso;
+  var diasSem = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  var meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  var d = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
+  var hoy = new Date();
+  var ayer = new Date(hoy);
+  ayer.setDate(hoy.getDate()-1);
+  var anteayer = new Date(hoy);
+  anteayer.setDate(hoy.getDate()-2);
+  var label = diasSem[d.getDay()] + ' ' + parseInt(partes[2]) + ' ' + meses[parseInt(partes[1])-1];
+  if (d.toDateString() === hoy.toDateString()) return 'Hoy (' + parseInt(partes[2]) + ' ' + meses[parseInt(partes[1])-1] + ')';
+  if (d.toDateString() === ayer.toDateString()) return 'Ayer (' + parseInt(partes[2]) + ' ' + meses[parseInt(partes[1])-1] + ')';
+  if (d.toDateString() === anteayer.toDateString()) return 'Anteayer (' + parseInt(partes[2]) + ' ' + meses[parseInt(partes[1])-1] + ')';
+  return label;
+}
+
+// ── Render tabs ────────────────────────────────────────────────────
+function renderLigaTabs() {
+  var container = document.getElementById('liga-tabs');
+  var tabs = [
+    { id: 'general', label: '📊 General' },
+    { id: 'mlb', label: '⚾ MLB' },
+    { id: 'lmb', label: '🇲🇽 LMB' },
+  ];
+  var html = '';
+  for (var i = 0; i < tabs.length; i++) {
+    var t = tabs[i];
+    var active = t.id === selectedLiga ? ' active' : '';
+    var extra = t.id === 'lmb' && active ? ' active-lmb' : '';
+    html += '<div class="liga-tab' + active + extra + '" onclick="selectLiga(\'' + t.id + '\')">' + t.label + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function renderDateTabs() {
+  var container = document.getElementById('date-tabs');
+  var ligaFilter = selectedLiga === 'general' ? null : selectedLiga;
+  var fechas = {};
+  for (var i = 0; i < (DATA.games || []).length; i++) {
+    var g = DATA.games[i];
+    if (ligaFilter && (g.liga || 'MLB').toLowerCase() !== ligaFilter) continue;
+    fechas[g.game_date] = true;
+  }
+  var dias = Object.keys(fechas).sort().reverse();
+  if (dias.length <= 1) {
+    container.innerHTML = '';
+    return;
+  }
+  if (dias.indexOf(selectedDate) === -1) {
+    selectedDate = dias[0];
+  }
+  var html = '';
+  for (var j = 0; j < dias.length; j++) {
+    var d = dias[j];
+    var active = d === selectedDate ? ' active' : '';
+    html += '<div class="date-tab' + active + '" data-date="' + d + '" onclick="selectDate(\'' + d + '\')">' + formatearFecha(d) + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function selectLiga(liga) {
+  selectedLiga = liga;
+  renderLigaTabs();
+  renderDateTabs();
+  renderGames();
+  renderStats();
+}
+
+function selectDate(date) {
+  selectedDate = date;
+  renderDateTabs();
+  renderGames();
+}
+
+function renderDateLabel() {
+  var el = document.getElementById('fecha');
+  if (selectedDate && DATA.dias && DATA.dias.length > 1) {
+    el.textContent = formatearFecha(selectedDate) + ' — ' + (DATA.fecha || '');
+  } else {
+    el.textContent = DATA.fecha || '—';
+  }
+}
+
+// ── Render games ───────────────────────────────────────────────────
+function renderGameRow(g) {
+  var score = g.score_fav !== '—' && g.score_opp !== ''
+    ? g.score_fav + '-' + g.score_opp
+    : '';
+  var sep = score ? score : 'Vs';
+  var teamHtml;
+  if (g.label === '🎯') {
+    teamHtml = '<span style="font-weight:700;color:#f5a623">' + g.fav_team + '</span>'
+      + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
+  } else if (g.label === '📊') {
+    teamHtml = '<span style="font-weight:600;color:#ffd866">' + g.fav_team + '</span>'
+      + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
+  } else {
+    teamHtml = g.fav_team + ' ' + sep + ' ' + g.opp_team;
+  }
+  return '<div class="game-row">'
+    + '<div class="game-status">' + g.status_emoji + '</div>'
+    + '<div class="game-team">' + teamHtml + '</div>'
+    + '<div class="game-state">' + g.state + '</div>'
+    + '</div>';
+}
+
+function renderGames() {
+  var gamesEl = document.getElementById('games-list');
+  var filtered = DATA.games.filter(function(g) {
+    if (g.game_date !== selectedDate) return false;
+    if (selectedLiga === 'general') return true;
+    return (g.liga || 'MLB').toLowerCase() === selectedLiga;
+  });
+  if (filtered.length === 0) {
+    var msg = 'Sin partidos';
+    if (selectedLiga === 'lmb') msg = 'Sin partidos LMB — próx. actualización: ' + (DATA.proxima_actualizacion_lmb || '10:00') + ' MT';
+    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">' + msg + '</div>';
+    return;
+  }
+  var recs  = filtered.filter(function(g) { return g.label === '🎯'; });
+  var meds  = filtered.filter(function(g) { return g.label === '📊'; });
+  var infos = filtered.filter(function(g) { return g.label === '📋'; });
+  var html = '';
+  if (recs.length > 0) {
+    html += '<div style="font-size:11px;font-weight:600;color:#f5a623;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin-bottom:2px">🎯 ALTA CONFIANZA</div>';
+    html += recs.map(renderGameRow).join('');
+  }
+  if (meds.length > 0) {
+    html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📊 CONFIANZA MEDIA</div>';
+    html += meds.map(renderGameRow).join('');
+  }
+  if (infos.length > 0) {
+    html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📋 SOLO INFORMATIVOS</div>';
+    html += infos.map(renderGameRow).join('');
+  }
+  gamesEl.innerHTML = html;
+}
+
+// ── Render stats ───────────────────────────────────────────────────
+function renderStats() {
+  var statsEl = document.getElementById('stats-list');
+  var s = getStatsForLiga(selectedLiga);
+  if (!s) return;
+  statsEl.innerHTML = '';
+  var stats = [
+    { label: '🌐 Global', value: s.acertados + '✅ ' + s.fallidos + '❌', sub: '(' + s.total + ') ' + s.win_rate + '%' },
+    { label: '🎯 Alta Confianza', value: s.alta_acertados + '✅ ' + s.alta_fallidos + '❌', sub: '(' + s.alta_total + ') ' + s.alta_win_rate + '%', fire: s.alta_win_rate >= 65 },
+    { label: '📊 Conf. Media', value: s.media_acertados + '✅ ' + s.media_fallidos + '❌', sub: '(' + s.media_total + ') ' + s.media_win_rate + '%' },
+    { label: '📋 Solo Inform.', value: s.baja_acertados + '✅ ' + s.baja_fallidos + '❌', sub: '(' + s.baja_total + ') ' + s.baja_win_rate + '%' },
+    { label: '⭐ Señales Valor', value: s.valor_ok + '/' + s.valor_total, sub: s.valor_rate + '%' },
+  ];
+  for (var i = 0; i < stats.length; i++) {
+    var st = stats[i];
+    if (!st.sub.startsWith('(0)') || st.label === '🌐 Global') {
+      statsEl.innerHTML += '<div class="stat-item">'
+        + '<span class="stat-label">' + st.label + '</span>'
+        + '<span class="stat-value">' + st.value + ' <span class="stat-sub">' + st.sub + '</span>' + (st.fire ? '<span class="fire">🔥</span>' : '') + '</span>'
+        + '</div>';
+    }
+  }
+}
+
+// Mostrar próxima actualización
+var nextUpdateEl = document.getElementById('next-update');
+if (nextUpdateEl) {
+  var mlbTime = DATA.proxima_actualizacion || '—';
+  var lmbTime = DATA.proxima_actualizacion_lmb || '—';
+  nextUpdateEl.innerHTML = 'Actualización para toma de decisiones<br><span class="update-time">📡 MLB: ' + mlbTime + ' MT | 🇲🇽 LMB: ' + lmbTime + ' MT</span>';
+}
+
+renderLigaTabs();
+renderDateTabs();
+renderDateLabel();
+renderGames();
+renderStats();
+
+// Auto-refresh cada 5 min
+setTimeout(function(){ location.reload(); }, 300000);
+</script>
+</body>
+</html>
