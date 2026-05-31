@@ -209,7 +209,7 @@
 
 <script>
 const DATA = {
-  "fecha": "31/05/2026 07:47",
+  "fecha": "31/05/2026 07:50",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "dias": [
@@ -1285,7 +1285,7 @@ function renderGameRow(g) {
   var stateClass = g.result === 'live' ? 'live' : '';
   var idx = (g.game_pk || 0) + '-' + (DATA.games.indexOf(g));
   return '<div class="game-wrapper">'
-    + '<div class="game-row" onclick="toggleScoreboard(' + idx + ', this)" data-idx="' + idx + '">'
+    + '<div class="game-row" onclick="toggleScoreboard(\'' + idx + '\', this)" data-idx="' + idx + '">'
     + '<div class="game-status">' + g.status_emoji + '</div>'
     + '<div class="game-team">' + teamHtml + '</div>'
     + '<div class="game-state ' + stateClass + '">' + g.state + '</div>'
