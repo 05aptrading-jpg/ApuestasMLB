@@ -106,6 +106,10 @@ CSV_PATH              = os.path.join(BASE_DIR, "apuestas.csv")
 LOG_PATH              = os.path.join(BASE_DIR, "mlb_bot.log")
 LOG_LEVEL             = "INFO"    # DEBUG | INFO | WARNING | ERROR
 
+# ── Re-análisis diario (horas fijas, después del análisis dinámico) ──────
+REANALISIS_MLB_HORA = "10:00"   # Re-análisis MLB (2h después del dinámico ~08:00)
+REANALISIS_LMB_HORA = "14:00"   # Re-análisis LMB (1.5h después del dinámico ~12:30)
+
 # ── Telegram Mini App (GitHub Pages) ──────────────────────────────────────
 GITHUB_TOKEN          = os.environ.get("GITHUB_TOKEN", "")          # Token de deploy — configurar en Railway como env var
 TELEGRAM_BOT_USERNAME = "MLBAnalyticsAPBot"                                # Nombre de usuario de tu bot (sin @)

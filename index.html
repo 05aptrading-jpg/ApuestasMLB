@@ -175,7 +175,7 @@
 <div class="header">
 
   <div class="date" id="fecha">—</div>
-  <div class="next-update" id="next-update">Actualización para toma de decisiones<br><span class="update-time">📡 MLB: — | 🇲🇽 LMB: —</span></div>
+  <div class="next-update" id="next-update">⏳ Próxima actualización<br><span class="update-time" id="countdown-display">📡 MLB: — | 🇲🇽 LMB: —</span></div>
 </div>
 
 <div class="legend">
@@ -209,9 +209,11 @@
 
 <script>
 const DATA = {
-  "fecha": "31/05/2026 07:50",
-  "proxima_actualizacion": "08:00",
-  "proxima_actualizacion_lmb": "12:30",
+  "fecha": "31/05/2026 08:36",
+  "proxima_actualizacion": "10:00",
+  "proxima_actualizacion_lmb": "14:00",
+  "proxima_actualizacion_ts": 1780243200,
+  "proxima_actualizacion_lmb_ts": 1780257600,
   "dias": [
     "2026-05-31",
     "2026-05-30",
@@ -1351,13 +1353,36 @@ function renderStats() {
   }
 }
 
-// Mostrar próxima actualización
-var nextUpdateEl = document.getElementById('next-update');
-if (nextUpdateEl) {
-  var mlbTime = DATA.proxima_actualizacion || '—';
-  var lmbTime = DATA.proxima_actualizacion_lmb || '—';
-  nextUpdateEl.innerHTML = 'Actualización para toma de decisiones<br><span class="update-time">📡 MLB: ' + mlbTime + ' MT | 🇲🇽 LMB: ' + lmbTime + ' MT</span>';
+// ── Countdown ──────────────────────────────────────────────────────────
+function formatCountdown(seconds) {
+  if (seconds <= 0) return 'ahora';
+  var h = Math.floor(seconds / 3600);
+  var m = Math.floor((seconds % 3600) / 60);
+  var s = seconds % 60;
+  if (h > 0) return h + 'h ' + m + 'm ' + s + 's';
+  if (m > 0) return m + 'm ' + s + 's';
+  return s + 's';
 }
+
+function updateCountdown() {
+  var now = Math.floor(Date.now() / 1000);
+  var mlbTs = DATA.proxima_actualizacion_ts || 0;
+  var lmbTs = DATA.proxima_actualizacion_lmb_ts || 0;
+  var mlbLabel = DATA.proxima_actualizacion || '—';
+  var lmbLabel = DATA.proxima_actualizacion_lmb || '—';
+
+  var mlbRem = mlbTs - now;
+  var lmbRem = lmbTs - now;
+
+  var mlbStr = mlbRem > 0 ? ('en ' + formatCountdown(mlbRem)) : mlbLabel + ' MT';
+  var lmbStr = lmbRem > 0 ? ('en ' + formatCountdown(lmbRem)) : lmbLabel + ' MT';
+
+  var el = document.getElementById('countdown-display');
+  if (el) el.innerHTML = '📡 MLB: ' + mlbStr + ' | 🇲🇽 LMB: ' + lmbStr;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 // ── Scoreboard Expandible ──────────────────────────────────────────────
 var sbTimers = {};

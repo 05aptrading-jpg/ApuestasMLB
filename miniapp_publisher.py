@@ -376,15 +376,30 @@ def _build_data() -> dict:
     stats_lmb = dm.obtener_estadisticas(liga="LMB")
     ahora = datetime.now().strftime("%d/%m/%Y %H:%M")
 
-    # Obtener hora del próximo análisis
-    prox_actualizacion = config.HORA_ANALISIS_MANANA
-    prox_actualizacion_lmb = getattr(config, "LMB_HORA_MANANA", "10:00")
+    # Obtener hora del próximo análisis (re-análisis fijo para countdown)
+    import pytz as _pytz
+    _tz = _pytz.timezone(config.TIMEZONE)
+    _now = datetime.now(_tz)
+
+    prox_actualizacion = getattr(config, "REANALISIS_MLB_HORA", config.HORA_ANALISIS_MANANA)
+    prox_actualizacion_lmb = getattr(config, "REANALISIS_LMB_HORA", getattr(config, "LMB_HORA_MANANA", "10:00"))
     try:
-        from scheduler import obtener_hora_analisis, obtener_hora_analisis_lmb
-        prox_actualizacion = obtener_hora_analisis()
-        prox_actualizacion_lmb = obtener_hora_analisis_lmb()
+        from scheduler import obtener_hora_reanalisis, obtener_hora_reanalisis_lmb
+        prox_actualizacion = obtener_hora_reanalisis()
+        prox_actualizacion_lmb = obtener_hora_reanalisis_lmb()
     except Exception:
         pass
+
+    def _hoy_a_ts(hora_str: str) -> int:
+        """Convierte 'HH:MM' a Unix timestamp (epoch seconds) para hoy en TIMEZONE."""
+        try:
+            hh, mm = hora_str.split(":")
+            target = _now.replace(hour=int(hh), minute=int(mm), second=0, microsecond=0)
+            if target <= _now:
+                target += timedelta(days=1)
+            return int(target.timestamp())
+        except Exception:
+            return 0
 
     def _build_stats(s):
         return {
@@ -413,6 +428,8 @@ def _build_data() -> dict:
         "fecha": ahora,
         "proxima_actualizacion": prox_actualizacion,
         "proxima_actualizacion_lmb": prox_actualizacion_lmb,
+        "proxima_actualizacion_ts": _hoy_a_ts(prox_actualizacion),
+        "proxima_actualizacion_lmb_ts": _hoy_a_ts(prox_actualizacion_lmb),
         "dias": dias_disponibles,
         "games": games,
         "bot_username": config.TELEGRAM_BOT_USERNAME,

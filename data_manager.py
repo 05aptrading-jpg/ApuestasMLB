@@ -90,14 +90,12 @@ def inicializar_csv():
 # ─────────────────────────────────────────────────────────────────────────────
 def guardar_analisis(analyses: list[GameAnalysis]):
     """
-    Guarda todos los análisis del día en el CSV.
-    Solo escribe si el game_pk no existe ya en el CSV (evita duplicados).
-    También deduplica dentro de la lista por (away_team, home_team, fecha)
-    para manejar game_pks distintos del mismo partido (dobleheaders falsos,
-    cambios de pk en la API MLB).
+    Guarda/actualiza análisis MLB en el CSV (UPSERT).
+    - Si el game_pk ya existe → actualiza la fila (reemplaza datos, conserva resultado)
+    - Si no existe → agrega fila nueva
+    Así el CSV siempre refleja el análisis más reciente (abridores, probabilidades, etc.)
+    y el re-análisis puede actualizar TBD → nombre confirmado.
     """
-    existentes = _leer_ids_existentes()
-
     # Deduplicar por (away_team, home_team, fecha) antes de escribir
     _vistos: set = set()
     analyses_dedup: list = []
@@ -112,79 +110,89 @@ def guardar_analisis(analyses: list[GameAnalysis]):
                 f"— game_pk={a.game_pk} descartado (duplicado)"
             )
 
+    filas = _leer_todas()
+    idx_por_pk = {r["id_partido"]: i for i, r in enumerate(filas)}
     nuevos = 0
-    with open(config.CSV_PATH, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=CSV_COLUMNAS)
-        for a in analyses_dedup:
-            if str(a.game_pk) in existentes:
-                logger.debug(f"Partido {a.game_pk} ya existe en CSV — omitido")
-                continue
+    actualizados = 0
 
-            away_p = a.away_pitcher
-            home_p = a.home_pitcher
-            away_o = a.away_offense
-            home_o = a.home_offense
-            away_b = a.away_bullpen
-            home_b = a.home_bullpen
-            away_e = a.away_efficiency
-            home_e = a.home_efficiency
+    for a in analyses_dedup:
+        pk = str(a.game_pk)
+        away_p = a.away_pitcher
+        home_p = a.home_pitcher
+        away_o = a.away_offense
+        home_o = a.home_offense
+        away_b = a.away_bullpen
+        home_b = a.home_bullpen
+        away_e = a.away_efficiency
+        home_e = a.home_efficiency
 
-            desc = _generar_descripcion(a)
+        desc = _generar_descripcion(a)
 
-            fila = {
-                "id_partido":               str(a.game_pk),
-                "liga":                     getattr(a, "liga", "MLB"),
-                "fecha_hora":               a.game_date,
-                "equipo_visitante":         a.away_team,
-                "equipo_local":             a.home_team,
-                "abridor_visitante":        away_p.name if away_p else "TBD",
-                "abridor_local":            home_p.name if home_p else "TBD",
-                "favorito_sabermetrico":    a.favorito,
-                "probabilidad_inicial":     f"{a.prob_favorito:.2f}%",
-                "prob_mercado":             f"{a.odds_mercado:.2f}%" if a.odds_mercado else "N/D",
-                "es_valor":                 "SI" if a.es_valor else "NO",
-                "factor_riesgo":            a.factor_riesgo,
-                "score_b1_pitcheo_away":    f"{a.away_score_b1:.1f}",
-                "score_b1_pitcheo_home":    f"{a.home_score_b1:.1f}",
-                "score_b2_ofensiva_away":   f"{a.away_score_b2:.1f}",
-                "score_b2_ofensiva_home":   f"{a.home_score_b2:.1f}",
-                "score_b3_bullpen_away":    f"{a.away_score_b3:.1f}",
-                "score_b3_bullpen_home":    f"{a.home_score_b3:.1f}",
-                "score_b4_eficiencia_away": f"{a.away_score_b4:.1f}",
-                "score_b4_eficiencia_home": f"{a.home_score_b4:.1f}",
-                "senal_moneyline":          getattr(a, "senal_moneyline", "NO APOSTAR"),
-                "nivel_certidumbre":        getattr(a, "nivel_certidumbre", ""),
-                "fip_away":      f"{away_p.fip:.2f}"  if away_p else "N/D",
-                "xfip_away":     f"{away_p.xfip:.2f}" if away_p else "N/D",
-                "kbb_away":      f"{away_p.k_pct - away_p.bb_pct:.1f}%" if away_p else "N/D",
-                "fip_home":      f"{home_p.fip:.2f}"  if home_p else "N/D",
-                "xfip_home":     f"{home_p.xfip:.2f}" if home_p else "N/D",
-                "kbb_home":      f"{home_p.k_pct - home_p.bb_pct:.1f}%" if home_p else "N/D",
-                "wrc_away":      f"{away_o.wrc_plus:.0f}" if away_o else "N/D",
-                "wrc_home":      f"{home_o.wrc_plus:.0f}" if home_o else "N/D",
-                "wrc_vs_rhp_away": f"{away_o.wrc_vs_rhp:.0f}" if away_o else "N/D",
-                "wrc_vs_lhp_away": f"{away_o.wrc_vs_lhp:.0f}" if away_o else "N/D",
-                "wrc_vs_rhp_home": f"{home_o.wrc_vs_rhp:.0f}" if home_o else "N/D",
-                "wrc_vs_lhp_home": f"{home_o.wrc_vs_lhp:.0f}" if home_o else "N/D",
-                "abridor_mano_away": away_p.pitch_hand if away_p else "N/D",
-                "abridor_mano_home": home_p.pitch_hand if home_p else "N/D",
-                "war_bullpen_away":   f"{away_b.war_bullpen:.2f}" if away_b else "N/D",
-                "war_bullpen_home":   f"{home_b.war_bullpen:.2f}" if home_b else "N/D",
-                "pitcheos_72h_away":  str(away_b.pitcheos_72h) if away_b else "0",
-                "pitcheos_72h_home":  str(home_b.pitcheos_72h) if home_b else "0",
-                "baseruns_diff_away": f"{away_e.diferencial:.1f}" if away_e else "N/D",
-                "baseruns_diff_home": f"{home_e.diferencial:.1f}" if home_e else "N/D",
-                "descripcion_analisis":     desc,
-                "resultado":                "pendiente",
-                "probabilidad_actualizada": f"{a.prob_favorito:.2f}%",
-                "marcador_final":           "—",
-                "ganador_real":             "—",
-                "fecha_actualizacion":      datetime.now().strftime("%Y-%m-%d %H:%M"),
-            }
-            writer.writerow(fila)
+        fila = {
+            "id_partido":               pk,
+            "liga":                     getattr(a, "liga", "MLB"),
+            "fecha_hora":               a.game_date,
+            "equipo_visitante":         a.away_team,
+            "equipo_local":             a.home_team,
+            "abridor_visitante":        away_p.name if away_p else "TBD",
+            "abridor_local":            home_p.name if home_p else "TBD",
+            "favorito_sabermetrico":    a.favorito,
+            "probabilidad_inicial":     f"{a.prob_favorito:.2f}%",
+            "prob_mercado":             f"{a.odds_mercado:.2f}%" if a.odds_mercado else "N/D",
+            "es_valor":                 "SI" if a.es_valor else "NO",
+            "factor_riesgo":            a.factor_riesgo,
+            "score_b1_pitcheo_away":    f"{a.away_score_b1:.1f}",
+            "score_b1_pitcheo_home":    f"{a.home_score_b1:.1f}",
+            "score_b2_ofensiva_away":   f"{a.away_score_b2:.1f}",
+            "score_b2_ofensiva_home":   f"{a.home_score_b2:.1f}",
+            "score_b3_bullpen_away":    f"{a.away_score_b3:.1f}",
+            "score_b3_bullpen_home":    f"{a.home_score_b3:.1f}",
+            "score_b4_eficiencia_away": f"{a.away_score_b4:.1f}",
+            "score_b4_eficiencia_home": f"{a.home_score_b4:.1f}",
+            "senal_moneyline":          getattr(a, "senal_moneyline", "NO APOSTAR"),
+            "nivel_certidumbre":        getattr(a, "nivel_certidumbre", ""),
+            "fip_away":      f"{away_p.fip:.2f}"  if away_p else "N/D",
+            "xfip_away":     f"{away_p.xfip:.2f}" if away_p else "N/D",
+            "kbb_away":      f"{away_p.k_pct - away_p.bb_pct:.1f}%" if away_p else "N/D",
+            "fip_home":      f"{home_p.fip:.2f}"  if home_p else "N/D",
+            "xfip_home":     f"{home_p.xfip:.2f}" if home_p else "N/D",
+            "kbb_home":      f"{home_p.k_pct - home_p.bb_pct:.1f}%" if home_p else "N/D",
+            "wrc_away":      f"{away_o.wrc_plus:.0f}" if away_o else "N/D",
+            "wrc_home":      f"{home_o.wrc_plus:.0f}" if home_o else "N/D",
+            "wrc_vs_rhp_away": f"{away_o.wrc_vs_rhp:.0f}" if away_o else "N/D",
+            "wrc_vs_lhp_away": f"{away_o.wrc_vs_lhp:.0f}" if away_o else "N/D",
+            "wrc_vs_rhp_home": f"{home_o.wrc_vs_rhp:.0f}" if home_o else "N/D",
+            "wrc_vs_lhp_home": f"{home_o.wrc_vs_lhp:.0f}" if home_o else "N/D",
+            "abridor_mano_away": away_p.pitch_hand if away_p else "N/D",
+            "abridor_mano_home": home_p.pitch_hand if home_p else "N/D",
+            "war_bullpen_away":   f"{away_b.war_bullpen:.2f}" if away_b else "N/D",
+            "war_bullpen_home":   f"{home_b.war_bullpen:.2f}" if home_b else "N/D",
+            "pitcheos_72h_away":  str(away_b.pitcheos_72h) if away_b else "0",
+            "pitcheos_72h_home":  str(home_b.pitcheos_72h) if home_b else "0",
+            "baseruns_diff_away": f"{away_e.diferencial:.1f}" if away_e else "N/D",
+            "baseruns_diff_home": f"{home_e.diferencial:.1f}" if home_e else "N/D",
+            "descripcion_analisis":     desc,
+            "resultado":                "pendiente",
+            "probabilidad_actualizada": f"{a.prob_favorito:.2f}%",
+            "marcador_final":           "—",
+            "ganador_real":             "—",
+            "fecha_actualizacion":      datetime.now().strftime("%Y-%m-%d %H:%M"),
+        }
+        if pk in idx_por_pk:
+            idx = idx_por_pk[pk]
+            resultado_previo = filas[idx].get("resultado", "pendiente")
+            fila["resultado"]          = resultado_previo
+            fila["marcador_final"]     = filas[idx].get("marcador_final", "—")
+            fila["ganador_real"]       = filas[idx].get("ganador_real", "—")
+            fila["fecha_actualizacion"] = filas[idx].get("fecha_actualizacion", "")
+            filas[idx] = fila
+            actualizados += 1
+        else:
+            filas.append(fila)
             nuevos += 1
 
-    logger.info(f"CSV: {nuevos} partidos nuevos guardados")
+    _escribir_todas(filas)
+    logger.info(f"CSV MLB: {nuevos} nuevos, {actualizados} actualizados")
 
 
 # ─────────────────────────────────────────────────────────────────────────────

@@ -103,6 +103,66 @@ def _programar_analisis() -> str:
     return hora
 
 
+# ── Re-análisis fijo ───────────────────────────────────────────────────────
+_hora_reanalisis_mlb: str = getattr(config, "REANALISIS_MLB_HORA", "10:00")
+_hora_reanalisis_lmb: str = getattr(config, "REANALISIS_LMB_HORA", "14:00")
+
+
+def obtener_hora_reanalisis() -> str:
+    return _hora_reanalisis_mlb
+
+
+def obtener_hora_reanalisis_lmb() -> str:
+    return _hora_reanalisis_lmb
+
+
+def tarea_reanalisis_mlb():
+    """Re-análisis MLB a hora fija — actualiza datos sin notificar."""
+    global _analyses_hoy
+    logger.info("=== RE-ANÁLISIS MLB (fijo) ===")
+    try:
+        _analyses_hoy = analizar_dia()
+    except Exception as e:
+        logger.error(f"Re-análisis MLB falló: {e}")
+        return
+    if not _analyses_hoy:
+        logger.info("Re-análisis MLB: sin partidos")
+        return
+    dm.guardar_analisis(_analyses_hoy)
+    dm.guardar_estado(_analyses_hoy)
+    if config.GITHUB_TOKEN:
+        try:
+            from miniapp_publisher import publicar
+            publicar()
+        except Exception as e:
+            logger.error(f"Mini App publish error (re-análisis MLB): {e}")
+    logger.info(f"Re-análisis MLB: {len(_analyses_hoy)} partidos")
+
+
+def tarea_reanalisis_lmb():
+    """Re-análisis LMB a hora fija — actualiza datos sin notificar."""
+    if not getattr(config, "LMB_ACTIVO", False) or analizar_lmb_dia is None:
+        return
+    logger.info("=== RE-ANÁLISIS LMB (fijo) ===")
+    try:
+        result = analizar_lmb_dia()
+    except Exception as e:
+        logger.error(f"Re-análisis LMB falló: {e}")
+        return
+    if not result:
+        logger.info("Re-análisis LMB: sin partidos")
+        return
+    dm.guardar_analisis_lmb(result)
+    dm.guardar_estado_lmb(result)
+    if config.GITHUB_TOKEN:
+        try:
+            from miniapp_publisher import publicar
+            publicar()
+        except Exception as e:
+            logger.error(f"Mini App publish error (re-análisis LMB): {e}")
+    logger.info(f"Re-análisis LMB: {len(result)} partidos")
+
+
 def obtener_hora_analisis() -> str:
     """Retorna la última hora de análisis programada (para Mini App)."""
     return _hora_analisis_hoy
@@ -565,7 +625,7 @@ def iniciar():
     )
 
     logger.info(f"Scheduler iniciado — zona horaria: {config.TIMEZONE}")
-    logger.info(f"Análisis diario: {_hora_analisis_hoy} (dinámico según primer partido)")
+    logger.info(f"Análisis diario: {_hora_analisis_hoy} (dinámico); Re-análisis MLB: {config.REANALISIS_MLB_HORA} LMB: {config.REANALISIS_LMB_HORA}")
 
     # ── LMB: programación dinámica independiente ────────────────────────
     if getattr(config, "LMB_ACTIVO", False) and analizar_lmb_dia is not None:
@@ -580,6 +640,27 @@ def iniciar():
             name="Reprogramación diaria del análisis LMB",
             max_instances=1, coalesce=True, misfire_grace_time=600,
         )
+
+    # ── Re-análisis fijo MLB ───────────────────────────────────────────────
+    ra_h, ra_m = config.REANALISIS_MLB_HORA.split(":")
+    scheduler.add_job(
+        tarea_reanalisis_mlb,
+        CronTrigger(hour=int(ra_h), minute=int(ra_m), timezone=config.TIMEZONE),
+        id="reanalisis_mlb", name="Re-análisis MLB (fijo)",
+        max_instances=1, coalesce=True, misfire_grace_time=600,
+    )
+    logger.info(f"Re-análisis MLB programado: {config.REANALISIS_MLB_HORA} ({config.TIMEZONE})")
+
+    # ── Re-análisis fijo LMB ───────────────────────────────────────────────
+    if getattr(config, "LMB_ACTIVO", False) and analizar_lmb_dia is not None:
+        rl_h, rl_m = config.REANALISIS_LMB_HORA.split(":")
+        scheduler.add_job(
+            tarea_reanalisis_lmb,
+            CronTrigger(hour=int(rl_h), minute=int(rl_m), timezone=config.TIMEZONE),
+            id="reanalisis_lmb", name="Re-análisis LMB (fijo)",
+            max_instances=1, coalesce=True, misfire_grace_time=600,
+        )
+        logger.info(f"Re-análisis LMB programado: {config.REANALISIS_LMB_HORA} ({config.TIMEZONE})")
 
     # ── Fix arranque tarde: ejecutar análisis si ya pasó la hora
     partidos_hoy = []
