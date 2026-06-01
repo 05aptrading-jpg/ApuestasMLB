@@ -111,7 +111,7 @@ REANALISIS_MLB_HORA = "08:00"   # Re-análisis MLB (hora fija)
 REANALISIS_LMB_HORA = "12:30"   # Re-análisis LMB (hora fija)
 
 # ── Telegram Mini App (GitHub Pages) ──────────────────────────────────────
-GITHUB_TOKEN          = os.environ.get("GITHUB_TOKEN", "")          # Token de deploy — configurar en Railway como env var
+GITHUB_TOKEN          = os.environ.get("GITHUB_TOKEN", "")
 TELEGRAM_BOT_USERNAME = "MLBAnalyticsAPBot"                                # Nombre de usuario de tu bot (sin @)
 # La Mini App se publica en:
 # https://05aptrading-jpg.github.io/ApuestasMLB/
