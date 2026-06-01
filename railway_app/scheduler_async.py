@@ -58,6 +58,33 @@ def _build_data() -> dict:
     p_min = config.PROB_MINIMA_ANALISIS
     e_min = config.EDGE_MINIMO
 
+    # Build reverse lookup for LMB games by team names
+    live_data = _cache.get("live_data", {})
+    lmb_live_by_teams = {}
+    for lpk, ldata in live_data.items():
+        at = ldata.get("away_team_name", "").strip().lower()
+        ht = ldata.get("home_team_name", "").strip().lower()
+        if at and ht:
+            lmb_live_by_teams[(at, ht)] = lpk
+
+    def _match(a, b):
+        a, b = a.strip().lower(), b.strip().lower()
+        return a == b or a in b or b in a
+
+    def _find_live(pk, away, home, is_lmb):
+        # Direct match
+        live = live_data.get(str(pk), {})
+        if live:
+            return live
+        # Fallback for LMB: match by team names
+        if is_lmb:
+            away_lower = away.strip().lower()
+            home_lower = home.strip().lower()
+            for (lat, lht), lpk in lmb_live_by_teams.items():
+                if _match(away_lower, lat) and _match(home_lower, lht):
+                    return live_data.get(lpk, {})
+        return {}
+
     for sg in estado:
         favorito = sg.get("favorito", "")
         away = sg.get("away_team", "")
@@ -81,7 +108,8 @@ def _build_data() -> dict:
             label = "📋"
 
         pk = sg.get("game_pk", 0)
-        live = _cache.get("live_data", {}).get(str(pk), {})
+        is_lmb = sg.get("liga") == "LMB"
+        live = _find_live(pk, away, home, is_lmb)
 
         if live.get("is_final"):
             emoji = "✅" if sg.get("resultado") == "acertado" else "❌"
@@ -387,25 +415,55 @@ async def ciclo_actualizacion(ws_manager):
 
             # Check for newly finished games → update CSV
             estado = dm.cargar_estado()
+
+            # Build reverse lookup: (away_lower, home_lower) -> live pk for LMB
+            def _match(a, b):
+                a, b = a.strip().lower(), b.strip().lower()
+                return a == b or a in b or b in a
+
+            lmb_live_by_teams = {}
+            for lpk, ldata in live.items():
+                at = ldata.get("away_team_name", "").strip().lower()
+                ht = ldata.get("home_team_name", "").strip().lower()
+                if at and ht:
+                    lmb_live_by_teams[(at, ht)] = lpk
+
             for p in estado:
                 pk = str(p.get("game_pk", ""))
-                if pk in live and live[pk].get("is_final"):
-                    if p.get("resultado") in ("acertado", "fallido"):
-                        continue
-                    # Update CSV
-                    ar = live[pk].get("away_runs", 0)
-                    hr = live[pk].get("home_runs", 0)
-                    away_name = p.get("away_team", "")
-                    home_name = p.get("home_team", "")
-                    ganador = away_name if ar > hr else home_name
-                    marcador = f"{away_name} {ar} - {hr} {home_name}"
-                    dm.actualizar_resultado(int(pk), ganador, marcador)
-                    def _match(a, b):
-                        a, b = a.strip().lower(), b.strip().lower()
-                        return a == b or a in b or b in a
-                    acertado = _match(ganador, p.get("favorito", ""))
-                    dm.actualizar_estado_resultado(int(pk), "acertado" if acertado else "fallido", ganador)
-                    logger.info(f"Resultado actualizado: {marcador} -> {'acertado' if acertado else 'fallido'}")
+                is_lmb = p.get("liga") == "LMB"
+
+                # Direct match by game_pk
+                matched_pk = pk if pk in live else None
+
+                # Fallback for LMB: match by team names
+                if not matched_pk and is_lmb:
+                    away_lower = p.get("away_team", "").strip().lower()
+                    home_lower = p.get("home_team", "").strip().lower()
+                    for (lat, lht), lpk in lmb_live_by_teams.items():
+                        if _match(away_lower, lat) and _match(home_lower, lht):
+                            matched_pk = lpk
+                            break
+
+                if not matched_pk:
+                    continue
+
+                ldata = live[matched_pk]
+                if not ldata.get("is_final"):
+                    continue
+                if p.get("resultado") in ("acertado", "fallido"):
+                    continue
+
+                # Update CSV
+                ar = ldata.get("away_runs", 0)
+                hr = ldata.get("home_runs", 0)
+                away_name = p.get("away_team", "")
+                home_name = p.get("home_team", "")
+                ganador = away_name if ar > hr else home_name
+                marcador = f"{away_name} {ar} - {hr} {home_name}"
+                dm.actualizar_resultado(int(pk), ganador, marcador)
+                acertado = _match(ganador, p.get("favorito", ""))
+                dm.actualizar_estado_resultado(int(pk), "acertado" if acertado else "fallido", ganador)
+                logger.info(f"Resultado actualizado ({p.get('liga','MLB')}): {marcador} -> {'acertado' if acertado else 'fallido'}")
 
             # Broadcast to all WebSocket clients
             data = _build_data()
