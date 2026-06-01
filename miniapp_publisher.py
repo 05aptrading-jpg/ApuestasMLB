@@ -171,8 +171,18 @@ def _annotate_linescores_mlb(games: list):
                             "away_runs": inn.get("away", {}).get("runs", 0),
                             "home_runs": inn.get("home", {}).get("runs", 0),
                         })
+                    status = game.get("status", {}).get("detailedState", "")
+                    status_code = game.get("status", {}).get("statusCode", "")
+                    is_final = status_code == "F" or "final" in status.lower()
+                    is_live = status_code == "I" or "in progress" in status.lower() or any(s in status.lower() for s in ("top", "bot", "end", "middle"))
+                    a_runs = ls.get("teams", {}).get("away", {}).get("runs", 0) or 0
+                    h_runs = ls.get("teams", {}).get("home", {}).get("runs", 0) or 0
                     a_team = game.get("teams", {}).get("away", {}).get("team", {}).get("name", "")
                     h_team = game.get("teams", {}).get("home", {}).get("team", {}).get("name", "")
+
+                    status_emoji = "🔴" if is_live else ("🏁" if is_final else "⏳")
+                    game_result = "live" if is_live else ("completed" if is_final else "pending")
+
                     _ls_cache[pk] = {
                         "innings": innings,
                         "current_inning": ls.get("currentInning", 1),
@@ -181,8 +191,8 @@ def _annotate_linescores_mlb(games: list):
                         "outs": ls.get("outs", 0),
                         "balls": ls.get("balls", 0),
                         "strikes": ls.get("strikes", 0),
-                        "away_runs": ls.get("teams", {}).get("away", {}).get("runs", 0),
-                        "home_runs": ls.get("teams", {}).get("home", {}).get("runs", 0),
+                        "away_runs": a_runs,
+                        "home_runs": h_runs,
                         "away_hits": ls.get("teams", {}).get("away", {}).get("hits", 0),
                         "home_hits": ls.get("teams", {}).get("home", {}).get("hits", 0),
                         "away_errors": ls.get("teams", {}).get("away", {}).get("errors", 0),
@@ -192,6 +202,13 @@ def _annotate_linescores_mlb(games: list):
                             "second": ls.get("offensive", {}).get("second", False),
                             "third": ls.get("offensive", {}).get("third", False),
                         },
+                        "status_emoji": status_emoji,
+                        "result": game_result,
+                        "state": status,
+                        "fav_score": str(a_runs),
+                        "opp_score": str(h_runs),
+                        "score_fav": str(a_runs),
+                        "score_opp": str(h_runs),
                     }
                     # Also cache by team names for games with pk=0
                     if a_team and h_team:
@@ -213,17 +230,21 @@ def _annotate_linescores_mlb(games: list):
     # Annotate games
     for g in games:
         pk = g.get("game_pk", 0)
-        if pk and pk in _ls_cache and isinstance(_ls_cache[pk], dict):
-            g["linescore"] = _ls_cache[pk]
-            continue
         gd = g.get("game_date", "")
         fav = _norm(g.get("fav_team", ""))
         opp = _norm(g.get("opp_team", ""))
         key = (gd, opp, fav)
-        if key in _ls_cache:
-            g["linescore"] = _ls_cache[key]
-
-
+        ls_data = None
+        if pk and pk in _ls_cache and isinstance(_ls_cache[pk], dict):
+            ls_data = _ls_cache[pk]
+        elif key in _ls_cache:
+            ls_data = _ls_cache[key]
+        if ls_data and "innings" in ls_data:
+            g["linescore"] = ls_data
+            if g.get("result") in ("pending", None):
+                g["status_emoji"] = ls_data.get("status_emoji", g.get("status_emoji", "⏳"))
+                g["result"] = ls_data.get("result", g.get("result", "pending"))
+                g["state"] = ls_data.get("state", g.get("state", ""))
 def _build_data() -> dict:
     """Construye el JSON con partidos + stats para la Mini App."""
     from datetime import timedelta
