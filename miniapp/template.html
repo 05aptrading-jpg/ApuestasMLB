@@ -100,6 +100,11 @@
   .game-state.live {
     background: #1a3a2a; color: #00ba7c;
     font-weight: 600;
+    animation: pulse-live 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-live {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 
   .game-wrapper { margin-bottom: 0; }
@@ -200,7 +205,7 @@
   <div class="stat-grid" id="stats-list"></div>
 </div>
 
-<div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Actualización automática cada 5 min</div>
+<div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Actualización automática cada 60s</div>
 
 <div class="footer">
   MLB &amp; LMB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
@@ -598,8 +603,8 @@ renderDateLabel();
 renderGames();
 renderStats();
 
-// Auto-refresh cada 5 min
-setTimeout(function(){ location.reload(); }, 300000);
+// Auto-refresh cada 60s
+setTimeout(function(){ location.reload(); }, 60000);
 </script>
 </body>
 </html>

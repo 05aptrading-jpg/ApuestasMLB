@@ -91,8 +91,9 @@ def _get_espn_scoreboard(game_date: str) -> list:
             is_live   = any(s in detail.lower() for s in ("top", "bot", "end", "middle", "live", "in progress"))
             POSTPONED = {"postponed", "cancelled", "canceled", "suspended", "ppd"}
             is_post   = any(k in detail.lower() for k in POSTPONED)
+            espn_pk = int(ev.get("id", 0) or 0)
             games.append({
-                "game_date": game_date,
+                "game_date": game_date, "espn_pk": espn_pk,
                 "a_name": a_name, "h_name": h_name, "a_runs": a_runs, "h_runs": h_runs,
                 "detail": detail, "completed": completed, "is_live": is_live, "is_post": is_post,
             })
@@ -126,31 +127,35 @@ def _espn_to_game(espn: dict, favorito: str = None, liga: str = "MLB") -> dict:
     gd = espn.get("game_date", "")
 
     if espn["is_post"]:
-        return {"liga": liga, "game_date": gd, "status_emoji": "🚫", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": "—", "score_opp": "", "state": "Posp.", "result": "pending", "label": ""}
+        return {"liga": liga, "game_date": gd, "status_emoji": "🚫", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": "—", "score_opp": "", "state": "Posp.", "result": "pending", "label": "", "game_pk": espn.get("espn_pk", 0)}
 
     if espn["is_live"]:
-        return {"liga": liga, "game_date": gd, "status_emoji": "🔴", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": fi["score_fav"], "score_opp": fi["score_opp"], "state": detail, "result": "live", "label": ""}
+        return {"liga": liga, "game_date": gd, "status_emoji": "🔴", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": fi["score_fav"], "score_opp": fi["score_opp"], "state": detail, "result": "live", "label": "", "game_pk": espn.get("espn_pk", 0)}
 
     if espn["completed"]:
         if favorito:
             acertado = _win(fi)
-            return {"liga": liga, "game_date": gd, "status_emoji": "✅" if acertado else "❌", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": fi["score_fav"], "score_opp": fi["score_opp"], "state": "Final", "result": "win" if acertado else "loss", "label": ""}
+            return {"liga": liga, "game_date": gd, "status_emoji": "✅" if acertado else "❌", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": fi["score_fav"], "score_opp": fi["score_opp"], "state": "Final", "result": "win" if acertado else "loss", "label": "", "game_pk": espn.get("espn_pk", 0)}
         else:
-            return {"liga": liga, "game_date": gd, "status_emoji": "🏁", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": fi["score_fav"], "score_opp": fi["score_opp"], "state": "Final", "result": "completed", "label": ""}
+            return {"liga": liga, "game_date": gd, "status_emoji": "🏁", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": fi["score_fav"], "score_opp": fi["score_opp"], "state": "Final", "result": "completed", "label": "", "game_pk": espn.get("espn_pk", 0)}
 
-    return {"liga": liga, "game_date": gd, "status_emoji": "⏳", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": "—", "score_opp": "", "state": "Pend.", "result": "pending", "label": ""}
+    return {"liga": liga, "game_date": gd, "status_emoji": "⏳", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": "—", "score_opp": "", "state": "Pend.", "result": "pending", "label": "", "game_pk": espn.get("espn_pk", 0)}
 
 
 def _annotate_linescores_mlb(games: list):
-    """Fetch linescore from MLB Stats API for each game_pk and annotate games."""
+    """Fetch linescore from MLB Stats API by date and annotate games."""
     import requests as _req
+    from collections import defaultdict
+
+    def _norm(n):
+        return n.strip().lower() if n else ""
+
     _ls_cache = {}
 
-    def _fetch_for_sport(game_pks: list, sport_id: int):
-        nonlocal _ls_cache
-        gpk_str = ";".join(str(pk) for pk in game_pks)
+    def _fetch_for_date(date_str: str, sport_id: int):
+        """Fetch linescores for all games on a date from one API call."""
         try:
-            url = f"https://statsapi.mlb.com/api/v1/schedule?sportId={sport_id}&gamePk={gpk_str}&hydrate=linescore"
+            url = f"https://statsapi.mlb.com/api/v1/schedule?sportId={sport_id}&date={date_str}&hydrate=linescore"
             r = _req.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
             if r.status_code != 200:
                 return
@@ -166,6 +171,8 @@ def _annotate_linescores_mlb(games: list):
                             "away_runs": inn.get("away", {}).get("runs", 0),
                             "home_runs": inn.get("home", {}).get("runs", 0),
                         })
+                    a_team = game.get("teams", {}).get("away", {}).get("team", {}).get("name", "")
+                    h_team = game.get("teams", {}).get("home", {}).get("team", {}).get("name", "")
                     _ls_cache[pk] = {
                         "innings": innings,
                         "current_inning": ls.get("currentInning", 1),
@@ -186,19 +193,35 @@ def _annotate_linescores_mlb(games: list):
                             "third": ls.get("offensive", {}).get("third", False),
                         },
                     }
+                    # Also cache by team names for games with pk=0
+                    if a_team and h_team:
+                        _ls_cache[(date_str, _norm(a_team), _norm(h_team))] = _ls_cache[pk]
         except Exception:
             pass
 
-    mlb_pks = [g["game_pk"] for g in games if g.get("liga") in ("MLB", None, "") and g.get("game_pk")]
-    lmb_pks = [g["game_pk"] for g in games if g.get("liga") == "LMB" and g.get("game_pk")]
-    if mlb_pks:
-        _fetch_for_sport(mlb_pks, 1)
-    if lmb_pks:
-        _fetch_for_sport(lmb_pks, 23)
+    # Group by (date, sport_id)
+    by_ds = defaultdict(set)
+    for g in games:
+        gd = g.get("game_date", "")
+        liga = g.get("liga", "MLB")
+        sport_id = 1 if liga in ("MLB", None, "") else 23
+        by_ds[(gd, sport_id)].add(gd)
+
+    for (date_str, sport_id) in by_ds:
+        _fetch_for_date(date_str, sport_id)
+
+    # Annotate games
     for g in games:
         pk = g.get("game_pk", 0)
-        if pk in _ls_cache:
+        if pk and pk in _ls_cache and isinstance(_ls_cache[pk], dict):
             g["linescore"] = _ls_cache[pk]
+            continue
+        gd = g.get("game_date", "")
+        fav = _norm(g.get("fav_team", ""))
+        opp = _norm(g.get("opp_team", ""))
+        key = (gd, opp, fav)
+        if key in _ls_cache:
+            g["linescore"] = _ls_cache[key]
 
 
 def _build_data() -> dict:

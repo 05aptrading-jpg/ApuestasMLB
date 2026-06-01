@@ -100,6 +100,11 @@
   .game-state.live {
     background: #1a3a2a; color: #00ba7c;
     font-weight: 600;
+    animation: pulse-live 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-live {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 
   .game-wrapper { margin-bottom: 0; }
@@ -200,7 +205,7 @@
   <div class="stat-grid" id="stats-list"></div>
 </div>
 
-<div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Actualización automática cada 5 min</div>
+<div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Actualización automática cada 60s</div>
 
 <div class="footer">
   MLB &amp; LMB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
@@ -209,7 +214,7 @@
 
 <script>
 const DATA = {
-  "fecha": "31/05/2026 19:09",
+  "fecha": "31/05/2026 19:41",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780322400,
@@ -231,7 +236,7 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "🎯",
-      "game_pk": 0,
+      "game_pk": 401815536,
       "linescore": {}
     },
     {
@@ -245,8 +250,64 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "🎯",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815540,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 3,
+        "away_runs": 7,
+        "home_runs": 5,
+        "away_hits": 10,
+        "home_hits": 9,
+        "away_errors": 1,
+        "home_errors": 2,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -259,7 +320,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "🎯",
-      "game_pk": 0,
+      "game_pk": 401815538,
       "linescore": {}
     },
     {
@@ -273,7 +334,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "🎯",
-      "game_pk": 0,
+      "game_pk": 401815537,
       "linescore": {}
     },
     {
@@ -287,7 +348,7 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "📊",
-      "game_pk": 0,
+      "game_pk": 401815541,
       "linescore": {}
     },
     {
@@ -301,7 +362,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📊",
-      "game_pk": 0,
+      "game_pk": 401815539,
       "linescore": {}
     },
     {
@@ -315,7 +376,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📊",
-      "game_pk": 0,
+      "game_pk": 401815543,
       "linescore": {}
     },
     {
@@ -330,7 +391,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 3,
+        "strikes": 3,
+        "away_runs": 2,
+        "home_runs": 5,
+        "away_hits": 5,
+        "home_hits": 9,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -344,7 +461,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 4,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 2,
+        "away_runs": 7,
+        "home_runs": 19,
+        "away_hits": 12,
+        "home_hits": 20,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -372,7 +545,63 @@ const DATA = {
       "result": "loss",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 2,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 3,
+        "away_runs": 11,
+        "home_runs": 6,
+        "away_hits": 18,
+        "home_hits": 10,
+        "away_errors": 1,
+        "home_errors": 2,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -400,7 +629,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 3,
+        "away_runs": 2,
+        "home_runs": 3,
+        "away_hits": 6,
+        "home_hits": 8,
+        "away_errors": 1,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -414,7 +699,63 @@ const DATA = {
       "result": "loss",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 1,
+        "away_runs": 2,
+        "home_runs": 0,
+        "away_hits": 2,
+        "home_hits": 2,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -427,7 +768,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815542,
       "linescore": {}
     },
     {
@@ -441,8 +782,64 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815535,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 7
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 2,
+        "away_runs": 5,
+        "home_runs": 8,
+        "away_hits": 10,
+        "home_hits": 10,
+        "away_errors": 2,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -470,7 +867,63 @@ const DATA = {
       "result": "loss",
       "label": "📋",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 3,
+        "away_runs": 4,
+        "home_runs": 1,
+        "away_hits": 10,
+        "home_hits": 5,
+        "away_errors": 1,
+        "home_errors": 2,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -483,7 +936,7 @@ const DATA = {
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815544,
       "linescore": {}
     },
     {
@@ -497,7 +950,7 @@ const DATA = {
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815545,
       "linescore": {}
     },
     {
@@ -511,7 +964,7 @@ const DATA = {
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815546,
       "linescore": {}
     },
     {
@@ -525,7 +978,7 @@ const DATA = {
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815548,
       "linescore": {}
     },
     {
@@ -539,7 +992,7 @@ const DATA = {
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815547,
       "linescore": {}
     },
     {
@@ -553,7 +1006,7 @@ const DATA = {
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815549,
       "linescore": {}
     },
     {
@@ -567,7 +1020,7 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "🎯",
-      "game_pk": 0,
+      "game_pk": 401815551,
       "linescore": {}
     },
     {
@@ -581,7 +1034,7 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "🎯",
-      "game_pk": 0,
+      "game_pk": 401815557,
       "linescore": {}
     },
     {
@@ -595,7 +1048,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "🎯",
-      "game_pk": 0,
+      "game_pk": 401815553,
       "linescore": {}
     },
     {
@@ -610,7 +1063,63 @@ const DATA = {
       "result": "loss",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 4,
+            "home_runs": 3
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 9,
+        "home_runs": 5,
+        "away_hits": 11,
+        "home_hits": 11,
+        "away_errors": 0,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -624,7 +1133,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 5,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 0,
+        "balls": 3,
+        "strikes": 1,
+        "away_runs": 7,
+        "home_runs": 8,
+        "away_hits": 15,
+        "home_hits": 15,
+        "away_errors": 1,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -638,7 +1203,63 @@ const DATA = {
       "result": "completed",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 0,
+        "away_runs": 1,
+        "home_runs": 5,
+        "away_hits": 7,
+        "home_hits": 13,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -666,7 +1287,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 1,
+        "away_runs": 3,
+        "home_runs": 6,
+        "away_hits": 9,
+        "home_hits": 13,
+        "away_errors": 0,
+        "home_errors": 2,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -680,7 +1357,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 3,
+        "away_runs": 2,
+        "home_runs": 3,
+        "away_hits": 7,
+        "home_hits": 6,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -694,7 +1427,71 @@ const DATA = {
       "result": "loss",
       "label": "📊",
       "game_pk": 0,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 11,
+        "is_top": false,
+        "inning_ordinal": "11th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 2,
+        "away_runs": 5,
+        "home_runs": 4,
+        "away_hits": 15,
+        "home_hits": 9,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -707,8 +1504,64 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📊",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815550,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 4,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 7,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 14,
+        "home_runs": 3,
+        "away_hits": 11,
+        "home_hits": 6,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -721,7 +1574,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815563,
       "linescore": {}
     },
     {
@@ -735,8 +1588,64 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815564,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 4,
+        "home_runs": 3,
+        "away_hits": 6,
+        "home_hits": 9,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -749,8 +1658,64 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815562,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 3,
+        "strikes": 2,
+        "away_runs": 1,
+        "home_runs": 5,
+        "away_hits": 3,
+        "home_hits": 9,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -763,8 +1728,64 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815560,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 3,
+        "away_runs": 2,
+        "home_runs": 9,
+        "away_hits": 6,
+        "home_hits": 12,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -777,7 +1798,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815561,
       "linescore": {}
     },
     {
@@ -791,8 +1812,64 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815559,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 4,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 1,
+        "away_runs": 6,
+        "home_runs": 7,
+        "away_hits": 11,
+        "home_hits": 14,
+        "away_errors": 2,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -805,7 +1882,7 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📋",
-      "game_pk": 0,
+      "game_pk": 401815556,
       "linescore": {}
     },
     {
@@ -819,8 +1896,64 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815555,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 6
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 4,
+        "home_runs": 9,
+        "away_hits": 6,
+        "home_hits": 8,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -833,8 +1966,64 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815554,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 6
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 5,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 2,
+        "away_runs": 9,
+        "home_runs": 10,
+        "away_hits": 12,
+        "home_hits": 15,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -847,8 +2036,64 @@ const DATA = {
       "state": "Final",
       "result": "win",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815558,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 3,
+        "away_runs": 1,
+        "home_runs": 7,
+        "away_hits": 7,
+        "home_hits": 9,
+        "away_errors": 0,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -861,8 +2106,64 @@ const DATA = {
       "state": "Final",
       "result": "loss",
       "label": "📋",
-      "game_pk": 0,
-      "linescore": {}
+      "game_pk": 401815552,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 6,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 1,
+        "away_runs": 9,
+        "home_runs": 1,
+        "away_hits": 11,
+        "home_hits": 6,
+        "away_errors": 0,
+        "home_errors": 4,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -876,7 +2177,63 @@ const DATA = {
       "result": "loss",
       "label": "🎯",
       "game_pk": 824512,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 4,
+        "home_runs": 6,
+        "away_hits": 7,
+        "home_hits": 10,
+        "away_errors": 2,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -890,7 +2247,63 @@ const DATA = {
       "result": "win",
       "label": "🎯",
       "game_pk": 822729,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 3,
+        "away_runs": 2,
+        "home_runs": 4,
+        "away_hits": 6,
+        "home_hits": 9,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -904,7 +2317,63 @@ const DATA = {
       "result": "loss",
       "label": "🎯",
       "game_pk": 823621,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 1,
+        "home_runs": 10,
+        "away_hits": 3,
+        "home_hits": 9,
+        "away_errors": 1,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -918,7 +2387,63 @@ const DATA = {
       "result": "win",
       "label": "🎯",
       "game_pk": 824430,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 6,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 3,
+        "away_runs": 9,
+        "home_runs": 4,
+        "away_hits": 12,
+        "home_hits": 11,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -932,7 +2457,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 825001,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 13,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 13,
+        "home_runs": 8,
+        "away_hits": 11,
+        "home_hits": 12,
+        "away_errors": 1,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -946,7 +2527,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 823944,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 1,
+        "home_runs": 9,
+        "away_hits": 5,
+        "home_hits": 13,
+        "away_errors": 0,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -960,7 +2597,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 824187,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 2,
+        "home_runs": 0,
+        "away_hits": 4,
+        "home_hits": 3,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -974,7 +2667,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 822976,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 2,
+        "home_runs": 5,
+        "away_hits": 9,
+        "home_hits": 7,
+        "away_errors": 1,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -988,7 +2737,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 824592,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 1,
+        "away_runs": 1,
+        "home_runs": 2,
+        "away_hits": 4,
+        "home_hits": 6,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -1002,7 +2807,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 823373,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 3,
+        "home_runs": 9,
+        "away_hits": 6,
+        "home_hits": 8,
+        "away_errors": 1,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -1016,7 +2877,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 846118,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 3,
+        "strikes": 2,
+        "away_runs": 4,
+        "home_runs": 5,
+        "away_hits": 8,
+        "home_hits": 7,
+        "away_errors": 0,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -1030,7 +2947,63 @@ const DATA = {
       "result": "win",
       "label": "📊",
       "game_pk": 846454,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 1,
+        "away_runs": 2,
+        "home_runs": 6,
+        "away_hits": 6,
+        "home_hits": 8,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -1044,7 +3017,51 @@ const DATA = {
       "result": "completed",
       "label": "📊",
       "game_pk": 846355,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 0,
+        "home_runs": 4,
+        "away_hits": 3,
+        "home_hits": 7,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -1058,7 +3075,35 @@ const DATA = {
       "result": "completed",
       "label": "📊",
       "game_pk": 846771,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 0,
+        "home_runs": 0,
+        "away_hits": 3,
+        "home_hits": 0,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "LMB",
@@ -1072,7 +3117,47 @@ const DATA = {
       "result": "completed",
       "label": "📊",
       "game_pk": 846724,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 5,
+        "is_top": true,
+        "inning_ordinal": "5th",
+        "outs": 1,
+        "balls": 2,
+        "strikes": 1,
+        "away_runs": 1,
+        "home_runs": 4,
+        "away_hits": 2,
+        "home_hits": 2,
+        "away_errors": 2,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -1086,7 +3171,67 @@ const DATA = {
       "result": "win",
       "label": "📋",
       "game_pk": 823133,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          }
+        ],
+        "current_inning": 10,
+        "is_top": false,
+        "inning_ordinal": "10th",
+        "outs": 1,
+        "balls": 1,
+        "strikes": 0,
+        "away_runs": 2,
+        "home_runs": 3,
+        "away_hits": 3,
+        "home_hits": 11,
+        "away_errors": 1,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -1100,7 +3245,63 @@ const DATA = {
       "result": "loss",
       "label": "📋",
       "game_pk": 824354,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 7,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 19,
+        "home_runs": 6,
+        "away_hits": 25,
+        "home_hits": 10,
+        "away_errors": 3,
+        "home_errors": 3,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -1110,11 +3311,63 @@ const DATA = {
       "opp_team": "St. Louis Cardinals",
       "score_fav": "1",
       "score_opp": "5",
-      "state": "Top 6th",
+      "state": "Top 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 823053,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
+        "outs": 0,
+        "balls": 2,
+        "strikes": 2,
+        "away_runs": 1,
+        "home_runs": 5,
+        "away_hits": 6,
+        "home_hits": 7,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -1128,7 +3381,63 @@ const DATA = {
       "result": "win",
       "label": "📋",
       "game_pk": 822895,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 3,
+        "home_runs": 6,
+        "away_hits": 8,
+        "home_hits": 10,
+        "away_errors": 0,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     },
     {
       "liga": "MLB",
@@ -1142,7 +3451,63 @@ const DATA = {
       "result": "loss",
       "label": "📋",
       "game_pk": 824832,
-      "linescore": {}
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 4,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 5,
+        "home_runs": 9,
+        "away_hits": 8,
+        "home_hits": 10,
+        "away_errors": 0,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        }
+      }
     }
   ],
   "bot_username": "MLBAnalyticsAPBot",
@@ -1605,8 +3970,8 @@ renderDateLabel();
 renderGames();
 renderStats();
 
-// Auto-refresh cada 5 min
-setTimeout(function(){ location.reload(); }, 300000);
+// Auto-refresh cada 60s
+setTimeout(function(){ location.reload(); }, 60000);
 </script>
 </body>
 </html>
