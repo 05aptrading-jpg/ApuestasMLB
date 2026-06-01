@@ -22,6 +22,8 @@ logger = logging.getLogger(__name__)
 TELEGRAM_URL = f"https://api.telegram.org/bot{config.TELEGRAM_TOKEN}"
 _last_update_id = 0
 
+RAILWAY_API_URL = "https://backboard.railway.app/graphql"
+
 
 MINIAPP_URL = "https://05aptrading-jpg.github.io/ApuestasMLB/"
 
@@ -290,6 +292,82 @@ def _cmd_suscriptores(chat_id: int, args: str):
     _send_raw(str(chat_id), "❌ Usa: /suscriptores add <ID> | del <ID> | (sin args para listar)")
 
 
+def _cmd_deploy(chat_id: int):
+    """Trigger Railway redeploy via GraphQL API."""
+    data = _cargar_suscriptores()
+    admin = data.get("admin_id", 0)
+    if chat_id != admin:
+        _send_raw(str(chat_id), "⛔ Solo el administrador puede hacer deploy.")
+        return
+
+    token = config.RAILWAY_API_TOKEN
+    project_id = config.RAILWAY_PROJECT_ID
+    service_id = config.RAILWAY_SERVICE_ID
+
+    if not token:
+        _send_raw(str(chat_id), "❌ Falta RAILWAY_API_TOKEN en config.")
+        return
+
+    _send_raw(str(chat_id), "🚀 Iniciando deploy en Railway...")
+
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+
+    try:
+        if service_id:
+            query = """
+            mutation {
+              serviceInstanceDeploy(input: { serviceId: "%s" }) {
+                id
+                status
+              }
+            }
+            """ % service_id
+        elif project_id:
+            query = """
+            mutation {
+              deploymentTrigger(input: { projectId: "%s" }) {
+                id
+                status
+              }
+            }
+            """ % project_id
+        else:
+            _send_raw(str(chat_id),
+                "❌ Faltan RAILWAY_PROJECT_ID o RAILWAY_SERVICE_ID en config.\n"
+                "Agrégalos como variables de entorno en Railway.")
+            return
+
+        r = requests.post(RAILWAY_API_URL, json={"query": query},
+                          headers=headers, timeout=30)
+        result = r.json()
+
+        if result.get("errors"):
+            err_msg = result["errors"][0].get("message", "Error desconocido")
+            _send_raw(str(chat_id), f"❌ Error Railway API:\n{err_msg}")
+            return
+
+        deploy_data = (result.get("data", {}).get("serviceInstanceDeploy")
+                       or result.get("data", {}).get("deploymentTrigger"))
+        if deploy_data:
+            dep_id = deploy_data.get("id", "?")
+            status = deploy_data.get("status", "queued")
+            _send_raw(str(chat_id),
+                f"✅ Deploy disparado!\n"
+                f"🆔 ID: {dep_id}\n"
+                f"📊 Estado: {status}\n\n"
+                f"El bot se reiniciará automáticamente en ~60s.")
+        else:
+            _send_raw(str(chat_id),
+                f"⚠️ Respuesta inesperada:\n{str(result)[:500]}")
+
+    except Exception as e:
+        logger.error(f"Deploy error: {e}")
+        _send_raw(str(chat_id), f"❌ Error conectando a Railway:\n{e}")
+
+
 # ── Procesador de updates ─────────────────────────────────────────────
 def handle_updates():
     global _last_update_id
@@ -321,12 +399,19 @@ def handle_updates():
                 # /start
                 if text.startswith("/start"):
                     if _esta_autorizado(chat_id):
+                        data = _cargar_suscriptores()
+                        es_admin = chat_id == data.get("admin_id", 0)
+                        cmds = (
+                            "📊 <b>Comandos disponibles:</b>\n"
+                            "  /actualizar — Ver resultados del día\n"
+                            "  /suscribirse — Abrir Mini App"
+                        )
+                        if es_admin:
+                            cmds += "\n  /deploy — Redeploy Railway"
                         _send_raw(str(chat_id),
                             "⚾ <b>MLB Analytics</b>\n\n"
                             "Bienvenido al sistema de análisis MLB.\n\n"
-                            "📊 <b>Comandos disponibles:</b>\n"
-                            "  /actualizar — Ver resultados del día\n"
-                            "  /suscribirse — Abrir Mini App",
+                            + cmds,
                             mini_app=True
                         )
                     else:
@@ -355,6 +440,11 @@ def handle_updates():
                 if text.startswith("/suscribirse") or text.startswith("/suscriptores"):
                     if chat_id:
                         _cmd_suscriptores(chat_id, text[len("/suscriptores"):].strip())
+                    continue
+
+                # /deploy — solo admin
+                if text.startswith("/deploy"):
+                    _cmd_deploy(chat_id)
                     continue
 
         except Exception as e:
