@@ -122,21 +122,33 @@ async def sync_data(request):
     estado = body.get("estado")
     csv_rows = body.get("csv")
 
+    # Use parent dir paths (matches what data_manager.cargar_estado reads)
+    BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     if estado is not None:
+        import json as _json
+        path = os.path.join(BASE, "partidos_seguimiento.json")
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                _json.dump(estado, f, ensure_ascii=False, indent=2)
+            logger.info(f"Sync: estado guardado → {path} ({len(estado)} partidos)")
+        except Exception as e:
+            logger.error(f"Sync error estado: {e}")
+
+    if csv_rows is not None:
+        import csv as _csv
         import data_manager as dm
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            "..", "partidos_seguimiento.json")
-        # Also try local
-        local_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   "partidos_seguimiento.json")
-        for p in [local_path, path]:
-            try:
-                with open(p, "w", encoding="utf-8") as f:
-                    _json.dump(estado, f, ensure_ascii=False, indent=2)
-                logger.info(f"Sync: estado guardado → {p} ({len(estado)} partidos)")
-                break
-            except Exception as e:
-                logger.warning(f"Sync: no se pudo escribir en {p}: {e}")
+        cols = dm.CSV_COLUMNAS
+        path = os.path.join(BASE, "apuestas.csv")
+        try:
+            with open(path, "w", newline="", encoding="utf-8") as f:
+                w = _csv.DictWriter(f, fieldnames=cols)
+                w.writeheader()
+                for row in csv_rows:
+                    w.writerow({k: row.get(k, "") for k in cols})
+            logger.info(f"Sync: CSV guardado → {path} ({len(csv_rows)} filas)")
+        except Exception as e:
+            logger.error(f"Sync error CSV: {e}")
 
     if csv_rows is not None:
         import csv as _csv
