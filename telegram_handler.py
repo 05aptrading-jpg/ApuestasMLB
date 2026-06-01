@@ -356,41 +356,62 @@ def _cmd_deploy(chat_id: int):
 
 
 def _cmd_reiniciar(chat_id: int):
-    """Reinicia el bot local (MLB + LMB) recargando análisis."""
+    """Re-analiza MLB + LMB en un thread y notifica el resultado."""
     data = _cargar_suscriptores()
     admin = data.get("admin_id", 0)
     if chat_id != admin:
         _send_raw(str(chat_id), "⛔ Solo el administrador puede reiniciar.")
         return
 
-    _send_raw(str(chat_id), "🔄 Reiniciando bot local...")
+    _send_raw(str(chat_id), "🔄 Analizando MLB + LMB...")
 
-    try:
-        import subprocess
-        import sys
-        import os
+    def _work():
+        try:
+            import data_manager as dm
+            from api_client import mlb
+            from analyzer import analizar_dia
+            from analyzer_lmb import analizar_lmb_dia
 
-        python_exe = sys.executable
-        main_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "main.py")
+            dm.inicializar_csv()
+            resultados = []
 
-        _send_raw(str(chat_id),
-            "♻️ Cargando análisis MLB + LMB...\n"
-            "⏳ Esto tarda ~30-60s.\n\n"
-            "El bot se reiniciará automáticamente.")
+            # MLB
+            try:
+                analyses = analizar_dia()
+                if analyses:
+                    dm.guardar_analisis(analyses)
+                    dm.guardar_estado(analyses)
+                    resultados.append(f"MLB: {len(analyses)} partidos")
+                else:
+                    resultados.append("MLB: sin partidos")
+            except Exception as e:
+                resultados.append(f"MLB: error — {e}")
+                logger.error(f"MLB reinicio error: {e}")
 
-        # Lanzar nuevo proceso con --ahora para forzar análisis inmediato
-        subprocess.Popen(
-            [python_exe, main_script, "--ahora"],
-            cwd=os.path.dirname(main_script),
-            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
-        )
+            # LMB
+            if getattr(config, "LMB_ACTIVO", False):
+                try:
+                    lmb = analizar_lmb_dia()
+                    if lmb:
+                        dm.guardar_analisis_lmb(lmb)
+                        dm.guardar_estado_lmb(lmb)
+                        resultados.append(f"LMB: {len(lmb)} partidos")
+                    else:
+                        resultados.append("LMB: sin partidos")
+                except Exception as e:
+                    resultados.append(f"LMB: error — {e}")
+                    logger.error(f"LMB reinicio error: {e}")
 
-        logger.info("Bot reiniciado por comando /reiniciar")
-        # El proceso actual terminará cuando el nuevo tome el control
+            _send_raw(str(chat_id),
+                "✅ <b>Análisis completado</b>\n\n" +
+                "\n".join(f"  • {r}" for r in resultados))
 
-    except Exception as e:
-        logger.error(f"Error reiniciando bot: {e}")
-        _send_raw(str(chat_id), f"❌ Error reiniciando:\n{e}")
+        except Exception as e:
+            logger.error(f"Reinicio error: {e}")
+            _send_raw(str(chat_id), f"❌ Error: {e}")
+
+    t = threading.Thread(target=_work, daemon=True)
+    t.start()
 
 
 # ── Procesador de updates ─────────────────────────────────────────────
