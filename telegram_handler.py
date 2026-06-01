@@ -301,7 +301,6 @@ def _cmd_deploy(chat_id: int):
         return
 
     token = config.RAILWAY_API_TOKEN
-    project_id = config.RAILWAY_PROJECT_ID
     service_id = config.RAILWAY_SERVICE_ID
 
     if not token:
@@ -325,19 +324,8 @@ def _cmd_deploy(chat_id: int):
               }
             }
             """ % service_id
-        elif project_id:
-            query = """
-            mutation {
-              deploymentTrigger(input: { projectId: "%s" }) {
-                id
-                status
-              }
-            }
-            """ % project_id
         else:
-            _send_raw(str(chat_id),
-                "❌ Faltan RAILWAY_PROJECT_ID o RAILWAY_SERVICE_ID en config.\n"
-                "Agrégalos como variables de entorno en Railway.")
+            _send_raw(str(chat_id), "❌ Falta RAILWAY_SERVICE_ID en config.")
             return
 
         r = requests.post(RAILWAY_API_URL, json={"query": query},
@@ -349,8 +337,7 @@ def _cmd_deploy(chat_id: int):
             _send_raw(str(chat_id), f"❌ Error Railway API:\n{err_msg}")
             return
 
-        deploy_data = (result.get("data", {}).get("serviceInstanceDeploy")
-                       or result.get("data", {}).get("deploymentTrigger"))
+        deploy_data = result.get("data", {}).get("serviceInstanceDeploy")
         if deploy_data:
             dep_id = deploy_data.get("id", "?")
             status = deploy_data.get("status", "queued")
@@ -358,7 +345,7 @@ def _cmd_deploy(chat_id: int):
                 f"✅ Deploy disparado!\n"
                 f"🆔 ID: {dep_id}\n"
                 f"📊 Estado: {status}\n\n"
-                f"El bot se reiniciará automáticamente en ~60s.")
+                f"Railway se reiniciará en ~60s.")
         else:
             _send_raw(str(chat_id),
                 f"⚠️ Respuesta inesperada:\n{str(result)[:500]}")
@@ -366,6 +353,44 @@ def _cmd_deploy(chat_id: int):
     except Exception as e:
         logger.error(f"Deploy error: {e}")
         _send_raw(str(chat_id), f"❌ Error conectando a Railway:\n{e}")
+
+
+def _cmd_reiniciar(chat_id: int):
+    """Reinicia el bot local (MLB + LMB) recargando análisis."""
+    data = _cargar_suscriptores()
+    admin = data.get("admin_id", 0)
+    if chat_id != admin:
+        _send_raw(str(chat_id), "⛔ Solo el administrador puede reiniciar.")
+        return
+
+    _send_raw(str(chat_id), "🔄 Reiniciando bot local...")
+
+    try:
+        import subprocess
+        import sys
+        import os
+
+        python_exe = sys.executable
+        main_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "main.py")
+
+        _send_raw(str(chat_id),
+            "♻️ Cargando análisis MLB + LMB...\n"
+            "⏳ Esto tarda ~30-60s.\n\n"
+            "El bot se reiniciará automáticamente.")
+
+        # Lanzar nuevo proceso con --ahora para forzar análisis inmediato
+        subprocess.Popen(
+            [python_exe, main_script, "--ahora"],
+            cwd=os.path.dirname(main_script),
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+
+        logger.info("Bot reiniciado por comando /reiniciar")
+        # El proceso actual terminará cuando el nuevo tome el control
+
+    except Exception as e:
+        logger.error(f"Error reiniciando bot: {e}")
+        _send_raw(str(chat_id), f"❌ Error reiniciando:\n{e}")
 
 
 # ── Procesador de updates ─────────────────────────────────────────────
@@ -408,6 +433,7 @@ def handle_updates():
                         )
                         if es_admin:
                             cmds += "\n  /deploy — Redeploy Railway"
+                            cmds += "\n  /reiniciar — Reiniciar bot local (MLB+LMB)"
                         _send_raw(str(chat_id),
                             "⚾ <b>MLB Analytics</b>\n\n"
                             "Bienvenido al sistema de análisis MLB.\n\n"
@@ -445,6 +471,11 @@ def handle_updates():
                 # /deploy — solo admin
                 if text.startswith("/deploy"):
                     _cmd_deploy(chat_id)
+                    continue
+
+                # /reiniciar — solo admin
+                if text.startswith("/reiniciar"):
+                    _cmd_reiniciar(chat_id)
                     continue
 
         except Exception as e:
