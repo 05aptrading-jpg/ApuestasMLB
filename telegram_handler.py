@@ -425,12 +425,18 @@ def _cmd_reiniciar(chat_id: int):
                 "✅ <b>Análisis completo finalizado</b>\n\n" +
                 "\n".join(f"  {r}" for r in resultados))
 
-            # Sync data to Railway mini app
-            _send_raw(str(chat_id), "🔄 Sincronizando con mini app...")
-            if _sync_to_railway():
-                _send_raw(str(chat_id), "✅ Mini app actualizada!")
-            else:
-                _send_raw(str(chat_id), "⚠️ Sync falló — mini app puede estar desactualizada.")
+            # Sync live_data.json to GitHub Pages
+            _send_raw(str(chat_id), "🔄 Publicando live_data.json en GitHub Pages...")
+            try:
+                from miniapp_publisher import publicar_live_data
+                ok = publicar_live_data()
+                if ok:
+                    _send_raw(str(chat_id), "✅ Mini app actualizada en GitHub Pages!")
+                else:
+                    _send_raw(str(chat_id), "⚠️ Sync falló — mini app puede estar desactualizada.")
+            except Exception as e:
+                logger.error(f"Publish live_data error: {e}")
+                _send_raw(str(chat_id), f"⚠️ Error publicando: {e}")
 
         except Exception as e:
             logger.error(f"Reinicio error: {e}")

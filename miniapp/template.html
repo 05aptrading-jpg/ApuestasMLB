@@ -213,30 +213,39 @@
 </div>
 
 <script>
-const DATA = __DATA__;
-
-// ── Control de acceso ──────────────────────────────────────────────
-(function() {
-  const tg = window.Telegram?.WebApp;
-  const userId = tg?.initDataUnsafe?.user?.id;
-  const autorizados = DATA.autorizados || [];
-  const acceso = userId && autorizados.includes(userId);
-
-  if (!acceso) {
-    document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;padding:32px;text-align:center">'
-      + '<div style="font-size:48px;margin-bottom:16px">🔒</div>'
-      + '<h2 style="font-size:18px;margin-bottom:8px;color:#e1e8ed">Acceso Restringido</h2>'
-      + '<p style="font-size:14px;color:#8b98a5;margin-bottom:24px;line-height:1.5">Esta aplicación es de uso exclusivo para suscriptores.</p>'
-      + '<p style="font-size:14px;color:#8b98a5;margin-bottom:8px;line-height:1.5">Contacta al administrador para obtener acceso.</p>'
-      + '<div style="margin-top:24px;font-size:11px;color:#536471">Tu ID: ' + (userId || 'No disponible') + '</div>'
-      + '</div>';
-    return;
-  }
-})();
-
-// ── Estado ──────────────────────────────────────────────────────────
+var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [], live_data: {} };
 var selectedLiga = 'general';
-var selectedDate = (DATA.dias && DATA.dias.length > 0) ? DATA.dias[0] : '';
+var selectedDate = '';
+
+// ── Fetch data from live_data.json ────────────────────────────────
+function fetchScores() {
+  fetch('live_data.json?t=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      DATA = data;
+      if (!selectedDate && DATA.dias && DATA.dias.length > 0) selectedDate = DATA.dias[0];
+      renderAll();
+      if (DATA.has_live) {
+        setTimeout(fetchScores, 60000);
+      } else if (DATA.has_scheduled) {
+        setTimeout(fetchScores, 300000);
+      } else {
+        setTimeout(fetchScores, 600000);
+      }
+    })
+    .catch(function() {
+      document.getElementById('games-list').innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin conexión...</div>';
+      setTimeout(fetchScores, 60000);
+    });
+}
+
+function renderAll() {
+  renderLigaTabs();
+  renderDateTabs();
+  renderDateLabel();
+  renderGames();
+  renderStats();
+}
 
 // ── Funciones helper ──────────────────────────────────────────────
 function getStatsForLiga(liga) {
@@ -471,29 +480,132 @@ function toggleScoreboard(idx, rowEl) {
   container.classList.add('open');
   if (icon) icon.classList.add('open');
 
-  // Find game data
   var g = null;
   for (var i = 0; i < DATA.games.length; i++) {
     var pk = (DATA.games[i].game_pk || 0) + '-' + i;
     if (pk == idx) { g = DATA.games[i]; break; }
   }
-  if (g && g.linescore && g.linescore.innings) {
+
+  var liveData = DATA.live_data || {};
+  var liveGame = null;
+  if (g) {
+    var gamePkStr = String(g.game_pk);
+    liveGame = liveData[gamePkStr] || null;
+    if (!liveGame) {
+      var awayLower = (g.opp_team || '').toLowerCase();
+      var homeLower = (g.fav_team || '').toLowerCase();
+      for (var lpk in liveData) {
+        var ld = liveData[lpk];
+        var at = (ld.away_team_name || '').toLowerCase();
+        var ht = (ld.home_team_name || '').toLowerCase();
+        if ((awayLower in at || at in awayLower) && (homeLower in ht || ht in homeLower)) {
+          liveGame = ld;
+          break;
+        }
+      }
+    }
+  }
+
+  if (g && liveGame) {
+    renderScoreboardFromLive(g, liveGame, container);
+  } else if (g && g.linescore && g.linescore.innings) {
     renderScoreboard(g, container);
   } else {
     container.innerHTML = '<div class="sb-loading" style="color:#8b98a5">Scoreboard no disponible</div>';
   }
 
-  // Auto-refresh every 15 seconds while open (reload page instead)
   if (sbTimers[idx]) clearInterval(sbTimers[idx]);
   sbTimers[idx] = setInterval(function() {
     var c = document.getElementById('sb-' + idx);
     if (c && c.classList.contains('open')) {
-      location.reload();
+      fetchScores();
     } else {
       clearInterval(sbTimers[idx]);
       delete sbTimers[idx];
     }
   }, 15000);
+}
+
+function renderScoreboardFromLive(g, live, container) {
+  var ls = live.linescore || {};
+  var innings = ls.innings || [];
+  var totalInnings = Math.max(innings.length, 9);
+  for (var i = innings.length - 1; i >= 8; i--) {
+    if (innings[i] && innings[i].away_runs === 0 && innings[i].home_runs === 0 && i >= 9) {
+      totalInnings = i;
+    } else { break; }
+  }
+  if (totalInnings < 9) totalInnings = 9;
+
+  var isLive = live.is_live;
+  var isFinal = live.is_final;
+  var statusClass = isLive ? 'live' : (isFinal ? 'final' : '');
+  var statusText = live.status || '';
+  if (ls.inning_ordinal && isLive) {
+    statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
+  }
+
+  var awayName = live.away_team_name || g.opp_team || 'Away';
+  var homeName = live.home_team_name || g.fav_team || 'Home';
+  var awayAbbr = awayName.split(' ').pop();
+  var homeAbbr = homeName.split(' ').pop();
+
+  var html = '<div class="sb-header"><span class="sb-status ' + statusClass + '">' + statusText + '</span></div>';
+  var numCols = Math.max(totalInnings, 9);
+  html += '<div class="sb-grid" style="grid-template-columns:80px repeat(' + numCols + ', minmax(22px,1fr)) 32px 32px 32px">';
+
+  html += '<div class="sb-label sb-header-row"></div>';
+  for (var i = 1; i <= numCols; i++) {
+    var isCurrentInning = (i === ls.current_inning && isLive);
+    html += '<div class="sb-inning sb-header-row' + (isCurrentInning ? ' current' : '') + '">' + i + '</div>';
+  }
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">R</div>';
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
+
+  html += '<div class="sb-label">' + awayAbbr + '</div>';
+  for (var i = 0; i < numCols; i++) {
+    var inn = innings[i] || {};
+    var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
+    html += '<div class="sb-score away' + cls + '">' + (inn.away_runs !== undefined ? inn.away_runs : '') + '</div>';
+  }
+  html += '<div class="sb-total away">' + (live.away_runs || 0) + '</div>';
+  html += '<div class="sb-total away">' + (live.away_hits || 0) + '</div>';
+  html += '<div class="sb-total away">' + (live.away_errors || 0) + '</div>';
+
+  html += '<div class="sb-label">' + homeAbbr + '</div>';
+  for (var i = 0; i < numCols; i++) {
+    var inn = innings[i] || {};
+    var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
+    html += '<div class="sb-score home' + cls + '">' + (inn.home_runs !== undefined ? inn.home_runs : '') + '</div>';
+  }
+  html += '<div class="sb-total home">' + (live.home_runs || 0) + '</div>';
+  html += '<div class="sb-total home">' + (live.home_hits || 0) + '</div>';
+  html += '<div class="sb-total home">' + (live.home_errors || 0) + '</div>';
+  html += '</div>';
+
+  var bases = ls.bases || {};
+  html += '<div class="sb-meta">';
+  html += '<div class="sb-bases">';
+  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.second ? ' occupied' : ' empty') + '"></span></div>';
+  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.first ? ' occupied' : ' empty') + '"></span><span class="sb-diamond-base' + (bases.third ? ' occupied' : ' empty') + '"></span></div>';
+  html += '</div>';
+
+  var outs = ls.outs || 0;
+  html += '<div class="sb-outs">';
+  for (var o = 0; o < 3; o++) {
+    html += '<span class="sb-out-dot' + (o < outs ? ' recorded' : '') + '"></span>';
+  }
+  html += '</div>';
+
+  if (isLive) {
+    html += '<div class="sb-count">B: <span>' + (ls.balls || 0) + '</span>  S: <span>' + (ls.strikes || 0) + '</span></div>';
+    var arrow = ls.is_top ? '↑' : '↓';
+    html += '<div class="sb-inning-label">' + arrow + ' ' + (ls.inning_ordinal || '') + '</div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
 }
 
 function renderScoreboard(g, container) {
@@ -603,8 +715,7 @@ renderDateLabel();
 renderGames();
 renderStats();
 
-// Auto-refresh cada 60s
-setTimeout(function(){ location.reload(); }, 60000);
+fetchScores();
 </script>
 </body>
 </html>

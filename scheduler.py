@@ -405,30 +405,16 @@ def tarea_resultados():
         except Exception as e:
             logger.error(f"Mini App publish error: {e}")
 
-    # ── Sync resultados a Railway mini app ──────────────────────────────────
+    # ── Sync live_data.json a GitHub Pages ──────────────────────────────────
     try:
-        import requests as _sync_req
-        import json as _sync_json
-        estado_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "partidos_seguimiento.json")
-        csv_path = config.CSV_PATH
-        estado_data = []
-        csv_data = []
-        if os.path.exists(estado_path):
-            with open(estado_path, encoding="utf-8") as f:
-                estado_data = _sync_json.load(f)
-        if os.path.exists(csv_path):
-            import csv as _sync_csv
-            with open(csv_path, newline="", encoding="utf-8") as f:
-                csv_data = list(_sync_csv.DictReader(f))
-        if estado_data or csv_data:
-            railway_url = "https://apuestasmlb-production.up.railway.app"
-            r = _sync_req.post(f"{railway_url}/sync", json={"estado": estado_data, "csv": csv_data}, timeout=15)
-            if r.status_code == 200:
-                logger.info("Sync Railway: resultados actualizados en mini app")
-            else:
-                logger.warning(f"Sync Railway falló: HTTP {r.status_code} — {r.text[:200]}")
+        from miniapp_publisher import publicar_live_data
+        ok = publicar_live_data()
+        if ok:
+            logger.info("Sync GitHub Pages: live_data.json actualizado")
+        else:
+            logger.warning("Sync GitHub Pages: falló publicar live_data.json")
     except Exception as e:
-        logger.warning(f"Sync Railway resultados falló: {e}")
+        logger.warning(f"Sync GitHub Pages falló: {e}")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ESPN — con debug de HTTP

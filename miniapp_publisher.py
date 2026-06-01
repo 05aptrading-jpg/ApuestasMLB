@@ -241,7 +241,7 @@ def _annotate_linescores_mlb(games: list):
             ls_data = _ls_cache[key]
         if ls_data and "innings" in ls_data:
             g["linescore"] = ls_data
-            if g.get("result") in ("pending", None):
+            if g.get("result") in ("pending", "completed", None):
                 g["status_emoji"] = ls_data.get("status_emoji", g.get("status_emoji", "⏳"))
                 g["result"] = ls_data.get("result", g.get("result", "pending"))
                 g["state"] = ls_data.get("state", g.get("state", ""))
@@ -635,7 +635,7 @@ def habilitar_pages() -> bool:
 
 
 def publicar() -> bool:
-    """Genera HTML, sube a GitHub (index, privacy, terms) y habilita Pages."""
+    """Genera HTML + live_data.json, sube a GitHub y habilita Pages."""
     bot_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(bot_dir)
     miniapp_dir = os.path.join(bot_dir, "miniapp")
@@ -644,6 +644,14 @@ def publicar() -> bool:
     html = generar_html()
     if not pushear_a_github(html):
         return False
+
+    # Subir live_data.json para fetch dinámico
+    try:
+        data = _build_data()
+        live_json = json.dumps(data, ensure_ascii=False, indent=2)
+        pushear_archivo("live_data.json", live_json, "Actualizar live_data.json")
+    except Exception as e:
+        logger.error(f"Error generando live_data.json: {e}")
 
     # Subir páginas estáticas (privacy, terms)
     for archivo in ("privacy.html", "terms.html"):
@@ -655,3 +663,16 @@ def publicar() -> bool:
 
     habilitar_pages()
     return True
+
+
+def publicar_live_data() -> bool:
+    """Sube SOLO live_data.json a GitHub (para updates frecuentes sin regenerar HTML)."""
+    bot_dir = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(bot_dir)
+    try:
+        data = _build_data()
+        live_json = json.dumps(data, ensure_ascii=False, indent=2)
+        return pushear_archivo("live_data.json", live_json, "Update live scores")
+    except Exception as e:
+        logger.error(f"Error publicando live_data.json: {e}")
+        return False
