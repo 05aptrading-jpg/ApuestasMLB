@@ -422,8 +422,11 @@ def tarea_resultados():
                 csv_data = list(_sync_csv.DictReader(f))
         if estado_data or csv_data:
             railway_url = "https://apuestasmlb-production.up.railway.app"
-            _sync_req.post(f"{railway_url}/sync", json={"estado": estado_data, "csv": csv_data}, timeout=15)
-            logger.info("Sync Railway: resultados actualizados en mini app")
+            r = _sync_req.post(f"{railway_url}/sync", json={"estado": estado_data, "csv": csv_data}, timeout=15)
+            if r.status_code == 200:
+                logger.info("Sync Railway: resultados actualizados en mini app")
+            else:
+                logger.warning(f"Sync Railway falló: HTTP {r.status_code} — {r.text[:200]}")
     except Exception as e:
         logger.warning(f"Sync Railway resultados falló: {e}")
 

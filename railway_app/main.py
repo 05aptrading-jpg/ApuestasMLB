@@ -150,26 +150,6 @@ async def sync_data(request):
         except Exception as e:
             logger.error(f"Sync error CSV: {e}")
 
-    if csv_rows is not None:
-        import csv as _csv
-        import data_manager as dm
-        cols = dm.CSV_COLUMNAS
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            "..", "apuestas.csv")
-        local_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   "apuestas.csv")
-        for p in [local_path, path]:
-            try:
-                with open(p, "w", newline="", encoding="utf-8") as f:
-                    w = _csv.DictWriter(f, fieldnames=cols)
-                    w.writeheader()
-                    for row in csv_rows:
-                        w.writerow({k: row.get(k, "") for k in cols})
-                logger.info(f"Sync: CSV guardado → {p} ({len(csv_rows)} filas)")
-                break
-            except Exception as e:
-                logger.warning(f"Sync: no se pudo escribir en {p}: {e}")
-
     # Rebuild cache and broadcast
     data = _build_data()
     await ws_manager.broadcast({"type": "full_update", "data": data})

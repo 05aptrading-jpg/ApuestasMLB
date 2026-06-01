@@ -36,10 +36,17 @@ _cache: dict = {
 def _build_data() -> dict:
     """Construye el dict de datos para WebSocket/Mini App."""
     from datetime import datetime as _dt
-    hoy = _dt.now()
+    ahora = _dt.now(MT_TZ)
+    hoy = ahora
     ayer = hoy - timedelta(days=1)
     anteayer = hoy - timedelta(days=2)
-    fechas = {hoy.strftime("%Y-%m-%d"), ayer.strftime("%Y-%m-%d"), anteayer.strftime("%Y-%m-%d")}
+    maniana = hoy + timedelta(days=1)
+    fechas = {
+        hoy.strftime("%Y-%m-%d"),
+        ayer.strftime("%Y-%m-%d"),
+        anteayer.strftime("%Y-%m-%d"),
+        maniana.strftime("%Y-%m-%d"),
+    }
 
     estado = dm.cargar_estado()
     games = []
@@ -161,9 +168,19 @@ def _build_data() -> dict:
             dias_set.add(d)
     dias_disponibles = sorted(dias_set, reverse=True)
 
-    ahora_str = _dt.now().strftime("%d/%m/%Y %H:%M")
+    ahora_str = ahora.strftime("%d/%m/%Y %H:%M")
     prox = getattr(config, "HORA_ANALISIS_MANANA", "08:00")
     prox_lmb = getattr(config, "LMB_HORA_MANANA", "10:00")
+
+    def _hoy_a_ts(hora_str: str) -> int:
+        try:
+            hh, mm = hora_str.split(":")
+            target = ahora.replace(hour=int(hh), minute=int(mm), second=0, microsecond=0)
+            if target <= ahora:
+                target += timedelta(days=1)
+            return int(target.timestamp())
+        except Exception:
+            return 0
 
     def bs(s):
         return {
@@ -179,6 +196,8 @@ def _build_data() -> dict:
         "fecha": ahora_str,
         "proxima_actualizacion": prox,
         "proxima_actualizacion_lmb": prox_lmb,
+        "proxima_actualizacion_ts": _hoy_a_ts(prox),
+        "proxima_actualizacion_lmb_ts": _hoy_a_ts(prox_lmb),
         "dias": dias_disponibles,
         "games": games,
         "bot_username": config.TELEGRAM_BOT_USERNAME,
@@ -201,7 +220,7 @@ def _cargar_suscriptores() -> list[int]:
                 data = json.load(f)
             suscripciones = data.get("suscripciones", {})
             admin = data.get("admin_id")
-            hoy = date.today().isoformat()
+            hoy = datetime.now(MT_TZ).date().isoformat()
             validos = []
             for uid_str, expira in suscripciones.items():
                 uid = int(uid_str)
@@ -218,7 +237,7 @@ def _cargar_suscriptores() -> list[int]:
 async def fetch_live_data() -> dict:
     """Fetch live scores for all LMB and MLB games from StatsAPI."""
     live = {}
-    today = date.today()
+    today = datetime.now(MT_TZ).date()
     date_str = today.strftime("%m/%d/%Y")
 
     async with httpx.AsyncClient(timeout=15) as client:
