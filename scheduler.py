@@ -154,6 +154,7 @@ def tarea_reanalisis_lmb():
         return
     dm.guardar_analisis_lmb(result)
     dm.guardar_estado_lmb(result)
+    bot.enviar_analisis_lmb(result)
     if config.GITHUB_TOKEN:
         try:
             from miniapp_publisher import publicar
@@ -279,6 +280,9 @@ def tarea_analisis_lmb():
 
     dm.guardar_analisis_lmb(result)
     dm.guardar_estado_lmb(result)
+
+    # Enviar mensaje de análisis LMB detallado
+    bot.enviar_analisis_lmb(result)
 
     # Publicar Mini App
     if config.GITHUB_TOKEN:

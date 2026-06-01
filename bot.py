@@ -564,3 +564,116 @@ def enviar_analisis_destacados(partidos: list[dict]) -> bool:
     ok = enviar_mensaje(msg)
     logger.info(f"Análisis destacados enviados: {ok}")
     return ok
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ██  MENSAJE 6 — ANÁLISIS SABERMÉRICO LMB  ██
+# ─────────────────────────────────────────────────────────────────────────────
+def mensaje_analisis_lmb(analyses: list[dict]) -> str:
+    """
+    Genera el mensaje de análisis LMB con todos los partidos
+    ordenados de mayor a menor probabilidad.
+    `analyses` es la lista de dicts que devuelve analizar_lmb_dia().
+    """
+    from datetime import date as _date
+    hoy = _date.today().strftime("%d/%m/%Y")
+    n = len(analyses)
+
+    lineas = [
+        f"🇲🇽 <b>LMB — ANÁLISIS SABERMÉRICO {hoy}</b>",
+        f"📊 <b>Metodología 5 Bloques | {n} partidos analizados</b>",
+        "",
+        "📡 <b>Fuentes:</b> statsapi.mlb.com (sportId=23) · Baseball Reference",
+        "",
+    ]
+
+    # Ordenar de mayor a menor probabilidad
+    sorted_a = sorted(analyses, key=lambda x: x.get("prob_favorito", 0), reverse=True)
+
+    alta = [a for a in sorted_a if a.get("prob_favorito", 0) >= config.LMB_PROB_MINIMA]
+    debiles = [a for a in sorted_a if a.get("prob_favorito", 0) < config.LMB_PROB_MINIMA]
+
+    if alta:
+        lineas += [
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            f"🔥 <b>CONFIANZA ALTA ({len(alta)} de {n} partidos)</b>",
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            f"<i>Prob ≥ {config.LMB_PROB_MINIMA:.0f}% · mayor a menor</i>",
+            "",
+        ]
+        for idx, a in enumerate(alta, 1):
+            prob = a.get("prob_favorito", 0)
+            favorito = _esc(a.get("favorito", "—"))
+            away = _esc(a.get("away_team", "—"))
+            home = _esc(a.get("home_team", "—"))
+            abridor_a = _esc(a.get("away_pitcher", "N/D"))
+            abridor_h = _esc(a.get("home_pitcher", "N/D"))
+            fip_a = a.get("fip_away", 0)
+            fip_h = a.get("fip_home", 0)
+            kbb_a = a.get("kbb_away", 0)
+            kbb_h = a.get("kbb_home", 0)
+            wrc_a = a.get("wrc_away", 100)
+            wrc_h = a.get("wrc_home", 100)
+            factor = a.get("factor_riesgo", "N/D")
+            hora = a.get("game_time", "")
+            senal = a.get("senal_moneyline", "")
+
+            lineas += [
+                f"<b>{idx}. {favorito}</b>",
+                f"   ⚾ {away} @ {home}",
+                f"   📊 Prob: <b>{prob:.1f}%</b>",
+                f"   {_barra_probabilidad(prob)}",
+                f"   🎯 Abridor: {abridor_a} (FIP {fip_a:.2f}) vs {abridor_h} (FIP {fip_h:.2f})",
+                f"   📈 K/BB: {kbb_a:.2f} vs {kbb_h:.2f} | wRC+: {wrc_a:.0f} vs {wrc_h:.0f}",
+                f"   ⚠️ Riesgo: {_esc(factor)}",
+            ]
+            if senal and senal != "NO APOSTAR":
+                lineas.append(f"   💰 Señal: {senal}")
+            if hora:
+                lineas.append(f"   🕐 {hora}")
+            lineas.append("")
+
+    if debiles:
+        lineas += [
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            f"📋 <b>SOLO INFORMATIVOS ({len(debiles)} partidos · prob &lt; {config.LMB_PROB_MINIMA:.0f}%)</b>",
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            "",
+        ]
+        for idx, a in enumerate(debiles, 1):
+            prob = a.get("prob_favorito", 0)
+            favorito = _esc(a.get("favorito", "—"))
+            away = _esc(a.get("away_team", "—"))
+            home = _esc(a.get("home_team", "—"))
+            lineas.append(
+                f"  {idx}. {favorito} ({prob:.1f}%) — {away} @ {home}"
+            )
+        lineas.append("")
+
+    # Stats LMB
+    from data_manager import obtener_estadisticas
+    stats = obtener_estadisticas(liga="LMB")
+    if stats["total"] > 0:
+        lineas += [
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            "🇲🇽 <b>RENDIMIENTO LMB ACUMULADO</b>",
+            f"🌐 Global: {stats['acertados']}✅ {stats['fallidos']}❌ ({stats['total']}) → <b>{stats['win_rate']}%</b>",
+        ]
+
+    lineas += [
+        "",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "⚠️ <i>Análisis académico. No es asesoría financiera.</i>",
+    ]
+
+    return "\n".join(lineas)
+
+
+def enviar_analisis_lmb(analyses: list[dict]) -> bool:
+    """Construye y envía el mensaje de análisis LMB a Telegram."""
+    msg = mensaje_analisis_lmb(analyses)
+    if len(msg) > 4000:
+        msg = msg[:3997] + "..."
+    ok = enviar_mensaje(msg)
+    logger.info(f"Análisis LMB enviado: {ok}")
+    return ok
