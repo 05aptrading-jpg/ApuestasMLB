@@ -141,6 +141,66 @@ def _espn_to_game(espn: dict, favorito: str = None, liga: str = "MLB") -> dict:
     return {"liga": liga, "game_date": gd, "status_emoji": "⏳", "fav_team": fi["fav_team"], "opp_team": fi["opp_team"], "score_fav": "—", "score_opp": "", "state": "Pend.", "result": "pending", "label": ""}
 
 
+def _annotate_linescores_mlb(games: list):
+    """Fetch linescore from MLB Stats API for each game_pk and annotate games."""
+    import requests as _req
+    _ls_cache = {}
+
+    def _fetch_for_sport(game_pks: list, sport_id: int):
+        nonlocal _ls_cache
+        gpk_str = ";".join(str(pk) for pk in game_pks)
+        try:
+            url = f"https://statsapi.mlb.com/api/v1/schedule?sportId={sport_id}&gamePk={gpk_str}&hydrate=linescore"
+            r = _req.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
+            if r.status_code != 200:
+                return
+            for date_block in r.json().get("dates", []):
+                for game in date_block.get("games", []):
+                    pk = game.get("gamePk", 0)
+                    ls = game.get("linescore")
+                    if not pk or not ls:
+                        continue
+                    innings = []
+                    for inn in ls.get("innings", []):
+                        innings.append({
+                            "away_runs": inn.get("away", {}).get("runs", 0),
+                            "home_runs": inn.get("home", {}).get("runs", 0),
+                        })
+                    _ls_cache[pk] = {
+                        "innings": innings,
+                        "current_inning": ls.get("currentInning", 1),
+                        "is_top": ls.get("isTopInning", True),
+                        "inning_ordinal": ls.get("currentInningOrdinal", ""),
+                        "outs": ls.get("outs", 0),
+                        "balls": ls.get("balls", 0),
+                        "strikes": ls.get("strikes", 0),
+                        "away_runs": ls.get("teams", {}).get("away", {}).get("runs", 0),
+                        "home_runs": ls.get("teams", {}).get("home", {}).get("runs", 0),
+                        "away_hits": ls.get("teams", {}).get("away", {}).get("hits", 0),
+                        "home_hits": ls.get("teams", {}).get("home", {}).get("hits", 0),
+                        "away_errors": ls.get("teams", {}).get("away", {}).get("errors", 0),
+                        "home_errors": ls.get("teams", {}).get("home", {}).get("errors", 0),
+                        "bases": {
+                            "first": ls.get("offensive", {}).get("first", False),
+                            "second": ls.get("offensive", {}).get("second", False),
+                            "third": ls.get("offensive", {}).get("third", False),
+                        },
+                    }
+        except Exception:
+            pass
+
+    mlb_pks = [g["game_pk"] for g in games if g.get("liga") in ("MLB", None, "") and g.get("game_pk")]
+    lmb_pks = [g["game_pk"] for g in games if g.get("liga") == "LMB" and g.get("game_pk")]
+    if mlb_pks:
+        _fetch_for_sport(mlb_pks, 1)
+    if lmb_pks:
+        _fetch_for_sport(lmb_pks, 23)
+    for g in games:
+        pk = g.get("game_pk", 0)
+        if pk in _ls_cache:
+            g["linescore"] = _ls_cache[pk]
+
+
 def _build_data() -> dict:
     """Construye el JSON con partidos + stats para la Mini App."""
     from datetime import timedelta
@@ -340,14 +400,13 @@ def _build_data() -> dict:
         g["game_date"] = eg["game_date"]
         games.append(g)
 
-    # ── Annotate linescore + game_pk from seguimiento ──
+    # ── Annotate game_pk from seguimiento ──
     sg_map = {}
     for sg in seguimiento:
         pk = sg.get("game_pk", 0)
-        ls = sg.get("linescore")
-        if pk and ls:
+        if pk:
             key = (_norm(sg.get("game_date", "")[:10]), _norm(sg.get("away_team", "")), _norm(sg.get("home_team", "")))
-            sg_map[key] = {"game_pk": pk, "linescore": ls}
+            sg_map[key] = {"game_pk": pk}
     for g in games:
         gd = g.get("game_date", "")
         fav = _norm(g.get("fav_team", ""))
@@ -355,10 +414,15 @@ def _build_data() -> dict:
         entry = sg_map.get((gd, opp, fav)) or sg_map.get((gd, fav, opp))
         if entry:
             g["game_pk"] = entry["game_pk"]
-            g["linescore"] = entry["linescore"]
         else:
             g.setdefault("game_pk", 0)
-            g.setdefault("linescore", {})
+        g.setdefault("linescore", {})
+
+    # ── Fetch live linescores from MLB Stats API ──
+    try:
+        _annotate_linescores_mlb(games)
+    except Exception as e:
+        logger.warning(f"Error fetching linescores: {e}")
 
     # Ordenar partidos por fecha (más reciente primero) y dentro de cada fecha por label
     games.sort(key=lambda x: (x.get("game_date", ""), {"🎯":0,"📊":1,"📋":2}.get(x.get("label",""), 3)))
