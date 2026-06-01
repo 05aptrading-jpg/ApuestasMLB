@@ -4,3 +4,10 @@
 requests>=2.31.0
 APScheduler>=3.10.4
 pytz>=2024.1
+uvicorn[standard]>=0.34.0
+fastapi>=0.115.0
+httpx>=0.28.0
+python-telegram-bot>=21.0
+cloudscraper>=1.2.71
+beautifulsoup4>=4.12.2
+lxml>=5.1.0
