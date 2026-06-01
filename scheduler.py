@@ -421,7 +421,7 @@ def tarea_resultados():
             with open(csv_path, newline="", encoding="utf-8") as f:
                 csv_data = list(_sync_csv.DictReader(f))
         if estado_data or csv_data:
-            railway_url = "https://valiant-healing-production.up.railway.app"
+            railway_url = "https://apuestasmlb-production.up.railway.app"
             _sync_req.post(f"{railway_url}/sync", json={"estado": estado_data, "csv": csv_data}, timeout=15)
             logger.info("Sync Railway: resultados actualizados en mini app")
     except Exception as e:

@@ -23,7 +23,7 @@ TELEGRAM_URL = f"https://api.telegram.org/bot{config.TELEGRAM_TOKEN}"
 _last_update_id = 0
 
 RAILWAY_API_URL = "https://backboard.railway.app/graphql"
-RAILWAY_APP_URL = "https://valiant-healing-production.up.railway.app"
+RAILWAY_APP_URL = "https://apuestasmlb-production.up.railway.app"
 
 
 def _sync_to_railway():
