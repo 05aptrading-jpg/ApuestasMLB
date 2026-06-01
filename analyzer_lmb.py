@@ -281,6 +281,8 @@ def _score_wrc(wrc: float) -> float:
 
 
 def _calcular_bloque1(pitching: dict) -> float:
+    if not pitching:
+        return 50.0
     s_era = _score_era(pitching.get("ERA", "0"))
     s_whip = _score_whip(pitching.get("WHIP", "0"))
     s_sobb = _score_so_bb(pitching.get("SO", "0"), pitching.get("BB", "0"))
@@ -289,6 +291,8 @@ def _calcular_bloque1(pitching: dict) -> float:
 
 
 def _calcular_bloque2(batting: dict) -> float:
+    if not batting:
+        return 50.0
     s_avg = _score_avg(batting.get("BA", batting.get("AVG", "0")))
     s_ops = _score_ops(batting.get("OPS", "0"))
     s_hr = _score_hr(batting.get("HR", "0"))
@@ -298,12 +302,16 @@ def _calcular_bloque2(batting: dict) -> float:
 
 
 def _calcular_bloque3(pitching: dict) -> float:
+    if not pitching:
+        return 50.0
     s_era = _score_era(pitching.get("ERA", "0"))
     s_whip = _score_whip(pitching.get("WHIP", "0"))
     return s_era * 0.5 + s_whip * 0.5
 
 
 def _calcular_bloque4(record: dict) -> float:
+    if not record:
+        return 50.0
     rs = record.get("rs", 0)
     ra = record.get("ra", 0)
     diff = rs - ra
@@ -590,11 +598,9 @@ def analizar_lmb_dia(fecha: str = None) -> list[dict]:
         home_b, home_p, home_r = _get_stats_for_team(home_br, all_stats)
 
         if not away_p and not away_b:
-            logger.warning(f"Sin stats BR para: {away_api} -> '{away_br}'")
-            continue
+            logger.warning(f"Sin stats BR para: {away_api} -> '{away_br}' — usando defaults")
         if not home_p and not home_b:
-            logger.warning(f"Sin stats BR para: {home_api} -> '{home_br}'")
-            continue
+            logger.warning(f"Sin stats BR para: {home_api} -> '{home_br}' — usando defaults")
 
         s1a = _calcular_bloque1(away_p)
         s1h = _calcular_bloque1(home_p)
@@ -635,10 +641,6 @@ def analizar_lmb_dia(fecha: str = None) -> list[dict]:
         total_away_raw = s1a * w1 + s2a * w2 + s3a * w3 + s4a * w4 + s5 * w5
         total_home_raw = s1h * w1 + s2h * w2 + s3h * w3 + s4h * w4 + s5 * w5
 
-        if total_away_raw < 50 and total_home_raw < 50:
-            logger.info(f"Saltado (ambos <50): {away_api} vs {home_api}")
-            continue
-
         # Metricas avanzadas
         abridor_a = game.get("away_pitcher_name") or "?"
         abridor_h = game.get("home_pitcher_name") or "?"
@@ -646,20 +648,26 @@ def analizar_lmb_dia(fecha: str = None) -> list[dict]:
         ph_data = pitcher_db.get(abridor_h) if abridor_h != "?" else None
         if pa_data:
             fip_a = _compute_pitcher_fip(pa_data, lg_avg["cFIP"])
-            kbb_a = pa_data.get("kbb") or _safe_float(away_p.get("SO/W"))
-        else:
+            kbb_a = pa_data.get("kbb") or _safe_float((away_p or {}).get("SO/W"))
+        elif away_p:
             fip_a = _compute_team_fip(away_p, lg_avg["cFIP"])
             kbb_a = _safe_float(away_p.get("SO/W"))
+        else:
+            fip_a = lg_avg["cFIP"]
+            kbb_a = 0
         if ph_data:
             fip_h = _compute_pitcher_fip(ph_data, lg_avg["cFIP"])
-            kbb_h = ph_data.get("kbb") or _safe_float(home_p.get("SO/W"))
-        else:
+            kbb_h = ph_data.get("kbb") or _safe_float((home_p or {}).get("SO/W"))
+        elif home_p:
             fip_h = _compute_team_fip(home_p, lg_avg["cFIP"])
             kbb_h = _safe_float(home_p.get("SO/W"))
-        wrc_a = _compute_team_wrc(away_b, lg_avg)
-        wrc_h = _compute_team_wrc(home_b, lg_avg)
+        else:
+            fip_h = lg_avg["cFIP"]
+            kbb_h = 0
+        wrc_a = _compute_team_wrc(away_b, lg_avg) if away_b else 100
+        wrc_h = _compute_team_wrc(home_b, lg_avg) if home_b else 100
 
-        # Enriquecer bloques con metricas avanzadas (como MLB hace con Statcast)
+        # Enriquecer bloques con metricas avanzadas
         s_fip_a = _score_fip(fip_a)
         s_fip_h = _score_fip(fip_h)
         s_kbb_a = _score_kbb(kbb_a)
