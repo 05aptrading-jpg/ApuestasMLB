@@ -5,6 +5,7 @@ Usar temporalmente para diagnosticar por qué no se actualizan resultados.
 """
 
 import logging
+import os
 from datetime import datetime, timedelta
 from typing import Optional
 import math
@@ -304,6 +305,14 @@ def tarea_analisis_lmb():
 def tarea_resultados():
     global _analyses_hoy
 
+    # No ejecutar entre medianoche y 6 AM
+    import pytz as _tz
+    tz = _tz.timezone(config.TIMEZONE)
+    hora = datetime.now(tz).hour
+    if 0 <= hora < 6:
+        logger.info("Resultados: saltando — hora nocturna (%02d:00)")
+        return
+
     estado = dm.cargar_estado()
     pendientes = [p for p in estado if p.get("resultado") == "pendiente"]
 
@@ -395,6 +404,28 @@ def tarea_resultados():
                 logger.info("Mini App publicada tras actualizar resultados")
         except Exception as e:
             logger.error(f"Mini App publish error: {e}")
+
+    # ── Sync resultados a Railway mini app ──────────────────────────────────
+    try:
+        import requests as _sync_req
+        import json as _sync_json
+        estado_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "partidos_seguimiento.json")
+        csv_path = config.CSV_PATH
+        estado_data = []
+        csv_data = []
+        if os.path.exists(estado_path):
+            with open(estado_path, encoding="utf-8") as f:
+                estado_data = _sync_json.load(f)
+        if os.path.exists(csv_path):
+            import csv as _sync_csv
+            with open(csv_path, newline="", encoding="utf-8") as f:
+                csv_data = list(_sync_csv.DictReader(f))
+        if estado_data or csv_data:
+            railway_url = "https://valiant-healing-production.up.railway.app"
+            _sync_req.post(f"{railway_url}/sync", json={"estado": estado_data, "csv": csv_data}, timeout=15)
+            logger.info("Sync Railway: resultados actualizados en mini app")
+    except Exception as e:
+        logger.warning(f"Sync Railway resultados falló: {e}")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ESPN — con debug de HTTP
