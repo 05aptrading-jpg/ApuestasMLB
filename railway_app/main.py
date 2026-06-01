@@ -110,6 +110,61 @@ async def health():
     return {"status": "ok", "games_cached": len(_cache.get("live_data", {}))}
 
 
+@app.post("/sync")
+async def sync_data(request):
+    """Receive estado + CSV data from local bot to keep mini app updated."""
+    import json as _json
+    try:
+        body = await request.json()
+    except Exception:
+        return {"error": "Invalid JSON"}
+
+    estado = body.get("estado")
+    csv_rows = body.get("csv")
+
+    if estado is not None:
+        import data_manager as dm
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "..", "partidos_seguimiento.json")
+        # Also try local
+        local_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                   "partidos_seguimiento.json")
+        for p in [local_path, path]:
+            try:
+                with open(p, "w", encoding="utf-8") as f:
+                    _json.dump(estado, f, ensure_ascii=False, indent=2)
+                logger.info(f"Sync: estado guardado → {p} ({len(estado)} partidos)")
+                break
+            except Exception as e:
+                logger.warning(f"Sync: no se pudo escribir en {p}: {e}")
+
+    if csv_rows is not None:
+        import csv as _csv
+        import data_manager as dm
+        cols = dm.CSV_COLUMNAS
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "..", "apuestas.csv")
+        local_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                   "apuestas.csv")
+        for p in [local_path, path]:
+            try:
+                with open(p, "w", newline="", encoding="utf-8") as f:
+                    w = _csv.DictWriter(f, fieldnames=cols)
+                    w.writeheader()
+                    for row in csv_rows:
+                        w.writerow({k: row.get(k, "") for k in cols})
+                logger.info(f"Sync: CSV guardado → {p} ({len(csv_rows)} filas)")
+                break
+            except Exception as e:
+                logger.warning(f"Sync: no se pudo escribir en {p}: {e}")
+
+    # Rebuild cache and broadcast
+    data = _build_data()
+    await ws_manager.broadcast({"type": "full_update", "data": data})
+
+    return {"status": "ok", "estado": len(estado or []), "csv": len(csv_rows or [])}
+
+
 @app.get("/linescore/{game_pk}")
 async def get_linescore(game_pk: int):
     """Linescore detallado de un partido (inning grid + R/H/E + outs + bases)."""

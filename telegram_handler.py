@@ -23,6 +23,38 @@ TELEGRAM_URL = f"https://api.telegram.org/bot{config.TELEGRAM_TOKEN}"
 _last_update_id = 0
 
 RAILWAY_API_URL = "https://backboard.railway.app/graphql"
+RAILWAY_APP_URL = "https://valiant-healing-production.up.railway.app"
+
+
+def _sync_to_railway():
+    """Push estado + CSV to Railway so mini app gets updated data."""
+    import json as _json
+    import csv as _csv
+    try:
+        estado = []
+        estado_path = os.path.join(os.path.dirname(__file__), "partidos_seguimiento.json")
+        if os.path.exists(estado_path):
+            with open(estado_path, encoding="utf-8") as f:
+                estado = _json.load(f)
+
+        csv_rows = []
+        csv_path = config.CSV_PATH
+        if os.path.exists(csv_path):
+            with open(csv_path, newline="", encoding="utf-8") as f:
+                csv_rows = list(_csv.DictReader(f))
+
+        payload = {"estado": estado, "csv": csv_rows}
+        r = requests.post(f"{RAILWAY_APP_URL}/sync", json=payload, timeout=30)
+        if r.status_code == 200:
+            result = r.json()
+            logger.info(f"Sync Railway OK: {result}")
+            return True
+        else:
+            logger.warning(f"Sync Railway falló: {r.status_code} {r.text[:200]}")
+            return False
+    except Exception as e:
+        logger.error(f"Sync Railway error: {e}")
+        return False
 
 
 MINIAPP_URL = "https://05aptrading-jpg.github.io/ApuestasMLB/"
@@ -405,6 +437,13 @@ def _cmd_reiniciar(chat_id: int):
             _send_raw(str(chat_id),
                 "✅ <b>Análisis completado</b>\n\n" +
                 "\n".join(f"  • {r}" for r in resultados))
+
+            # Sync data to Railway mini app
+            _send_raw(str(chat_id), "🔄 Sincronizando con mini app...")
+            if _sync_to_railway():
+                _send_raw(str(chat_id), "✅ Mini app actualizada!")
+            else:
+                _send_raw(str(chat_id), "⚠️ Sync falló — mini app puede estar desactualizada.")
 
         except Exception as e:
             logger.error(f"Reinicio error: {e}")
