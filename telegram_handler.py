@@ -395,48 +395,35 @@ def _cmd_reiniciar(chat_id: int):
         _send_raw(str(chat_id), "⛔ Solo el administrador puede reiniciar.")
         return
 
-    _send_raw(str(chat_id), "🔄 Analizando MLB + LMB...")
+    _send_raw(str(chat_id), "🔄 Ejecutando análisis completo MLB + LMB...")
 
     def _work():
         try:
             import data_manager as dm
-            from api_client import mlb
-            from analyzer import analizar_dia
-            from analyzer_lmb import analizar_lmb_dia
-
-            dm.inicializar_csv()
+            import scheduler as sch
             resultados = []
 
-            # MLB
+            dm.inicializar_csv()
+
+            # MLB — igual que tarea_analisis_manana()
             try:
-                analyses = analizar_dia()
-                if analyses:
-                    dm.guardar_analisis(analyses)
-                    dm.guardar_estado(analyses)
-                    resultados.append(f"MLB: {len(analyses)} partidos")
-                else:
-                    resultados.append("MLB: sin partidos")
+                sch.tarea_analisis_manana()
+                resultados.append("✅ MLB completado")
             except Exception as e:
-                resultados.append(f"MLB: error — {e}")
+                resultados.append(f"❌ MLB error: {e}")
                 logger.error(f"MLB reinicio error: {e}")
 
-            # LMB
-            if getattr(config, "LMB_ACTIVO", False):
-                try:
-                    lmb = analizar_lmb_dia()
-                    if lmb:
-                        dm.guardar_analisis_lmb(lmb)
-                        dm.guardar_estado_lmb(lmb)
-                        resultados.append(f"LMB: {len(lmb)} partidos")
-                    else:
-                        resultados.append("LMB: sin partidos")
-                except Exception as e:
-                    resultados.append(f"LMB: error — {e}")
-                    logger.error(f"LMB reinicio error: {e}")
+            # LMB — igual que tarea_analisis_lmb()
+            try:
+                sch.tarea_analisis_lmb()
+                resultados.append("✅ LMB completado")
+            except Exception as e:
+                resultados.append(f"❌ LMB error: {e}")
+                logger.error(f"LMB reinicio error: {e}")
 
             _send_raw(str(chat_id),
-                "✅ <b>Análisis completado</b>\n\n" +
-                "\n".join(f"  • {r}" for r in resultados))
+                "✅ <b>Análisis completo finalizado</b>\n\n" +
+                "\n".join(f"  {r}" for r in resultados))
 
             # Sync data to Railway mini app
             _send_raw(str(chat_id), "🔄 Sincronizando con mini app...")
