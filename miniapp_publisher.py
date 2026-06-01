@@ -549,12 +549,14 @@ def _build_data() -> dict:
 
 
 def _actualizar_datos_en_html(data: dict) -> str:
-    """Reemplaza __DATA__ en la plantilla con el JSON de datos."""
+    """Genera HTML desde la plantilla. Si la plantilla tiene __DATA__, lo reemplaza.
+    Si ya usa fetch('live_data.json'), solo retorna la plantilla tal cual."""
     with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
         html = f.read()
-    json_str = json.dumps(data, ensure_ascii=False, indent=2)
-    html = html.replace("__DATA__", json_str)
-    html = html.replace("__BOT_USERNAME__", data.get("bot_username", ""))
+    if "__DATA__" in html:
+        json_str = json.dumps(data, ensure_ascii=False, indent=2)
+        html = html.replace("__DATA__", json_str)
+        html = html.replace("__BOT_USERNAME__", data.get("bot_username", ""))
     return html
 
 

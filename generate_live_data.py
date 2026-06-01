@@ -105,7 +105,7 @@ def load_estado() -> list:
 
 
 def main():
-    now_utc = datetime.utcnow()
+    now_utc = datetime.now(tz=__import__('datetime').timezone.utc)
     now_local = now_utc + timedelta(hours=MT_OFFSET)
 
     today_str = now_local.strftime("%Y-%m-%d")
