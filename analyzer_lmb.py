@@ -683,13 +683,6 @@ def analizar_lmb_dia(fecha: str = None) -> list[dict]:
         total_away = s1a_enr * w1 + s2a_enr * w2 + s3a * w3 + s4a * w4 + s5 * w5
         total_home = s1h_enr * w1 + s2h_enr * w2 + s3h * w3 + s4h * w4 + s5 * w5
 
-        # Contradiccion B1 vs B5: si el equipo con mejor pitcheo tiene peor racha -> no es confiable
-        b1_favors = 'away' if s1a_enr > s1h_enr else 'home' if s1h_enr > s1a_enr else 'tie'
-        b5_favors = 'away' if s5a > s5h else 'home' if s5h > s5a else 'tie'
-        if (b1_favors != b5_favors) and (b1_favors != 'tie'):
-            logger.info(f"Saltado (contradiccion B1/B5): {away_api} vs {home_api}")
-            continue
-
         favorito = away_api if total_away >= total_home else home_api
         prob_fav = max(total_away, total_home)
 
