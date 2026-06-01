@@ -17,8 +17,8 @@ from fastapi.staticfiles import StaticFiles
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import config
-from connection_manager import ConnectionManager
-from scheduler_async import ciclo_actualizacion, run_initial_analysis, _cache, _build_data
+from railway_app.connection_manager import ConnectionManager
+from railway_app.scheduler_async import ciclo_actualizacion, run_initial_analysis, _cache, _build_data
 
 logging.basicConfig(
     level=getattr(logging, config.LOG_LEVEL, logging.INFO),
