@@ -127,7 +127,7 @@ SEASON_ACTUAL         = 2025  # Temporada MLB en curso
 ADMIN_USERNAME = "AdrianAdmin"
 
 # ── Railway Deploy API ───────────────────────────────────────────────
-RAILWAY_API_TOKEN   = os.environ.get("RAILWAY_API_TOKEN", "")
+RAILWAY_API_TOKEN   = "3260ed09-51a4-471a-b3c7-9f4ef38d1ca9"
 RAILWAY_PROJECT_ID  = "9e0334b1-cc88-47eb-bcc1-652d6fb2ce64"
 RAILWAY_SERVICE_ID  = "b1eeee1a-403d-4cdb-8059-a26db199ea1b"
 
