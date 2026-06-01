@@ -14,6 +14,7 @@ from datetime import datetime, date
 from typing import Optional
 
 import config
+from analyzer import GameAnalysis
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
