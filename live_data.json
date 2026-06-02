@@ -1,5 +1,5 @@
 {
-  "fecha": "01/06/2026 20:58",
+  "fecha": "01/06/2026 21:13",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780408800,
@@ -2805,7 +2805,7 @@
       "opp_team": "New York Mets",
       "score_fav": "1",
       "score_opp": "2",
-      "state": "Top 6th",
+      "state": "Bottom 7th",
       "result": "live",
       "label": "🎯",
       "game_pk": 401815588,
@@ -2834,12 +2834,16 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
-        "is_top": true,
-        "inning_ordinal": "6th",
-        "outs": 2,
+        "current_inning": 7,
+        "is_top": false,
+        "inning_ordinal": "7th",
+        "outs": 0,
         "balls": 0,
         "strikes": 0,
         "away_runs": 2,
@@ -2967,19 +2971,23 @@
           },
           {
             "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": true,
-        "inning_ordinal": "4th",
-        "outs": 3,
+        "inning_ordinal": "5th",
+        "outs": 0,
         "balls": 3,
         "strikes": 1,
         "away_runs": 3,
-        "home_runs": 0,
+        "home_runs": 1,
         "away_hits": 2,
-        "home_hits": 3,
+        "home_hits": 5,
         "away_errors": 0,
         "home_errors": 1,
         "bases": {
@@ -2991,9 +2999,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "3",
-        "opp_score": "0",
+        "opp_score": "1",
         "score_fav": "3",
-        "score_opp": "0"
+        "score_opp": "1"
       }
     },
     {
@@ -3003,8 +3011,8 @@
       "fav_team": "Los Angeles Angels",
       "opp_team": "Colorado Rockies",
       "score_fav": "5",
-      "score_opp": "2",
-      "state": "End 4th",
+      "score_opp": "3",
+      "state": "Middle 5th",
       "result": "live",
       "label": "📊",
       "game_pk": 401815586,
@@ -3025,17 +3033,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
-        "is_top": false,
-        "inning_ordinal": "4th",
+        "current_inning": 5,
+        "is_top": true,
+        "inning_ordinal": "5th",
         "outs": 3,
-        "balls": 1,
-        "strikes": 3,
-        "away_runs": 2,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 3,
         "home_runs": 5,
-        "away_hits": 3,
+        "away_hits": 4,
         "home_hits": 7,
         "away_errors": 1,
         "home_errors": 1,
@@ -3047,9 +3059,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "2",
+        "fav_score": "3",
         "opp_score": "5",
-        "score_fav": "2",
+        "score_fav": "3",
         "score_opp": "5"
       }
     },
@@ -3369,7 +3381,7 @@
       "opp_team": "Arizona Diamondbacks",
       "score_fav": "1",
       "score_opp": "0",
-      "state": "Bottom 5th",
+      "state": "Bottom 6th",
       "result": "live",
       "label": "📋",
       "game_pk": 401815587,
