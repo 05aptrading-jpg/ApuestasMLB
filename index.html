@@ -174,9 +174,27 @@
     text-align: center; padding: 16px 0;
     font-size: 12px; color: #e1e8ed;
   }
+
+  #blocked-screen {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: #0f1419; z-index: 9999;
+    flex-direction: column; align-items: center; justify-content: center;
+    padding: 32px; text-align: center;
+  }
+  #blocked-screen .icon { font-size: 64px; margin-bottom: 16px; }
+  #blocked-screen h2 { font-size: 20px; color: #e1e8ed; margin-bottom: 8px; }
+  #blocked-screen p { font-size: 14px; color: #71767b; max-width: 300px; line-height: 1.5; }
+  #main-content { display: block; }
 </style>
 </head>
 <body>
+
+<div id="blocked-screen">
+  <div class="icon">⛔</div>
+  <h2>Acceso exclusivo</h2>
+  <p>Esta Mini App es solo para suscriptores autorizados. Contacte al administrador para obtener acceso.</p>
+</div>
+<div id="main-content">
 
 <div class="header">
 
@@ -213,14 +231,25 @@
   <a href="privacy.html" style="color:#8b98a5;text-decoration:none">Privacidad</a> · <a href="terms.html" style="color:#8b98a5;text-decoration:none">Términos</a>
 </div>
 
+</div>
+
 <script>
-var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [], live_data: {} };
+var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [], live_data: {}, autorizados: [] };
 var selectedLiga = 'general';
 var selectedDate = '';
 var refreshTimer = 30;
 var refreshInterval = 30;
 
-// ── Countdown refresh ─────────────────────────────────────────────
+function checkAuth() {
+  var userId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+  if (!userId) return true;
+  var autorizados = DATA.autorizados || [];
+  var ok = autorizados.includes(userId);
+  document.getElementById('blocked-screen').style.display = ok ? 'none' : 'flex';
+  document.getElementById('main-content').style.display = ok ? 'block' : 'none';
+  return ok;
+}
+
 function updateRefreshCountdown() {
   refreshTimer--;
   if (refreshTimer <= 0) refreshTimer = refreshInterval;
@@ -229,13 +258,13 @@ function updateRefreshCountdown() {
 }
 setInterval(updateRefreshCountdown, 1000);
 
-// ── Fetch data from live_data.json ────────────────────────────────
 function fetchScores() {
   fetch('live_data.json?t=' + Date.now())
     .then(function(r) { return r.json(); })
     .then(function(data) {
       DATA = data;
       if (!selectedDate && DATA.dias && DATA.dias.length > 0) selectedDate = DATA.dias[0];
+      if (!checkAuth()) return;
       renderAll();
       if (DATA.has_live) {
         refreshInterval = 30;
@@ -263,7 +292,6 @@ function renderAll() {
   renderStats();
 }
 
-// ── Funciones helper ──────────────────────────────────────────────
 function getStatsForLiga(liga) {
   if (liga === 'mlb') return DATA.stats_mlb || DATA.stats;
   if (liga === 'lmb') return DATA.stats_lmb || {total:0,acertados:0,fallidos:0,win_rate:0};
@@ -279,7 +307,7 @@ function formatearFecha(iso) {
   if (!iso) return iso;
   var partes = iso.split('-');
   if (partes.length !== 3) return iso;
-  var diasSem = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  var diasSem = ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
   var meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   var d = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
   var hoy = new Date();
@@ -294,7 +322,6 @@ function formatearFecha(iso) {
   return label;
 }
 
-// ── Render tabs ────────────────────────────────────────────────────
 function renderLigaTabs() {
   var container = document.getElementById('liga-tabs');
   var tabs = [
@@ -361,7 +388,6 @@ function renderDateLabel() {
   }
 }
 
-// ── Render games ───────────────────────────────────────────────────
 function renderGameRow(g) {
   var score = g.score_fav !== '—' && g.score_opp !== ''
     ? g.score_fav + '-' + g.score_opp
@@ -399,7 +425,7 @@ function renderGames() {
   });
   if (filtered.length === 0) {
     var msg = 'Sin partidos';
-    if (selectedLiga === 'lmb') msg = 'Sin partidos LMB — próx. actualización: ' + (DATA.proxima_actualizacion_lmb || '10:00') + ' MT';
+    if (selectedLiga === 'lmb') msg = 'Sin partidos LMB — prox. actualizacion: ' + (DATA.proxima_actualizacion_lmb || '10:00') + ' MT';
     gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">' + msg + '</div>';
     return;
   }
@@ -422,7 +448,6 @@ function renderGames() {
   gamesEl.innerHTML = html;
 }
 
-// ── Render stats ───────────────────────────────────────────────────
 function renderStats() {
   var statsEl = document.getElementById('stats-list');
   var s = getStatsForLiga(selectedLiga);
@@ -446,7 +471,6 @@ function renderStats() {
   }
 }
 
-// ── Countdown ──────────────────────────────────────────────────────────
 function formatCountdown(seconds) {
   if (seconds <= 0) return 'ahora';
   var h = Math.floor(seconds / 3600);
@@ -477,7 +501,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ── Scoreboard Expandible ──────────────────────────────────────────────
 var sbTimers = {};
 
 function toggleScoreboard(idx, rowEl) {
@@ -561,8 +584,6 @@ function renderScoreboardFromLive(g, live, container) {
     statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
   }
 
-  // Always use natural scoreboard order: away on top, home on bottom
-  // This matches "TOP 9th" (away batting) and "BOT 9th" (home batting)
   var topTeam = live.away_team_name || g.opp_team || 'Away';
   var botTeam = live.home_team_name || g.fav_team || 'Home';
   var topRuns = live.away_runs || 0;
@@ -589,7 +610,6 @@ function renderScoreboardFromLive(g, live, container) {
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
 
-  // Top row
   html += '<div class="sb-label">' + topAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
@@ -601,7 +621,6 @@ function renderScoreboardFromLive(g, live, container) {
   html += '<div class="sb-total away">' + topHits + '</div>';
   html += '<div class="sb-total away">' + topErr + '</div>';
 
-  // Bottom row
   html += '<div class="sb-label">' + botAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
@@ -614,7 +633,6 @@ function renderScoreboardFromLive(g, live, container) {
   html += '<div class="sb-total home">' + botErr + '</div>';
   html += '</div>';
 
-  // Bases - check for both boolean and string truthy values
   var bases = ls.bases || {};
   var first = bases.first === true || bases.first === 'true' || bases.first === 1;
   var second = bases.second === true || bases.second === 'true' || bases.second === 1;
@@ -664,7 +682,6 @@ function renderScoreboard(g, container) {
     statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
   }
 
-  // Team abbreviations
   var awayName = g.opp_team || 'Away';
   var homeName = g.fav_team || 'Home';
   var awayAbbr = awayName.split(' ').pop();
@@ -677,7 +694,6 @@ function renderScoreboard(g, container) {
   var numCols = Math.max(totalInnings, 9);
   html += '<div class="sb-grid" style="grid-template-columns:80px repeat(' + numCols + ', minmax(22px,1fr)) 32px 32px 32px">';
 
-  // Header row
   html += '<div class="sb-label sb-header-row"></div>';
   for (var i = 1; i <= numCols; i++) {
     var isCurrentInning = (i === ls.current_inning && isLive);
@@ -687,7 +703,6 @@ function renderScoreboard(g, container) {
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
 
-  // Away row
   html += '<div class="sb-label">' + awayAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
@@ -698,7 +713,6 @@ function renderScoreboard(g, container) {
   html += '<div class="sb-total away">' + (ls.away_hits || 0) + '</div>';
   html += '<div class="sb-total away">' + (ls.away_errors || 0) + '</div>';
 
-  // Home row
   html += '<div class="sb-label">' + homeAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
@@ -710,17 +724,14 @@ function renderScoreboard(g, container) {
   html += '<div class="sb-total home">' + (ls.home_errors || 0) + '</div>';
   html += '</div>';
 
-  // Meta: bases + outs + count + inning
   var bases = ls.bases || {};
   html += '<div class="sb-meta">';
 
-  // Bases diamond
   html += '<div class="sb-bases">';
   html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.second ? ' occupied' : ' empty') + '"></span></div>';
   html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.first ? ' occupied' : ' empty') + '"></span><span class="sb-diamond-base' + (bases.third ? ' occupied' : ' empty') + '"></span></div>';
   html += '</div>';
 
-  // Outs
   var outs = ls.outs || 0;
   html += '<div class="sb-outs">';
   for (var o = 0; o < 3; o++) {
@@ -728,7 +739,6 @@ function renderScoreboard(g, container) {
   }
   html += '</div>';
 
-  // Balls/Strikes
   if (isLive) {
     html += '<div class="sb-count">B: <span>' + (ls.balls || 0) + '</span>  S: <span>' + (ls.strikes || 0) + '</span></div>';
   }
