@@ -146,78 +146,125 @@ def main():
     games = []
     seen = set()
 
-    for sg in estado:
-        favorito = sg.get("favorito", "")
-        away = sg.get("away_team", "")
-        home = sg.get("home_team", "")
-        fecha_sg = sg.get("game_date", "")[:10]
-        if fecha_sg not in accepted_dates:
-            continue
-        key = (fecha_sg, norm(away), norm(home))
-        if key in seen:
-            continue
-        seen.add(key)
+    # Fallback: if estado is empty (CI has no partidos_seguimiento.json),
+    # build games directly from MLB Stats API data
+    if not estado:
+        for pk, ldata in all_live.items():
+            away_name = ldata.get("away_team_name", "")
+            home_name = ldata.get("home_team_name", "")
+            if not away_name or not home_name:
+                continue
+            game_date = today_str
+            key = (game_date, norm(away_name), norm(home_name))
+            if key in seen:
+                continue
+            seen.add(key)
 
-        prob = sg.get("prob_favorito", 0) or 0
-        mercado = sg.get("odds_mercado")
-        edge = round(prob - (mercado or 0), 2) if mercado else None
-        if prob >= PROB_MINIMA_ANALISIS and edge is not None and edge >= EDGE_MINIMO:
-            label = "🎯"
-        elif prob >= PROB_MINIMA_ANALISIS:
-            label = "📊"
-        else:
-            label = "📋"
+            is_final = ldata.get("is_final", False)
+            is_live = ldata.get("is_live", False)
 
-        pk = sg.get("game_pk", 0)
-        is_lmb = sg.get("liga") == "LMB"
-        live = find_live_pk(str(pk), away, home)
-
-        if live.get("is_final"):
-            emoji = "✅" if sg.get("resultado") == "acertado" else "❌"
-            state = "Final"
-            if favorito and (norm(favorito) in norm(home)):
-                s_fav = str(live.get("home_runs", ""))
-                s_opp = str(live.get("away_runs", ""))
+            if is_final:
+                emoji = "🏁"
+                state = "Final"
+                result = "final"
+            elif is_live:
+                emoji = "🔴"
+                state = ldata.get("display_inning", "En Vivo")
+                result = "live"
             else:
-                s_fav = str(live.get("away_runs", ""))
-                s_opp = str(live.get("home_runs", ""))
-            result = "win" if sg.get("resultado") == "acertado" else "loss"
-        elif live.get("is_live"):
-            emoji = "🔴"
-            state = live.get("display_inning", live.get("inning_state", "En Vivo"))
-            if favorito and (norm(favorito) in norm(home)):
-                s_fav = str(live.get("home_runs", ""))
-                s_opp = str(live.get("away_runs", ""))
+                emoji = "⏳"
+                state = "Pend."
+                result = "pending"
+
+            liga = "LMB" if ldata.get("sport_id") == 23 else "MLB"
+            games.append({
+                "liga": liga,
+                "game_date": game_date,
+                "status_emoji": emoji,
+                "fav_team": away_name,
+                "opp_team": home_name,
+                "score_fav": str(ldata.get("away_runs", "")),
+                "score_opp": str(ldata.get("home_runs", "")),
+                "state": state,
+                "result": result,
+                "label": "📋",
+                "senal": "",
+                "certidumbre": "",
+                "game_pk": int(pk) if pk.isdigit() else 0,
+            })
+    else:
+        for sg in estado:
+            favorito = sg.get("favorito", "")
+            away = sg.get("away_team", "")
+            home = sg.get("home_team", "")
+            fecha_sg = sg.get("game_date", "")[:10]
+            if fecha_sg not in accepted_dates:
+                continue
+            key = (fecha_sg, norm(away), norm(home))
+            if key in seen:
+                continue
+            seen.add(key)
+
+            prob = sg.get("prob_favorito", 0) or 0
+            mercado = sg.get("odds_mercado")
+            edge = round(prob - (mercado or 0), 2) if mercado else None
+            if prob >= PROB_MINIMA_ANALISIS and edge is not None and edge >= EDGE_MINIMO:
+                label = "🎯"
+            elif prob >= PROB_MINIMA_ANALISIS:
+                label = "📊"
             else:
-                s_fav = str(live.get("away_runs", ""))
-                s_opp = str(live.get("home_runs", ""))
-            result = "live"
-        else:
-            emoji = "⏳"
-            state = "Pend."
-            s_fav, s_opp = "", ""
-            result = "pending"
+                label = "📋"
 
-        _fav_in_home = favorito and (norm(favorito) in norm(home) or norm(home) in norm(favorito))
-        fav = home if _fav_in_home else away
-        opp = away if _fav_in_home else home
+            pk = sg.get("game_pk", 0)
+            is_lmb = sg.get("liga") == "LMB"
+            live = find_live_pk(str(pk), away, home)
 
-        liga = sg.get("liga", "MLB")
-        games.append({
-            "liga": liga,
-            "game_date": fecha_sg,
-            "status_emoji": emoji,
-            "fav_team": fav,
-            "opp_team": opp,
-            "score_fav": s_fav,
-            "score_opp": s_opp,
-            "state": state,
-            "result": result,
-            "label": label,
-            "senal": sg.get("senal_moneyline", "NO APOSTAR"),
-            "certidumbre": sg.get("nivel_certidumbre", ""),
-            "game_pk": pk,
-        })
+            if live.get("is_final"):
+                emoji = "✅" if sg.get("resultado") == "acertado" else "❌"
+                state = "Final"
+                if favorito and (norm(favorito) in norm(home)):
+                    s_fav = str(live.get("home_runs", ""))
+                    s_opp = str(live.get("away_runs", ""))
+                else:
+                    s_fav = str(live.get("away_runs", ""))
+                    s_opp = str(live.get("home_runs", ""))
+                result = "win" if sg.get("resultado") == "acertado" else "loss"
+            elif live.get("is_live"):
+                emoji = "🔴"
+                state = live.get("display_inning", live.get("inning_state", "En Vivo"))
+                if favorito and (norm(favorito) in norm(home)):
+                    s_fav = str(live.get("home_runs", ""))
+                    s_opp = str(live.get("away_runs", ""))
+                else:
+                    s_fav = str(live.get("away_runs", ""))
+                    s_opp = str(live.get("home_runs", ""))
+                result = "live"
+            else:
+                emoji = "⏳"
+                state = "Pend."
+                s_fav, s_opp = "", ""
+                result = "pending"
+
+            _fav_in_home = favorito and (norm(favorito) in norm(home) or norm(home) in norm(favorito))
+            fav = home if _fav_in_home else away
+            opp = away if _fav_in_home else home
+
+            liga = sg.get("liga", "MLB")
+            games.append({
+                "liga": liga,
+                "game_date": fecha_sg,
+                "status_emoji": emoji,
+                "fav_team": fav,
+                "opp_team": opp,
+                "score_fav": s_fav,
+                "score_opp": s_opp,
+                "state": state,
+                "result": result,
+                "label": label,
+                "senal": sg.get("senal_moneyline", "NO APOSTAR"),
+                "certidumbre": sg.get("nivel_certidumbre", ""),
+                "game_pk": pk,
+            })
 
     games.sort(key=lambda x: (x.get("game_date", ""), {"🎯": 0, "📊": 1, "📋": 2}.get(x.get("label", ""), 3)))
 

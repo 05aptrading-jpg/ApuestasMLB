@@ -561,40 +561,18 @@ function renderScoreboardFromLive(g, live, container) {
     statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
   }
 
-  // Match live data to game row order: fav_team first, opp_team second
-  var favIsHome = false;
-  var awayLower = (g.opp_team || '').toLowerCase();
-  var homeLower = (g.fav_team || '').toLowerCase();
-  var liveAwayLower = (live.away_team_name || '').toLowerCase();
-  var liveHomeLower = (live.home_team_name || '').toLowerCase();
-  if ((homeLower in liveHomeLower || liveHomeLower in homeLower)) {
-    favIsHome = true;
-  }
-
-  var topTeam, botTeam, topRuns, botRuns, topHits, botHits, topErr, botErr, topInn, botInn;
-  if (favIsHome) {
-    topTeam = g.opp_team || live.away_team_name || 'Away';
-    botTeam = g.fav_team || live.home_team_name || 'Home';
-    topRuns = live.away_runs || 0;
-    botRuns = live.home_runs || 0;
-    topHits = live.away_hits || 0;
-    botHits = live.home_hits || 0;
-    topErr = live.away_errors || 0;
-    botErr = live.home_errors || 0;
-    topInn = 'away';
-    botInn = 'home';
-  } else {
-    topTeam = g.fav_team || live.away_team_name || 'Away';
-    botTeam = g.opp_team || live.home_team_name || 'Home';
-    topRuns = live.away_runs || 0;
-    botRuns = live.home_runs || 0;
-    topHits = live.away_hits || 0;
-    botHits = live.home_hits || 0;
-    topErr = live.away_errors || 0;
-    botErr = live.home_errors || 0;
-    topInn = 'away';
-    botInn = 'home';
-  }
+  // Always use natural scoreboard order: away on top, home on bottom
+  // This matches "TOP 9th" (away batting) and "BOT 9th" (home batting)
+  var topTeam = live.away_team_name || g.opp_team || 'Away';
+  var botTeam = live.home_team_name || g.fav_team || 'Home';
+  var topRuns = live.away_runs || 0;
+  var botRuns = live.home_runs || 0;
+  var topHits = live.away_hits || 0;
+  var botHits = live.home_hits || 0;
+  var topErr = live.away_errors || 0;
+  var botErr = live.home_errors || 0;
+  var topInn = 'away';
+  var botInn = 'home';
   var topAbbr = topTeam.split(' ').pop();
   var botAbbr = botTeam.split(' ').pop();
 
