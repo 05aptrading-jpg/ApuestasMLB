@@ -113,7 +113,7 @@
   .expand-icon { font-size: 10px; color: #536471; transition: transform 0.2s; margin-left: 4px; }
   .expand-icon.open { transform: rotate(180deg); }
   .scoreboard-expand {
-    display: none; overflow: hidden;
+    display: none; overflow-x: auto;
     background: #131827; border-radius: 8px;
     margin: 2px 0 6px 0; padding: 10px;
     border: 1px solid #2a3040;
@@ -125,6 +125,7 @@
   .sb-status.final { color: #f5a623; }
   .sb-grid {
     display: grid;
+    min-width: 500px;
     grid-template-columns: 80px repeat(auto-fit, minmax(22px, 1fr)) 32px 32px 32px;
     gap: 2px; font-size: 12px; font-family: 'Courier New', monospace;
     margin-bottom: 8px;
@@ -205,7 +206,7 @@
   <div class="stat-grid" id="stats-list"></div>
 </div>
 
-<div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Actualización automática cada 60s</div>
+<div id="refresh-countdown" style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Próxima actualización: 30s</div>
 
 <div class="footer">
   MLB &amp; LMB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
@@ -216,6 +217,17 @@
 var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [], live_data: {} };
 var selectedLiga = 'general';
 var selectedDate = '';
+var refreshTimer = 30;
+var refreshInterval = 30;
+
+// ── Countdown refresh ─────────────────────────────────────────────
+function updateRefreshCountdown() {
+  refreshTimer--;
+  if (refreshTimer <= 0) refreshTimer = refreshInterval;
+  var el = document.getElementById('refresh-countdown');
+  if (el) el.textContent = '⏳ Próxima actualización: ' + refreshTimer + 's';
+}
+setInterval(updateRefreshCountdown, 1000);
 
 // ── Fetch data from live_data.json ────────────────────────────────
 function fetchScores() {
@@ -226,12 +238,16 @@ function fetchScores() {
       if (!selectedDate && DATA.dias && DATA.dias.length > 0) selectedDate = DATA.dias[0];
       renderAll();
       if (DATA.has_live) {
+        refreshInterval = 30;
         setTimeout(fetchScores, 30000);
       } else if (DATA.has_scheduled) {
+        refreshInterval = 300;
         setTimeout(fetchScores, 300000);
       } else {
+        refreshInterval = 600;
         setTimeout(fetchScores, 600000);
       }
+      refreshTimer = refreshInterval;
     })
     .catch(function() {
       document.getElementById('games-list').innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin conexión...</div>';
