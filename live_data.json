@@ -1,5 +1,5 @@
 {
-  "fecha": "01/06/2026 22:58",
+  "fecha": "01/06/2026 23:13",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780408800,
@@ -2999,19 +2999,23 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 2
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
-        "is_top": false,
-        "inning_ordinal": "8th",
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
         "outs": 2,
-        "balls": 0,
-        "strikes": 1,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 3,
-        "home_runs": 6,
+        "home_runs": 7,
         "away_hits": 3,
-        "home_hits": 13,
+        "home_hits": 14,
         "away_errors": 0,
         "home_errors": 1,
         "bases": {
@@ -3023,9 +3027,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "3",
-        "opp_score": "6",
+        "opp_score": "7",
         "score_fav": "3",
-        "score_opp": "6"
+        "score_opp": "7"
       }
     },
     {
@@ -3096,9 +3100,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Game Over",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "9",
         "opp_score": "8",
         "score_fav": "9",
