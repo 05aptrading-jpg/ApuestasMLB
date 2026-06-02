@@ -1,5 +1,5 @@
 {
-  "fecha": "01/06/2026 21:44",
+  "fecha": "01/06/2026 21:59",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780408800,
@@ -2805,7 +2805,7 @@
       "opp_team": "New York Mets",
       "score_fav": "2",
       "score_opp": "2",
-      "state": "Top 9th",
+      "state": "Top 10th",
       "result": "live",
       "label": "🎯",
       "game_pk": 401815588,
@@ -2846,14 +2846,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 9,
+        "current_inning": 10,
         "is_top": true,
-        "inning_ordinal": "9th",
+        "inning_ordinal": "10th",
         "outs": 0,
-        "balls": 3,
-        "strikes": 1,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 2,
         "home_runs": 2,
         "away_hits": 2,
@@ -2984,13 +2988,17 @@
           {
             "away_runs": 0,
             "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
+        "current_inning": 6,
         "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 2,
-        "balls": 1,
+        "inning_ordinal": "6th",
+        "outs": 0,
+        "balls": 0,
         "strikes": 1,
         "away_runs": 3,
         "home_runs": 3,
@@ -3020,7 +3028,7 @@
       "opp_team": "Colorado Rockies",
       "score_fav": "6",
       "score_opp": "3",
-      "state": "Top 7th",
+      "state": "Top 8th",
       "result": "live",
       "label": "📊",
       "game_pk": 401815586,
@@ -3053,18 +3061,22 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
+        "current_inning": 8,
         "is_top": true,
-        "inning_ordinal": "7th",
+        "inning_ordinal": "8th",
         "outs": 0,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 3,
         "home_runs": 6,
         "away_hits": 4,
-        "home_hits": 7,
+        "home_hits": 8,
         "away_errors": 4,
         "home_errors": 1,
         "bases": {
@@ -3396,8 +3408,8 @@
       "fav_team": "Los Angeles Dodgers",
       "opp_team": "Arizona Diamondbacks",
       "score_fav": "1",
-      "score_opp": "2",
-      "state": "Top 8th",
+      "score_opp": "4",
+      "state": "Top 9th",
       "result": "live",
       "label": "📋",
       "game_pk": 401815587,
