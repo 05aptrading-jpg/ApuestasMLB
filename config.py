@@ -111,7 +111,22 @@ REANALISIS_MLB_HORA = "08:00"   # Re-análisis MLB (hora fija)
 REANALISIS_LMB_HORA = "12:30"   # Re-análisis LMB (hora fija)
 
 # ── Telegram Mini App (GitHub Pages) ──────────────────────────────────────
-GITHUB_TOKEN          = os.environ.get("GITHUB_TOKEN", "")
+def _get_user_env(name):
+    val = os.environ.get(name, "")
+    if val:
+        return val
+    if os.name == "nt":
+        try:
+            import winreg
+            key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment")
+            val, _ = winreg.QueryValueEx(key, name)
+            winreg.CloseKey(key)
+            return str(val)
+        except Exception:
+            pass
+    return ""
+
+GITHUB_TOKEN          = _get_user_env("GITHUB_TOKEN")
 TELEGRAM_BOT_USERNAME = "MLBAnalyticsAPBot"                                # Nombre de usuario de tu bot (sin @)
 # La Mini App se publica en:
 # https://05aptrading-jpg.github.io/ApuestasMLB/
