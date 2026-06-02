@@ -457,7 +457,7 @@ def _cmd_reload(chat_id: int):
     _send_raw(str(chat_id), "🔄 Recargando módulos...")
 
     import importlib
-    modulos = ["config", "data_manager", "scheduler", "miniapp_publisher"]
+    modulos = ["config", "data_manager", "scheduler", "miniapp_publisher", "telegram_handler"]
     resultados = []
 
     for nombre in modulos:
