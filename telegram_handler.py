@@ -446,6 +446,43 @@ def _cmd_reiniciar(chat_id: int):
     t.start()
 
 
+def _cmd_reload(chat_id: int):
+    """Recarga módulos principales sin reiniciar el proceso."""
+    data = _cargar_suscriptores()
+    admin = data.get("admin_id", 0)
+    if chat_id != admin:
+        _send_raw(str(chat_id), "⛔ Solo el administrador puede recargar.")
+        return
+
+    _send_raw(str(chat_id), "🔄 Recargando módulos...")
+
+    import importlib
+    modulos = ["config", "data_manager", "scheduler", "miniapp_publisher"]
+    resultados = []
+
+    for nombre in modulos:
+        try:
+            mod = importlib.import_module(nombre)
+            importlib.reload(mod)
+            resultados.append(f"✅ {nombre}")
+        except Exception as e:
+            resultados.append(f"❌ {nombre}: {e}")
+            logger.error(f"Reload error ({nombre}): {e}")
+
+    # Re-apuntar las referencias locales en este handler
+    import config as _cfg
+    import data_manager as _dm
+    global config, dm
+    config = _cfg
+    dm = _dm
+
+    _send_raw(str(chat_id),
+        "✅ <b>Módulos recargados</b>\n\n" +
+        "\n".join(f"  {r}" for r in resultados) +
+        "\n\nEjecuta /reiniciar para refrescar datos."
+    )
+
+
 # ── Procesador de updates ─────────────────────────────────────────────
 def handle_updates():
     global _last_update_id
@@ -487,6 +524,7 @@ def handle_updates():
                         if es_admin:
                             cmds += "\n  /deploy — Redeploy Railway"
                             cmds += "\n  /reiniciar — Reiniciar bot local (MLB+LMB)"
+                            cmds += "\n  /reload — Recargar código sin reiniciar"
                         _send_raw(str(chat_id),
                             "⚾ <b>MLB Analytics</b>\n\n"
                             "Bienvenido al sistema de análisis MLB.\n\n"
@@ -529,6 +567,11 @@ def handle_updates():
                 # /reiniciar — solo admin
                 if text.startswith("/reiniciar"):
                     _cmd_reiniciar(chat_id)
+                    continue
+
+                # /reload — solo admin
+                if text.startswith("/reload"):
+                    _cmd_reload(chat_id)
                     continue
 
         except Exception as e:
