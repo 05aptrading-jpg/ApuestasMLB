@@ -545,10 +545,42 @@ function renderScoreboardFromLive(g, live, container) {
     statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
   }
 
-  var awayName = live.away_team_name || g.opp_team || 'Away';
-  var homeName = live.home_team_name || g.fav_team || 'Home';
-  var awayAbbr = awayName.split(' ').pop();
-  var homeAbbr = homeName.split(' ').pop();
+  // Match live data to game row order: fav_team first, opp_team second
+  var favIsHome = false;
+  var awayLower = (g.opp_team || '').toLowerCase();
+  var homeLower = (g.fav_team || '').toLowerCase();
+  var liveAwayLower = (live.away_team_name || '').toLowerCase();
+  var liveHomeLower = (live.home_team_name || '').toLowerCase();
+  if ((homeLower in liveHomeLower || liveHomeLower in homeLower)) {
+    favIsHome = true;
+  }
+
+  var topTeam, botTeam, topRuns, botRuns, topHits, botHits, topErr, botErr, topInn, botInn;
+  if (favIsHome) {
+    topTeam = g.opp_team || live.away_team_name || 'Away';
+    botTeam = g.fav_team || live.home_team_name || 'Home';
+    topRuns = live.away_runs || 0;
+    botRuns = live.home_runs || 0;
+    topHits = live.away_hits || 0;
+    botHits = live.home_hits || 0;
+    topErr = live.away_errors || 0;
+    botErr = live.home_errors || 0;
+    topInn = 'away';
+    botInn = 'home';
+  } else {
+    topTeam = g.fav_team || live.away_team_name || 'Away';
+    botTeam = g.opp_team || live.home_team_name || 'Home';
+    topRuns = live.away_runs || 0;
+    botRuns = live.home_runs || 0;
+    topHits = live.away_hits || 0;
+    botHits = live.home_hits || 0;
+    topErr = live.away_errors || 0;
+    botErr = live.home_errors || 0;
+    topInn = 'away';
+    botInn = 'home';
+  }
+  var topAbbr = topTeam.split(' ').pop();
+  var botAbbr = botTeam.split(' ').pop();
 
   var html = '<div class="sb-header"><span class="sb-status ' + statusClass + '">' + statusText + '</span></div>';
   var numCols = Math.max(totalInnings, 9);
@@ -563,32 +595,40 @@ function renderScoreboardFromLive(g, live, container) {
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
 
-  html += '<div class="sb-label">' + awayAbbr + '</div>';
+  // Top row
+  html += '<div class="sb-label">' + topAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
+    var runs = inn[topInn + '_runs'];
     var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
-    html += '<div class="sb-score away' + cls + '">' + (inn.away_runs !== undefined ? inn.away_runs : '') + '</div>';
+    html += '<div class="sb-score away' + cls + '">' + (runs !== undefined ? runs : '') + '</div>';
   }
-  html += '<div class="sb-total away">' + (live.away_runs || 0) + '</div>';
-  html += '<div class="sb-total away">' + (live.away_hits || 0) + '</div>';
-  html += '<div class="sb-total away">' + (live.away_errors || 0) + '</div>';
+  html += '<div class="sb-total away">' + topRuns + '</div>';
+  html += '<div class="sb-total away">' + topHits + '</div>';
+  html += '<div class="sb-total away">' + topErr + '</div>';
 
-  html += '<div class="sb-label">' + homeAbbr + '</div>';
+  // Bottom row
+  html += '<div class="sb-label">' + botAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
+    var runs = inn[botInn + '_runs'];
     var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
-    html += '<div class="sb-score home' + cls + '">' + (inn.home_runs !== undefined ? inn.home_runs : '') + '</div>';
+    html += '<div class="sb-score home' + cls + '">' + (runs !== undefined ? runs : '') + '</div>';
   }
-  html += '<div class="sb-total home">' + (live.home_runs || 0) + '</div>';
-  html += '<div class="sb-total home">' + (live.home_hits || 0) + '</div>';
-  html += '<div class="sb-total home">' + (live.home_errors || 0) + '</div>';
+  html += '<div class="sb-total home">' + botRuns + '</div>';
+  html += '<div class="sb-total home">' + botHits + '</div>';
+  html += '<div class="sb-total home">' + botErr + '</div>';
   html += '</div>';
 
+  // Bases - check for both boolean and string truthy values
   var bases = ls.bases || {};
+  var first = bases.first === true || bases.first === 'true' || bases.first === 1;
+  var second = bases.second === true || bases.second === 'true' || bases.second === 1;
+  var third = bases.third === true || bases.third === 'true' || bases.third === 1;
   html += '<div class="sb-meta">';
   html += '<div class="sb-bases">';
-  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.second ? ' occupied' : ' empty') + '"></span></div>';
-  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.first ? ' occupied' : ' empty') + '"></span><span class="sb-diamond-base' + (bases.third ? ' occupied' : ' empty') + '"></span></div>';
+  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (second ? ' occupied' : '') + '"></span></div>';
+  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (first ? ' occupied' : '') + '"></span><span class="sb-diamond-base' + (third ? ' occupied' : '') + '"></span></div>';
   html += '</div>';
 
   var outs = ls.outs || 0;
