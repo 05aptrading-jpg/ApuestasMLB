@@ -1012,8 +1012,46 @@ def analizar_dia(game_date: str = None) -> list[GameAnalysis]:
             )
             if analysis:
                 resultados.append(analysis)
+            else:
+                # Agregar juego sin análisis para que siempre quede en el CSV
+                teams = game.get("teams", {})
+                away_info = teams.get("away", {}).get("team", {})
+                home_info = teams.get("home", {}).get("team", {})
+                raw_dt = game.get("gameDate", "")
+                fallback = GameAnalysis(
+                    game_pk=game.get("gamePk", 0),
+                    game_date=raw_dt[:10],
+                    game_datetime=raw_dt,
+                    away_team=away_info.get("name", "TBD"),
+                    home_team=home_info.get("name", "TBD"),
+                    prob_favorito=50.0,
+                    favorito=away_info.get("name", "TBD"),
+                    senal_moneyline="NO APOSTAR",
+                    nivel_certidumbre="SIN DATOS",
+                    fuentes=["Sin datos disponibles"],
+                )
+                resultados.append(fallback)
+                logger.warning(f"Juego sin análisis completo: {fallback.away_team} @ {fallback.home_team} — guardado con valores por defecto")
         except Exception as e:
             logger.error(f"Error analizando partido {game.get('gamePk')}: {e}")
+            # Agregar juego con error para que siempre quede en el CSV
+            teams = game.get("teams", {})
+            away_info = teams.get("away", {}).get("team", {})
+            home_info = teams.get("home", {}).get("team", {})
+            raw_dt = game.get("gameDate", "")
+            fallback = GameAnalysis(
+                game_pk=game.get("gamePk", 0),
+                game_date=raw_dt[:10],
+                game_datetime=raw_dt,
+                away_team=away_info.get("name", "TBD"),
+                home_team=home_info.get("name", "TBD"),
+                prob_favorito=50.0,
+                favorito=away_info.get("name", "TBD"),
+                senal_moneyline="NO APOSTAR",
+                nivel_certidumbre="SIN DATOS",
+                fuentes=[f"Error: {e}"],
+            )
+            resultados.append(fallback)
 
     # Ordenar por probabilidad del favorito (mayor primero)
     resultados.sort(key=lambda x: x.prob_favorito, reverse=True)
