@@ -1,5 +1,5 @@
 {
-  "fecha": "01/06/2026 22:43",
+  "fecha": "01/06/2026 22:58",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780408800,
@@ -2999,19 +2999,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 2
           }
         ],
         "current_inning": 8,
         "is_top": false,
         "inning_ordinal": "8th",
-        "outs": 0,
-        "balls": 2,
+        "outs": 2,
+        "balls": 0,
         "strikes": 1,
         "away_runs": 3,
-        "home_runs": 4,
+        "home_runs": 6,
         "away_hits": 3,
-        "home_hits": 11,
+        "home_hits": 13,
         "away_errors": 0,
         "home_errors": 1,
         "bases": {
@@ -3023,21 +3023,21 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "3",
-        "opp_score": "4",
+        "opp_score": "6",
         "score_fav": "3",
-        "score_opp": "4"
+        "score_opp": "6"
       }
     },
     {
       "liga": "MLB",
       "game_date": "2026-06-01",
-      "status_emoji": "🔴",
+      "status_emoji": "❌",
       "fav_team": "Los Angeles Angels",
       "opp_team": "Colorado Rockies",
       "score_fav": "8",
       "score_opp": "9",
-      "state": "Top 9th",
-      "result": "live",
+      "state": "Final",
+      "result": "loss",
       "label": "📊",
       "game_pk": 401815586,
       "linescore": {
@@ -3080,15 +3080,15 @@
           }
         ],
         "current_inning": 9,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "9th",
         "outs": 3,
         "balls": 0,
-        "strikes": 0,
+        "strikes": 2,
         "away_runs": 9,
         "home_runs": 8,
         "away_hits": 10,
-        "home_hits": 9,
+        "home_hits": 10,
         "away_errors": 4,
         "home_errors": 1,
         "bases": {
@@ -3096,9 +3096,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Game Over",
         "fav_score": "9",
         "opp_score": "8",
         "score_fav": "9",
