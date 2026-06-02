@@ -1,1276 +1,15 @@
 {
-  "fecha": "01/06/2026 23:58",
+  "fecha": "02/06/2026 00:13",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780408800,
   "proxima_actualizacion_lmb_ts": 1780425000,
   "dias": [
+    "2026-06-02",
     "2026-06-01",
-    "2026-05-31",
-    "2026-05-30"
+    "2026-05-31"
   ],
   "games": [
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Atlanta Braves",
-      "opp_team": "Cincinnati Reds",
-      "score_fav": "5",
-      "score_opp": "2",
-      "state": "Final",
-      "result": "win",
-      "label": "🎯",
-      "game_pk": 401815551,
-      "linescore": {}
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Chicago Cubs",
-      "opp_team": "St. Louis Cardinals",
-      "score_fav": "6",
-      "score_opp": "1",
-      "state": "Final",
-      "result": "win",
-      "label": "🎯",
-      "game_pk": 401815557,
-      "linescore": {}
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "Miami Marlins",
-      "opp_team": "New York Mets",
-      "score_fav": "1",
-      "score_opp": "6",
-      "state": "Final",
-      "result": "loss",
-      "label": "🎯",
-      "game_pk": 401815553,
-      "linescore": {}
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "Tampa Bay Rays",
-      "opp_team": "Los Angeles Angels",
-      "score_fav": "3",
-      "score_opp": "14",
-      "state": "Final",
-      "result": "loss",
-      "label": "📊",
-      "game_pk": 401815550,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 4,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 7,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 14,
-        "home_runs": 3,
-        "away_hits": 11,
-        "home_hits": 6,
-        "away_errors": 0,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "14",
-        "opp_score": "3",
-        "score_fav": "14",
-        "score_opp": "3"
-      }
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "Pericos de Puebla",
-      "opp_team": "Piratas de Campeche",
-      "score_fav": "5",
-      "score_opp": "9",
-      "state": "Final",
-      "result": "loss",
-      "label": "📊",
-      "game_pk": 0,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 2,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 2,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 4,
-            "home_runs": 3
-          }
-        ],
-        "current_inning": 9,
-        "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 0,
-        "strikes": 1,
-        "away_runs": 9,
-        "home_runs": 5,
-        "away_hits": 11,
-        "home_hits": 11,
-        "away_errors": 0,
-        "home_errors": 1,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "9",
-        "opp_score": "5",
-        "score_fav": "9",
-        "score_opp": "5"
-      }
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Diablos Rojos del Mexico",
-      "opp_team": "Conspiradores de Queretaro",
-      "score_fav": "8",
-      "score_opp": "7",
-      "state": "Final",
-      "result": "win",
-      "label": "📊",
-      "game_pk": 0,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 5,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 3
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          }
-        ],
-        "current_inning": 9,
-        "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 0,
-        "balls": 3,
-        "strikes": 1,
-        "away_runs": 7,
-        "home_runs": 8,
-        "away_hits": 15,
-        "home_hits": 15,
-        "away_errors": 1,
-        "home_errors": 1,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "7",
-        "opp_score": "8",
-        "score_fav": "7",
-        "score_opp": "8"
-      }
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-05-30",
-      "status_emoji": "🏁",
-      "fav_team": "Bravos de Leon",
-      "opp_team": "Tigres de Quintana Roo",
-      "score_fav": "",
-      "score_opp": "",
-      "state": "Final",
-      "result": "completed",
-      "label": "📊",
-      "game_pk": 0,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 4
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 0,
-        "away_runs": 1,
-        "home_runs": 5,
-        "away_hits": 7,
-        "home_hits": 13,
-        "away_errors": 0,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "1",
-        "opp_score": "5",
-        "score_fav": "1",
-        "score_opp": "5"
-      }
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Charros de Jalisco",
-      "opp_team": "Algodoneros Union Laguna",
-      "score_fav": "8",
-      "score_opp": "4",
-      "state": "Final",
-      "result": "win",
-      "label": "📊",
-      "game_pk": 0,
-      "linescore": {}
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Olmecas de Tabasco",
-      "opp_team": "Guerreros de Oaxaca",
-      "score_fav": "6",
-      "score_opp": "3",
-      "state": "Final",
-      "result": "win",
-      "label": "📊",
-      "game_pk": 0,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 2,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 3
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 1,
-        "away_runs": 3,
-        "home_runs": 6,
-        "away_hits": 9,
-        "home_hits": 13,
-        "away_errors": 0,
-        "home_errors": 2,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "3",
-        "opp_score": "6",
-        "score_fav": "3",
-        "score_opp": "6"
-      }
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Caliente de Durango",
-      "opp_team": "Tecos de los Dos Laredos",
-      "score_fav": "3",
-      "score_opp": "2",
-      "state": "Final",
-      "result": "win",
-      "label": "📊",
-      "game_pk": 0,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 0,
-        "strikes": 3,
-        "away_runs": 2,
-        "home_runs": 3,
-        "away_hits": 7,
-        "home_hits": 6,
-        "away_errors": 1,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "2",
-        "opp_score": "3",
-        "score_fav": "2",
-        "score_opp": "3"
-      }
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "Acereros del Norte",
-      "opp_team": "Saraperos de Saltillo",
-      "score_fav": "4",
-      "score_opp": "5",
-      "state": "Final",
-      "result": "loss",
-      "label": "📊",
-      "game_pk": 0,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 2,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 11,
-        "is_top": false,
-        "inning_ordinal": "11th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 2,
-        "away_runs": 5,
-        "home_runs": 4,
-        "away_hits": 15,
-        "home_hits": 9,
-        "away_errors": 0,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "5",
-        "opp_score": "4",
-        "score_fav": "5",
-        "score_opp": "4"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "New York Yankees",
-      "opp_team": "Athletics",
-      "score_fav": "4",
-      "score_opp": "6",
-      "state": "Final",
-      "result": "loss",
-      "label": "📋",
-      "game_pk": 401815563,
-      "linescore": {}
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "Los Angeles Dodgers",
-      "opp_team": "Philadelphia Phillies",
-      "score_fav": "3",
-      "score_opp": "4",
-      "state": "Final",
-      "result": "loss",
-      "label": "📋",
-      "game_pk": 401815564,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 3,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 4,
-        "home_runs": 3,
-        "away_hits": 6,
-        "home_hits": 9,
-        "away_errors": 1,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "4",
-        "opp_score": "3",
-        "score_fav": "4",
-        "score_opp": "3"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Seattle Mariners",
-      "opp_team": "Arizona Diamondbacks",
-      "score_fav": "5",
-      "score_opp": "1",
-      "state": "Final",
-      "result": "win",
-      "label": "📋",
-      "game_pk": 401815562,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 3,
-        "strikes": 2,
-        "away_runs": 1,
-        "home_runs": 5,
-        "away_hits": 3,
-        "home_hits": 9,
-        "away_errors": 1,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "1",
-        "opp_score": "5",
-        "score_fav": "1",
-        "score_opp": "5"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Houston Astros",
-      "opp_team": "Milwaukee Brewers",
-      "score_fav": "9",
-      "score_opp": "2",
-      "state": "Final",
-      "result": "win",
-      "label": "📋",
-      "game_pk": 401815560,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 3
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 3
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 3
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 3,
-        "away_runs": 2,
-        "home_runs": 9,
-        "away_hits": 6,
-        "home_hits": 12,
-        "away_errors": 0,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "2",
-        "opp_score": "9",
-        "score_fav": "2",
-        "score_opp": "9"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "San Francisco Giants",
-      "opp_team": "Colorado Rockies",
-      "score_fav": "3",
-      "score_opp": "8",
-      "state": "Final",
-      "result": "loss",
-      "label": "📋",
-      "game_pk": 401815561,
-      "linescore": {}
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Texas Rangers",
-      "opp_team": "Kansas City Royals",
-      "score_fav": "7",
-      "score_opp": "6",
-      "state": "Final",
-      "result": "win",
-      "label": "📋",
-      "game_pk": 401815559,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 4,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 2,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 3
-          }
-        ],
-        "current_inning": 9,
-        "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 0,
-        "balls": 1,
-        "strikes": 1,
-        "away_runs": 6,
-        "home_runs": 7,
-        "away_hits": 11,
-        "home_hits": 14,
-        "away_errors": 2,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "6",
-        "opp_score": "7",
-        "score_fav": "6",
-        "score_opp": "7"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "Toronto Blue Jays",
-      "opp_team": "Baltimore Orioles",
-      "score_fav": "5",
-      "score_opp": "6",
-      "state": "Final",
-      "result": "loss",
-      "label": "📋",
-      "game_pk": 401815556,
-      "linescore": {}
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Washington Nationals",
-      "opp_team": "San Diego Padres",
-      "score_fav": "9",
-      "score_opp": "4",
-      "state": "Final",
-      "result": "win",
-      "label": "📋",
-      "game_pk": 401815555,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 6
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 4,
-        "home_runs": 9,
-        "away_hits": 6,
-        "home_hits": 8,
-        "away_errors": 1,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "4",
-        "opp_score": "9",
-        "score_fav": "4",
-        "score_opp": "9"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Pittsburgh Pirates",
-      "opp_team": "Minnesota Twins",
-      "score_fav": "10",
-      "score_opp": "9",
-      "state": "Final",
-      "result": "win",
-      "label": "📋",
-      "game_pk": 401815554,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 6
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 5,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 2,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 2,
-        "away_runs": 9,
-        "home_runs": 10,
-        "away_hits": 12,
-        "home_hits": 15,
-        "away_errors": 1,
-        "home_errors": 0,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "9",
-        "opp_score": "10",
-        "score_fav": "9",
-        "score_opp": "10"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "✅",
-      "fav_team": "Chicago White Sox",
-      "opp_team": "Detroit Tigers",
-      "score_fav": "7",
-      "score_opp": "1",
-      "state": "Final",
-      "result": "win",
-      "label": "📋",
-      "game_pk": 401815558,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 3
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 3,
-        "away_runs": 1,
-        "home_runs": 7,
-        "away_hits": 7,
-        "home_hits": 9,
-        "away_errors": 0,
-        "home_errors": 1,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "1",
-        "opp_score": "7",
-        "score_fav": "1",
-        "score_opp": "7"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-05-30",
-      "status_emoji": "❌",
-      "fav_team": "Cleveland Guardians",
-      "opp_team": "Boston Red Sox",
-      "score_fav": "1",
-      "score_opp": "9",
-      "state": "Final",
-      "result": "loss",
-      "label": "📋",
-      "game_pk": 401815552,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 6,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 1,
-        "away_runs": 9,
-        "home_runs": 1,
-        "away_hits": 11,
-        "home_hits": 6,
-        "away_errors": 0,
-        "home_errors": 4,
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "9",
-        "opp_score": "1",
-        "score_fav": "9",
-        "score_opp": "1"
-      }
-    },
     {
       "liga": "MLB",
       "game_date": "2026-05-31",
@@ -3429,6 +2168,409 @@
       "result": "loss",
       "label": "📋",
       "game_pk": 401815587,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "🏁",
+      "fav_team": "Seattle Mariners",
+      "opp_team": "New York Mets",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Final",
+      "result": "completed",
+      "label": "🎯",
+      "game_pk": 823131,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          }
+        ],
+        "current_inning": 10,
+        "is_top": false,
+        "inning_ordinal": "10th",
+        "outs": 1,
+        "balls": 1,
+        "strikes": 0,
+        "away_runs": 2,
+        "home_runs": 3,
+        "away_hits": 2,
+        "home_hits": 4,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "2",
+        "opp_score": "3",
+        "score_fav": "2",
+        "score_opp": "3"
+      }
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "🏁",
+      "fav_team": "Los Angeles Angels",
+      "opp_team": "Colorado Rockies",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Final",
+      "result": "completed",
+      "label": "📊",
+      "game_pk": 824027,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 5,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 9,
+        "home_runs": 8,
+        "away_hits": 10,
+        "home_hits": 10,
+        "away_errors": 4,
+        "home_errors": 1,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "9",
+        "opp_score": "8",
+        "score_fav": "9",
+        "score_opp": "8"
+      }
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "🏁",
+      "fav_team": "Los Angeles Dodgers",
+      "opp_team": "Arizona Diamondbacks",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Final",
+      "result": "completed",
+      "label": "📋",
+      "game_pk": 825078,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 2,
+        "away_runs": 1,
+        "home_runs": 4,
+        "away_hits": 6,
+        "home_hits": 5,
+        "away_errors": 0,
+        "home_errors": 0,
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "1",
+        "opp_score": "4",
+        "score_fav": "1",
+        "score_opp": "4"
+      }
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Detroit Tigers",
+      "opp_team": "Tampa Bay Rays",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815591,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "San Diego Padres",
+      "opp_team": "Philadelphia Phillies",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815594,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Baltimore Orioles",
+      "opp_team": "Boston Red Sox",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815589,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Miami Marlins",
+      "opp_team": "Washington Nationals",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815593,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Cleveland Guardians",
+      "opp_team": "New York Yankees",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815590,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Kansas City Royals",
+      "opp_team": "Cincinnati Reds",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815592,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Toronto Blue Jays",
+      "opp_team": "Atlanta Braves",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815595,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Chicago White Sox",
+      "opp_team": "Minnesota Twins",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815597,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "San Francisco Giants",
+      "opp_team": "Milwaukee Brewers",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815599,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Texas Rangers",
+      "opp_team": "St. Louis Cardinals",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815600,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Athletics",
+      "opp_team": "Chicago Cubs",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815596,
+      "linescore": {}
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-02",
+      "status_emoji": "⏳",
+      "fav_team": "Pittsburgh Pirates",
+      "opp_team": "Houston Astros",
+      "score_fav": "—",
+      "score_opp": "",
+      "state": "Pend.",
+      "result": "pending",
+      "label": "📋",
+      "game_pk": 401815598,
       "linescore": {}
     }
   ],
