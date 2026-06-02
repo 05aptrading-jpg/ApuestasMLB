@@ -1,5 +1,5 @@
 {
-  "fecha": "02/06/2026 08:13",
+  "fecha": "02/06/2026 08:28",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780495200,
@@ -2859,7 +2859,8 @@
     6099564810,
     8025636859,
     1992258520,
-    7303350094
+    7303350094,
+    8670833401
   ],
   "stats": {
     "total": 88,
