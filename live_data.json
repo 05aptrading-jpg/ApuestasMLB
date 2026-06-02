@@ -1,5 +1,5 @@
 {
-  "fecha": "01/06/2026 18:17",
+  "fecha": "01/06/2026 18:38",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780408800,
@@ -2727,8 +2727,8 @@
       "fav_team": "Washington Nationals",
       "opp_team": "Miami Marlins",
       "score_fav": "3",
-      "score_opp": "1",
-      "state": "Bottom 5th",
+      "score_opp": "4",
+      "state": "Bottom 6th",
       "result": "live",
       "label": "📊",
       "game_pk": 822730,
@@ -2753,17 +2753,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
+        "current_inning": 6,
         "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 2,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 1,
+        "inning_ordinal": "6th",
+        "outs": 1,
+        "balls": 2,
+        "strikes": 2,
+        "away_runs": 4,
         "home_runs": 3,
-        "away_hits": 4,
+        "away_hits": 7,
         "home_hits": 5,
         "away_errors": 1,
         "home_errors": 0,
@@ -2775,9 +2779,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
+        "fav_score": "4",
         "opp_score": "3",
-        "score_fav": "1",
+        "score_fav": "4",
         "score_opp": "3"
       }
     },
@@ -2827,9 +2831,9 @@
       "status_emoji": "🔴",
       "fav_team": "Kansas City Royals",
       "opp_team": "Cincinnati Reds",
-      "score_fav": "4",
+      "score_fav": "6",
       "score_opp": "1",
-      "state": "Bottom 4th",
+      "state": "Bottom 5th",
       "result": "live",
       "label": "📋",
       "game_pk": 824510,
@@ -2850,18 +2854,22 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": false,
-        "inning_ordinal": "4th",
+        "inning_ordinal": "5th",
         "outs": 1,
         "balls": 0,
-        "strikes": 0,
-        "away_runs": 4,
+        "strikes": 1,
+        "away_runs": 6,
         "home_runs": 1,
-        "away_hits": 4,
-        "home_hits": 1,
+        "away_hits": 7,
+        "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
         "bases": {
@@ -2872,9 +2880,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "4",
+        "fav_score": "6",
         "opp_score": "1",
-        "score_fav": "4",
+        "score_fav": "6",
         "score_opp": "1"
       }
     },
@@ -2884,9 +2892,9 @@
       "status_emoji": "🔴",
       "fav_team": "Chicago White Sox",
       "opp_team": "Minnesota Twins",
-      "score_fav": "0",
+      "score_fav": "1",
       "score_opp": "1",
-      "state": "End 2nd",
+      "state": "Top 4th",
       "result": "live",
       "label": "📋",
       "game_pk": 823702,
@@ -2901,19 +2909,23 @@
             "home_runs": 0
           },
           {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
             "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 3,
+        "current_inning": 4,
         "is_top": true,
-        "inning_ordinal": "3rd",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 1,
-        "away_runs": 0,
+        "inning_ordinal": "4th",
+        "outs": 2,
+        "balls": 2,
+        "strikes": 0,
+        "away_runs": 1,
         "home_runs": 1,
-        "away_hits": 1,
+        "away_hits": 4,
         "home_hits": 3,
         "away_errors": 0,
         "home_errors": 1,
@@ -2925,9 +2937,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "1",
         "opp_score": "1",
-        "score_fav": "0",
+        "score_fav": "1",
         "score_opp": "1"
       }
     },
@@ -2939,7 +2951,7 @@
       "opp_team": "St. Louis Cardinals",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Bottom 2nd",
+      "state": "End 3rd",
       "result": "live",
       "label": "📋",
       "game_pk": 823050,
@@ -2952,18 +2964,26 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 1,
+        "current_inning": 4,
+        "is_top": true,
+        "inning_ordinal": "4th",
+        "outs": 0,
         "balls": 0,
         "strikes": 0,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 1,
-        "home_hits": 1,
+        "home_hits": 2,
         "away_errors": 1,
         "home_errors": 0,
         "bases": {
@@ -2984,11 +3004,11 @@
       "liga": "MLB",
       "game_date": "2026-06-01",
       "status_emoji": "🔴",
-      "fav_team": "San Francisco Giants",
-      "opp_team": "Milwaukee Brewers",
-      "score_fav": "2",
-      "score_opp": "4",
-      "state": "Bottom 2nd",
+      "fav_team": "Milwaukee Brewers",
+      "opp_team": "San Francisco Giants",
+      "score_fav": "7",
+      "score_opp": "2",
+      "state": "Bottom 3rd",
       "result": "live",
       "label": "📋",
       "game_pk": 823781,
@@ -3000,19 +3020,23 @@
           },
           {
             "away_runs": 2,
-            "home_runs": 4
+            "home_runs": 7
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
+        "current_inning": 3,
         "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 1,
+        "inning_ordinal": "3rd",
+        "outs": 2,
         "balls": 3,
         "strikes": 2,
         "away_runs": 2,
-        "home_runs": 4,
+        "home_runs": 7,
         "away_hits": 3,
-        "home_hits": 5,
+        "home_hits": 7,
         "away_errors": 0,
         "home_errors": 0,
         "bases": {
@@ -3024,9 +3048,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "2",
-        "opp_score": "4",
+        "opp_score": "7",
         "score_fav": "2",
-        "score_opp": "4"
+        "score_opp": "7"
       }
     },
     {
@@ -3036,8 +3060,8 @@
       "fav_team": "Detroit Tigers",
       "opp_team": "Tampa Bay Rays",
       "score_fav": "8",
-      "score_opp": "2",
-      "state": "Bottom 6th",
+      "score_opp": "5",
+      "state": "Top 7th",
       "result": "live",
       "label": "📋",
       "game_pk": 822974,
@@ -3065,19 +3089,23 @@
           },
           {
             "away_runs": 1,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 6,
-        "is_top": false,
-        "inning_ordinal": "6th",
+        "current_inning": 7,
+        "is_top": true,
+        "inning_ordinal": "7th",
         "outs": 0,
-        "balls": 1,
-        "strikes": 1,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 8,
-        "home_runs": 2,
+        "home_runs": 5,
         "away_hits": 10,
-        "home_hits": 4,
+        "home_hits": 5,
         "away_errors": 0,
         "home_errors": 0,
         "bases": {
@@ -3089,9 +3117,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "8",
-        "opp_score": "2",
+        "opp_score": "5",
         "score_fav": "8",
-        "score_opp": "2"
+        "score_opp": "5"
       }
     },
     {
