@@ -226,7 +226,7 @@ function fetchScores() {
       if (!selectedDate && DATA.dias && DATA.dias.length > 0) selectedDate = DATA.dias[0];
       renderAll();
       if (DATA.has_live) {
-        setTimeout(fetchScores, 60000);
+        setTimeout(fetchScores, 30000);
       } else if (DATA.has_scheduled) {
         setTimeout(fetchScores, 300000);
       } else {
@@ -235,7 +235,7 @@ function fetchScores() {
     })
     .catch(function() {
       document.getElementById('games-list').innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin conexión...</div>';
-      setTimeout(fetchScores, 60000);
+      setTimeout(fetchScores, 30000);
     });
 }
 
