@@ -104,6 +104,23 @@ def load_estado() -> list:
     return []
 
 
+def _load_autorizados() -> list:
+    """Load authorized user IDs from suscriptores.json for mini app auth."""
+    for path in ["suscriptores.json", "../suscriptores.json"]:
+        if os.path.exists(path):
+            try:
+                with open(path, encoding="utf-8") as f:
+                    data = json.load(f)
+                # Support both formats: {autorizados: [...]} or {suscripciones: {...}}
+                if "autorizados" in data:
+                    return [int(uid) for uid in data["autorizados"]]
+                elif "suscripciones" in data:
+                    return [int(uid) for uid in data["suscripciones"].keys()]
+            except Exception:
+                pass
+    return []
+
+
 def main():
     now_utc = datetime.now(tz=__import__('datetime').timezone.utc)
     now_local = now_utc + timedelta(hours=MT_OFFSET)
@@ -356,6 +373,7 @@ def main():
         "has_live": has_live,
         "has_scheduled": has_scheduled,
         "updated_at": now_utc.isoformat(),
+        "autorizados": _load_autorizados(),
     }
 
     os.makedirs("docs", exist_ok=True)

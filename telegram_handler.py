@@ -139,12 +139,12 @@ def _send_raw(chat_id: str, text: str, mini_app: bool = False):
         "disable_web_page_preview": True,
     }
     if mini_app and config.GITHUB_TOKEN:
-        payload["reply_markup"] = json.dumps({
+        payload["reply_markup"] = {
             "inline_keyboard": [[{
                 "text": "📱 Abrir Mini App",
                 "web_app": {"url": MINIAPP_URL},
             }]],
-        })
+        }
     try:
         _r.post(url, json=payload, timeout=10)
     except Exception:
