@@ -111,6 +111,20 @@ def _expirar_vencidos(data: dict):
     return data
 
 
+def _eliminar_usuario(chat_id: int) -> bool:
+    elim = str(chat_id)
+    data = _cargar_suscriptores()
+    suscripciones = data.get("suscripciones", {})
+    admin = str(data.get("admin_id", 0))
+    if elim in suscripciones and elim != admin:
+        del suscripciones[elim]
+        data["suscripciones"] = suscripciones
+        _guardar_suscriptores(data)
+        logger.info(f"Usuario {chat_id} eliminado por solicitud")
+        return True
+    return False
+
+
 def _esta_autorizado(chat_id: int) -> bool:
     data = _cargar_suscriptores()
     data = _expirar_vencidos(data)
@@ -517,11 +531,13 @@ def handle_updates():
                         data = _cargar_suscriptores()
                         es_admin = chat_id == data.get("admin_id", 0)
                         cmds = (
-                            "📊 <b>Comandos disponibles:</b>\n"
-                            "  /actualizar — Ver resultados del día\n"
-                            "  /suscribirse — Abrir Mini App"
+                    "📊 <b>Comandos disponibles:</b>\n"
+                    "  /actualizar — Ver resultados del día\n"
+                    "  /suscribirse — Abrir Mini App\n"
+                    "  /borrar — Eliminar mis datos del sistema"
                         )
                         if es_admin:
+                            cmds += "\n  /suscriptores — Gestionar suscriptores"
                             cmds += "\n  /deploy — Redeploy Railway"
                             cmds += "\n  /reiniciar — Reiniciar bot local (MLB+LMB)"
                             cmds += "\n  /reload — Recargar código sin reiniciar"
@@ -553,8 +569,33 @@ def handle_updates():
                         )
                     continue
 
-                # /suscribirse — alias para enlace a Mini App
-                if text.startswith("/suscribirse") or text.startswith("/suscriptores"):
+                # /borrar o /delete — eliminar datos personales
+                if text.startswith("/borrar") or text.startswith("/delete"):
+                    if _eliminar_usuario(chat_id):
+                        _send_raw(str(chat_id),
+                            "🗑️ <b>Datos eliminados</b>\n\n"
+                            "Tus datos han sido eliminados del sistema.\n"
+                            "Gracias por usar el servicio.",
+                            mini_app=True
+                        )
+                    else:
+                        _send_raw(str(chat_id),
+                            "ℹ️ No se encontraron datos asociados a tu cuenta.\n"
+                            "Si eres el administrador, no puedes eliminarte desde aquí.",
+                            mini_app=True
+                        )
+                    continue
+
+                # /suscribirse — abre Mini App para todos
+                if text.startswith("/suscribirse"):
+                    if chat_id:
+                        _send_raw(str(chat_id),
+                            "📱 <b>Abrir Mini App</b>\nToca el botón de abajo para ver el análisis en vivo.",
+                            mini_app=True)
+                    continue
+
+                # /suscriptores — solo admin
+                if text.startswith("/suscriptores"):
                     if chat_id:
                         _cmd_suscriptores(chat_id, text[len("/suscriptores"):].strip())
                     continue
@@ -596,6 +637,24 @@ def iniciar():
         )
     except Exception as e:
         logger.warning(f"No se pudo configurar Menu Button: {e}")
+
+    # Registrar comandos en el menú de Telegram
+    try:
+        requests.post(
+            f"{TELEGRAM_URL}/setMyCommands",
+            json={
+                "commands": [
+                    {"command": "start", "description": "Ver comandos disponibles"},
+                    {"command": "actualizar", "description": "Ver resultados del día"},
+                    {"command": "suscribirse", "description": "Abrir Mini App"},
+                    {"command": "borrar", "description": "Eliminar mis datos del sistema"},
+                ]
+            },
+            timeout=5,
+        )
+    except Exception as e:
+        logger.warning(f"No se pudieron registrar comandos: {e}")
+
     hilo = threading.Thread(target=handle_updates, daemon=True, name="telegram-cmd")
     hilo.start()
     logger.info("Telegram handler: thread iniciado")
