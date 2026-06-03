@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ApuestasMLB</title>
+<title>MLB BOT</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,25 +22,7 @@
   }
   .header .date { font-size: 13px; color: #71767b; margin-top: 4px; }
   .header .next-update { font-size: 22px; color: #f5a623; margin-top: 2px; }
-  .header .next-update .update-time { font-size: 16px; color: #f5a623; }
-
-  .sport-tabs {
-    display: flex; gap: 6px; margin: 12px 0;
-    justify-content: center; flex-wrap: wrap;
-  }
-  .sport-tab {
-    background: #1a1f2e; color: #8b98a5;
-    border: 1px solid #2a3040; border-radius: 8px;
-    padding: 8px 24px; font-size: 14px; font-weight: 600;
-    cursor: pointer; transition: all 0.15s;
-  }
-  .sport-tab:hover { background: #262d3d; }
-  .sport-tab.active-bb { background: #1d9bf0; color: #fff; border-color: #1d9bf0; }
-  .sport-tab.active-fb { background: #00ba7c; color: #fff; border-color: #00ba7c; }
-
-  .panel { display: none; }
-  .panel.active { display: block; }
-
+.header .next-update .update-time { font-size: 16px; color: #f5a623; }
   .legend {
     display: flex; flex-wrap: wrap; gap: 6px;
     justify-content: center; margin: 12px 0;
@@ -61,56 +43,27 @@
 
   .game-row {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     gap: 6px;
     align-items: center;
-    padding: 8px 0;
+    padding: 6px 0;
     border-bottom: 1px solid #2a3040;
     font-size: 12px;
-    cursor: pointer;
-    transition: background 0.15s;
-    border-radius: 6px;
   }
-  .game-row:hover { background: #1f2538; }
   .game-row:last-child { border-bottom: none; }
-  .game-status { width: 20px; text-align: center; font-size: 13px; }
-  .game-teams { font-weight: 500; color: #e1e8ed; min-width: 0; }
-  .game-teams .fav { color: #f5a623; font-weight: 700; }
-  .game-teams .sep { color: #536471; margin: 0 4px; }
+  .game-status {
+    width: 20px; text-align: center; font-size: 13px;
+  }
+  .game-team { font-weight: 500; color: #e1e8ed; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .game-state {
     font-size: 12px; color: #71767b;
     background: #262d3d; padding: 2px 8px;
     border-radius: 6px; text-align: center;
   }
-  .game-ou {
-    font-size: 11px; color: #8b98a5;
-    margin-top: 2px;
-  }
-  .game-xg {
-    font-size: 11px; color: #8b98a5;
-    margin-top: 1px;
-  }
-  .expand-icon { font-size: 10px; color: #536471; transition: transform 0.2s; margin-left: 4px; }
-  .expand-icon.open { transform: rotate(180deg); }
 
-  .game-detail {
-    display: none; overflow-x: auto;
-    background: #131827; border-radius: 8px;
-    margin: 2px 0 6px 0; padding: 10px;
-    border: 1px solid #2a3040;
+  .stat-grid {
+    display: grid; gap: 10px;
   }
-  .game-detail.open { display: block; }
-
-  .detail-row {
-    display: flex; justify-content: space-between;
-    padding: 6px 0; border-bottom: 1px solid #2a3040;
-    font-size: 13px;
-  }
-  .detail-row:last-child { border-bottom: none; }
-  .detail-label { color: #8b98a5; }
-  .detail-value { font-weight: 600; }
-
-  .stat-grid { display: grid; gap: 10px; }
   .stats-filter { padding: 4px 0 8px 0; }
   .filter-row { display: flex; gap: 6px; margin-bottom: 4px; flex-wrap: wrap; }
   .filter-btn {
@@ -136,7 +89,10 @@
   .stat-value { font-size: 14px; font-weight: 600; }
   .stat-value .winrate { color: #00ba7c; }
   .stat-value .fire { margin-left: 4px; }
-  .stat-sub { font-size: 12px; color: #8b98a5; margin-left: 8px; }
+  .stat-sub {
+    font-size: 12px; color: #8b98a5;
+    margin-left: 8px;
+  }
 
   .liga-tabs, .date-tabs {
     display: flex; gap: 6px; margin: 12px 0;
@@ -155,9 +111,6 @@
   .liga-tab.active-lmb {
     background: #f59e0b; color: #fff; border-color: #f59e0b;
   }
-  .liga-tab.active-fb {
-    background: #00ba7c; color: #fff; border-color: #00ba7c;
-  }
 
   .game-state.live {
     background: #1a3a2a; color: #00ba7c;
@@ -170,7 +123,17 @@
   }
 
   .game-wrapper { margin-bottom: 0; }
-
+  .game-row { cursor: pointer; transition: background 0.15s; border-radius: 6px; }
+  .game-row:hover { background: #1f2538; }
+  .expand-icon { font-size: 10px; color: #536471; transition: transform 0.2s; margin-left: 4px; }
+  .expand-icon.open { transform: rotate(180deg); }
+  .scoreboard-expand {
+    display: none; overflow-x: auto;
+    background: #131827; border-radius: 8px;
+    margin: 2px 0 6px 0; padding: 10px;
+    border: 1px solid #2a3040;
+  }
+  .scoreboard-expand.open { display: block; }
   .sb-header { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #8b98a5; margin-bottom: 8px; }
   .sb-status { font-weight: 600; }
   .sb-status.live { color: #00ba7c; }
@@ -197,13 +160,24 @@
     display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
     font-size: 13px; padding: 6px 0;
   }
-  .sb-bases { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 18px; line-height: 1; }
+  .sb-bases {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 18px; line-height: 1;
+  }
   .sb-bases-row { display: flex; gap: 8px; }
-  .sb-diamond-base { width: 10px; height: 10px; border-radius: 2px; border: 2px solid #536471; }
+  .sb-diamond-base {
+    width: 10px; height: 10px; border-radius: 2px;
+    border: 2px solid #536471;
+  }
   .sb-diamond-base.occupied { background: #f5a623; border-color: #f5a623; }
   .sb-diamond-base.empty { background: transparent; }
-  .sb-outs { display: flex; gap: 4px; align-items: center; }
-  .sb-out-dot { width: 10px; height: 10px; border-radius: 50%; background: #2a3040; border: 1px solid #536471; }
+  .sb-outs {
+    display: flex; gap: 4px; align-items: center;
+  }
+  .sb-out-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #2a3040; border: 1px solid #536471;
+  }
   .sb-out-dot.recorded { background: #e1e8ed; border-color: #e1e8ed; }
   .sb-count { font-size: 13px; color: #8b98a5; }
   .sb-count span { font-weight: 600; color: #e1e8ed; }
@@ -238,18 +212,10 @@
 <div id="main-content">
 
 <div class="header">
-  <h1>⚾ ⚽ ApuestasMLB</h1>
+
   <div class="date" id="fecha">—</div>
   <div class="next-update" id="next-update">⏳ Próxima actualización<br><span class="update-time" id="countdown-display">📡 MLB: — | 🇲🇽 LMB: —</span></div>
 </div>
-
-<div class="sport-tabs">
-  <div class="sport-tab active-bb" id="tab-beisbol" onclick="switchSport('beisbol')">⚾ Béisbol</div>
-  <div class="sport-tab" id="tab-futbol" onclick="switchSport('futbol')">⚽ Fútbol</div>
-</div>
-
-<!-- ==================== BEISBOL PANEL ==================== -->
-<div class="panel active" id="panel-beisbol">
 
 <div class="legend">
   <span>✅ Acertado</span>
@@ -289,29 +255,14 @@
 
 <div id="refresh-countdown" style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Próxima actualización: 30s</div>
 
-</div><!-- /panel-beisbol -->
-
-<!-- ==================== FUTBOL PANEL ==================== -->
-<div class="panel" id="panel-futbol">
-
-<div class="liga-tabs" id="fb-liga-tabs"></div>
-
-<div class="card" id="fb-card">
-  <div class="card-title">⚽ Partidos</div>
-  <div id="fb-games-list"></div>
-</div>
-
-</div><!-- /panel-futbol -->
-
 <div class="footer">
-  MLB &amp; LMB &amp; Fútbol Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
+  MLB &amp; LMB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
   <a href="privacy.html" style="color:#8b98a5;text-decoration:none">Privacidad</a> · <a href="terms.html" style="color:#8b98a5;text-decoration:none">Términos</a>
 </div>
 
-</div><!-- /main-content -->
+</div>
 
 <script>
-// =========================== BEISBOL ===========================
 var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [], live_data: {}, autorizados: [] };
 var selectedLiga = 'general';
 var selectedDate = '';
@@ -320,147 +271,6 @@ var refreshInterval = 30;
 var statsFilterMode = null;
 var statsRangeMode = null;
 
-// =========================== FUTBOL ===========================
-var FB_DATA = { games: [], fecha: '' };
-var fbSelectedLiga = 'TODAS';
-
-// =========================== SPORT SWITCH ===========================
-function switchSport(sport) {
-  document.querySelectorAll('.panel').forEach(function(el) { el.classList.remove('active'); });
-  document.querySelectorAll('.sport-tab').forEach(function(el) { el.className = 'sport-tab'; });
-  if (sport === 'beisbol') {
-    document.getElementById('panel-beisbol').classList.add('active');
-    document.getElementById('tab-beisbol').className = 'sport-tab active-bb';
-  } else {
-    document.getElementById('panel-futbol').classList.add('active');
-    document.getElementById('tab-futbol').className = 'sport-tab active-fb';
-    renderFutbol();
-  }
-}
-
-// =========================== FUTBOL ===========================
-function fetchFutbolData() {
-  fetch('soccer_data.json?t=' + Date.now())
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      FB_DATA = data;
-      if (document.getElementById('panel-futbol').classList.contains('active')) {
-        renderFutbol();
-      }
-    })
-    .catch(function() {
-      document.getElementById('fb-games-list').innerHTML = '<div style="color:#71767b;text-align:center;padding:20px">⚽ Sin datos de fútbol disponibles</div>';
-    });
-}
-
-function renderFutbol() {
-  renderFbLigaTabs();
-  renderFbGames();
-}
-
-function renderFbLigaTabs() {
-  var container = document.getElementById('fb-liga-tabs');
-  var ligas = {};
-  for (var i = 0; i < FB_DATA.games.length; i++) {
-    ligas[FB_DATA.games[i].liga_key] = true;
-  }
-  var ligaKeys = Object.keys(ligas);
-  var html = '';
-  html += '<div class="liga-tab' + (fbSelectedLiga === 'TODAS' ? ' active-fb' : '') + '" onclick="selectFbLiga(\'TODAS\')">📋 Todas</div>';
-  for (var j = 0; j < ligaKeys.length; j++) {
-    var lk = ligaKeys[j];
-    var active = lk === fbSelectedLiga ? ' active-fb' : '';
-    var label = lk;
-    if (lk === 'PREMIER_LEAGUE') label = '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier';
-    if (lk === 'LA_LIGA') label = '🇪🇸 La Liga';
-    if (lk === 'LIGA_MX') label = '🇲🇽 Liga MX';
-    html += '<div class="liga-tab' + active + '" onclick="selectFbLiga(\'' + lk + '\')">' + label + '</div>';
-  }
-  container.innerHTML = html;
-}
-
-function selectFbLiga(liga) {
-  fbSelectedLiga = liga;
-  renderFbLigaTabs();
-  renderFbGames();
-}
-
-function renderFbGameRow(g, idx) {
-  var favHtml = g.favorito
-    ? '<span class="fav">' + g.favorito + '</span>'
-    : g.local;
-  var oppHtml = g.favorito === g.local ? g.visitante : g.local;
-  var homeLabel = g.favorito === g.local ? 'L' : 'V';
-  var confianzaLabel = g.confianza_ah0 !== 'BAJA' ? ' (' + g.confianza_ah0 + ')' : '';
-
-  return '<div class="game-wrapper">'
-    + '<div class="game-row" onclick="toggleFbDetail(\'' + idx + '\', this)" data-idx="' + idx + '">'
-    + '<div class="game-status">⚽</div>'
-    + '<div class="game-teams">' 
-    + favHtml + ' <span class="sep">vs</span> ' + oppHtml
-    + '<div class="game-xg">📊 xG: ' + g.xg_local + ' - ' + g.xg_visit + ' | diff: ' + (g.diff_xg >= 0 ? '+' : '') + g.diff_xg + '</div>'
-    + '</div>'
-    + '<div class="game-state">AH0 ' + homeLabel + confianzaLabel + '</div>'
-    + '</div>'
-    + '<div class="game-detail" id="fb-detail-' + idx + '">'
-    + renderFbDetail(g)
-    + '</div>'
-    + '</div>';
-}
-
-function renderFbDetail(g) {
-  var html = '';
-  if (g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR') {
-    html += '<div class="detail-row">'
-      + '<span class="detail-label">📈 O/U 2.5</span>'
-      + '<span class="detail-value">' + g.senal_ou25 + ' (' + g.confianza_ou25 + ')</span>'
-      + '</div>';
-  }
-  html += '<div class="detail-row">'
-    + '<span class="detail-label">🎯 AH0</span>'
-    + '<span class="detail-value">' + (g.senal_ah0 !== 'NO_APOSTAR' ? g.senal_ah0 + ' (' + g.confianza_ah0 + ')' : '—') + '</span>'
-    + '</div>';
-  html += '<div class="detail-row">'
-    + '<span class="detail-label">📊 xG Total</span>'
-    + '<span class="detail-value">' + g.xg_total + '</span>'
-    + '</div>';
-  html += '<div class="detail-row">'
-    + '<span class="detail-label">🔵 Diferencia xG</span>'
-    + '<span class="detail-value">' + (g.diff_xg >= 0 ? '+' : '') + g.diff_xg + '</span>'
-    + '</div>';
-  return html;
-}
-
-function toggleFbDetail(idx, rowEl) {
-  var container = document.getElementById('fb-detail-' + idx);
-  if (!container) return;
-  var isOpen = container.classList.contains('open');
-  var icon = rowEl.querySelector('.expand-icon');
-  if (isOpen) {
-    container.classList.remove('open');
-    return;
-  }
-  container.classList.toggle('open');
-}
-
-function renderFbGames() {
-  var el = document.getElementById('fb-games-list');
-  var filtered = FB_DATA.games;
-  if (fbSelectedLiga !== 'TODAS') {
-    filtered = filtered.filter(function(g) { return g.liga_key === fbSelectedLiga; });
-  }
-  if (filtered.length === 0) {
-    el.innerHTML = '<div style="color:#71767b;text-align:center;padding:20px">⚽ Sin partidos disponibles</div>';
-    return;
-  }
-  var html = '';
-  for (var i = 0; i < filtered.length; i++) {
-    html += renderFbGameRow(filtered[i], i);
-  }
-  el.innerHTML = html;
-}
-
-// =========================== BEISBOL (heredado) ===========================
 function checkAuth() {
   var userId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
   if (!userId) return true;
@@ -752,10 +562,13 @@ function updateCountdown() {
   var lmbTs = DATA.proxima_actualizacion_lmb_ts || 0;
   var mlbLabel = DATA.proxima_actualizacion || '—';
   var lmbLabel = DATA.proxima_actualizacion_lmb || '—';
+
   var mlbRem = mlbTs - now;
   var lmbRem = lmbTs - now;
+
   var mlbStr = mlbRem > 0 ? ('en ' + formatCountdown(mlbRem)) : mlbLabel + ' MT';
   var lmbStr = lmbRem > 0 ? ('en ' + formatCountdown(lmbRem)) : lmbLabel + ' MT';
+
   var el = document.getElementById('countdown-display');
   if (el) el.innerHTML = '📡 MLB: ' + mlbStr + ' | 🇲🇽 LMB: ' + lmbStr;
 }
@@ -770,19 +583,23 @@ function toggleScoreboard(idx, rowEl) {
   if (!container) return;
   var isOpen = container.classList.contains('open');
   var icon = rowEl.querySelector('.expand-icon');
+
   if (isOpen) {
     container.classList.remove('open');
     if (icon) icon.classList.remove('open');
     if (sbTimers[idx]) { clearInterval(sbTimers[idx]); delete sbTimers[idx]; }
     return;
   }
+
   container.classList.add('open');
   if (icon) icon.classList.add('open');
+
   var g = null;
   for (var i = 0; i < DATA.games.length; i++) {
     var pk = (DATA.games[i].game_pk || 0) + '-' + i;
     if (pk == idx) { g = DATA.games[i]; break; }
   }
+
   var liveData = DATA.live_data || {};
   var liveGame = null;
   if (g) {
@@ -802,6 +619,7 @@ function toggleScoreboard(idx, rowEl) {
       }
     }
   }
+
   if (g && liveGame) {
     renderScoreboardFromLive(g, liveGame, container);
   } else if (g && g.linescore && g.linescore.innings) {
@@ -809,6 +627,7 @@ function toggleScoreboard(idx, rowEl) {
   } else {
     container.innerHTML = '<div class="sb-loading" style="color:#8b98a5">Scoreboard no disponible</div>';
   }
+
   if (sbTimers[idx]) clearInterval(sbTimers[idx]);
   sbTimers[idx] = setInterval(function() {
     var c = document.getElementById('sb-' + idx);
@@ -831,6 +650,7 @@ function renderScoreboardFromLive(g, live, container) {
     } else { break; }
   }
   if (totalInnings < 9) totalInnings = 9;
+
   var isLive = live.is_live;
   var isFinal = live.is_final;
   var statusClass = isLive ? 'live' : (isFinal ? 'final' : '');
@@ -838,6 +658,7 @@ function renderScoreboardFromLive(g, live, container) {
   if (ls.inning_ordinal && isLive) {
     statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
   }
+
   var topTeam = live.away_team_name || g.opp_team || 'Away';
   var botTeam = live.home_team_name || g.fav_team || 'Home';
   var topRuns = live.away_runs || 0;
@@ -850,9 +671,11 @@ function renderScoreboardFromLive(g, live, container) {
   var botInn = 'home';
   var topAbbr = topTeam.split(' ').pop();
   var botAbbr = botTeam.split(' ').pop();
+
   var html = '<div class="sb-header"><span class="sb-status ' + statusClass + '">' + statusText + '</span></div>';
   var numCols = Math.max(totalInnings, 9);
   html += '<div class="sb-grid" style="grid-template-columns:80px repeat(' + numCols + ', minmax(22px,1fr)) 32px 32px 32px">';
+
   html += '<div class="sb-label sb-header-row"></div>';
   for (var i = 1; i <= numCols; i++) {
     var isCurrentInning = (i === ls.current_inning && isLive);
@@ -861,6 +684,7 @@ function renderScoreboardFromLive(g, live, container) {
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">R</div>';
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
+
   html += '<div class="sb-label">' + topAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
@@ -871,6 +695,7 @@ function renderScoreboardFromLive(g, live, container) {
   html += '<div class="sb-total away">' + topRuns + '</div>';
   html += '<div class="sb-total away">' + topHits + '</div>';
   html += '<div class="sb-total away">' + topErr + '</div>';
+
   html += '<div class="sb-label">' + botAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
@@ -882,6 +707,7 @@ function renderScoreboardFromLive(g, live, container) {
   html += '<div class="sb-total home">' + botHits + '</div>';
   html += '<div class="sb-total home">' + botErr + '</div>';
   html += '</div>';
+
   var bases = ls.bases || {};
   var first = bases.first === true || bases.first === 'true' || bases.first === 1;
   var second = bases.second === true || bases.second === 'true' || bases.second === 1;
@@ -891,17 +717,20 @@ function renderScoreboardFromLive(g, live, container) {
   html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (second ? ' occupied' : '') + '"></span></div>';
   html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (first ? ' occupied' : '') + '"></span><span class="sb-diamond-base' + (third ? ' occupied' : '') + '"></span></div>';
   html += '</div>';
+
   var outs = ls.outs || 0;
   html += '<div class="sb-outs">';
   for (var o = 0; o < 3; o++) {
     html += '<span class="sb-out-dot' + (o < outs ? ' recorded' : '') + '"></span>';
   }
   html += '</div>';
+
   if (isLive) {
     html += '<div class="sb-count">B: <span>' + (ls.balls || 0) + '</span>  S: <span>' + (ls.strikes || 0) + '</span></div>';
     var arrow = ls.is_top ? '↑' : '↓';
     html += '<div class="sb-inning-label">' + arrow + ' ' + (ls.inning_ordinal || '') + '</div>';
   }
+
   html += '</div>';
   container.innerHTML = html;
 }
@@ -914,9 +743,12 @@ function renderScoreboard(g, container) {
   for (var i = innings.length - 1; i >= 8; i--) {
     if (innings[i].away_runs === 0 && innings[i].home_runs === 0 && i >= 9) {
       totalInnings = i;
-    } else { break; }
+    } else {
+      break;
+    }
   }
   if (totalInnings < 9) totalInnings = 9;
+
   var isLive = g.result === 'live';
   var isFinal = g.result === 'win' || g.result === 'loss' || g.result === 'completed';
   var statusClass = isLive ? 'live' : (isFinal ? 'final' : '');
@@ -924,15 +756,19 @@ function renderScoreboard(g, container) {
   if (ls.inning_ordinal && isLive) {
     statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
   }
+
   var awayName = g.opp_team || 'Away';
   var homeName = g.fav_team || 'Home';
   var awayAbbr = awayName.split(' ').pop();
   var homeAbbr = homeName.split(' ').pop();
+
   var html = '<div class="sb-header">';
   html += '<span class="sb-status ' + statusClass + '">' + statusText + '</span>';
   html += '</div>';
+
   var numCols = Math.max(totalInnings, 9);
   html += '<div class="sb-grid" style="grid-template-columns:80px repeat(' + numCols + ', minmax(22px,1fr)) 32px 32px 32px">';
+
   html += '<div class="sb-label sb-header-row"></div>';
   for (var i = 1; i <= numCols; i++) {
     var isCurrentInning = (i === ls.current_inning && isLive);
@@ -941,6 +777,7 @@ function renderScoreboard(g, container) {
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">R</div>';
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
+
   html += '<div class="sb-label">' + awayAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
@@ -950,6 +787,7 @@ function renderScoreboard(g, container) {
   html += '<div class="sb-total away">' + (ls.away_runs !== undefined ? ls.away_runs : 0) + '</div>';
   html += '<div class="sb-total away">' + (ls.away_hits || 0) + '</div>';
   html += '<div class="sb-total away">' + (ls.away_errors || 0) + '</div>';
+
   html += '<div class="sb-label">' + homeAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
@@ -960,26 +798,33 @@ function renderScoreboard(g, container) {
   html += '<div class="sb-total home">' + (ls.home_hits || 0) + '</div>';
   html += '<div class="sb-total home">' + (ls.home_errors || 0) + '</div>';
   html += '</div>';
+
   var bases = ls.bases || {};
   html += '<div class="sb-meta">';
+
   html += '<div class="sb-bases">';
   html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.second ? ' occupied' : ' empty') + '"></span></div>';
   html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.first ? ' occupied' : ' empty') + '"></span><span class="sb-diamond-base' + (bases.third ? ' occupied' : ' empty') + '"></span></div>';
   html += '</div>';
+
   var outs = ls.outs || 0;
   html += '<div class="sb-outs">';
   for (var o = 0; o < 3; o++) {
     html += '<span class="sb-out-dot' + (o < outs ? ' recorded' : '') + '"></span>';
   }
   html += '</div>';
+
   if (isLive) {
     html += '<div class="sb-count">B: <span>' + (ls.balls || 0) + '</span>  S: <span>' + (ls.strikes || 0) + '</span></div>';
   }
+
   if (isLive) {
     var arrow = ls.is_top ? '↑' : '↓';
     html += '<div class="sb-inning-label">' + arrow + ' ' + (ls.inning_ordinal || '') + '</div>';
   }
+
   html += '</div>';
+
   container.innerHTML = html;
 }
 
@@ -988,8 +833,8 @@ renderDateTabs();
 renderDateLabel();
 renderGames();
 renderStats();
+
 fetchScores();
-fetchFutbolData();
 </script>
 </body>
 </html>
