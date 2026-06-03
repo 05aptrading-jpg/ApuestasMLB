@@ -5,9 +5,6 @@ import sys
 
 import requests
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import config
-
 logger = logging.getLogger(__name__)
 
 REPO_OWNER = "05aptrading-jpg"
@@ -21,9 +18,13 @@ ARCHIVOS = [
     "soccer_data.json",
 ]
 
+def _get_github_token():
+    return os.environ.get("GITHUB_TOKEN", "").strip()
+
 def _headers():
-    token = config.GITHUB_TOKEN
+    token = _get_github_token()
     if not token:
+        logger.error("GITHUB_TOKEN no configurado en env vars")
         return {}
     return {
         "Authorization": f"Bearer {token}",
