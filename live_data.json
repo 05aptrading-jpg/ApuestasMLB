@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 21:48",
+  "fecha": "03/06/2026 22:00",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -825,8 +825,8 @@
       "fav_team": "Seattle Mariners",
       "opp_team": "New York Mets",
       "score_fav": "1",
-      "score_opp": "6",
-      "state": "Bottom 7th",
+      "score_opp": "7",
+      "state": "Middle 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 823130,
@@ -859,17 +859,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 0,
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
+        "outs": 3,
         "balls": 0,
-        "strikes": 1,
-        "away_runs": 6,
+        "strikes": 0,
+        "away_runs": 7,
         "home_runs": 1,
-        "away_hits": 13,
+        "away_hits": 14,
         "home_hits": 6,
         "away_errors": 0,
         "home_errors": 1,
@@ -883,9 +887,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "6",
+        "fav_score": "7",
         "opp_score": "1",
-        "score_fav": "6",
+        "score_fav": "7",
         "score_opp": "1"
       }
     },
@@ -2149,9 +2153,9 @@
     "823130": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 7th",
+      "status": "Middle 8th",
       "away_runs": 1,
-      "home_runs": 6,
+      "home_runs": 7,
       "away_team_name": "New York Mets",
       "home_team_name": "Seattle Mariners",
       "linescore": {
@@ -2183,17 +2187,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 0,
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
+        "outs": 3,
         "balls": 0,
-        "strikes": 1,
-        "away_runs": 6,
+        "strikes": 0,
+        "away_runs": 7,
         "home_runs": 1,
-        "away_hits": 13,
+        "away_hits": 14,
         "home_hits": 6,
         "away_errors": 0,
         "home_errors": 1,
@@ -2207,9 +2215,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "6",
+        "fav_score": "7",
         "opp_score": "1",
-        "score_fav": "6",
+        "score_fav": "7",
         "score_opp": "1"
       }
     },
@@ -2724,7 +2732,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 21:48",
+  "updated_at": "03/06/2026 22:00",
   "stats": {
     "total": 26,
     "acertados": 1,
