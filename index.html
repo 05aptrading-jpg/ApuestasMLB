@@ -369,20 +369,6 @@
 
   <div class="card">
     <div class="card-title">📊 Rendimiento Fútbol</div>
-    <div class="stats-filter" id="futbol-stats-filter">
-      <div class="filter-row">
-        <button class="filter-btn active" id="fbtn-todos" onclick="setFutbolStatsFilter(null)">Todos</button>
-        <button class="filter-btn" id="fbtn-dia" onclick="setFutbolStatsFilter('dia')">📅 Día</button>
-        <button class="filter-btn" id="fbtn-rango" onclick="setFutbolStatsFilter('rango')">📊 Rango</button>
-      </div>
-      <div class="filter-row" id="futbol-filter-dia" style="display:none">
-        <input type="date" id="futbol-stats-date-picker" class="stats-date-input" onchange="filterFutbolStatsByDate(this.value)">
-      </div>
-      <div class="filter-row" id="futbol-filter-rango" style="display:none">
-        <button class="filter-btn sub" id="fbtn-3dias" onclick="setFutbolStatsRange('3dias')">3 Días</button>
-        <button class="filter-btn sub" id="fbtn-semanal" onclick="setFutbolStatsRange('semanal')">Semanal</button>
-      </div>
-    </div>
     <div id="futbol-stats-list" class="futbol-stats-grid"></div>
   </div>
 
@@ -969,9 +955,6 @@ fetchScores();
 var soccerData = null;
 var selectedFutbolLiga = 'todas';
 var selectedFutbolSenal = 'todas';
-var selectedFutbolFecha = '';
-var futbolStatsFilterMode = null;
-var futbolStatsRangeMode = null;
 
 function selectMainTab(tab) {
   var beisbolPanel = document.getElementById('beisbol-panel');
@@ -1120,94 +1103,18 @@ function toggleFutbolDetail(idx, rowEl) {
   }
 }
 
-function setFutbolStatsFilter(mode) {
-  futbolStatsFilterMode = mode;
-  futbolStatsRangeMode = null;
-  document.getElementById('fbtn-todos').className = 'filter-btn' + (mode === null ? ' active' : '');
-  document.getElementById('fbtn-dia').className = 'filter-btn' + (mode === 'dia' ? ' active' : '');
-  document.getElementById('fbtn-rango').className = 'filter-btn' + (mode === 'rango' ? ' active' : '');
-  document.getElementById('futbol-filter-dia').style.display = mode === 'dia' ? '' : 'none';
-  document.getElementById('futbol-filter-rango').style.display = mode === 'rango' ? '' : 'none';
-  if (mode === 'dia') {
-    var picker = document.getElementById('futbol-stats-date-picker');
-    picker.max = new Date().toISOString().split('T')[0];
-  }
-  renderFutbolStats();
-}
-
-function setFutbolStatsRange(range) {
-  futbolStatsRangeMode = range;
-  document.getElementById('fbtn-3dias').className = 'filter-btn sub' + (range === '3dias' ? ' active' : '');
-  document.getElementById('fbtn-semanal').className = 'filter-btn sub' + (range === 'semanal' ? ' active' : '');
-  renderFutbolStats();
-}
-
-function filterFutbolStatsByDate(dateStr) {
-  futbolStatsRangeMode = null;
-  document.getElementById('fbtn-3dias').className = 'filter-btn sub';
-  document.getElementById('fbtn-semanal').className = 'filter-btn sub';
-  renderFutbolStats();
-}
-
-function calcFutbolStatsForGames(games) {
-  var stats = { ah0_total:0, ah0_acertados:0, ah0_fallidos:0, ah0_devueltos:0, ah0_win_rate:0,
-                ou25_total:0, ou25_acertados:0, ou25_fallidos:0, ou25_devueltos:0, ou25_win_rate:0,
-                total:0, acertados:0, fallidos:0, win_rate:0 };
-  for (var i = 0; i < games.length; i++) {
-    var g = games[i];
-    if (!g.marcador_final) continue;
-    if (g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR') {
-      stats.ah0_total++;
-      if (g.resultado_ah0 === 'acertado') stats.ah0_acertados++;
-      else if (g.resultado_ah0 === 'fallido') stats.ah0_fallidos++;
-      else if (g.resultado_ah0 === 'devuelto') stats.ah0_devueltos++;
-    }
-    if (g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR') {
-      stats.ou25_total++;
-      if (g.resultado_ou25 === 'acertado') stats.ou25_acertados++;
-      else if (g.resultado_ou25 === 'fallido') stats.ou25_fallidos++;
-      else if (g.resultado_ou25 === 'devuelto') stats.ou25_devueltos++;
-    }
-  }
-  stats.ah0_win_rate = stats.ah0_total > 0 ? Math.round(stats.ah0_acertados * 100 / stats.ah0_total) : 0;
-  stats.ou25_win_rate = stats.ou25_total > 0 ? Math.round(stats.ou25_acertados * 100 / stats.ou25_total) : 0;
-  stats.total = stats.ah0_total + stats.ou25_total;
-  stats.acertados = stats.ah0_acertados + stats.ou25_acertados;
-  stats.fallidos = stats.ah0_fallidos + stats.ou25_fallidos;
-  stats.win_rate = stats.total > 0 ? Math.round(stats.acertados * 100 / stats.total) : 0;
-  return stats;
-}
-
-function getFutbolStatsFiltered() {
-  var games = (soccerData && soccerData.games) || [];
-  if (futbolStatsFilterMode === null) {
-    return calcFutbolStatsForGames(games);
-  }
-  if (futbolStatsFilterMode === 'dia') {
-    var dateStr = document.getElementById('futbol-stats-date-picker').value;
-    if (!dateStr) return calcFutbolStatsForGames([]);
-    var filtered = games.filter(function(g) { return g.fecha_partido === dateStr; });
-    return calcFutbolStatsForGames(filtered);
-  }
-  if (futbolStatsFilterMode === 'rango' && futbolStatsRangeMode) {
-    var now = new Date();
-    var days = futbolStatsRangeMode === '3dias' ? 3 : 7;
-    var cutoff = new Date(now);
-    cutoff.setDate(cutoff.getDate() - days);
-    var cutoffStr = cutoff.toISOString().slice(0, 10);
-    var filtered = games.filter(function(g) { return g.fecha_partido >= cutoffStr; });
-    return calcFutbolStatsForGames(filtered);
-  }
-  return calcFutbolStatsForGames(games);
-}
-
 function renderFutbolStats() {
   var container = document.getElementById('futbol-stats-list');
-  var stats = getFutbolStatsFiltered();
+  var stats = (soccerData && soccerData.stats) || {};
   var items = [
-    { label: '🌐 Global', total: stats.total, ok: stats.acertados, fail: stats.fallidos, push: 0, rate: stats.win_rate },
-    { label: '🎯 AH0', total: stats.ah0_total, ok: stats.ah0_acertados, fail: stats.ah0_fallidos, push: stats.ah0_devueltos, rate: stats.ah0_win_rate },
-    { label: '📈 O/U 2.5', total: stats.ou25_total, ok: stats.ou25_acertados, fail: stats.ou25_fallidos, push: stats.ou25_devueltos, rate: stats.ou25_win_rate },
+    { label: 'Global AH0', total: stats.ah0_total, ok: stats.ah0_acertados, fail: stats.ah0_fallidos, push: stats.ah0_devueltos, rate: stats.ah0_win_rate },
+    { label: 'Global O/U 2.5', total: stats.ou25_total, ok: stats.ou25_acertados, fail: stats.ou25_fallidos, push: stats.ou25_devueltos, rate: stats.ou25_win_rate },
+    { label: 'Premier League AH0', total: stats.premier_ah0_total, ok: stats.premier_ah0_acertados, fail: stats.premier_ah0_fallidos, push: stats.premier_ah0_devueltos, rate: stats.premier_ah0_win_rate },
+    { label: 'Premier League O/U 2.5', total: stats.premier_ou25_total, ok: stats.premier_ou25_acertados, fail: stats.premier_ou25_fallidos, push: stats.premier_ou25_devueltos, rate: stats.premier_ou25_win_rate },
+    { label: 'La Liga AH0', total: stats.laliga_ah0_total, ok: stats.laliga_ah0_acertados, fail: stats.laliga_ah0_fallidos, push: stats.laliga_ah0_devueltos, rate: stats.laliga_ah0_win_rate },
+    { label: 'La Liga O/U 2.5', total: stats.laliga_ou25_total, ok: stats.laliga_ou25_acertados, fail: stats.laliga_ou25_fallidos, push: stats.laliga_ou25_devueltos, rate: stats.laliga_ou25_win_rate },
+    { label: 'Liga MX AH0', total: stats.ligamx_ah0_total, ok: stats.ligamx_ah0_acertados, fail: stats.ligamx_ah0_fallidos, push: stats.ligamx_ah0_devueltos, rate: stats.ligamx_ah0_win_rate },
+    { label: 'Liga MX O/U 2.5', total: stats.ligamx_ou25_total, ok: stats.ligamx_ou25_acertados, fail: stats.ligamx_ou25_fallidos, push: stats.ligamx_ou25_devueltos, rate: stats.ligamx_ou25_win_rate },
   ];
   var html = '';
   for (var i = 0; i < items.length; i++) {
