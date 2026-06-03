@@ -1,5 +1,5 @@
 {
-  "fecha": "02/06/2026 23:35",
+  "fecha": "02/06/2026 23:39",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780495200,
@@ -2270,78 +2270,13 @@
       "status_emoji": "🏁",
       "fav_team": "Guerreros de Oaxaca",
       "opp_team": "Tigres de Quintana Roo",
-      "score_fav": "1",
-      "score_opp": "9",
-      "state": "Final",
+      "score_fav": "",
+      "score_opp": "",
+      "state": "Pend.",
       "result": "completed",
       "label": "🎯",
-      "game_pk": 846260,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 3
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 4
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": true,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 0,
-        "away_runs": 1,
-        "home_runs": 9,
-        "away_hits": 2,
-        "home_hits": 11,
-        "away_errors": 1,
-        "home_errors": 3,
-        "away_team_name": "Guerreros de Oaxaca",
-        "home_team_name": "Tigres de Quintana Roo",
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "1",
-        "opp_score": "9",
-        "score_fav": "1",
-        "score_opp": "9"
-      }
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -2354,7 +2289,7 @@
       "state": "Final",
       "result": "completed",
       "label": "🎯",
-      "game_pk": 846391,
+      "game_pk": 0,
       "linescore": {
         "innings": [
           {
@@ -2990,7 +2925,7 @@
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 846446,
+      "game_pk": 0,
       "linescore": {
         "innings": [
           {
@@ -3064,78 +2999,13 @@
       "status_emoji": "🏁",
       "fav_team": "El Aguila de Veracruz",
       "opp_team": "Piratas de Campeche",
-      "score_fav": "2",
-      "score_opp": "1",
-      "state": "Final",
+      "score_fav": "",
+      "score_opp": "",
+      "state": "Pend.",
       "result": "completed",
       "label": "📋",
-      "game_pk": 846539,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 2,
-        "home_runs": 1,
-        "away_hits": 8,
-        "home_hits": 6,
-        "away_errors": 0,
-        "home_errors": 1,
-        "away_team_name": "El Aguila de Veracruz",
-        "home_team_name": "Piratas de Campeche",
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "2",
-        "opp_score": "1",
-        "score_fav": "2",
-        "score_opp": "1"
-      }
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -3148,7 +3018,7 @@
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 846125,
+      "game_pk": 0,
       "linescore": {
         "innings": [
           {
@@ -3227,7 +3097,7 @@
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 846770,
+      "game_pk": 0,
       "linescore": {
         "innings": [
           {
@@ -3301,78 +3171,13 @@
       "status_emoji": "🏁",
       "fav_team": "Sultanes de Monterrey",
       "opp_team": "Saraperos de Saltillo",
-      "score_fav": "11",
-      "score_opp": "10",
-      "state": "Final",
+      "score_fav": "",
+      "score_opp": "",
+      "state": "Pend.",
       "result": "completed",
       "label": "📋",
-      "game_pk": 846629,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 4,
-            "home_runs": 5
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 2
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 4,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 2,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 9,
-        "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 2,
-        "away_runs": 11,
-        "home_runs": 10,
-        "away_hits": 14,
-        "home_hits": 18,
-        "away_errors": 0,
-        "home_errors": 2,
-        "away_team_name": "Sultanes de Monterrey",
-        "home_team_name": "Saraperos de Saltillo",
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🏁",
-        "result": "completed",
-        "state": "Final",
-        "fav_score": "11",
-        "opp_score": "10",
-        "score_fav": "11",
-        "score_opp": "10"
-      }
+      "game_pk": 0,
+      "linescore": {}
     },
     {
       "liga": "LMB",
@@ -3385,7 +3190,7 @@
       "state": "Scheduled",
       "result": "pending",
       "label": "📋",
-      "game_pk": 846674,
+      "game_pk": 0,
       "linescore": {
         "innings": [],
         "current_inning": 1,
@@ -3427,7 +3232,7 @@
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 846352,
+      "game_pk": 0,
       "linescore": {
         "innings": [
           {
@@ -3506,7 +3311,7 @@
       "state": "Final",
       "result": "completed",
       "label": "📋",
-      "game_pk": 846076,
+      "game_pk": 0,
       "linescore": {
         "innings": [
           {
