@@ -140,20 +140,6 @@
     "resultado": "pendiente"
   },
   {
-    "game_pk": 823701,
-    "game_date": "2026-06-03",
-    "game_datetime": "2026-06-03T17:40:00Z",
-    "away_team": "Chicago White Sox",
-    "home_team": "Minnesota Twins",
-    "favorito": "Minnesota Twins",
-    "prob_favorito": 53.42,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
-  },
-  {
     "game_pk": 824188,
     "game_date": "2026-06-04",
     "game_datetime": "2026-06-04T00:10:00Z",
@@ -179,6 +165,20 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
+    "resultado": "pendiente"
+  },
+  {
+    "game_pk": 823701,
+    "game_date": "2026-06-03",
+    "game_datetime": "2026-06-03T17:40:00Z",
+    "away_team": "Chicago White Sox",
+    "home_team": "Minnesota Twins",
+    "favorito": "Minnesota Twins",
+    "prob_favorito": 52.32,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
     "resultado": "pendiente"
   },
   {
