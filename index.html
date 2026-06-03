@@ -543,7 +543,8 @@ function renderGameRow(g) {
     teamHtml = '<span style="font-weight:700;color:#f5a623">' + g.fav_team + '</span>'
       + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
   } else {
-    teamHtml = g.fav_team + ' ' + sep + ' ' + g.opp_team;
+    teamHtml = '<span style="color:#58a6ff">' + g.fav_team + '</span>'
+      + ' <span style="color:#71767b">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
   }
   var stateClass = g.result === 'live' ? 'live' : '';
   var idx = (g.game_pk || 0) + '-' + (DATA.games.indexOf(g));
