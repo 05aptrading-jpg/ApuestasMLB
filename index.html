@@ -249,6 +249,26 @@
   .futbol-stat-value { color: #00ba7c; font-weight: 600; }
   .futbol-stat-sub { color: #8b98a5; font-size: 11px; margin-left: 6px; }
   .futbol-empty { color: #71767b; text-align: center; padding: 16px; font-size: 13px; }
+
+  .futbol-game-wrapper { margin-bottom: 0; }
+  .futbol-game-row { cursor: pointer; transition: background 0.15s; border-radius: 6px; display: grid; grid-template-columns: auto 1fr auto auto; gap: 6px; align-items: center; padding: 6px 0; border-bottom: 1px solid #2a3040; font-size: 12px; }
+  .futbol-game-row:last-child { border-bottom: none; }
+  .futbol-game-row:hover { background: #1f2538; }
+  .futbol-game-status { width: 20px; text-align: center; font-size: 13px; }
+  .futbol-expand-icon { font-size: 10px; color: #536471; transition: transform 0.2s; }
+  .futbol-expand-icon.open { transform: rotate(180deg); }
+  .futbol-game-detail {
+    display: none; background: #131827; border-radius: 8px;
+    margin: 2px 0 6px 0; padding: 10px; border: 1px solid #2a3040;
+  }
+  .futbol-game-detail.open { display: block; }
+  .futbol-detail-row { display: flex; justify-content: space-between; padding: 2px 0; font-size: 12px; }
+  .futbol-detail-label { color: #8b98a5; }
+  .futbol-detail-value { color: #e1e8ed; font-weight: 500; }
+  .futbol-detail-acertado { color: #00ba7c; }
+  .futbol-detail-fallido { color: #ef4444; }
+  .futbol-detail-devuelto { color: #f5a623; }
+  .futbol-detail-pendiente { color: #71767b; }
 </style>
 </head>
 <body>
@@ -318,6 +338,18 @@
 </div>
 
 <div id="futbol-panel" style="display:none">
+
+  <div class="header">
+    <div class="date" id="futbol-fecha">—</div>
+    <div class="next-update" id="futbol-next-update">⏳ Próxima actualización<br><span class="update-time" id="futbol-countdown-display">📡 Futbol: —</span></div>
+  </div>
+
+  <div class="legend">
+    <span>✅ Acertado</span>
+    <span>❌ Fallido</span>
+    <span>🔄 Devuelto</span>
+    <span>⏳ Pendiente</span>
+  </div>
 
   <div class="card">
     <div class="card-title">⚽ Partidos de Fútbol</div>
@@ -948,6 +980,10 @@ function fetchSoccerData() {
     .then(function(data) {
       soccerData = data;
       renderFutbol();
+      var fechaEl = document.getElementById('futbol-fecha');
+      if (fechaEl) fechaEl.textContent = soccerData.fecha || '—';
+      var info = document.getElementById('futbol-update-info');
+      if (info) info.textContent = 'Actualizado: ' + (soccerData.fecha || '') + ' - ' + (soccerData.games ? soccerData.games.length : 0) + ' partidos';
     })
     .catch(function() {
       document.getElementById('futbol-games-list').innerHTML = '<div class="futbol-empty">Sin datos de futbol disponibles</div>';
@@ -974,8 +1010,6 @@ function selectFutbolSenal(senal) {
 
 function renderFutbol() {
   if (!soccerData) return;
-  var info = document.getElementById('futbol-update-info');
-  if (info) info.textContent = 'Actualizado: ' + (soccerData.fecha || '') + ' - ' + (soccerData.games ? soccerData.games.length : 0) + ' partidos';
   renderFutbolGames();
   renderFutbolStats();
 }
@@ -996,6 +1030,28 @@ function renderFutbolGames() {
   var html = '';
   for (var i = 0; i < filtered.length; i++) {
     var g = filtered[i];
+    var idx = i;
+    var statusEmoji = '⏳';
+    if (g.resultado_ah0 === 'acertado' || g.resultado_ou25 === 'acertado') statusEmoji = '✅';
+    if (g.resultado_ah0 === 'fallido' && g.resultado_ou25 === 'fallido') statusEmoji = '❌';
+    if (g.resultado_ah0 === 'devuelto' && (g.resultado_ou25 === 'pendiente' || g.resultado_ou25 === 'no_apostar')) statusEmoji = '🔄';
+    if (g.marcador_final) {
+      var bothDone = g.resultado_ah0 !== 'pendiente' && g.resultado_ou25 !== 'pendiente';
+      var hasAh0 = g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR';
+      var hasOu = g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR';
+      if (hasAh0 && hasOu) {
+        if (g.resultado_ah0 === 'acertado' && g.resultado_ou25 === 'acertado') statusEmoji = '✅';
+        else if (g.resultado_ah0 === 'fallido' || g.resultado_ou25 === 'fallido') statusEmoji = '❌';
+        else if (g.resultado_ah0 === 'devuelto') statusEmoji = '🔄';
+      } else if (hasAh0) {
+        if (g.resultado_ah0 === 'acertado') statusEmoji = '✅';
+        else if (g.resultado_ah0 === 'fallido') statusEmoji = '❌';
+        else if (g.resultado_ah0 === 'devuelto') statusEmoji = '🔄';
+      } else if (hasOu) {
+        if (g.resultado_ou25 === 'acertado') statusEmoji = '✅';
+        else if (g.resultado_ou25 === 'fallido') statusEmoji = '❌';
+      }
+    }
     var senalHtml = '';
     if (g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR') {
       var cls = g.confianza_ah0 === 'ALTA' ? 'alta' : (g.confianza_ah0 === 'MEDIA' ? 'media' : 'baja');
@@ -1009,34 +1065,63 @@ function renderFutbolGames() {
       senalHtml = '<span class="senal-tag no-apostar">No apostar</span>';
     }
     var favText = g.favorito ? ' - ' + g.favorito : '';
-    html += '<div class="futbol-game-row">'
+    var fechaText = g.fecha_partido ? g.fecha_partido : '';
+    var horaText = g.hora_partido ? ' ' + g.hora_partido : '';
+    html += '<div class="futbol-game-wrapper">'
+      + '<div class="futbol-game-row" onclick="toggleFutbolDetail(' + idx + ', this)">'
+      + '<div class="futbol-game-status">' + statusEmoji + '</div>'
       + '<div><div class="futbol-teams">' + g.local + ' vs ' + g.visitante + favText + '</div>'
       + '<div class="futbol-xg">xG: ' + g.xg_local.toFixed(1) + ' - ' + g.xg_visit.toFixed(1) + ' | Total: ' + g.xg_total.toFixed(1) + ' | Diff: ' + (g.diff_xg >= 0 ? '+' : '') + g.diff_xg.toFixed(2) + '</div></div>'
       + '<div class="futbol-signal">' + senalHtml + '</div>'
+      + '<div class="futbol-expand-icon">▼</div>'
+      + '</div>'
+      + '<div class="futbol-game-detail" id="fd-' + idx + '">'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">📅 Fecha</span><span class="futbol-detail-value">' + (fechaText || '—') + (horaText || '') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">⚽ Marcador</span><span class="futbol-detail-value">' + (g.marcador_final || 'Pendiente') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">🎯 Señal AH0</span><span class="futbol-detail-value">' + (g.senal_ah0 !== 'NO_APOSTAR' ? g.senal_ah0 : '—') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">📊 Resultado AH0</span><span class="futbol-detail-value futbol-detail-' + g.resultado_ah0 + '">' + (g.resultado_ah0 || 'pendiente') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">📈 Señal O/U 2.5</span><span class="futbol-detail-value">' + (g.senal_ou25 !== 'NO_APOSTAR' ? g.senal_ou25 : '—') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">📊 Resultado O/U 2.5</span><span class="futbol-detail-value futbol-detail-' + g.resultado_ou25 + '">' + (g.resultado_ou25 || 'pendiente') + '</span></div>'
+      + '</div>'
       + '</div>';
   }
   container.innerHTML = html;
+}
+
+function toggleFutbolDetail(idx, rowEl) {
+  var container = document.getElementById('fd-' + idx);
+  if (!container) return;
+  var isOpen = container.classList.contains('open');
+  var icon = rowEl.querySelector('.futbol-expand-icon');
+  if (isOpen) {
+    container.classList.remove('open');
+    if (icon) icon.classList.remove('open');
+  } else {
+    container.classList.add('open');
+    if (icon) icon.classList.add('open');
+  }
 }
 
 function renderFutbolStats() {
   var container = document.getElementById('futbol-stats-list');
   var stats = (soccerData && soccerData.stats) || {};
   var items = [
-    { label: 'Global AH0', total: stats.ah0_total, ok: stats.ah0_acertados, fail: stats.ah0_fallidos, rate: stats.ah0_win_rate },
-    { label: 'Global O/U 2.5', total: stats.ou25_total, ok: stats.ou25_acertados, fail: stats.ou25_fallidos, rate: stats.ou25_win_rate },
-    { label: 'Premier League AH0', total: stats.premier_ah0_total, ok: stats.premier_ah0_acertados, fail: stats.premier_ah0_fallidos, rate: stats.premier_ah0_win_rate },
-    { label: 'Premier League O/U 2.5', total: stats.premier_ou25_total, ok: stats.premier_ou25_acertados, fail: stats.premier_ou25_fallidos, rate: stats.premier_ou25_win_rate },
-    { label: 'La Liga AH0', total: stats.laliga_ah0_total, ok: stats.laliga_ah0_acertados, fail: stats.laliga_ah0_fallidos, rate: stats.laliga_ah0_win_rate },
-    { label: 'La Liga O/U 2.5', total: stats.laliga_ou25_total, ok: stats.laliga_ou25_acertados, fail: stats.laliga_ou25_fallidos, rate: stats.laliga_ou25_win_rate },
-    { label: 'Liga MX AH0', total: stats.ligamx_ah0_total, ok: stats.ligamx_ah0_acertados, fail: stats.ligamx_ah0_fallidos, rate: stats.ligamx_ah0_win_rate },
-    { label: 'Liga MX O/U 2.5', total: stats.ligamx_ou25_total, ok: stats.ligamx_ou25_acertados, fail: stats.ligamx_ou25_fallidos, rate: stats.ligamx_ou25_win_rate },
+    { label: 'Global AH0', total: stats.ah0_total, ok: stats.ah0_acertados, fail: stats.ah0_fallidos, push: stats.ah0_devueltos, rate: stats.ah0_win_rate },
+    { label: 'Global O/U 2.5', total: stats.ou25_total, ok: stats.ou25_acertados, fail: stats.ou25_fallidos, push: stats.ou25_devueltos, rate: stats.ou25_win_rate },
+    { label: 'Premier League AH0', total: stats.premier_ah0_total, ok: stats.premier_ah0_acertados, fail: stats.premier_ah0_fallidos, push: stats.premier_ah0_devueltos, rate: stats.premier_ah0_win_rate },
+    { label: 'Premier League O/U 2.5', total: stats.premier_ou25_total, ok: stats.premier_ou25_acertados, fail: stats.premier_ou25_fallidos, push: stats.premier_ou25_devueltos, rate: stats.premier_ou25_win_rate },
+    { label: 'La Liga AH0', total: stats.laliga_ah0_total, ok: stats.laliga_ah0_acertados, fail: stats.laliga_ah0_fallidos, push: stats.laliga_ah0_devueltos, rate: stats.laliga_ah0_win_rate },
+    { label: 'La Liga O/U 2.5', total: stats.laliga_ou25_total, ok: stats.laliga_ou25_acertados, fail: stats.laliga_ou25_fallidos, push: stats.laliga_ou25_devueltos, rate: stats.laliga_ou25_win_rate },
+    { label: 'Liga MX AH0', total: stats.ligamx_ah0_total, ok: stats.ligamx_ah0_acertados, fail: stats.ligamx_ah0_fallidos, push: stats.ligamx_ah0_devueltos, rate: stats.ligamx_ah0_win_rate },
+    { label: 'Liga MX O/U 2.5', total: stats.ligamx_ou25_total, ok: stats.ligamx_ou25_acertados, fail: stats.ligamx_ou25_fallidos, push: stats.ligamx_ou25_devueltos, rate: stats.ligamx_ou25_win_rate },
   ];
   var html = '';
   for (var i = 0; i < items.length; i++) {
     var it = items[i];
-    if (it.total === null || it.total === undefined) continue;
+    if (it.total === null || it.total === undefined || it.total === 0) continue;
     if (it.rate !== undefined) {
-      html += '<div class="futbol-stat-item"><span class="futbol-stat-label">' + it.label + '</span><span class="futbol-stat-value">' + (it.ok || 0) + 'E ' + (it.fail || 0) + 'F <span class="futbol-stat-sub">(' + it.total + ') ' + it.rate + '%</span></span></div>';
+      var pushText = it.push ? ' <span style="color:#f5a623">🔄' + it.push + '</span>' : '';
+      html += '<div class="futbol-stat-item"><span class="futbol-stat-label">' + it.label + '</span><span class="futbol-stat-value">' + (it.ok || 0) + '✅ ' + (it.fail || 0) + '❌' + pushText + ' <span class="futbol-stat-sub">(' + it.total + ') ' + it.rate + '%</span></span></div>';
     }
   }
   if (!html) html = '<div class="futbol-empty">No hay estadisticas de futbol aun. Los datos se acumularan cuando los partidos tengan resultados.</div>';
