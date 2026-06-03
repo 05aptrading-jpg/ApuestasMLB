@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 17:33",
+  "fecha": "03/06/2026 17:36",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -436,7 +436,7 @@
       "status_emoji": "🔴",
       "fav_team": "Tampa Bay Rays",
       "opp_team": "Detroit Tigers",
-      "score_fav": "1",
+      "score_fav": "2",
       "score_opp": "2",
       "state": "Bottom 2nd",
       "result": "live",
@@ -450,19 +450,19 @@
           },
           {
             "away_runs": 1,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 2,
         "is_top": false,
         "inning_ordinal": "2nd",
         "outs": 0,
-        "balls": 1,
+        "balls": 0,
         "strikes": 1,
         "away_runs": 2,
-        "home_runs": 1,
+        "home_runs": 2,
         "away_hits": 4,
-        "home_hits": 2,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Detroit Tigers",
@@ -476,9 +476,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "2",
-        "opp_score": "1",
+        "opp_score": "2",
         "score_fav": "2",
-        "score_opp": "1"
+        "score_opp": "2"
       }
     },
     {
@@ -807,7 +807,7 @@
       "opp_team": "Washington Nationals",
       "score_fav": "1",
       "score_opp": "0",
-      "state": "End 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "📋",
       "game_pk": 822727,
@@ -820,12 +820,16 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 3,
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
+        "outs": 0,
         "balls": 2,
         "strikes": 2,
         "away_runs": 1,
@@ -1554,7 +1558,7 @@
       "is_live": true,
       "is_final": false,
       "status": "Bottom 2nd",
-      "away_runs": 1,
+      "away_runs": 2,
       "home_runs": 2,
       "away_team_name": "Detroit Tigers",
       "home_team_name": "Tampa Bay Rays",
@@ -1566,19 +1570,19 @@
           },
           {
             "away_runs": 1,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 2,
         "is_top": false,
         "inning_ordinal": "2nd",
         "outs": 0,
-        "balls": 1,
+        "balls": 0,
         "strikes": 1,
         "away_runs": 2,
-        "home_runs": 1,
+        "home_runs": 2,
         "away_hits": 4,
-        "home_hits": 2,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Detroit Tigers",
@@ -1592,9 +1596,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "2",
-        "opp_score": "1",
+        "opp_score": "2",
         "score_fav": "2",
-        "score_opp": "1"
+        "score_opp": "2"
       }
     },
     "823780": {
@@ -1876,7 +1880,7 @@
     "822727": {
       "is_live": true,
       "is_final": false,
-      "status": "End 2nd",
+      "status": "Top 3rd",
       "away_runs": 1,
       "home_runs": 0,
       "away_team_name": "Washington Nationals",
@@ -1890,12 +1894,16 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 3,
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
+        "outs": 0,
         "balls": 2,
         "strikes": 2,
         "away_runs": 1,
@@ -1961,7 +1969,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 17:33",
+  "updated_at": "03/06/2026 17:36",
   "stats": {
     "total": 26,
     "acertados": 0,
