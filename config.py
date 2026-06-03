@@ -63,11 +63,11 @@ PESO_EFICIENCIA       = 10   # Bloque 4 — BaseRuns vs récord real
 PESO_OPENER_REDUCCION = 15   # Abridor → 15%, Bullpen += 15%
 
 # Umbral mínimo de score para considerar señal válida
-PROB_MINIMA_SEÑAL     = 55.0  # % — "Tríada del Valor": necesita > 55%
-PROB_MINIMA_ANALISIS  = 55.0  # % — Umbral mínimo para análisis accionable
+PROB_MINIMA_SEÑAL     = 57.0  # % — "Tríada del Valor": necesita > 57%
+PROB_MINIMA_ANALISIS  = 57.0  # % — Umbral mínimo para análisis accionable
                                # Partidos < 55% se marcan como "señal débil"
 PROB_MINIMA_APUESTA   = PROB_MINIMA_ANALISIS  # Alias para retrocompatibilidad
-EDGE_MINIMO           = 3.0   # % — Edge mínimo (prob_bot - prob_mercado) para Confianza Alta
+EDGE_MINIMO           = 4.0   # % — Edge mínimo (prob_bot - prob_mercado) para Confianza Alta
 
 # ── Bloque 1: Pitcheo abridor
 IP_MINIMAS_TEMPORADA  = 20      # Menos de 20 IP → penalización de volatilidad
@@ -91,8 +91,8 @@ TRIGGER_PROB_MIN       = 35   # % — Probabilidad de mercado minima para evitar
 # ── Holgura para segmentacion ALTA vs MEDIA ──────────────────────────────
 # ALTA = |diff_pitcheo| > HOLGURA_PITCHEO  Y  |diff_wrc| > HOLGURA_WRC
 # MEDIA = pasa trigger combinado pero no cumple ambos umbrales
-TRIGGER_HOLGURA_PITCHEO = 6.0  # Diferencia absoluta de Score_Pitcheo para ALTA
-TRIGGER_HOLGURA_WRC     = 15   # Diferencia absoluta de wRC+ para ALTA
+TRIGGER_HOLGURA_PITCHEO = 7.0  # Diferencia absoluta de Score_Pitcheo para ALTA
+TRIGGER_HOLGURA_WRC     = 18   # Diferencia absoluta de wRC+ para ALTA
 # PF, BP, FIP son estrictamente informativos — no bloquean ni degradan
 
 # ── Cuotas / "Tríada del Valor"
@@ -105,6 +105,11 @@ XWOBA_DESVIACION_7D   = 0.030   # Desviación xwOBA 7 días vs temporada (30 pun
 CSV_PATH              = os.path.join(BASE_DIR, "apuestas.csv")
 LOG_PATH              = os.path.join(BASE_DIR, "mlb_bot.log")
 LOG_LEVEL             = "INFO"    # DEBUG | INFO | WARNING | ERROR
+
+# ── Fútbol (CSV y cache) ─────────────────────────────────────────────
+FUTBOL_DIR            = os.path.normpath(os.path.join(BASE_DIR, "..", "futbol_bot"))
+CSV_SOCCER_PATH       = os.path.join(FUTBOL_DIR, "apuestas_soccer.csv")
+SOCCER_DATA_JSON      = os.path.join(BASE_DIR, "soccer_data.json")
 
 # ── Re-análisis diario (horas fijas, después del análisis dinámico) ──────
 REANALISIS_MLB_HORA = "08:00"   # Re-análisis MLB (hora fija)

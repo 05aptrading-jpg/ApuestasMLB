@@ -6,6 +6,7 @@ Escucha comandos /actualizar y responde con tabla compacta de resultados.
 import json
 import logging
 import os
+import sys
 import threading
 import time
 from datetime import datetime
@@ -266,10 +267,106 @@ def _cmd_actualiza(chat_id: str):
             lineas += [f"📋 Solo Inform.: {stats['baja_acertados']}✅ {stats['baja_fallidos']}❌ ({stats['baja_total']}) → <b>{stats['baja_win_rate']}%</b>"]
         lineas += [f"⭐ Señales Valor: {stats['valor_ok']}/{stats['valor_total']} ({stats['valor_rate']}%)"]
 
+    # ── Fútbol stats ──
+    try:
+        sys.path.insert(0, config.FUTBOL_DIR)
+        from data_manager import obtener_estadisticas_soccer
+        fut_stats = obtener_estadisticas_soccer()
+        if fut_stats.get("total", 0) > 0:
+            lineas += ["", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"]
+            lineas.append("⚽ <b>FÚTBOL — RENDIMIENTO</b>")
+            lineas.append(f"🌐 Global: {fut_stats['acertados']}✅ {fut_stats['fallidos']}❌ ({fut_stats['total']}) → <b>{fut_stats['win_rate']}%</b>")
+            if fut_stats.get("ah0_total", 0) > 0:
+                lineas.append(f"🎯 AH0: {fut_stats['ah0_acertados']}✅ {fut_stats['ah0_fallidos']}❌ ({fut_stats['ah0_total']}) → <b>{fut_stats['ah0_win_rate']}%</b>")
+            if fut_stats.get("ou25_total", 0) > 0:
+                lineas.append(f"📈 O/U 2.5: {fut_stats['ou25_acertados']}✅ {fut_stats['ou25_fallidos']}❌ ({fut_stats['ou25_total']}) → <b>{fut_stats['ou25_win_rate']}%</b>")
+    except Exception:
+        pass
+
     show_mini = bool(config.GITHUB_TOKEN)
     text = "\n".join(lineas)
     if len(text) <= 4000:
         _send_raw(chat_id, text, mini_app=show_mini)
+    else:
+        for parte in [text[i:i+4000] for i in range(0, len(text), 4000)]:
+            _send_raw(chat_id, parte, mini_app=False)
+
+
+def _cmd_futbol(chat_id: str):
+    """Muestra análisis de fútbol (Premier, La Liga, Liga MX)."""
+    import csv as _csv
+    from datetime import date as _date
+    hoy = _date.today()
+    lineas = [
+        "⚽ <b>FÚTBOL — ANÁLISIS</b>",
+        f"📅 {hoy.strftime('%d/%m/%Y')}",
+        "",
+    ]
+
+    csv_path = config.CSV_SOCCER_PATH
+    if not os.path.exists(csv_path):
+        lineas.append("ℹ️ Sin datos de fútbol disponibles.")
+        _send_raw(chat_id, "\n".join(lineas), mini_app=True)
+        return
+
+    try:
+        with open(csv_path, newline="", encoding="utf-8") as f:
+            rows = list(_csv.DictReader(f))
+    except Exception as e:
+        lineas.append(f"⚠️ Error leyendo datos: {e}")
+        _send_raw(chat_id, "\n".join(lineas), mini_app=True)
+        return
+
+    pendientes = [r for r in rows if r.get("resultado") == "pendiente"]
+    if not pendientes:
+        lineas.append("ℹ️ Sin partidos pendientes de fútbol.")
+        _send_raw(chat_id, "\n".join(lineas), mini_app=True)
+        return
+
+    ligas = {}
+    for r in pendientes:
+        lk = r.get("liga", "FÚTBOL")
+        ligas.setdefault(lk, []).append(r)
+
+    liga_emoji = {"PREMIER_LEAGUE": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "LA_LIGA": "🇪🇸", "LIGA_MX": "🇲🇽"}
+
+    for liga, parts in ligas.items():
+        emoji = liga_emoji.get(liga, "⚽")
+        lineas.append(f"{emoji} <b>{liga}</b> — {len(parts)} partidos")
+        for r in parts:
+            diff = r.get("diff_xg", "0")
+            try:
+                diff_val = float(diff)
+                diff_str = f"+{diff_val:.2f}" if diff_val > 0 else f"{diff_val:.2f}"
+            except (ValueError, TypeError):
+                diff_str = str(diff)
+            lineas.append(f"  {r['local']} vs {r['visitante']}")
+            lineas.append(f"    📊 {r.get('xg_local','?')} - {r.get('xg_visit','?')} | diff: {diff_str}")
+            if r.get("senal_ah0", "NO_APOSTAR") != "NO_APOSTAR":
+                lineas.append(f"    🎯 AH0: {r['senal_ah0']} ({r.get('confianza_ah0', '')})")
+            if r.get("senal_ou25", "NO_APOSTAR") != "NO_APOSTAR":
+                lineas.append(f"    📈 O/U 2.5: {r['senal_ou25']} ({r.get('confianza_ou25', '')})")
+        lineas.append("")
+
+    # Stats de fútbol
+    try:
+        sys.path.insert(0, config.FUTBOL_DIR)
+        from data_manager import obtener_estadisticas_soccer
+        stats = obtener_estadisticas_soccer()
+        if stats.get("total", 0) > 0:
+            lineas += ["━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"]
+            lineas.append("📊 <b>FÚTBOL — RENDIMIENTO</b>")
+            lineas.append(f"🌐 Global: {stats['acertados']}✅ {stats['fallidos']}❌ ({stats['total']}) → <b>{stats['win_rate']}%</b>")
+            if stats.get("ah0_total", 0) > 0:
+                lineas.append(f"🎯 AH0: {stats['ah0_acertados']}✅ {stats['ah0_fallidos']}❌ ({stats['ah0_total']}) → <b>{stats['ah0_win_rate']}%</b>")
+            if stats.get("ou25_total", 0) > 0:
+                lineas.append(f"📈 O/U 2.5: {stats['ou25_acertados']}✅ {stats['ou25_fallidos']}❌ ({stats['ou25_total']}) → <b>{stats['ou25_win_rate']}%</b>")
+    except Exception:
+        pass
+
+    text = "\n".join(lineas)
+    if len(text) <= 4000:
+        _send_raw(chat_id, text, mini_app=True)
     else:
         for parte in [text[i:i+4000] for i in range(0, len(text), 4000)]:
             _send_raw(chat_id, parte, mini_app=False)
@@ -409,7 +506,7 @@ def _cmd_reiniciar(chat_id: int):
         _send_raw(str(chat_id), "⛔ Solo el administrador puede reiniciar.")
         return
 
-    _send_raw(str(chat_id), "🔄 Ejecutando análisis completo MLB + LMB...")
+    _send_raw(str(chat_id), "🔄 Ejecutando análisis completo MLB + LMB + Fútbol...")
 
     def _work():
         try:
@@ -434,6 +531,30 @@ def _cmd_reiniciar(chat_id: int):
             except Exception as e:
                 resultados.append(f"❌ LMB error: {e}")
                 logger.error(f"LMB reinicio error: {e}")
+
+            # Fútbol
+            try:
+                sys.path.insert(0, config.FUTBOL_DIR)
+                from generate_data_json import generar_soccer_data_json
+                from scraper_fbref import actualizar_base_datos_soccer
+                import data_manager as fut_dm
+                fut_dm.inicializar_csv()
+                df = actualizar_base_datos_soccer()
+                if not df.empty:
+                    from analyzer import generar_partidos_desde_cache, analizar_partido_soccer
+                    partidos = generar_partidos_desde_cache(df)
+                    analyses = [analizar_partido_soccer(m) for m in partidos]
+                    if analyses:
+                        fut_dm.guardar_analisis(analyses)
+                        generar_soccer_data_json()
+                        resultados.append(f"✅ Fútbol completado ({len(analyses)} partidos)")
+                    else:
+                        resultados.append("ℹ️ Fútbol: sin partidos para hoy")
+                else:
+                    resultados.append("⚠️ Fútbol: sin datos de Understat")
+            except Exception as e:
+                resultados.append(f"❌ Fútbol error: {e}")
+                logger.error(f"Fútbol reinicio error: {e}")
 
             _send_raw(str(chat_id),
                 "✅ <b>Análisis completo finalizado</b>\n\n" +
@@ -532,14 +653,15 @@ def handle_updates():
                         es_admin = chat_id == data.get("admin_id", 0)
                         cmds = (
                     "📊 <b>Comandos disponibles:</b>\n"
-                    "  /actualizar — Ver resultados del día\n"
+                    "  /actualizar — Ver resultados del día (MLB + LMB + Fútbol)\n"
+                    "  /futbol — Ver análisis de fútbol\n"
                     "  /suscribirse — Abrir Mini App\n"
                     "  /borrar — Eliminar mis datos del sistema"
                         )
                         if es_admin:
                             cmds += "\n  /suscriptores — Gestionar suscriptores"
                             cmds += "\n  /deploy — Redeploy Railway"
-                            cmds += "\n  /reiniciar — Reiniciar bot local (MLB+LMB)"
+                            cmds += "\n  /reiniciar — Reiniciar bot (MLB+LMB+Fútbol)"
                             cmds += "\n  /reload — Recargar código sin reiniciar"
                         _send_raw(str(chat_id),
                             "⚾ <b>MLB Analytics</b>\n\n"
@@ -561,6 +683,18 @@ def handle_updates():
                 if text.startswith("/actualizar"):
                     if _esta_autorizado(chat_id):
                         _cmd_actualiza(str(chat_id))
+                    else:
+                        _send_raw(str(chat_id),
+                            "🔒 Acceso restringido.\n"
+                            f"Contacta a @{config.ADMIN_USERNAME} para obtener acceso.",
+                            mini_app=True
+                        )
+                    continue
+
+                # /futbol — mostrar análisis de fútbol
+                if text.startswith("/futbol"):
+                    if _esta_autorizado(chat_id):
+                        _cmd_futbol(str(chat_id))
                     else:
                         _send_raw(str(chat_id),
                             "🔒 Acceso restringido.\n"
@@ -645,7 +779,8 @@ def iniciar():
             json={
                 "commands": [
                     {"command": "start", "description": "Ver comandos disponibles"},
-                    {"command": "actualizar", "description": "Ver resultados del día"},
+                    {"command": "actualizar", "description": "Ver resultados del día (MLB+LMB+Fútbol)"},
+                    {"command": "futbol", "description": "Ver análisis de fútbol"},
                     {"command": "suscribirse", "description": "Abrir Mini App"},
                     {"command": "borrar", "description": "Eliminar mis datos del sistema"},
                 ]
