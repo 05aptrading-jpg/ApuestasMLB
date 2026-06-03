@@ -219,17 +219,15 @@ def _cmd_actualiza(chat_id: str):
     if not all_games:
         lineas.append("ℹ️ Sin partidos disponibles vía ESPN.")
     else:
-        # Ordenar: hoy primero, luego ayer
         hoy_games = [g for g in all_games if "Final" not in g["detail"] or "Aplazado" in g["detail"]]
         ayer_games = [g for g in all_games if g not in hoy_games]
-        # Mostrar pendientes/en vivo primero
         pendientes = [g for g in hoy_games if not g["done"]]
         finalizados_hoy = [g for g in hoy_games if g["done"]]
         ordenados = pendientes + finalizados_hoy + ayer_games
 
         for g in ordenados[:15]:
             if g["done"]:
-                emoji = "✅" if int(g["ar"]) != int(g["hr"]) else "🤝"  # no hay favorito, mostrar resultado
+                emoji = "✅" if int(g["ar"]) != int(g["hr"]) else "🤝"
                 score = f"{g['ar']}-{g['hr']}"
                 state = g["detail"][:10]
             elif "Postp" in g["detail"] or "Aplaz" in g["detail"]:
@@ -244,10 +242,7 @@ def _cmd_actualiza(chat_id: str):
                 emoji = "🔴"
                 score = f"{g['ar']}-{g['hr']}"
                 state = g["detail"][:10]
-            equipos = f"{g['a']} {score} {g['h']}"
-            lineas.append(_t_sep())
-            lineas.append(_t_row(emoji, equipos, state))
-        lineas.append("└─────┴──────────────────────────────────┴──────────┘")
+            lineas.append(f"{emoji} <code>{score:>5}</code> {g['a'][:20]} vs {g['h'][:20]}  <i>{state}</i>")
 
     # ── Estadísticas históricas ──
     lineas += ["", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"]
