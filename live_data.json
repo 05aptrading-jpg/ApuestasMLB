@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 20:47",
+  "fecha": "03/06/2026 21:02",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -825,8 +825,8 @@
       "fav_team": "Seattle Mariners",
       "opp_team": "New York Mets",
       "score_fav": "1",
-      "score_opp": "1",
-      "state": "Top 4th",
+      "score_opp": "5",
+      "state": "Bottom 4th",
       "result": "live",
       "label": "📋",
       "game_pk": 823130,
@@ -845,20 +845,20 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 4,
             "home_runs": 0
           }
         ],
         "current_inning": 4,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "4th",
         "outs": 1,
-        "balls": 1,
-        "strikes": 1,
-        "away_runs": 1,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 5,
         "home_runs": 1,
-        "away_hits": 7,
-        "home_hits": 3,
+        "away_hits": 9,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 1,
         "away_team_name": "New York Mets",
@@ -871,9 +871,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
+        "fav_score": "5",
         "opp_score": "1",
-        "score_fav": "1",
+        "score_fav": "5",
         "score_opp": "1"
       }
     },
@@ -2137,9 +2137,9 @@
     "823130": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 4th",
+      "status": "Bottom 4th",
       "away_runs": 1,
-      "home_runs": 1,
+      "home_runs": 5,
       "away_team_name": "New York Mets",
       "home_team_name": "Seattle Mariners",
       "linescore": {
@@ -2157,20 +2157,20 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 4,
             "home_runs": 0
           }
         ],
         "current_inning": 4,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "4th",
         "outs": 1,
-        "balls": 1,
-        "strikes": 1,
-        "away_runs": 1,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 5,
         "home_runs": 1,
-        "away_hits": 7,
-        "home_hits": 3,
+        "away_hits": 9,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 1,
         "away_team_name": "New York Mets",
@@ -2183,9 +2183,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
+        "fav_score": "5",
         "opp_score": "1",
-        "score_fav": "1",
+        "score_fav": "5",
         "score_opp": "1"
       }
     },
@@ -2700,7 +2700,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 20:47",
+  "updated_at": "03/06/2026 21:02",
   "stats": {
     "total": 26,
     "acertados": 1,
