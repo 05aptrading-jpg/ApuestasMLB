@@ -1,5 +1,5 @@
 {
-  "fecha": "02/06/2026 23:39",
+  "fecha": "02/06/2026 23:43",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780495200,
@@ -3457,6 +3457,1973 @@
     1992258520,
     8670833401
   ],
+  "has_live": false,
+  "has_scheduled": true,
+  "live_data": {
+    "401815578": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 13,
+      "home_runs": 8,
+      "away_team_name": "Athletics",
+      "home_team_name": "New York Yankees",
+      "linescore": {}
+    },
+    "401815577": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 3,
+      "home_runs": 2,
+      "away_team_name": "Arizona Diamondbacks",
+      "home_team_name": "Seattle Mariners",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          }
+        ],
+        "current_inning": 10,
+        "is_top": false,
+        "inning_ordinal": "10th",
+        "outs": 1,
+        "balls": 1,
+        "strikes": 0,
+        "away_runs": 2,
+        "home_runs": 3,
+        "away_hits": 3,
+        "home_hits": 11,
+        "away_errors": 0,
+        "home_errors": 1,
+        "away_team_name": "Arizona Diamondbacks",
+        "home_team_name": "Seattle Mariners",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "2",
+        "opp_score": "3",
+        "score_fav": "2",
+        "score_opp": "3"
+      }
+    },
+    "401815566": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 4,
+      "home_runs": 6,
+      "away_team_name": "Cincinnati Reds",
+      "home_team_name": "Atlanta Braves",
+      "linescore": {}
+    },
+    "401815565": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 5,
+      "home_runs": 2,
+      "away_team_name": "Los Angeles Angels",
+      "home_team_name": "Tampa Bay Rays",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 2,
+        "home_runs": 5,
+        "away_hits": 9,
+        "home_hits": 7,
+        "away_errors": 1,
+        "home_errors": 1,
+        "away_team_name": "Los Angeles Angels",
+        "home_team_name": "Tampa Bay Rays",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "2",
+        "opp_score": "5",
+        "score_fav": "2",
+        "score_opp": "5"
+      }
+    },
+    "401815567": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 9,
+      "home_runs": 4,
+      "away_team_name": "Cleveland Guardians",
+      "home_team_name": "Boston Red Sox",
+      "linescore": {}
+    },
+    "401815573": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 2,
+      "home_runs": 1,
+      "away_team_name": "Detroit Tigers",
+      "home_team_name": "Chicago White Sox",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 1,
+        "away_runs": 1,
+        "home_runs": 2,
+        "away_hits": 4,
+        "home_hits": 6,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "Detroit Tigers",
+        "home_team_name": "Chicago White Sox",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "1",
+        "opp_score": "2",
+        "score_fav": "1",
+        "score_opp": "2"
+      }
+    },
+    "401815569": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 9,
+      "home_runs": 3,
+      "away_team_name": "Minnesota Twins",
+      "home_team_name": "Pittsburgh Pirates",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 3,
+        "home_runs": 9,
+        "away_hits": 6,
+        "home_hits": 8,
+        "away_errors": 0,
+        "home_errors": 1,
+        "away_team_name": "Minnesota Twins",
+        "home_team_name": "Pittsburgh Pirates",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "3",
+        "opp_score": "9",
+        "score_fav": "3",
+        "score_opp": "9"
+      }
+    },
+    "401815574": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 6,
+      "home_runs": 3,
+      "away_team_name": "Kansas City Royals",
+      "home_team_name": "Texas Rangers",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 3,
+        "home_runs": 6,
+        "away_hits": 8,
+        "home_hits": 10,
+        "away_errors": 0,
+        "home_errors": 1,
+        "away_team_name": "Kansas City Royals",
+        "home_team_name": "Texas Rangers",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "3",
+        "opp_score": "6",
+        "score_fav": "3",
+        "score_opp": "6"
+      }
+    },
+    "401815579": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 9,
+      "home_runs": 1,
+      "away_team_name": "Philadelphia Phillies",
+      "home_team_name": "Los Angeles Dodgers",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 1,
+        "home_runs": 9,
+        "away_hits": 5,
+        "home_hits": 13,
+        "away_errors": 0,
+        "home_errors": 1,
+        "away_team_name": "Philadelphia Phillies",
+        "home_team_name": "Los Angeles Dodgers",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "1",
+        "opp_score": "9",
+        "score_fav": "1",
+        "score_opp": "9"
+      }
+    },
+    "401815576": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 6,
+      "home_runs": 19,
+      "away_team_name": "San Francisco Giants",
+      "home_team_name": "Colorado Rockies",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 7,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 19,
+        "home_runs": 6,
+        "away_hits": 25,
+        "home_hits": 10,
+        "away_errors": 3,
+        "home_errors": 3,
+        "away_team_name": "San Francisco Giants",
+        "home_team_name": "Colorado Rockies",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "19",
+        "opp_score": "6",
+        "score_fav": "19",
+        "score_opp": "6"
+      }
+    },
+    "401815570": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 4,
+      "home_runs": 2,
+      "away_team_name": "San Diego Padres",
+      "home_team_name": "Washington Nationals",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 3,
+        "away_runs": 2,
+        "home_runs": 4,
+        "away_hits": 6,
+        "home_hits": 9,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "San Diego Padres",
+        "home_team_name": "Washington Nationals",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "2",
+        "opp_score": "4",
+        "score_fav": "2",
+        "score_opp": "4"
+      }
+    },
+    "401815568": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 1,
+      "home_runs": 10,
+      "away_team_name": "New York Mets",
+      "home_team_name": "Miami Marlins",
+      "linescore": {}
+    },
+    "401815575": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 2,
+      "home_runs": 0,
+      "away_team_name": "Houston Astros",
+      "home_team_name": "Milwaukee Brewers",
+      "linescore": {}
+    },
+    "401815572": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 1,
+      "home_runs": 5,
+      "away_team_name": "St. Louis Cardinals",
+      "home_team_name": "Chicago Cubs",
+      "linescore": {}
+    },
+    "401815571": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 9,
+      "home_runs": 5,
+      "away_team_name": "Toronto Blue Jays",
+      "home_team_name": "Baltimore Orioles",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 4,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 5,
+        "home_runs": 9,
+        "away_hits": 8,
+        "home_hits": 10,
+        "away_errors": 0,
+        "home_errors": 1,
+        "away_team_name": "Toronto Blue Jays",
+        "home_team_name": "Baltimore Orioles",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "5",
+        "opp_score": "9",
+        "score_fav": "5",
+        "score_opp": "9"
+      }
+    },
+    "401815582": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 3,
+      "home_runs": 7,
+      "away_team_name": "Miami Marlins",
+      "home_team_name": "Washington Nationals",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 3,
+        "away_runs": 7,
+        "home_runs": 3,
+        "away_hits": 10,
+        "home_hits": 7,
+        "away_errors": 1,
+        "home_errors": 0,
+        "away_team_name": "Miami Marlins",
+        "home_team_name": "Washington Nationals",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "7",
+        "opp_score": "3",
+        "score_fav": "7",
+        "score_opp": "3"
+      }
+    },
+    "401815585": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 2,
+      "home_runs": 1,
+      "away_team_name": "St. Louis Cardinals",
+      "home_team_name": "Texas Rangers",
+      "linescore": {}
+    },
+    "401815588": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 3,
+      "home_runs": 2,
+      "away_team_name": "New York Mets",
+      "home_team_name": "Seattle Mariners",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          }
+        ],
+        "current_inning": 10,
+        "is_top": false,
+        "inning_ordinal": "10th",
+        "outs": 1,
+        "balls": 1,
+        "strikes": 0,
+        "away_runs": 2,
+        "home_runs": 3,
+        "away_hits": 2,
+        "home_hits": 4,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "New York Mets",
+        "home_team_name": "Seattle Mariners",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "2",
+        "opp_score": "3",
+        "score_fav": "2",
+        "score_opp": "3"
+      }
+    },
+    "401815586": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 8,
+      "home_runs": 9,
+      "away_team_name": "Colorado Rockies",
+      "home_team_name": "Los Angeles Angels",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 5
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 5,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 9,
+        "home_runs": 8,
+        "away_hits": 10,
+        "home_hits": 10,
+        "away_errors": 4,
+        "home_errors": 1,
+        "away_team_name": "Colorado Rockies",
+        "home_team_name": "Los Angeles Angels",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "9",
+        "opp_score": "8",
+        "score_fav": "9",
+        "score_opp": "8"
+      }
+    },
+    "401815587": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 1,
+      "home_runs": 4,
+      "away_team_name": "Arizona Diamondbacks",
+      "home_team_name": "Los Angeles Dodgers",
+      "linescore": {}
+    },
+    "401815581": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 9,
+      "home_runs": 2,
+      "away_team_name": "Cincinnati Reds",
+      "home_team_name": "Kansas City Royals",
+      "linescore": {}
+    },
+    "401815583": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 9,
+      "home_runs": 6,
+      "away_team_name": "Chicago White Sox",
+      "home_team_name": "Minnesota Twins",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 3,
+        "strikes": 3,
+        "away_runs": 6,
+        "home_runs": 9,
+        "away_hits": 11,
+        "home_hits": 10,
+        "away_errors": 0,
+        "home_errors": 1,
+        "away_team_name": "Chicago White Sox",
+        "home_team_name": "Minnesota Twins",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "6",
+        "opp_score": "9",
+        "score_fav": "6",
+        "score_opp": "9"
+      }
+    },
+    "401815584": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 16,
+      "home_runs": 2,
+      "away_team_name": "San Francisco Giants",
+      "home_team_name": "Milwaukee Brewers",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 7
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 2,
+        "home_runs": 16,
+        "away_hits": 5,
+        "home_hits": 18,
+        "away_errors": 1,
+        "home_errors": 0,
+        "away_team_name": "San Francisco Giants",
+        "home_team_name": "Milwaukee Brewers",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "2",
+        "opp_score": "16",
+        "score_fav": "2",
+        "score_opp": "16"
+      }
+    },
+    "401815580": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 10,
+      "home_runs": 9,
+      "away_team_name": "Tampa Bay Rays",
+      "home_team_name": "Detroit Tigers",
+      "linescore": {}
+    },
+    "823541": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 4,
+      "home_runs": 9,
+      "away_team_name": "Cleveland Guardians",
+      "home_team_name": "New York Yankees",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 2,
+        "away_runs": 9,
+        "home_runs": 4,
+        "away_hits": 12,
+        "home_hits": 8,
+        "away_errors": 1,
+        "home_errors": 1,
+        "away_team_name": "Cleveland Guardians",
+        "home_team_name": "New York Yankees",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "9",
+        "opp_score": "4",
+        "score_fav": "9",
+        "score_opp": "4"
+      }
+    },
+    "823700": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 4,
+      "home_runs": 6,
+      "away_team_name": "Minnesota Twins",
+      "home_team_name": "Chicago White Sox",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 1,
+        "away_runs": 4,
+        "home_runs": 6,
+        "away_hits": 8,
+        "home_hits": 10,
+        "away_errors": 0,
+        "home_errors": 2,
+        "away_team_name": "Chicago White Sox",
+        "home_team_name": "Minnesota Twins",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "4",
+        "opp_score": "6",
+        "score_fav": "4",
+        "score_opp": "6"
+      }
+    },
+    "823052": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 7,
+      "home_runs": 4,
+      "away_team_name": "St. Louis Cardinals",
+      "home_team_name": "Texas Rangers",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 1,
+        "away_runs": 7,
+        "home_runs": 4,
+        "away_hits": 9,
+        "home_hits": 13,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "Texas Rangers",
+        "home_team_name": "St. Louis Cardinals",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "7",
+        "opp_score": "4",
+        "score_fav": "7",
+        "score_opp": "4"
+      }
+    },
+    "824918": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 4,
+      "home_runs": 3,
+      "away_team_name": "Toronto Blue Jays",
+      "home_team_name": "Atlanta Braves",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 0,
+        "away_runs": 3,
+        "home_runs": 4,
+        "away_hits": 9,
+        "home_hits": 6,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "Toronto Blue Jays",
+        "home_team_name": "Atlanta Braves",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "3",
+        "opp_score": "4",
+        "score_fav": "3",
+        "score_opp": "4"
+      }
+    },
+    "823782": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 8,
+      "home_runs": 3,
+      "away_team_name": "San Francisco Giants",
+      "home_team_name": "Milwaukee Brewers",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 2,
+        "away_runs": 3,
+        "home_runs": 8,
+        "away_hits": 10,
+        "home_hits": 12,
+        "away_errors": 2,
+        "home_errors": 0,
+        "away_team_name": "San Francisco Giants",
+        "home_team_name": "Milwaukee Brewers",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "3",
+        "opp_score": "8",
+        "score_fav": "3",
+        "score_opp": "8"
+      }
+    },
+    "824754": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 2,
+      "home_runs": 4,
+      "away_team_name": "Baltimore Orioles",
+      "home_team_name": "Boston Red Sox",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 2,
+        "away_runs": 4,
+        "home_runs": 2,
+        "away_hits": 9,
+        "home_hits": 5,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "Baltimore Orioles",
+        "home_team_name": "Boston Red Sox",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "4",
+        "opp_score": "2",
+        "score_fav": "4",
+        "score_opp": "2"
+      }
+    },
+    "822971": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 8,
+      "home_runs": 0,
+      "away_team_name": "Tampa Bay Rays",
+      "home_team_name": "Detroit Tigers",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 3,
+        "away_runs": 8,
+        "home_runs": 0,
+        "away_hits": 10,
+        "home_hits": 5,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "Detroit Tigers",
+        "home_team_name": "Tampa Bay Rays",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "8",
+        "opp_score": "0",
+        "score_fav": "8",
+        "score_opp": "0"
+      }
+    },
+    "823460": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 2,
+      "home_runs": 3,
+      "away_team_name": "Philadelphia Phillies",
+      "home_team_name": "San Diego Padres",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 3,
+        "away_runs": 2,
+        "home_runs": 3,
+        "away_hits": 7,
+        "home_hits": 9,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "San Diego Padres",
+        "home_team_name": "Philadelphia Phillies",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "2",
+        "opp_score": "3",
+        "score_fav": "2",
+        "score_opp": "3"
+      }
+    },
+    "824511": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 4,
+      "home_runs": 3,
+      "away_team_name": "Kansas City Royals",
+      "home_team_name": "Cincinnati Reds",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          }
+        ],
+        "current_inning": 10,
+        "is_top": false,
+        "inning_ordinal": "10th",
+        "outs": 1,
+        "balls": 2,
+        "strikes": 1,
+        "away_runs": 3,
+        "home_runs": 4,
+        "away_hits": 5,
+        "home_hits": 4,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "Kansas City Royals",
+        "home_team_name": "Cincinnati Reds",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "3",
+        "opp_score": "4",
+        "score_fav": "3",
+        "score_opp": "4"
+      }
+    },
+    "822728": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 7,
+      "home_runs": 3,
+      "away_team_name": "Washington Nationals",
+      "home_team_name": "Miami Marlins",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 4,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 3,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 9,
+        "is_top": false,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 3,
+        "away_runs": 7,
+        "home_runs": 3,
+        "away_hits": 8,
+        "home_hits": 7,
+        "away_errors": 1,
+        "home_errors": 0,
+        "away_team_name": "Miami Marlins",
+        "home_team_name": "Washington Nationals",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
+        "fav_score": "7",
+        "opp_score": "3",
+        "score_fav": "7",
+        "score_opp": "3"
+      }
+    },
+    "401815596": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 2,
+      "home_runs": 1,
+      "away_team_name": "Chicago Cubs",
+      "home_team_name": "Athletics",
+      "linescore": {}
+    },
+    "401815598": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 10,
+      "home_runs": 6,
+      "away_team_name": "Houston Astros",
+      "home_team_name": "Pittsburgh Pirates",
+      "linescore": {}
+    },
+    "401815601": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 8,
+      "home_runs": 2,
+      "away_team_name": "Los Angeles Angels",
+      "home_team_name": "Colorado Rockies",
+      "linescore": {}
+    },
+    "401815602": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 6,
+      "home_runs": 5,
+      "away_team_name": "Arizona Diamondbacks",
+      "home_team_name": "Los Angeles Dodgers",
+      "linescore": {}
+    },
+    "401815603": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 3,
+      "home_runs": 8,
+      "away_team_name": "Seattle Mariners",
+      "home_team_name": "New York Mets",
+      "linescore": {}
+    }
+  },
+  "updated_at": "02/06/2026 23:43",
   "stats": {
     "total": 88,
     "acertados": 39,
