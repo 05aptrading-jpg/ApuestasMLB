@@ -125,8 +125,7 @@
   .game-wrapper { margin-bottom: 0; }
   .game-row { cursor: pointer; transition: background 0.15s; border-radius: 6px; }
   .game-row:hover { background: #1f2538; }
-  .expand-icon { font-size: 10px; color: #536471; transition: transform 0.2s; margin-left: 4px; }
-  .expand-icon.open { transform: rotate(180deg); }
+  .expand-icon { display: none; }
   .scoreboard-expand {
     display: none; overflow-x: auto;
     background: #131827; border-radius: 8px;
@@ -200,6 +199,48 @@
   #blocked-screen h2 { font-size: 20px; color: #e1e8ed; margin-bottom: 8px; }
   #blocked-screen p { font-size: 14px; color: #71767b; max-width: 300px; line-height: 1.5; }
   #main-content { display: block; }
+
+  .main-tabs {
+    display: flex; gap: 0; margin: 0 -16px 16px -16px;
+    background: #1a1f2e; border-bottom: 1px solid #2a3040;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .main-tab {
+    flex: 1; text-align: center; padding: 12px 0;
+    font-size: 14px; font-weight: 600; color: #71767b;
+    cursor: pointer; transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  .main-tab:hover { color: #e1e8ed; background: #1f2538; }
+  .main-tab.active { color: #e1e8ed; border-bottom-color: #1d9bf0; }
+  .main-tab.active-fut { color: #e1e8ed; border-bottom-color: #00ba7c; }
+  .futbol-panel { display: none; }
+  .futbol-panel.active { display: block; }
+
+  .soccer-game-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px; align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #2a3040;
+    font-size: 12px;
+  }
+  .soccer-game-row:last-child { border-bottom: none; }
+  .soccer-teams { font-weight: 500; color: #e1e8ed; }
+  .soccer-teams .local { color: #f5a623; }
+  .soccer-teams .vs { color: #536471; margin: 0 4px; }
+  .soccer-teams .visitante { color: #8b98a5; }
+  .soccer-proj { font-size: 11px; color: #71767b; text-align: right; }
+  .soccer-signals { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+  .soccer-signal {
+    font-size: 10px; padding: 2px 6px; border-radius: 4px;
+    background: #262d3d; color: #8b98a5;
+  }
+  .soccer-signal.alta { background: #1a3a2a; color: #00ba7c; }
+  .soccer-signal.media { background: #2a2a1a; color: #f5a623; }
+  .soccer-signal.baja { background: #2a1a1a; color: #e1e8ed; }
+  .soccer-signal.no { background: #1a1f2e; color: #536471; }
+  .fut-stats-grid { display: grid; gap: 8px; }
 </style>
 </head>
 <body>
@@ -211,8 +252,14 @@
 </div>
 <div id="main-content">
 
-<div class="header">
+<div class="main-tabs">
+  <div class="main-tab active" onclick="switchMainTab('beisbol')">⚾ Béisbol</div>
+  <div class="main-tab" onclick="switchMainTab('futbol')">⚽ Fútbol</div>
+</div>
 
+<!-- ═══ BEISBOL PANEL ═══ -->
+<div id="beisbol-panel">
+<div class="header">
   <div class="date" id="fecha">—</div>
   <div class="next-update" id="next-update">⏳ Próxima actualización<br><span class="update-time" id="countdown-display">📡 MLB: — | 🇲🇽 LMB: —</span></div>
 </div>
@@ -254,9 +301,40 @@
 </div>
 
 <div id="refresh-countdown" style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Próxima actualización: 30s</div>
+</div>
 
-<div class="footer">
-  MLB &amp; LMB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
+<!-- ═══ FUTBOL PANEL ═══ -->
+<div id="futbol-panel" class="futbol-panel">
+<div class="header">
+  <div class="date" id="fut-fecha">—</div>
+</div>
+
+<div class="futbol-liga-tabs" id="fut-liga-tabs" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:12px 0">
+  <div class="filter-btn active" onclick="selectFutLiga('todas')">🌍 Todas</div>
+  <div class="filter-btn" onclick="selectFutLiga('premier')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</div>
+  <div class="filter-btn" onclick="selectFutLiga('la_liga')">🇪🇸 La Liga</div>
+  <div class="filter-btn" onclick="selectFutLiga('liga_mx')">🇲🇽 Liga MX</div>
+</div>
+
+<div class="futbol-filters" style="display:flex;gap:6px;justify-content:center;margin:8px 0">
+  <div class="filter-btn active" onclick="selectFutFilter('todos')">Todos</div>
+  <div class="filter-btn" onclick="selectFutFilter('ah0')">🎯 AH0</div>
+  <div class="filter-btn" onclick="selectFutFilter('ou25')">📈 O/U 2.5</div>
+</div>
+
+<div class="card" id="fut-games-card">
+  <div class="card-title">📋 Partidos</div>
+  <div id="fut-games-list"></div>
+</div>
+
+<div class="card" id="fut-stats-card">
+  <div class="card-title">📊 Rendimiento Fútbol</div>
+  <div class="fut-stats-grid" id="fut-stats-list"></div>
+</div>
+</div>
+
+<div class="footer" style="margin-top:16px">
+  MLB &amp; LMB &amp; Fútbol Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
   <a href="privacy.html" style="color:#8b98a5;text-decoration:none">Privacidad</a> · <a href="terms.html" style="color:#8b98a5;text-decoration:none">Términos</a>
 </div>
 
@@ -264,12 +342,16 @@
 
 <script>
 var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [], live_data: {}, autorizados: [] };
+var SOCCER_DATA = { games: [], stats: {} };
 var selectedLiga = 'general';
 var selectedDate = '';
 var refreshTimer = 30;
 var refreshInterval = 30;
 var statsFilterMode = null;
 var statsRangeMode = null;
+var currentMainTab = 'beisbol';
+var futLiga = 'todas';
+var futFilter = 'todos';
 
 function checkAuth() {
   var userId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
@@ -438,7 +520,7 @@ function renderGameRow(g) {
     + '<div class="game-status">' + g.status_emoji + '</div>'
     + '<div class="game-team">' + teamHtml + '</div>'
     + '<div class="game-state ' + stateClass + '">' + g.state + '</div>'
-    + '<div class="expand-icon">▼</div>'
+
     + '</div>'
     + '<div class="scoreboard-expand" id="sb-' + idx + '"></div>'
     + '</div>';
@@ -835,6 +917,146 @@ renderGames();
 renderStats();
 
 fetchScores();
+fetchSoccerData();
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FÚTBOL TAB
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+function switchMainTab(tab) {
+  currentMainTab = tab;
+  document.querySelectorAll('.main-tab').forEach(function(el) {
+    el.className = 'main-tab';
+  });
+  var tabs = document.querySelectorAll('.main-tab');
+  if (tab === 'beisbol') {
+    tabs[0].className = 'main-tab active';
+    document.getElementById('beisbol-panel').style.display = 'block';
+    document.getElementById('futbol-panel').className = 'futbol-panel';
+  } else {
+    tabs[1].className = 'main-tab active-fut';
+    document.getElementById('beisbol-panel').style.display = 'none';
+    document.getElementById('futbol-panel').className = 'futbol-panel active';
+    renderFutGames();
+    renderFutStats();
+  }
+}
+
+function fetchSoccerData() {
+  fetch('soccer_data.json?t=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      SOCCER_DATA = data;
+      document.getElementById('fut-fecha').textContent = data.fecha || '—';
+      if (currentMainTab === 'futbol') {
+        renderFutGames();
+        renderFutStats();
+      }
+    })
+    .catch(function() {});
+}
+
+function selectFutLiga(liga) {
+  futLiga = liga;
+  document.querySelectorAll('#fut-liga-tabs .filter-btn').forEach(function(el) {
+    el.className = 'filter-btn';
+  });
+  event.target.className = 'filter-btn active';
+  renderFutGames();
+}
+
+function selectFutFilter(f) {
+  futFilter = f;
+  document.querySelectorAll('#futbol-panel .futbol-filters .filter-btn').forEach(function(el) {
+    el.className = 'filter-btn';
+  });
+  event.target.className = 'filter-btn active';
+  renderFutGames();
+}
+
+function renderFutGames() {
+  var el = document.getElementById('fut-games-list');
+  var games = SOCCER_DATA.games || [];
+  var filtered = games.filter(function(g) {
+    if (futLiga !== 'todas') {
+      var lk = (g.liga_key || '').toLowerCase();
+      if (futLiga === 'premier' && lk !== 'premier_league') return false;
+      if (futLiga === 'la_liga' && lk !== 'la_liga') return false;
+      if (futLiga === 'liga_mx' && lk !== 'liga_mx') return false;
+    }
+    if (futFilter === 'ah0' && g.senal_ah0 === 'NO_APOSTAR') return false;
+    if (futFilter === 'ou25' && g.senal_ou25 === 'NO_APOSTAR') return false;
+    return true;
+  });
+  if (filtered.length === 0) {
+    el.innerHTML = '<div style="color:#71767b;text-align:center;padding:12px">Sin partidos de fútbol</div>';
+    return;
+  }
+  var ligas = {};
+  filtered.forEach(function(g) {
+    var lk = g.liga || 'Fútbol';
+    if (!ligas[lk]) ligas[lk] = [];
+    ligas[lk].push(g);
+  });
+  var html = '';
+  Object.keys(ligas).forEach(function(lk) {
+    html += '<div style="font-size:11px;font-weight:600;color:#00ba7c;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin-bottom:2px">' + lk + '</div>';
+    ligas[lk].forEach(function(g) {
+      var diffSign = g.diff_xg > 0 ? '+' : '';
+      var diffColor = g.diff_xg > 0 ? '#00ba7c' : g.diff_xg < 0 ? '#f4212e' : '#71767b';
+      var ah0Class = g.senal_ah0 !== 'NO_APOSTAR' ? (g.confianza_ah0 || '').toLowerCase() : 'no';
+      var ou25Class = g.senal_ou25 !== 'NO_APOSTAR' ? (g.confianza_ou25 || '').toLowerCase() : 'no';
+      var ah0Label = g.senal_ah0 !== 'NO_APOSTAR' ? g.senal_ah0.replace('AH0 - ', 'AH0 ') : '—';
+      var ou25Label = g.senal_ou25 !== 'NO_APOSTAR' ? g.senal_ou25 : '—';
+      var resultado = g.resultado || '';
+      var resultEmoji = resultado === 'acertado' ? '✅' : resultado === 'fallido' ? '❌' : '';
+      html += '<div class="soccer-game-row">'
+        + '<div>'
+        + '<div class="soccer-teams"><span class="local">' + g.local + '</span><span class="vs">vs</span><span class="visitante">' + g.visitante + '</span></div>'
+        + '<div class="soccer-signals">'
+        + '<span class="soccer-signal ' + ah0Class + '">' + ah0Label + '</span>'
+        + '<span class="soccer-signal ' + ou25Class + '">' + ou25Label + '</span>'
+        + (resultEmoji ? '<span class="soccer-signal">' + resultEmoji + '</span>' : '')
+        + '</div>'
+        + '</div>'
+        + '<div class="soccer-proj">'
+        + '<div style="color:' + diffColor + ';font-weight:600">' + g.xg_local + ' - ' + g.xg_visit + '</div>'
+        + '<div style="font-size:10px;color:#536471">diff: ' + diffSign + g.diff_xg.toFixed(2) + '</div>'
+        + '</div>'
+        + '</div>';
+    });
+  });
+  el.innerHTML = html;
+}
+
+function renderFutStats() {
+  var el = document.getElementById('fut-stats-list');
+  var stats = SOCCER_DATA.stats;
+  if (!stats || !stats.total) {
+    el.innerHTML = '<div style="color:#71767b;text-align:center;padding:8px">Sin estadísticas disponibles</div>';
+    return;
+  }
+  var items = [
+    { label: '🌐 Global', total: stats.total, acertados: stats.acertados, fallidos: stats.fallidos, win_rate: stats.win_rate },
+    { label: '🎯 AH0', total: stats.ah0_total, acertados: stats.ah0_acertados, fallidos: stats.ah0_fallidos, win_rate: stats.ah0_win_rate },
+    { label: '📈 O/U 2.5', total: stats.ou25_total, acertados: stats.ou25_acertados, fallidos: stats.ou25_fallidos, win_rate: stats.ou25_win_rate },
+  ];
+  if (stats.premier_total > 0) items.push({ label: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier', total: stats.premier_total, acertados: stats.premier_acertados, fallidos: stats.premier_fallidos, win_rate: stats.premier_win_rate });
+  if (stats.laliga_total > 0) items.push({ label: '🇪🇸 La Liga', total: stats.laliga_total, acertados: stats.laliga_acertados, fallidos: stats.laliga_fallidos, win_rate: stats.laliga_win_rate });
+  if (stats.ligamx_total > 0) items.push({ label: '🇲🇽 Liga MX', total: stats.ligamx_total, acertados: stats.ligamx_acertados, fallidos: stats.ligamx_fallidos, win_rate: stats.ligamx_win_rate });
+  var html = '';
+  items.forEach(function(s) {
+    if (s.total === 0) return;
+    var fire = s.win_rate >= 65;
+    html += '<div class="stat-item">'
+      + '<span class="stat-label">' + s.label + '</span>'
+      + '<span class="stat-value">' + s.acertados + '✅ ' + s.fallidos + '❌ <span class="stat-sub">(' + s.total + ') ' + s.win_rate + '%</span>' + (fire ? '<span class="fire">🔥</span>' : '') + '</span>'
+      + '</div>';
+  });
+  el.innerHTML = html;
+}
+
+setInterval(fetchSoccerData, 300000);
 </script>
 </body>
 </html>
