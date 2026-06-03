@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 17:47",
+  "fecha": "03/06/2026 17:50",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -437,7 +437,7 @@
       "fav_team": "Tampa Bay Rays",
       "opp_team": "Detroit Tigers",
       "score_fav": "2",
-      "score_opp": "2",
+      "score_opp": "3",
       "state": "Top 3rd",
       "result": "live",
       "label": "🎯",
@@ -453,17 +453,17 @@
             "home_runs": 1
           },
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 3,
         "is_top": true,
         "inning_ordinal": "3rd",
-        "outs": 1,
-        "balls": 0,
+        "outs": 2,
+        "balls": 1,
         "strikes": 1,
-        "away_runs": 2,
+        "away_runs": 3,
         "home_runs": 2,
         "away_hits": 6,
         "home_hits": 4,
@@ -479,9 +479,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "2",
+        "fav_score": "3",
         "opp_score": "2",
-        "score_fav": "2",
+        "score_fav": "3",
         "score_opp": "2"
       }
     },
@@ -558,7 +558,7 @@
         "is_top": false,
         "inning_ordinal": "3rd",
         "outs": 0,
-        "balls": 1,
+        "balls": 3,
         "strikes": 2,
         "away_runs": 1,
         "home_runs": 0,
@@ -791,9 +791,9 @@
         "current_inning": 1,
         "is_top": true,
         "inning_ordinal": "1st",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 1,
+        "outs": 1,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 2,
@@ -1596,7 +1596,7 @@
       "is_final": false,
       "status": "Top 3rd",
       "away_runs": 2,
-      "home_runs": 2,
+      "home_runs": 3,
       "away_team_name": "Detroit Tigers",
       "home_team_name": "Tampa Bay Rays",
       "linescore": {
@@ -1610,17 +1610,17 @@
             "home_runs": 1
           },
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 3,
         "is_top": true,
         "inning_ordinal": "3rd",
-        "outs": 1,
-        "balls": 0,
+        "outs": 2,
+        "balls": 1,
         "strikes": 1,
-        "away_runs": 2,
+        "away_runs": 3,
         "home_runs": 2,
         "away_hits": 6,
         "home_hits": 4,
@@ -1636,9 +1636,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "2",
+        "fav_score": "3",
         "opp_score": "2",
-        "score_fav": "2",
+        "score_fav": "3",
         "score_opp": "2"
       }
     },
@@ -1707,7 +1707,7 @@
         "is_top": false,
         "inning_ordinal": "3rd",
         "outs": 0,
-        "balls": 1,
+        "balls": 3,
         "strikes": 2,
         "away_runs": 1,
         "home_runs": 0,
@@ -1906,9 +1906,9 @@
         "current_inning": 1,
         "is_top": true,
         "inning_ordinal": "1st",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 1,
+        "outs": 1,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 2,
@@ -2010,7 +2010,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 17:47",
+  "updated_at": "03/06/2026 17:50",
   "stats": {
     "total": 26,
     "acertados": 0,
