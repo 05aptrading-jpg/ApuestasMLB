@@ -23,40 +23,6 @@ logger = logging.getLogger(__name__)
 TELEGRAM_URL = f"https://api.telegram.org/bot{config.TELEGRAM_TOKEN}"
 _last_update_id = 0
 
-RAILWAY_API_URL = "https://backboard.railway.app/graphql"
-RAILWAY_APP_URL = "https://apuestasmlb-production.up.railway.app"
-
-
-def _sync_to_railway():
-    """Push estado + CSV to Railway so mini app gets updated data."""
-    import json as _json
-    import csv as _csv
-    try:
-        estado = []
-        estado_path = os.path.join(os.path.dirname(__file__), "partidos_seguimiento.json")
-        if os.path.exists(estado_path):
-            with open(estado_path, encoding="utf-8") as f:
-                estado = _json.load(f)
-
-        csv_rows = []
-        csv_path = config.CSV_PATH
-        if os.path.exists(csv_path):
-            with open(csv_path, newline="", encoding="utf-8") as f:
-                csv_rows = list(_csv.DictReader(f))
-
-        payload = {"estado": estado, "csv": csv_rows}
-        r = requests.post(f"{RAILWAY_APP_URL}/sync", json=payload, timeout=30)
-        if r.status_code == 200:
-            result = r.json()
-            logger.info(f"Sync Railway OK: {result}")
-            return True
-        else:
-            logger.warning(f"Sync Railway falló: {r.status_code} {r.text[:200]}")
-            return False
-    except Exception as e:
-        logger.error(f"Sync Railway error: {e}")
-        return False
-
 
 MINIAPP_URL = "https://05aptrading-jpg.github.io/ApuestasMLB/"
 
@@ -430,69 +396,6 @@ def _cmd_suscriptores(chat_id: int, args: str):
     _send_raw(str(chat_id), "❌ Usa: /suscriptores add <ID> | del <ID> | (sin args para listar)")
 
 
-def _cmd_deploy(chat_id: int):
-    """Trigger Railway redeploy via GraphQL API."""
-    data = _cargar_suscriptores()
-    admin = data.get("admin_id", 0)
-    if chat_id != admin:
-        _send_raw(str(chat_id), "⛔ Solo el administrador puede hacer deploy.")
-        return
-
-    token = config.RAILWAY_API_TOKEN
-    service_id = config.RAILWAY_SERVICE_ID
-
-    if not token:
-        _send_raw(str(chat_id), "❌ Falta RAILWAY_API_TOKEN en config.")
-        return
-
-    _send_raw(str(chat_id), "🚀 Iniciando deploy en Railway...")
-
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json",
-    }
-
-    try:
-        if service_id:
-            query = """
-            mutation {
-              serviceInstanceDeploy(input: { serviceId: "%s" }) {
-                id
-                status
-              }
-            }
-            """ % service_id
-        else:
-            _send_raw(str(chat_id), "❌ Falta RAILWAY_SERVICE_ID en config.")
-            return
-
-        r = requests.post(RAILWAY_API_URL, json={"query": query},
-                          headers=headers, timeout=30)
-        result = r.json()
-
-        if result.get("errors"):
-            err_msg = result["errors"][0].get("message", "Error desconocido")
-            _send_raw(str(chat_id), f"❌ Error Railway API:\n{err_msg}")
-            return
-
-        deploy_data = result.get("data", {}).get("serviceInstanceDeploy")
-        if deploy_data:
-            dep_id = deploy_data.get("id", "?")
-            status = deploy_data.get("status", "queued")
-            _send_raw(str(chat_id),
-                f"✅ Deploy disparado!\n"
-                f"🆔 ID: {dep_id}\n"
-                f"📊 Estado: {status}\n\n"
-                f"Railway se reiniciará en ~60s.")
-        else:
-            _send_raw(str(chat_id),
-                f"⚠️ Respuesta inesperada:\n{str(result)[:500]}")
-
-    except Exception as e:
-        logger.error(f"Deploy error: {e}")
-        _send_raw(str(chat_id), f"❌ Error conectando a Railway:\n{e}")
-
-
 def _cmd_reiniciar(chat_id: int):
     """Re-analiza MLB + LMB en un thread y notifica el resultado."""
     data = _cargar_suscriptores()
@@ -655,7 +558,6 @@ def handle_updates():
                         )
                         if es_admin:
                             cmds += "\n  /suscriptores — Gestionar suscriptores"
-                            cmds += "\n  /deploy — Redeploy Railway"
                             cmds += "\n  /reiniciar — Reiniciar bot (MLB+LMB+Fútbol)"
                             cmds += "\n  /reload — Recargar código sin reiniciar"
                         _send_raw(str(chat_id),
@@ -727,11 +629,6 @@ def handle_updates():
                 if text.startswith("/suscriptores"):
                     if chat_id:
                         _cmd_suscriptores(chat_id, text[len("/suscriptores"):].strip())
-                    continue
-
-                # /deploy — solo admin
-                if text.startswith("/deploy"):
-                    _cmd_deploy(chat_id)
                     continue
 
                 # /reiniciar — solo admin
