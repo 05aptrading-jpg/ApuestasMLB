@@ -93,6 +93,8 @@ def _eliminar_usuario(chat_id: int) -> bool:
 
 
 def _esta_autorizado(chat_id: int) -> bool:
+    if chat_id == int(config.TELEGRAM_CHAT_ID):
+        return True
     data = _cargar_suscriptores()
     data = _expirar_vencidos(data)
     admin = data.get("admin_id", 0)
