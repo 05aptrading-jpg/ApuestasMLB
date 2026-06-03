@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 17:59",
+  "fecha": "03/06/2026 18:00",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -438,7 +438,7 @@
       "opp_team": "Detroit Tigers",
       "score_fav": "2",
       "score_opp": "3",
-      "state": "End 3rd",
+      "state": "Top 4th",
       "result": "live",
       "label": "🎯",
       "game_pk": 822973,
@@ -455,17 +455,21 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": false,
-        "inning_ordinal": "3rd",
-        "outs": 3,
+        "current_inning": 4,
+        "is_top": true,
+        "inning_ordinal": "4th",
+        "outs": 0,
         "balls": 1,
-        "strikes": 3,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 2,
-        "away_hits": 6,
+        "away_hits": 7,
         "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
@@ -552,14 +556,18 @@
           {
             "away_runs": 0,
             "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": false,
-        "inning_ordinal": "3rd",
-        "outs": 3,
-        "balls": 3,
-        "strikes": 1,
+        "current_inning": 4,
+        "is_top": true,
+        "inning_ordinal": "4th",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 0,
         "away_runs": 1,
         "home_runs": 1,
         "away_hits": 3,
@@ -819,8 +827,8 @@
         "current_inning": 1,
         "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 1,
-        "balls": 0,
+        "outs": 2,
+        "balls": 1,
         "strikes": 1,
         "away_runs": 4,
         "home_runs": 0,
@@ -1650,7 +1658,7 @@
     "822973": {
       "is_live": true,
       "is_final": false,
-      "status": "End 3rd",
+      "status": "Top 4th",
       "away_runs": 2,
       "home_runs": 3,
       "away_team_name": "Detroit Tigers",
@@ -1668,17 +1676,21 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": false,
-        "inning_ordinal": "3rd",
-        "outs": 3,
+        "current_inning": 4,
+        "is_top": true,
+        "inning_ordinal": "4th",
+        "outs": 0,
         "balls": 1,
-        "strikes": 3,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 2,
-        "away_hits": 6,
+        "away_hits": 7,
         "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
@@ -1757,14 +1769,18 @@
           {
             "away_runs": 0,
             "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": false,
-        "inning_ordinal": "3rd",
-        "outs": 3,
-        "balls": 3,
-        "strikes": 1,
+        "current_inning": 4,
+        "is_top": true,
+        "inning_ordinal": "4th",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 0,
         "away_runs": 1,
         "home_runs": 1,
         "away_hits": 3,
@@ -2000,8 +2016,8 @@
         "current_inning": 1,
         "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 1,
-        "balls": 0,
+        "outs": 2,
+        "balls": 1,
         "strikes": 1,
         "away_runs": 4,
         "home_runs": 0,
@@ -2446,7 +2462,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 17:59",
+  "updated_at": "03/06/2026 18:00",
   "stats": {
     "total": 26,
     "acertados": 0,
