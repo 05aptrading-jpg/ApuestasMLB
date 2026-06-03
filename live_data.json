@@ -1,5 +1,5 @@
 {
-  "fecha": "02/06/2026 22:59",
+  "fecha": "02/06/2026 23:14",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780495200,
@@ -3093,7 +3093,7 @@
       "fav_team": "Olmecas de Tabasco",
       "opp_team": "Pericos de Puebla",
       "score_fav": "4",
-      "score_opp": "9",
+      "score_opp": "11",
       "state": "In Progress",
       "result": "live",
       "label": "📋",
@@ -3133,19 +3133,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 3,
+            "away_runs": 5,
             "home_runs": 0
           }
         ],
         "current_inning": 9,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "9th",
         "outs": 1,
-        "balls": 2,
-        "strikes": 0,
-        "away_runs": 9,
+        "balls": 3,
+        "strikes": 2,
+        "away_runs": 11,
         "home_runs": 4,
-        "away_hits": 13,
+        "away_hits": 16,
         "home_hits": 8,
         "away_errors": 0,
         "home_errors": 1,
@@ -3159,9 +3159,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "9",
+        "fav_score": "11",
         "opp_score": "4",
-        "score_fav": "9",
+        "score_fav": "11",
         "score_opp": "4"
       }
     },
@@ -3345,18 +3345,22 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": true,
-        "inning_ordinal": "8th",
-        "outs": 2,
+        "inning_ordinal": "9th",
+        "outs": 1,
         "balls": 1,
-        "strikes": 2,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 4,
         "away_hits": 7,
-        "home_hits": 7,
+        "home_hits": 8,
         "away_errors": 1,
         "home_errors": 0,
         "away_team_name": "Charros de Jalisco",
