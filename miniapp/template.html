@@ -364,6 +364,7 @@
       <button class="futbol-filter-btn" onclick="selectFutbolSenal('ah0')">AH0</button>
       <button class="futbol-filter-btn" onclick="selectFutbolSenal('ou25')">Over/Under 2.5</button>
     </div>
+    <div id="futbol-date-tabs" class="date-tabs" style="margin:8px 0"></div>
     <div id="futbol-games-list"></div>
   </div>
 
@@ -955,6 +956,7 @@ fetchScores();
 var soccerData = null;
 var selectedFutbolLiga = 'todas';
 var selectedFutbolSenal = 'todas';
+var selectedFutbolFecha = '';
 
 function selectMainTab(tab) {
   var beisbolPanel = document.getElementById('beisbol-panel');
@@ -1011,20 +1013,56 @@ function selectFutbolSenal(senal) {
 
 function renderFutbol() {
   if (!soccerData) return;
+  renderFutbolDateTabs();
   renderFutbolGames();
   renderFutbolStats();
+}
+
+function renderFutbolDateTabs() {
+  var container = document.getElementById('futbol-date-tabs');
+  var games = soccerData.games || [];
+  var fechas = {};
+  for (var i = 0; i < games.length; i++) {
+    var g = games[i];
+    if (g.fecha_partido) fechas[g.fecha_partido] = true;
+  }
+  var dias = Object.keys(fechas).sort().reverse();
+  if (dias.length <= 1) {
+    container.innerHTML = '';
+    if (dias.length === 1 && !selectedFutbolFecha) selectedFutbolFecha = dias[0];
+    return;
+  }
+  if (!selectedFutbolFecha || dias.indexOf(selectedFutbolFecha) === -1) {
+    selectedFutbolFecha = dias[0];
+  }
+  var html = '';
+  for (var j = 0; j < dias.length; j++) {
+    var d = dias[j];
+    var active = d === selectedFutbolFecha ? ' active' : '';
+    html += '<div class="date-tab' + active + '" onclick="selectFutbolFecha(\'' + d + '\')">' + formatearFecha(d) + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function selectFutbolFecha(fecha) {
+  selectedFutbolFecha = fecha;
+  renderFutbolDateTabs();
+  renderFutbolGames();
 }
 
 function renderFutbolGames() {
   var container = document.getElementById('futbol-games-list');
   var games = soccerData.games || [];
-  var hoy = new Date().toISOString().slice(0, 10);
-  var todayGames = games.filter(function(g) { return g.fecha_partido === hoy; });
-  if (todayGames.length === 0) {
-    container.innerHTML = '<div class="futbol-empty">📋 Sin partidos de fútbol hoy</div>';
+  if (!selectedFutbolFecha) {
+    var hoy = new Date().toISOString().slice(0, 10);
+    selectedFutbolFecha = hoy;
+  }
+  var dateGames = games.filter(function(g) { return g.fecha_partido === selectedFutbolFecha; });
+  if (dateGames.length === 0) {
+    container.innerHTML = '<div class="futbol-empty">📋 Sin partidos de fútbol para esta fecha</div>';
     return;
   }
-  var filtered = todayGames.filter(function(g) {
+  var filtered = dateGames.filter(function(g) {
     if (selectedFutbolLiga !== 'todas' && g.liga_key !== selectedFutbolLiga) return false;
     if (selectedFutbolSenal === 'ah0') return g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR';
     if (selectedFutbolSenal === 'ou25') return g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR';
