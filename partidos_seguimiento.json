@@ -174,7 +174,7 @@
     "away_team": "Detroit Tigers",
     "home_team": "Tampa Bay Rays",
     "favorito": "Tampa Bay Rays",
-    "prob_favorito": 52.74,
+    "prob_favorito": 52.56,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
@@ -202,11 +202,11 @@
     "away_team": "Miami Marlins",
     "home_team": "Washington Nationals",
     "favorito": "Miami Marlins",
-    "prob_favorito": 51.41,
+    "prob_favorito": 51.01,
     "odds_mercado": null,
     "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
+    "senal_moneyline": "APRETA TRIGGER LOCAL",
+    "nivel_certidumbre": "MEDIA",
     "resultado": "pendiente"
   }
 ]
