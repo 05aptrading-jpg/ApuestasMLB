@@ -22,6 +22,13 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
 
+      - name: Copy static files to docs
+        run: |
+          cp index.html docs/
+          cp soccer_data.json docs/
+          cp privacy.html docs/ || true
+          cp terms.html docs/ || true
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

@@ -4,6 +4,7 @@ __pycache__/
 *.log
 *.csv
 *.json
+!soccer_data.json
 api_cache.json
 apuestas.csv
 partidos_seguimiento.json
