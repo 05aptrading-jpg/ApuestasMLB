@@ -1039,25 +1039,22 @@ function renderFutbolGames() {
     var g = filtered[i];
     var idx = i;
     var statusEmoji = '⏳';
-    if (g.resultado_ah0 === 'acertado' || g.resultado_ou25 === 'acertado') statusEmoji = '✅';
-    if (g.resultado_ah0 === 'fallido' && g.resultado_ou25 === 'fallido') statusEmoji = '❌';
-    if (g.resultado_ah0 === 'devuelto' && (g.resultado_ou25 === 'pendiente' || g.resultado_ou25 === 'no_apostar')) statusEmoji = '🔄';
-    if (g.marcador_final) {
-      var bothDone = g.resultado_ah0 !== 'pendiente' && g.resultado_ou25 !== 'pendiente';
-      var hasAh0 = g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR';
-      var hasOu = g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR';
-      if (hasAh0 && hasOu) {
-        if (g.resultado_ah0 === 'acertado' && g.resultado_ou25 === 'acertado') statusEmoji = '✅';
-        else if (g.resultado_ah0 === 'devuelto') statusEmoji = '🔄';
-        else if (g.resultado_ah0 === 'fallido' || g.resultado_ou25 === 'fallido') statusEmoji = '❌';
-      } else if (hasAh0) {
-        if (g.resultado_ah0 === 'acertado') statusEmoji = '✅';
-        else if (g.resultado_ah0 === 'fallido') statusEmoji = '❌';
-        else if (g.resultado_ah0 === 'devuelto') statusEmoji = '🔄';
-      } else if (hasOu) {
-        if (g.resultado_ou25 === 'acertado') statusEmoji = '✅';
-        else if (g.resultado_ou25 === 'fallido') statusEmoji = '❌';
-      }
+    var hasAh0 = g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR';
+    var hasOu = g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR';
+    var ah0 = g.resultado_ah0 || 'pendiente';
+    var ou = g.resultado_ou25 || 'pendiente';
+    if (hasAh0 && hasOu) {
+      if (ah0 === 'acertado' && ou === 'acertado') statusEmoji = '✅';
+      else if (ah0 === 'devuelto' || ou === 'devuelto') statusEmoji = '🔄';
+      else if (ah0 === 'fallido' || ou === 'fallido') statusEmoji = '❌';
+    } else if (hasAh0) {
+      if (ah0 === 'acertado') statusEmoji = '✅';
+      else if (ah0 === 'devuelto') statusEmoji = '🔄';
+      else if (ah0 === 'fallido') statusEmoji = '❌';
+    } else if (hasOu) {
+      if (ou === 'acertado') statusEmoji = '✅';
+      else if (ou === 'devuelto') statusEmoji = '🔄';
+      else if (ou === 'fallido') statusEmoji = '❌';
     }
     var senalHtml = '';
     if (g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR') {
