@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 17:50",
+  "fecha": "03/06/2026 17:53",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -438,7 +438,7 @@
       "opp_team": "Detroit Tigers",
       "score_fav": "2",
       "score_opp": "3",
-      "state": "Top 3rd",
+      "state": "Bottom 3rd",
       "result": "live",
       "label": "🎯",
       "game_pk": 822973,
@@ -458,9 +458,9 @@
           }
         ],
         "current_inning": 3,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "3rd",
-        "outs": 2,
+        "outs": 0,
         "balls": 1,
         "strikes": 1,
         "away_runs": 3,
@@ -557,9 +557,9 @@
         "current_inning": 3,
         "is_top": false,
         "inning_ordinal": "3rd",
-        "outs": 0,
-        "balls": 3,
-        "strikes": 2,
+        "outs": 1,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 3,
@@ -776,7 +776,7 @@
       "fav_team": "Minnesota Twins",
       "opp_team": "Chicago White Sox",
       "score_fav": "0",
-      "score_opp": "0",
+      "score_opp": "1",
       "state": "Top 1st",
       "result": "live",
       "label": "📋",
@@ -784,7 +784,7 @@
       "linescore": {
         "innings": [
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
@@ -792,9 +792,9 @@
         "is_top": true,
         "inning_ordinal": "1st",
         "outs": 1,
-        "balls": 2,
-        "strikes": 2,
-        "away_runs": 0,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 1,
         "home_runs": 0,
         "away_hits": 2,
         "home_hits": 0,
@@ -810,9 +810,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "1",
         "opp_score": "0",
-        "score_fav": "0",
+        "score_fav": "1",
         "score_opp": "0"
       }
     },
@@ -1594,7 +1594,7 @@
     "822973": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 3rd",
+      "status": "Bottom 3rd",
       "away_runs": 2,
       "home_runs": 3,
       "away_team_name": "Detroit Tigers",
@@ -1615,9 +1615,9 @@
           }
         ],
         "current_inning": 3,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "3rd",
-        "outs": 2,
+        "outs": 0,
         "balls": 1,
         "strikes": 1,
         "away_runs": 3,
@@ -1706,9 +1706,9 @@
         "current_inning": 3,
         "is_top": false,
         "inning_ordinal": "3rd",
-        "outs": 0,
-        "balls": 3,
-        "strikes": 2,
+        "outs": 1,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 3,
@@ -1893,13 +1893,13 @@
       "is_final": false,
       "status": "Top 1st",
       "away_runs": 0,
-      "home_runs": 0,
+      "home_runs": 1,
       "away_team_name": "Chicago White Sox",
       "home_team_name": "Minnesota Twins",
       "linescore": {
         "innings": [
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
@@ -1907,9 +1907,9 @@
         "is_top": true,
         "inning_ordinal": "1st",
         "outs": 1,
-        "balls": 2,
-        "strikes": 2,
-        "away_runs": 0,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 1,
         "home_runs": 0,
         "away_hits": 2,
         "home_hits": 0,
@@ -1925,9 +1925,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "1",
         "opp_score": "0",
-        "score_fav": "0",
+        "score_fav": "1",
         "score_opp": "0"
       }
     },
@@ -2010,7 +2010,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 17:50",
+  "updated_at": "03/06/2026 17:53",
   "stats": {
     "total": 26,
     "acertados": 0,
