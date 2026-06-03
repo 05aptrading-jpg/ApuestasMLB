@@ -1,5 +1,5 @@
 {
-  "fecha": "02/06/2026 20:37",
+  "fecha": "02/06/2026 21:42",
   "games": [
     {
       "liga": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League",
@@ -465,5 +465,31 @@
       "confianza_ou25": "MEDIA",
       "resultado": "pendiente"
     }
-  ]
+  ],
+  "stats": {
+    "total": 0,
+    "acertados": 0,
+    "fallidos": 0,
+    "win_rate": 0,
+    "ah0_total": 0,
+    "ah0_acertados": 0,
+    "ah0_fallidos": 0,
+    "ah0_win_rate": 0,
+    "ou25_total": 0,
+    "ou25_acertados": 0,
+    "ou25_fallidos": 0,
+    "ou25_win_rate": 0,
+    "premier_total": 0,
+    "premier_acertados": 0,
+    "premier_fallidos": 0,
+    "premier_win_rate": 0,
+    "laliga_total": 0,
+    "laliga_acertados": 0,
+    "laliga_fallidos": 0,
+    "laliga_win_rate": 0,
+    "ligamx_total": 0,
+    "ligamx_acertados": 0,
+    "ligamx_fallidos": 0,
+    "ligamx_win_rate": 0
+  }
 }
