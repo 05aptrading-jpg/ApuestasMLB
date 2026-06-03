@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 21:18",
+  "fecha": "03/06/2026 21:33",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -826,7 +826,7 @@
       "opp_team": "New York Mets",
       "score_fav": "1",
       "score_opp": "6",
-      "state": "Top 5th",
+      "state": "Middle 6th",
       "result": "live",
       "label": "📋",
       "game_pk": 823130,
@@ -851,18 +851,22 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
+        "current_inning": 6,
         "is_top": true,
-        "inning_ordinal": "5th",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 2,
+        "inning_ordinal": "6th",
+        "outs": 3,
+        "balls": 3,
+        "strikes": 3,
         "away_runs": 6,
         "home_runs": 1,
-        "away_hits": 11,
-        "home_hits": 5,
+        "away_hits": 12,
+        "home_hits": 6,
         "away_errors": 0,
         "home_errors": 1,
         "away_team_name": "New York Mets",
@@ -2141,7 +2145,7 @@
     "823130": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 5th",
+      "status": "Middle 6th",
       "away_runs": 1,
       "home_runs": 6,
       "away_team_name": "New York Mets",
@@ -2167,18 +2171,22 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
+        "current_inning": 6,
         "is_top": true,
-        "inning_ordinal": "5th",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 2,
+        "inning_ordinal": "6th",
+        "outs": 3,
+        "balls": 3,
+        "strikes": 3,
         "away_runs": 6,
         "home_runs": 1,
-        "away_hits": 11,
-        "home_hits": 5,
+        "away_hits": 12,
+        "home_hits": 6,
         "away_errors": 0,
         "home_errors": 1,
         "away_team_name": "New York Mets",
@@ -2708,7 +2716,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 21:18",
+  "updated_at": "03/06/2026 21:33",
   "stats": {
     "total": 26,
     "acertados": 1,
