@@ -23,13 +23,12 @@ def _get_github_token():
 
 def _headers():
     token = _get_github_token()
-    if not token:
-        logger.error("GITHUB_TOKEN no configurado en env vars")
-        return {}
-    return {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/vnd.github.v3+json",
-    }
+    headers = {"Accept": "application/vnd.github.v3+json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    else:
+        logger.warning("GITHUB_TOKEN no configurado — usando acceso anónimo (rate limit 60 req/h)")
+    return headers
 
 def descargar_archivo(ruta_repo: str, ruta_local: str) -> bool:
     headers = _headers()
@@ -51,10 +50,11 @@ def descargar_archivo(ruta_repo: str, ruta_local: str) -> bool:
         return False
 
 def subir_archivo(ruta_repo: str, ruta_local: str, mensaje: str = None) -> bool:
-    headers = _headers()
-    if not headers:
-        logger.error("GITHUB_TOKEN no configurado")
+    token = _get_github_token()
+    if not token:
+        logger.warning("GITHUB_TOKEN no configurado — no se puede subir a GitHub")
         return False
+    headers = _headers()
     if not os.path.exists(ruta_local):
         logger.warning(f"No existe local: {ruta_local}")
         return False
