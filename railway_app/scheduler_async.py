@@ -1,25 +1,32 @@
 import asyncio
 import json
 import logging
+import math
 import os
 import sys
 from datetime import datetime, date, timedelta, timezone
+from typing import Optional
 
 import httpx
 import pytz
 
-# Ensure parent dir is on path for imports
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(_SCRIPT_DIR))
 
 import config
 import data_manager as dm
+import telegram_handler
+from analyzer import analizar_dia, GameAnalysis
 from analyzer_lmb import analizar_lmb_dia
+from api_client import mlb as _mlb_api
+from railway_app import persistencia
 
 logger = logging.getLogger(__name__)
 
 MT_TZ = pytz.timezone(config.TIMEZONE)
 
-# ── In-memory cache ─────────────────────────────────────────────────────
+BASE_DIR = os.path.dirname(_SCRIPT_DIR)
+
 _cache: dict = {
     "games": [],
     "stats": {},
@@ -28,13 +35,12 @@ _cache: dict = {
     "fecha": "",
     "proxima_actualizacion": "",
     "proxima_actualizacion_lmb": "",
-    "live_data": {},   # game_pk -> {inning, outs, away_runs, home_runs, ...}
+    "live_data": {},
     "dias": [],
 }
 
 
 def _build_data() -> dict:
-    """Construye el dict de datos para WebSocket/Mini App."""
     from datetime import datetime as _dt
     ahora = _dt.now(MT_TZ)
     hoy = ahora
@@ -51,6 +57,7 @@ def _build_data() -> dict:
     estado = dm.cargar_estado()
     games = []
     seen = set()
+    live_data = _cache.get("live_data", {})
 
     def norm(n):
         return n.strip().lower()
@@ -65,8 +72,6 @@ def _build_data() -> dict:
     p_min = config.PROB_MINIMA_ANALISIS
     e_min = config.EDGE_MINIMO
 
-    # Build reverse lookup for LMB games by team names
-    live_data = _cache.get("live_data", {})
     lmb_live_by_teams = {}
     for lpk, ldata in live_data.items():
         at = ldata.get("away_team_name", "").strip().lower()
@@ -79,11 +84,9 @@ def _build_data() -> dict:
         return a == b or a in b or b in a
 
     def _find_live(pk, away, home, is_lmb):
-        # Direct match
         live = live_data.get(str(pk), {})
         if live:
             return live
-        # Fallback for LMB: match by team names
         if is_lmb:
             away_lower = away.strip().lower()
             home_lower = home.strip().lower()
@@ -159,7 +162,7 @@ def _build_data() -> dict:
             "game_pk": pk,
         })
 
-    games.sort(key=lambda x: (x.get("game_date", ""), {"🎯": 0, "📊": 1, "📋": 2}.get(x.get("label", ""), 3)))
+    games.sort(key=lambda x: (x.get("game_date", ""), {"🎯": 0, "📋": 1}.get(x.get("label", ""), 2)))
 
     dias_set = set()
     for g in games:
@@ -209,7 +212,6 @@ def _build_data() -> dict:
 
 
 def _cargar_suscriptores() -> list[int]:
-    # Try local first, then parent dir
     candidates = [
         os.path.join(os.path.dirname(os.path.abspath(__file__)), "suscriptores.json"),
         os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "suscriptores.json"),
@@ -234,96 +236,236 @@ def _cargar_suscriptores() -> list[int]:
     return []
 
 
+# ── Tareas del scheduler ──────────────────────────────────────────────
+
+def _backup():
+    try:
+        persistencia.respaldar_a_github(BASE_DIR)
+    except Exception as e:
+        logger.warning(f"Backup a GitHub falló: {e}")
+
+def tarea_analisis_mlb():
+    logger.info("=== Ejecutando análisis MLB ===")
+    try:
+        partidos = analizar_dia()
+        if partidos:
+            dm.guardar_analisis(partidos)
+            dm.guardar_estado(partidos)
+            _backup()
+            try:
+                from miniapp_publisher import publicar
+                publicar()
+            except Exception:
+                pass
+            logger.info(f"MLB: {len(partidos)} partidos analizados")
+        else:
+            logger.info("MLB: sin partidos para hoy")
+    except Exception as e:
+        logger.error(f"Error análisis MLB: {e}")
+
+
+def tarea_analisis_lmb():
+    if not getattr(config, "LMB_ACTIVO", False):
+        return
+    logger.info("=== Ejecutando análisis LMB ===")
+    try:
+        result = analizar_lmb_dia()
+        if result:
+            dm.guardar_analisis_lmb(result)
+            dm.guardar_estado_lmb(result)
+            _backup()
+            logger.info(f"LMB: {len(result)} partidos analizados")
+    except Exception as e:
+        logger.error(f"Error análisis LMB: {e}")
+
+
+def tarea_resultados():
+    logger.info("=== Verificando resultados ===")
+    try:
+        from api_client import mlb
+        estado = dm.cargar_estado()
+        actualizados = 0
+        for p in estado:
+            pk = p.get("game_pk")
+            if not pk:
+                continue
+            if p.get("resultado") in ("acertado", "fallido"):
+                continue
+            try:
+                feed = mlb.game_feed(pk)
+                status = (feed.get("gameData", {}).get("status", {}) or
+                          feed.get("liveData", {}).get("linescore", {}))
+                detailed_state = (feed.get("gameData", {}).get("status", {}).get("detailedState", "") or
+                                  status.get("status", {}).get("detailedState", ""))
+                if detailed_state in ("Final", "Game Over", "Completed Early"):
+                    away_runs = feed.get("liveData", {}).get("linescore", {}).get("teams", {}).get("away", {}).get("runs", 0)
+                    home_runs = feed.get("liveData", {}).get("linescore", {}).get("teams", {}).get("home", {}).get("runs", 0)
+                    away_name = p.get("away_team", "")
+                    home_name = p.get("home_team", "")
+                    ganador = away_name if away_runs > home_runs else home_name
+                    marcador = f"{away_name} {away_runs} - {home_runs} {home_name}"
+                    dm.actualizar_resultado(pk, ganador, marcador)
+                    dm.actualizar_estado_resultado(pk, "acertado" if ganador == p.get("favorito") else "fallido", ganador)
+                    actualizados += 1
+            except Exception:
+                continue
+        if actualizados:
+            logger.info(f"Resultados actualizados: {actualizados}")
+            _backup()
+            try:
+                from miniapp_publisher import publicar
+                publicar()
+            except Exception:
+                pass
+    except Exception as e:
+        logger.error(f"Error en tarea_resultados: {e}")
+
+
+def tarea_publicar_miniapp():
+    if not config.GITHUB_TOKEN:
+        return
+    try:
+        from miniapp_publisher import publicar
+        if publicar():
+            logger.info("Mini App publicada")
+    except Exception as e:
+        logger.error(f"Error publicando Mini App: {e}")
+
+
+def tarea_analisis_futbol():
+    try:
+        import subprocess
+        result = subprocess.run(
+            ["python", "main.py", "--ahora"],
+            cwd=config.FUTBOL_DIR,
+            capture_output=True, text=True, timeout=120, encoding="utf-8",
+        )
+        if result.returncode == 0:
+            logger.info("Fútbol: análisis completado")
+            _backup()
+        else:
+            logger.error(f"Fútbol error: {result.stderr[:200]}")
+    except Exception as e:
+        logger.error(f"Error análisis fútbol: {e}")
+
+
+# ── Scheduler principal ──────────────────────────────────────────────
+
+def _hora_a_segundos(hora_str: str) -> int:
+    try:
+        hh, mm = hora_str.split(":")
+        return int(hh) * 3600 + int(mm) * 60
+    except Exception:
+        return 0
+
+
+async def ejecutar_en_horario(hora_str: str, tarea, nombre: str):
+    """Espera hasta la hora indicada y ejecuta la tarea, luego espera 24h."""
+    while True:
+        ahora = datetime.now(MT_TZ)
+        seg_objetivo = _hora_a_segundos(hora_str)
+        seg_ahora = ahora.hour * 3600 + ahora.minute * 60 + ahora.second
+        seg_espera = seg_objetivo - seg_ahora
+        if seg_espera <= 0:
+            seg_espera += 86400
+        logger.info(f"{nombre}: próxima ejecución en {seg_espera // 60} min")
+        await asyncio.sleep(seg_espera)
+        try:
+            tarea()
+        except Exception as e:
+            logger.error(f"Error en {nombre}: {e}")
+        await asyncio.sleep(86400)
+
+
+async def ejecutar_cada_intervalo(intervalo_seg: int, tarea, nombre: str, primera_vez: float = None):
+    """Ejecuta una tarea cada intervalo_seg segundos."""
+    if primera_vez is not None:
+        await asyncio.sleep(primera_vez)
+    while True:
+        try:
+            tarea()
+            logger.debug(f"{nombre}: ejecutada")
+        except Exception as e:
+            logger.error(f"Error en {nombre}: {e}")
+        await asyncio.sleep(intervalo_seg)
+
+
+async def iniciar_scheduler(run_initial: bool = True):
+    """Arranca todas las tareas del scheduler como background tasks."""
+    logger.info("=== Iniciando scheduler Railway ===")
+
+    if run_initial:
+        # Ejecutar análisis inmediatamente al arrancar
+        tarea_analisis_mlb()
+        tarea_analisis_lmb()
+        tarea_resultados()
+        tarea_publicar_miniapp()
+
+    # Recalcular hora análisis dinámico cada día a las 05:00
+    asyncio.create_task(ejecutar_en_horario(
+        config.HORA_RECALCULO_DIARIO, tarea_analisis_mlb, "Análisis MLB diario"
+    ))
+
+    # Re-análisis fijo MLB a las 08:00
+    asyncio.create_task(ejecutar_en_horario(
+        config.REANALISIS_MLB_HORA, lambda: (
+            tarea_analisis_mlb(), tarea_publicar_miniapp()
+        ), "Re-análisis MLB"
+    ))
+
+    # Re-análisis fijo LMB a las 12:30
+    if getattr(config, "LMB_ACTIVO", False):
+        asyncio.create_task(ejecutar_en_horario(
+            config.REANALISIS_LMB_HORA, lambda: (
+                tarea_analisis_lmb(), tarea_publicar_miniapp()
+            ), "Re-análisis LMB"
+        ))
+
+    # Resultados cada 2 horas (sincronizado a la hora par)
+    ahora = datetime.now(MT_TZ)
+    hora_sig = (math.floor(ahora.hour / 2) + 1) * 2
+    if hora_sig >= 24:
+        seg_primera = 86400 - (ahora.hour * 3600 + ahora.minute * 60 + ahora.second)
+        seg_primera += 0 * 3600
+    else:
+        seg_primera = (hora_sig - ahora.hour) * 3600 - ahora.minute * 60 - ahora.second
+    if seg_primera < 0:
+        seg_primera += 7200
+    asyncio.create_task(ejecutar_cada_intervalo(
+        7200, lambda: (tarea_resultados(), tarea_publicar_miniapp()),
+        "Resultados cada 2h", primera_vez=max(seg_primera, 60)
+    ))
+
+    # Mini App cada 15 min
+    asyncio.create_task(ejecutar_cada_intervalo(
+        900, tarea_publicar_miniapp, "Mini App cada 15 min"
+    ))
+
+    # Análisis fútbol cada 20 min (live scores)
+    asyncio.create_task(ejecutar_cada_intervalo(
+        1200, tarea_analisis_futbol, "Fútbol cada 20 min"
+    ))
+
+    logger.info("Scheduler Railway: todas las tareas registradas")
+
+
+# ── Live scores (existente) ───────────────────────────────────────────
+
 async def fetch_live_data() -> dict:
-    """Fetch live scores for all LMB and MLB games from StatsAPI."""
     live = {}
     today = datetime.now(MT_TZ).date()
     date_str = today.strftime("%m/%d/%Y")
 
     async with httpx.AsyncClient(timeout=15) as client:
-        # MLB sportId=1
-        try:
-            r = await client.get(
-                "https://statsapi.mlb.com/api/v1/schedule",
-                params={"sportId": 1, "date": date_str, "hydrate": "linescore"},
-                headers={"User-Agent": "Mozilla/5.0"},
-            )
-            if r.status_code == 200:
-                for d in r.json().get("dates", []):
-                    for g in d.get("games", []):
-                        pk = str(g.get("gamePk"))
-                        state = g.get("status", {}).get("detailedState", "")
-                        ls = g.get("linescore", {})
-                        teams = ls.get("teams", {}) if ls else {}
-                        inning = ls.get("currentInning", "") if ls else ""
-                        inning_state = ls.get("inningState", "") if ls else ""
-                        is_final = state in ("Final", "Game Over", "Completed Early")
-                        is_live = state in ("In Progress", "Live", "Delayed") or (
-                            not is_final and state not in ("Scheduled", "Pre-Game", "Warmup", "")
-                        )
-                        display_inning = f"{inning_state} {inning}" if inning_state and inning else inning_state or inning or ""
-                        # Full linescore for scoreboard widget
-                        innings_data = g.get("linescore", {}).get("innings", [])
-                        ins = []
-                        for inn in innings_data:
-                            ins.append({
-                                "num": inn.get("num", 0),
-                                "away_runs": _safe_int(inn.get("away", {}).get("runs")),
-                                "home_runs": _safe_int(inn.get("home", {}).get("runs")),
-                                "away_hits": _safe_int(inn.get("away", {}).get("hits")),
-                                "home_hits": _safe_int(inn.get("home", {}).get("hits")),
-                                "away_errors": _safe_int(inn.get("away", {}).get("errors")),
-                                "home_errors": _safe_int(inn.get("home", {}).get("errors")),
-                            })
-                        ls_detail = g.get("linescore", {})
-                        bases_raw = g.get("linescore", {}).get("bases", {}) or g.get("bases", {})
-                        away_team_obj = g.get("teams", {}).get("away", {}).get("team", {})
-                        home_team_obj = g.get("teams", {}).get("home", {}).get("team", {})
-                        live[pk] = {
-                            "status": state,
-                            "is_final": is_final,
-                            "is_live": is_live,
-                            "inning": inning or "",
-                            "inning_state": inning_state or "",
-                            "display_inning": display_inning,
-                            "away_runs": _safe_int(teams.get("away", {}).get("runs")),
-                            "home_runs": _safe_int(teams.get("home", {}).get("runs")),
-                            "away_hits": _safe_int(teams.get("away", {}).get("hits")),
-                            "home_hits": _safe_int(teams.get("home", {}).get("hits")),
-                            "away_errors": _safe_int(teams.get("away", {}).get("errors")),
-                            "home_errors": _safe_int(teams.get("home", {}).get("errors")),
-                            "away_team_name": away_team_obj.get("name", ""),
-                            "home_team_name": home_team_obj.get("name", ""),
-                            "linescore": {
-                                "innings": ins,
-                                "outs": _safe_int(ls_detail.get("outs")),
-                                "balls": _safe_int(ls_detail.get("balls")),
-                                "strikes": _safe_int(ls_detail.get("strikes")),
-                                "current_inning": _safe_int(ls_detail.get("currentInning")),
-                                "inning_state": ls_detail.get("inningState", ""),
-                                "inning_half": ls_detail.get("inningHalf", ""),
-                                "is_top": ls_detail.get("isTopInning", True),
-                                "inning_ordinal": ls_detail.get("inningOrdinal", ""),
-                                "bases": {
-                                    "first": bool(bases_raw.get("first", {}).get("occupied", False)) if isinstance(bases_raw.get("first"), dict) else False,
-                                    "second": bool(bases_raw.get("second", {}).get("occupied", False)) if isinstance(bases_raw.get("second"), dict) else False,
-                                    "third": bool(bases_raw.get("third", {}).get("occupied", False)) if isinstance(bases_raw.get("third"), dict) else False,
-                                },
-                                "current_pitcher_away": (ls_detail.get("defense", {}) or ls_detail.get("pitcher", {}) or {}).get("fullName", ""),
-                                "current_pitcher_home": "",
-                            },
-                        }
-        except Exception as e:
-            logger.warning(f"MLB live fetch error: {e}")
-
-        # LMB sportId=23
-        try:
-            r = await client.get(
-                "https://statsapi.mlb.com/api/v1/schedule",
-                params={"sportId": 23, "date": date_str, "hydrate": "linescore"},
-                headers={"User-Agent": "Mozilla/5.0"},
-            )
-            if r.status_code == 200:
+        for sport_id, name in [(1, "MLB"), (23, "LMB")]:
+            try:
+                r = await client.get(
+                    "https://statsapi.mlb.com/api/v1/schedule",
+                    params={"sportId": sport_id, "date": date_str, "hydrate": "linescore"},
+                    headers={"User-Agent": "Mozilla/5.0"},
+                )
+                if r.status_code != 200:
+                    continue
                 for d in r.json().get("dates", []):
                     for g in d.get("games", []):
                         pk = str(g.get("gamePk"))
@@ -349,8 +491,6 @@ async def fetch_live_data() -> dict:
                                 "away_errors": _safe_int(inn.get("away", {}).get("errors")),
                                 "home_errors": _safe_int(inn.get("home", {}).get("errors")),
                             })
-                        ls_detail = g.get("linescore", {})
-                        bases_raw = g.get("linescore", {}).get("bases", {}) or g.get("bases", {})
                         away_team_obj = g.get("teams", {}).get("away", {}).get("team", {})
                         home_team_obj = g.get("teams", {}).get("home", {}).get("team", {})
                         live[pk] = {
@@ -368,27 +508,10 @@ async def fetch_live_data() -> dict:
                             "home_errors": _safe_int(teams.get("home", {}).get("errors")),
                             "away_team_name": away_team_obj.get("name", ""),
                             "home_team_name": home_team_obj.get("name", ""),
-                            "linescore": {
-                                "innings": ins,
-                                "outs": _safe_int(ls_detail.get("outs")),
-                                "balls": _safe_int(ls_detail.get("balls")),
-                                "strikes": _safe_int(ls_detail.get("strikes")),
-                                "current_inning": _safe_int(ls_detail.get("currentInning")),
-                                "inning_state": ls_detail.get("inningState", ""),
-                                "inning_half": ls_detail.get("inningHalf", ""),
-                                "is_top": ls_detail.get("isTopInning", True),
-                                "inning_ordinal": ls_detail.get("inningOrdinal", ""),
-                                "bases": {
-                                    "first": bool(bases_raw.get("first", {}).get("occupied", False)) if isinstance(bases_raw.get("first"), dict) else False,
-                                    "second": bool(bases_raw.get("second", {}).get("occupied", False)) if isinstance(bases_raw.get("second"), dict) else False,
-                                    "third": bool(bases_raw.get("third", {}).get("occupied", False)) if isinstance(bases_raw.get("third"), dict) else False,
-                                },
-                                "current_pitcher_away": "",
-                                "current_pitcher_home": "",
-                            },
+                            "linescore": {"innings": ins},
                         }
-        except Exception as e:
-            logger.warning(f"LMB live fetch error: {e}")
+            except Exception as e:
+                logger.warning(f"{name} live fetch error: {e}")
 
     return live
 
@@ -400,31 +523,7 @@ def _safe_int(v, default=0):
         return default
 
 
-def run_initial_analysis():
-    """Run full MLB + LMB analysis on startup. Synchronous."""
-    logger.info("=== Inicializando análisis MLB ===")
-    try:
-        from scheduler import tarea_analisis_manana
-        tarea_analisis_manana()
-    except Exception as e:
-        logger.error(f"MLB initial analysis error: {e}")
-
-    if getattr(config, "LMB_ACTIVO", False):
-        logger.info("=== Inicializando análisis LMB ===")
-        try:
-            result = analizar_lmb_dia()
-            if result:
-                dm.guardar_analisis_lmb(result)
-                dm.guardar_estado_lmb(result)
-                logger.info(f"LMB análisis inicial: {len(result)} partidos")
-        except Exception as e:
-            logger.error(f"LMB initial analysis error: {e}")
-
-    _cache["live_data"] = {}
-
-
 async def ciclo_actualizacion(ws_manager):
-    """Main async loop: every 60s fetch live scores and broadcast."""
     logger.info("=== Ciclo de actualización en vivo iniciado ===")
 
     while True:
@@ -432,10 +531,8 @@ async def ciclo_actualizacion(ws_manager):
             live = await fetch_live_data()
             _cache["live_data"] = live
 
-            # Check for newly finished games → update CSV
             estado = dm.cargar_estado()
 
-            # Build reverse lookup: (away_lower, home_lower) -> live pk for LMB
             def _match(a, b):
                 a, b = a.strip().lower(), b.strip().lower()
                 return a == b or a in b or b in a
@@ -451,10 +548,8 @@ async def ciclo_actualizacion(ws_manager):
                 pk = str(p.get("game_pk", ""))
                 is_lmb = p.get("liga") == "LMB"
 
-                # Direct match by game_pk
                 matched_pk = pk if pk in live else None
 
-                # Fallback for LMB: match by team names
                 if not matched_pk and is_lmb:
                     away_lower = p.get("away_team", "").strip().lower()
                     home_lower = p.get("home_team", "").strip().lower()
@@ -472,7 +567,6 @@ async def ciclo_actualizacion(ws_manager):
                 if p.get("resultado") in ("acertado", "fallido"):
                     continue
 
-                # Update CSV
                 ar = ldata.get("away_runs", 0)
                 hr = ldata.get("home_runs", 0)
                 away_name = p.get("away_team", "")
@@ -484,7 +578,7 @@ async def ciclo_actualizacion(ws_manager):
                 dm.actualizar_estado_resultado(int(pk), "acertado" if acertado else "fallido", ganador)
                 logger.info(f"Resultado actualizado ({p.get('liga','MLB')}): {marcador} -> {'acertado' if acertado else 'fallido'}")
 
-            # Broadcast to all WebSocket clients
+            _backup()
             data = _build_data()
             await ws_manager.broadcast({"type": "full_update", "data": data})
 
@@ -492,3 +586,21 @@ async def ciclo_actualizacion(ws_manager):
             logger.error(f"Error en ciclo actualización: {e}")
 
         await asyncio.sleep(60)
+
+
+def run_initial_analysis():
+    logger.info("=== Inicializando análisis MLB ===")
+    try:
+        tarea_analisis_mlb()
+    except Exception as e:
+        logger.error(f"MLB initial analysis error: {e}")
+
+    if getattr(config, "LMB_ACTIVO", False):
+        logger.info("=== Inicializando análisis LMB ===")
+        try:
+            tarea_analisis_lmb()
+        except Exception as e:
+            logger.error(f"LMB initial analysis error: {e}")
+
+    _backup()
+    _cache["live_data"] = {}

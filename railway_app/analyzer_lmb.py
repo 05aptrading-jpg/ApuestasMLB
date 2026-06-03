@@ -681,7 +681,7 @@ def analizar_lmb_dia(fecha: str = None) -> list[dict]:
 
         # ── Trigger Moneyline
         senal = "NO APOSTAR"
-        nivel_cert = ""
+        nivel_cert = "BAJA"
         try:
             from analyzer import calcular_trigger
             senal, nivel_cert, _ = calcular_trigger(

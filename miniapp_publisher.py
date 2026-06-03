@@ -5,7 +5,7 @@ Genera index.html para la Telegram Mini App y lo pushea a GitHub Pages.
 import json
 import logging
 import os
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
 import requests
 
@@ -146,6 +146,7 @@ def _annotate_linescores_mlb(games: list):
     """Fetch linescore from MLB Stats API by date and annotate games."""
     import requests as _req
     from collections import defaultdict
+    from datetime import datetime as _dt, timedelta as _td
 
     def _norm(n):
         return n.strip().lower() if n else ""
@@ -197,6 +198,8 @@ def _annotate_linescores_mlb(games: list):
                         "home_hits": ls.get("teams", {}).get("home", {}).get("hits", 0),
                         "away_errors": ls.get("teams", {}).get("away", {}).get("errors", 0),
                         "home_errors": ls.get("teams", {}).get("home", {}).get("errors", 0),
+                        "away_team_name": a_team,
+                        "home_team_name": h_team,
                         "bases": {
                             "first": ls.get("offensive", {}).get("first", False),
                             "second": ls.get("offensive", {}).get("second", False),
@@ -223,6 +226,15 @@ def _annotate_linescores_mlb(games: list):
         liga = g.get("liga", "MLB")
         sport_id = 1 if liga in ("MLB", None, "") else 23
         by_ds[(gd, sport_id)].add(gd)
+        # LMB: API may group game under different date (TZ mismatch)
+        if sport_id == 23:
+            try:
+                dt_ref = _dt.strptime(gd, "%Y-%m-%d")
+                for delta in (-1, 1):
+                    adj = (dt_ref + _td(days=delta)).strftime("%Y-%m-%d")
+                    by_ds[(adj, sport_id)].add(adj)
+            except Exception:
+                pass
 
     for (date_str, sport_id) in by_ds:
         _fetch_for_date(date_str, sport_id)
@@ -239,12 +251,33 @@ def _annotate_linescores_mlb(games: list):
             ls_data = _ls_cache[pk]
         elif key in _ls_cache:
             ls_data = _ls_cache[key]
+        else:
+            # Fallback: search by team names ignoring date (handles LMB date mismatch)
+            for ck, cd in _ls_cache.items():
+                if not isinstance(ck, tuple) or len(ck) != 3:
+                    continue
+                _, cat, cht = ck
+                if (opp in cat or cat in opp) and (fav in cht or cht in fav):
+                    ls_data = cd
+                    break
         if ls_data and "innings" in ls_data:
             g["linescore"] = ls_data
             if g.get("result") in ("pending", "completed", None):
                 g["status_emoji"] = ls_data.get("status_emoji", g.get("status_emoji", "⏳"))
                 g["result"] = ls_data.get("result", g.get("result", "pending"))
                 g["state"] = ls_data.get("state", g.get("state", ""))
+            # Update score_fav/score_opp if empty (LMB: ESPN doesn't have data)
+            if not g.get("score_fav"):
+                a_name = _norm(ls_data.get("away_team_name", ""))
+                h_name = _norm(ls_data.get("home_team_name", ""))
+                a_runs = ls_data.get("away_runs", 0)
+                h_runs = ls_data.get("home_runs", 0)
+                if fav in h_name or h_name in fav:
+                    g["score_fav"] = str(h_runs)
+                    g["score_opp"] = str(a_runs)
+                else:
+                    g["score_fav"] = str(a_runs)
+                    g["score_opp"] = str(h_runs)
 def _build_data() -> dict:
     """Construye el JSON con partidos + stats para la Mini App."""
     from datetime import timedelta
@@ -313,12 +346,9 @@ def _build_data() -> dict:
         edge_csv = round(prob_csv - mercado_csv, 2) if mercado_str != "N/D" else None
         resultado_csv = _row.get("resultado", "").strip().lower()
         marcador = _row.get("marcador_final", "").strip()
-        p_min = config.PROB_MINIMA_ANALISIS
-        e_min = config.EDGE_MINIMO
-        if prob_csv >= p_min and edge_csv is not None and edge_csv >= e_min:
+        nivel_cert = _row.get("nivel_certidumbre", "").strip()
+        if nivel_cert in ("ALTA", "MEDIA"):
             label = "🎯"
-        elif prob_csv >= p_min:
-            label = "📊"
         else:
             label = "📋"
         # Buscar match en ESPN
@@ -385,12 +415,9 @@ def _build_data() -> dict:
         prob     = sg.get("prob_favorito", 0) or 0
         mercado  = sg.get("odds_mercado")
         edge     = round(prob - mercado, 2) if mercado else None
-        prob_min = config.PROB_MINIMA_ANALISIS
-        edge_min = config.EDGE_MINIMO
-        if prob >= prob_min and edge is not None and edge >= edge_min:
+        nivel_cert = sg.get("nivel_certidumbre", "").strip()
+        if nivel_cert in ("ALTA", "MEDIA"):
             label = "🎯"
-        elif prob >= prob_min:
-            label = "📊"
         else:
             label = "📋"
 
@@ -469,7 +496,7 @@ def _build_data() -> dict:
         logger.warning(f"Error fetching linescores: {e}")
 
     # Ordenar partidos por fecha (más reciente primero) y dentro de cada fecha por label
-    games.sort(key=lambda x: (x.get("game_date", ""), {"🎯":0,"📊":1,"📋":2}.get(x.get("label",""), 3)))
+    games.sort(key=lambda x: (x.get("game_date", ""), {"🎯":0,"📋":1}.get(x.get("label",""), 2)))
 
     # Extraer fechas disponibles ordenadas (más reciente primero)
     dias_set = set()
@@ -482,6 +509,28 @@ def _build_data() -> dict:
     stats = dm.obtener_estadisticas()
     stats_mlb = dm.obtener_estadisticas(liga="MLB")
     stats_lmb = dm.obtener_estadisticas(liga="LMB")
+
+    # Stats por rango de fecha para filtros del frontend
+    hoy = date.today()
+    stats_hoy = dm.obtener_estadisticas(fecha_desde=hoy.isoformat(), fecha_hasta=hoy.isoformat())
+    stats_hoy_mlb = dm.obtener_estadisticas(liga="MLB", fecha_desde=hoy.isoformat(), fecha_hasta=hoy.isoformat())
+    stats_hoy_lmb = dm.obtener_estadisticas(liga="LMB", fecha_desde=hoy.isoformat(), fecha_hasta=hoy.isoformat())
+    stats_3dias = dm.obtener_estadisticas(fecha_desde=(hoy - timedelta(days=2)).isoformat(), fecha_hasta=hoy.isoformat())
+    stats_3dias_mlb = dm.obtener_estadisticas(liga="MLB", fecha_desde=(hoy - timedelta(days=2)).isoformat(), fecha_hasta=hoy.isoformat())
+    stats_3dias_lmb = dm.obtener_estadisticas(liga="LMB", fecha_desde=(hoy - timedelta(days=2)).isoformat(), fecha_hasta=hoy.isoformat())
+    stats_semanal = dm.obtener_estadisticas(fecha_desde=(hoy - timedelta(days=6)).isoformat(), fecha_hasta=hoy.isoformat())
+    stats_semanal_mlb = dm.obtener_estadisticas(liga="MLB", fecha_desde=(hoy - timedelta(days=6)).isoformat(), fecha_hasta=hoy.isoformat())
+    stats_semanal_lmb = dm.obtener_estadisticas(liga="LMB", fecha_desde=(hoy - timedelta(days=6)).isoformat(), fecha_hasta=hoy.isoformat())
+
+    # Stats por cada fecha individual (para selector de día)
+    fechas_csv = dm.fechas_disponibles_csv()
+    stats_por_fecha = {}
+    stats_por_fecha_mlb = {}
+    stats_por_fecha_lmb = {}
+    for fecha_iso in fechas_csv:
+        stats_por_fecha[fecha_iso] = dm.obtener_estadisticas(fecha_desde=fecha_iso, fecha_hasta=fecha_iso)
+        stats_por_fecha_mlb[fecha_iso] = dm.obtener_estadisticas(liga="MLB", fecha_desde=fecha_iso, fecha_hasta=fecha_iso)
+        stats_por_fecha_lmb[fecha_iso] = dm.obtener_estadisticas(liga="LMB", fecha_desde=fecha_iso, fecha_hasta=fecha_iso)
     ahora = datetime.now().strftime("%d/%m/%Y %H:%M")
 
     # Obtener hora del próximo análisis (re-análisis fijo para countdown)
@@ -532,6 +581,31 @@ def _build_data() -> dict:
             "valor_rate": s["valor_rate"],
         }
 
+    has_live = any(g.get("result") == "live" for g in games)
+    has_scheduled = any(g.get("result") == "pending" for g in games)
+
+    live_data = {}
+    for g in games:
+        pk = g.get("game_pk", 0)
+        if pk:
+            ls = g.get("linescore", {})
+            try:
+                _fav = int(g.get("score_fav", 0) or 0)
+                _opp = int(g.get("score_opp", 0) or 0)
+            except (ValueError, TypeError):
+                _fav = 0
+                _opp = 0
+            live_data[str(pk)] = {
+                "is_live": g.get("result") == "live",
+                "is_final": g.get("result") in ("win", "loss", "completed"),
+                "status": g.get("state", ""),
+                "away_runs": _fav,
+                "home_runs": _opp,
+                "away_team_name": g.get("opp_team", ""),
+                "home_team_name": g.get("fav_team", ""),
+                "linescore": ls,
+            }
+
     return {
         "fecha": ahora,
         "proxima_actualizacion": prox_actualizacion,
@@ -542,9 +616,26 @@ def _build_data() -> dict:
         "games": games,
         "bot_username": config.TELEGRAM_BOT_USERNAME,
         "autorizados": cargar_suscriptores(),
+        "has_live": has_live,
+        "has_scheduled": has_scheduled,
+        "live_data": live_data,
+        "updated_at": ahora,
         "stats": _build_stats(stats),
         "stats_mlb": _build_stats(stats_mlb),
         "stats_lmb": _build_stats(stats_lmb),
+        "stats_hoy": _build_stats(stats_hoy),
+        "stats_hoy_mlb": _build_stats(stats_hoy_mlb),
+        "stats_hoy_lmb": _build_stats(stats_hoy_lmb),
+        "stats_3dias": _build_stats(stats_3dias),
+        "stats_3dias_mlb": _build_stats(stats_3dias_mlb),
+        "stats_3dias_lmb": _build_stats(stats_3dias_lmb),
+        "stats_semanal": _build_stats(stats_semanal),
+        "stats_semanal_mlb": _build_stats(stats_semanal_mlb),
+        "stats_semanal_lmb": _build_stats(stats_semanal_lmb),
+        "fechas_disponibles": fechas_csv,
+        "stats_por_fecha": {k: _build_stats(v) for k, v in stats_por_fecha.items()},
+        "stats_por_fecha_mlb": {k: _build_stats(v) for k, v in stats_por_fecha_mlb.items()},
+        "stats_por_fecha_lmb": {k: _build_stats(v) for k, v in stats_por_fecha_lmb.items()},
     }
 
 
@@ -655,6 +746,16 @@ def publicar() -> bool:
     except Exception as e:
         logger.error(f"Error generando live_data.json: {e}")
 
+    # Subir soccer_data.json
+    soccer_path = os.path.join(config.FUTBOL_DIR, "soccer_data.json")
+    if os.path.exists(soccer_path):
+        try:
+            with open(soccer_path, "r", encoding="utf-8") as f:
+                soccer_json = f.read()
+            pushear_archivo("soccer_data.json", soccer_json, "Actualizar soccer_data.json")
+        except Exception as e:
+            logger.error(f"Error subiendo soccer_data.json: {e}")
+
     # Subir páginas estáticas (privacy, terms)
     for archivo in ("privacy.html", "terms.html"):
         ruta_local = os.path.join(miniapp_dir, archivo)
@@ -668,13 +769,20 @@ def publicar() -> bool:
 
 
 def publicar_live_data() -> bool:
-    """Sube SOLO live_data.json a GitHub (para updates frecuentes sin regenerar HTML)."""
+    """Sube live_data.json + soccer_data.json (para updates frecuentes sin regenerar HTML)."""
     bot_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(bot_dir)
     try:
         data = _build_data()
         live_json = json.dumps(data, ensure_ascii=False, indent=2)
-        return pushear_archivo("live_data.json", live_json, "Update live scores")
+        pushear_archivo("live_data.json", live_json, "Update live scores")
+        # Also push soccer data
+        soccer_path = os.path.join(config.FUTBOL_DIR, "soccer_data.json")
+        if os.path.exists(soccer_path):
+            with open(soccer_path, "r", encoding="utf-8") as f:
+                soccer_json = f.read()
+            pushear_archivo("soccer_data.json", soccer_json, "Update soccer data")
+        return True
     except Exception as e:
-        logger.error(f"Error publicando live_data.json: {e}")
+        logger.error(f"Error publicando live_data: {e}")
         return False

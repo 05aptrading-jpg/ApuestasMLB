@@ -419,11 +419,11 @@ def calcular_trigger(
     elif diff_p < 0 and wrc_h > wrc_a:
         trig = "APRETA TRIGGER LOCAL"
     else:
-        return ("NO APOSTAR", "", usa_splits_reales)
+        return ("NO APOSTAR", "BAJA", usa_splits_reales)
 
     # Filtro LMB: wRC diff >= 15
     if liga == "LMB" and abs(diff_w) < config.TRIGGER_WRC_MIN_LMB:
-        return ("NO APOSTAR", "", usa_splits_reales)
+        return ("NO APOSTAR", "BAJA", usa_splits_reales)
 
     # ── Holgura: segmenta ALTA vs MEDIA ─────────────────────────────────────
     if abs(diff_p) > config.TRIGGER_HOLGURA_PITCHEO and abs(diff_w) > config.TRIGGER_HOLGURA_WRC:

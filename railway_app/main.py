@@ -1,6 +1,6 @@
 """
 FastAPI server — Railway deployment.
-Serves Mini App HTML + WebSocket updates.
+Serves Mini App HTML + WebSocket updates + Telegram webhook.
 """
 
 import asyncio
@@ -9,16 +9,23 @@ import os
 import sys
 
 import uvicorn
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-# Ensure parent dir is on path for imports of analyzer_lmb, api_client_lmb, etc.
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import config
 from railway_app.connection_manager import ConnectionManager
-from railway_app.scheduler_async import ciclo_actualizacion, run_initial_analysis, _cache, _build_data
+from railway_app.scheduler_async import (
+    ciclo_actualizacion,
+    iniciar_scheduler,
+    run_initial_analysis,
+    _cache,
+    _build_data,
+)
+from railway_app import persistencia
+import telegram_handler
 
 logging.basicConfig(
     level=getattr(logging, config.LOG_LEVEL, logging.INFO),
@@ -38,18 +45,68 @@ TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
 @app.on_event("startup")
 async def startup():
     logger.info("=== Railway App iniciando ===")
-    # Run initial analysis in background (non-blocking)
-    asyncio.create_task(_background_init())
-    # Start live update loop immediately
-    asyncio.create_task(ciclo_actualizacion(ws_manager))
 
+    BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-async def _background_init():
+    # 1. Restaurar datos desde GitHub
+    logger.info("Restaurando datos desde GitHub...")
+    persistencia.restaurar_desde_github(BASE)
+
+    # 2. Run initial analysis (sync, in executor to avoid blocking)
     loop = asyncio.get_event_loop()
     await loop.run_in_executor(None, run_initial_analysis)
+
+    # 3. Start scheduler tasks (skip initial — already done above)
+    asyncio.create_task(iniciar_scheduler(run_initial=False))
+
+    # 4. Start live update cycle
+    asyncio.create_task(ciclo_actualizacion(ws_manager))
+
+    # 5. Broadcast initial data
     data = _build_data()
     await ws_manager.broadcast({"type": "full_update", "data": data})
-    logger.info("=== Análisis inicial completado ===")
+
+    # 6. Set Telegram webhook
+    # RAILWAY_URL from env, fallback to RAILWAY_PUBLIC_DOMAIN (set automatically by Railway)
+    railway_url = config.RAILWAY_URL or (
+        f"https://{os.environ.get('RAILWAY_PUBLIC_DOMAIN', '')}"
+        if os.environ.get("RAILWAY_PUBLIC_DOMAIN") else ""
+    )
+    if railway_url:
+        url_webhook = f"{railway_url.rstrip('/')}/webhook"
+        token = config.TELEGRAM_TOKEN
+        try:
+            import requests as _r
+            resp = _r.post(
+                f"https://api.telegram.org/bot{token}/setWebhook",
+                params={"url": url_webhook},
+                timeout=10,
+            )
+            if resp.status_code == 200 and resp.json().get("ok"):
+                logger.info(f"Webhook registrado: {url_webhook}")
+            else:
+                logger.warning(f"Webhook registration failed: {resp.text[:200]}")
+        except Exception as e:
+            logger.error(f"Error registrando webhook: {e}")
+    else:
+        logger.warning("RAILWAY_URL no configurado — webhook no registrado")
+
+    logger.info("=== Railway App startup completado ===")
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    """Remove webhook on shutdown so polling can take over locally."""
+    if config.TELEGRAM_TOKEN:
+        try:
+            import requests as _r
+            _r.post(
+                f"https://api.telegram.org/bot{config.TELEGRAM_TOKEN}/deleteWebhook",
+                timeout=5,
+            )
+            logger.info("Webhook eliminado en shutdown")
+        except Exception:
+            pass
 
 
 # ── Routes ─────────────────────────────────────────────────────────────
@@ -108,6 +165,25 @@ async def terms():
 @app.get("/health")
 async def health():
     return {"status": "ok", "games_cached": len(_cache.get("live_data", {}))}
+
+
+# ── Telegram webhook ───────────────────────────────────────────────────
+@app.post("/webhook")
+async def telegram_webhook(request: Request):
+    try:
+        body = await request.json()
+    except Exception:
+        return {"ok": False}
+
+    msg = body.get("message") or {}
+    chat_id = msg.get("chat", {}).get("id")
+    text = (msg.get("text") or "").strip()
+
+    if chat_id and text:
+        loop = asyncio.get_event_loop()
+        loop.run_in_executor(None, telegram_handler.procesar_comando, chat_id, text)
+
+    return {"ok": True}
 
 
 @app.post("/sync")

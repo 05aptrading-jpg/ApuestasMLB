@@ -32,10 +32,10 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # ─────────────────────────────────────────────────────────────────────────────
 # CREDENCIALES
 # ─────────────────────────────────────────────────────────────────────────────
-TELEGRAM_TOKEN   = "8903351042:AAHo5SqCZNI4m9g-GsIsUmLPDYKf5qKemqE"   # @BotFather
-TELEGRAM_CHAT_ID = "6099564810"                                       # ID de tu chat/canal
+TELEGRAM_TOKEN   = os.environ.get("TELEGRAM_TOKEN", "8903351042:AAHo5SqCZNI4m9g-GsIsUmLPDYKf5qKemqE")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "6099564810")
 
-ODDS_API_KEY     = "a6466e5654475830ce2a3667dc76bd90"         # https://the-odds-api.com
+ODDS_API_KEY     = os.environ.get("ODDS_API_KEY", "a6466e5654475830ce2a3667dc76bd90")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # HORARIOS (formato 24h, zona horaria configurada en TIMEZONE)
@@ -116,23 +116,8 @@ REANALISIS_MLB_HORA = "08:00"   # Re-análisis MLB (hora fija)
 REANALISIS_LMB_HORA = "12:30"   # Re-análisis LMB (hora fija)
 
 # ── Telegram Mini App (GitHub Pages) ──────────────────────────────────────
-def _get_user_env(name):
-    val = os.environ.get(name, "")
-    if val:
-        return val
-    if os.name == "nt":
-        try:
-            import winreg
-            key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment")
-            val, _ = winreg.QueryValueEx(key, name)
-            winreg.CloseKey(key)
-            return str(val)
-        except Exception:
-            pass
-    return ""
-
-GITHUB_TOKEN          = _get_user_env("GITHUB_TOKEN")
-TELEGRAM_BOT_USERNAME = "MLBAnalyticsAPBot"                                # Nombre de usuario de tu bot (sin @)
+GITHUB_TOKEN          = os.environ.get("GITHUB_TOKEN", "")
+TELEGRAM_BOT_USERNAME = "MLBAnalyticsAPBot"
 # La Mini App se publica en:
 # https://05aptrading-jpg.github.io/ApuestasMLB/
 
@@ -147,9 +132,10 @@ SEASON_ACTUAL         = 2025  # Temporada MLB en curso
 ADMIN_USERNAME = "AdrianAdmin"
 
 # ── Railway Deploy API ───────────────────────────────────────────────
-RAILWAY_API_TOKEN   = "3260ed09-51a4-471a-b3c7-9f4ef38d1ca9"
-RAILWAY_PROJECT_ID  = "9e0334b1-cc88-47eb-bcc1-652d6fb2ce64"
-RAILWAY_SERVICE_ID  = "b1eeee1a-403d-4cdb-8059-a26db199ea1b"
+RAILWAY_API_TOKEN   = os.environ.get("RAILWAY_API_TOKEN", "")
+RAILWAY_PROJECT_ID  = os.environ.get("RAILWAY_PROJECT_ID", "")
+RAILWAY_SERVICE_ID  = os.environ.get("RAILWAY_SERVICE_ID", "")
+RAILWAY_URL         = os.environ.get("RAILWAY_URL", "")  # https://tu-proyecto.railway.app
 
 # ─────────────────────────────────────────────────────────────────────────────
 # LMB (Liga Mexicana de Béisbol)

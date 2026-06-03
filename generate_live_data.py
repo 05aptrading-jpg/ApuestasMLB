@@ -9,8 +9,8 @@ from datetime import datetime, timedelta
 import httpx
 
 # ── Constants (mirrored from config.py) ─────────────────────────────
-PROB_MINIMA_ANALISIS = 55.0
-EDGE_MINIMO = 3.0
+PROB_MINIMA_ANALISIS = 57.0
+EDGE_MINIMO = 4.0
 HORA_ANALISIS_MANANA = "08:00"
 LMB_HORA_MANANA = "10:00"
 TELEGRAM_BOT_USERNAME = "MLBAnalyticsAPBot"
@@ -225,10 +225,9 @@ def main():
             prob = sg.get("prob_favorito", 0) or 0
             mercado = sg.get("odds_mercado")
             edge = round(prob - (mercado or 0), 2) if mercado else None
-            if prob >= PROB_MINIMA_ANALISIS and edge is not None and edge >= EDGE_MINIMO:
+            nivel_cert = sg.get("nivel_certidumbre", "").strip()
+            if nivel_cert in ("ALTA", "MEDIA"):
                 label = "🎯"
-            elif prob >= PROB_MINIMA_ANALISIS:
-                label = "📊"
             else:
                 label = "📋"
 
@@ -283,7 +282,7 @@ def main():
                 "game_pk": pk,
             })
 
-    games.sort(key=lambda x: (x.get("game_date", ""), {"🎯": 0, "📊": 1, "📋": 2}.get(x.get("label", ""), 3)))
+    games.sort(key=lambda x: (x.get("game_date", ""), {"🎯": 0, "📋": 1}.get(x.get("label", ""), 2)))
 
     dias_set = set()
     for g in games:

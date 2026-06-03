@@ -618,16 +618,32 @@ def obtener_partidos_hoy_con_mercado() -> list[dict]:
 # ─────────────────────────────────────────────────────────────────────────────
 # ESTADÍSTICAS DEL CSV (para el resumen semanal)
 # ─────────────────────────────────────────────────────────────────────────────
-def obtener_estadisticas(liga: str = None) -> dict:
+def obtener_estadisticas(liga: str = None, fecha_desde: str = None, fecha_hasta: str = None) -> dict:
     """
     Lee el CSV completo y calcula estadísticas de rendimiento del bot.
     Si liga es 'MLB', 'LMB' o None (todas), filtra según corresponda.
-    Incluye métricas globales, de selecciones destacadas (prob ≥ PROB_MINIMA_ANALISIS)
-    y de señales de valor.
+    Si fecha_desde/fecha_hasta (ISO 'YYYY-MM-DD'), filtra por fecha_hora del CSV.
     """
     filas = _leer_todas()
     if liga in ("MLB", "LMB"):
         filas = [f for f in filas if (f.get("liga", "MLB") or "MLB").strip() == liga]
+    # Filtro por fecha (fecha_hora en CSV puede ser DD/MM/YYYY o YYYY-MM-DD)
+    if fecha_desde or fecha_hasta:
+        def _parse_csv_date(val: str) -> str:
+            s = (val or "").strip()[:10]
+            if not s:
+                return ""
+            parts = s.replace("/", "-").split("-")
+            if len(parts) == 3:
+                if len(parts[2]) == 4:
+                    return f"{parts[2]}-{parts[1]}-{parts[0]}"
+                return s
+            return s
+        filas = [f for f in filas if _parse_csv_date(f.get("fecha_hora", ""))]
+        if fecha_desde:
+            filas = [f for f in filas if _parse_csv_date(f.get("fecha_hora", "")) >= fecha_desde]
+        if fecha_hasta:
+            filas = [f for f in filas if _parse_csv_date(f.get("fecha_hora", "")) <= fecha_hasta]
     total      = len(filas)
     acertados  = sum(1 for f in filas if f.get("resultado") == "acertado")
     fallidos   = sum(1 for f in filas if f.get("resultado") == "fallido")
@@ -649,59 +665,31 @@ def obtener_estadisticas(liga: str = None) -> dict:
     rec_fallidos   = sum(1 for f in filas if _es_destacado(f) and f.get("resultado") == "fallido")
     rec_pendientes = sum(1 for f in filas if _es_destacado(f) and f.get("resultado") == "pendiente")
 
-    # ── CONFIANZA MEDIA (prob >= PROB_MINIMA_ANALISIS pero edge < EDGE_MINIMO) ──
-    def _es_confianza_media(f):
-        try:
-            prob = float(f.get("probabilidad_inicial", "0").replace("%", "").strip())
-            if prob < config.PROB_MINIMA_ANALISIS:
-                return False
-            pm_str = f.get("prob_mercado", "N/D").strip()
-            if pm_str != "N/D":
-                pm = float(pm_str.replace("%", "").strip())
-                edge = prob - pm
-                if edge >= config.EDGE_MINIMO:
-                    return False
-            return True
-        except (ValueError, AttributeError):
-            return False
-
-    media_total      = sum(1 for f in filas if _es_confianza_media(f))
-    media_acertados  = sum(1 for f in filas if _es_confianza_media(f) and f.get("resultado") == "acertado")
-    media_fallidos   = sum(1 for f in filas if _es_confianza_media(f) and f.get("resultado") == "fallido")
-    media_pendientes = sum(1 for f in filas if _es_confianza_media(f) and f.get("resultado") == "pendiente")
-
-    # ── CONFIANZA ALTA (prob >= PROB_MINIMA_ANALISIS y edge >= EDGE_MINIMO) ──
+    # ── ALTA CONFIANZA (nivel_certidumbre = "ALTA" o "MEDIA") ──
     def _es_confianza_alta(f):
-        try:
-            prob = float(f.get("probabilidad_inicial", "0").replace("%", "").strip())
-            if prob < config.PROB_MINIMA_ANALISIS:
-                return False
-            pm_str = f.get("prob_mercado", "N/D").strip()
-            if pm_str == "N/D":
-                return False
-            pm = float(pm_str.replace("%", "").strip())
-            edge = prob - pm
-            return edge >= config.EDGE_MINIMO
-        except (ValueError, AttributeError):
-            return False
+        nivel = f.get("nivel_certidumbre", "").strip()
+        return nivel in ("ALTA", "MEDIA")
 
     alta_total      = sum(1 for f in filas if _es_confianza_alta(f))
     alta_acertados  = sum(1 for f in filas if _es_confianza_alta(f) and f.get("resultado") == "acertado")
     alta_fallidos   = sum(1 for f in filas if _es_confianza_alta(f) and f.get("resultado") == "fallido")
     alta_pendientes = sum(1 for f in filas if _es_confianza_alta(f) and f.get("resultado") == "pendiente")
 
-    # ── SOLO INFORMATIVOS (prob < PROB_MINIMA_ANALISIS) ──
-    def _es_informativo(f):
-        try:
-            prob = float(f.get("probabilidad_inicial", "0").replace("%", "").strip())
-            return prob < config.PROB_MINIMA_ANALISIS
-        except (ValueError, AttributeError):
-            return False
+    # ── CONFIANZA MEDIA (eliminada — unificada con ALTA) ──
+    media_total      = 0
+    media_acertados  = 0
+    media_fallidos   = 0
+    media_pendientes = 0
 
-    baja_total      = sum(1 for f in filas if _es_informativo(f))
-    baja_acertados  = sum(1 for f in filas if _es_informativo(f) and f.get("resultado") == "acertado")
-    baja_fallidos   = sum(1 for f in filas if _es_informativo(f) and f.get("resultado") == "fallido")
-    baja_pendientes = sum(1 for f in filas if _es_informativo(f) and f.get("resultado") == "pendiente")
+    # ── BAJA CONFIANZA (nivel_certidumbre = "BAJA" o vacío) ──
+    def _es_baja(f):
+        nivel = f.get("nivel_certidumbre", "").strip()
+        return nivel not in ("ALTA", "MEDIA")
+
+    baja_total      = sum(1 for f in filas if _es_baja(f))
+    baja_acertados  = sum(1 for f in filas if _es_baja(f) and f.get("resultado") == "acertado")
+    baja_fallidos   = sum(1 for f in filas if _es_baja(f) and f.get("resultado") == "fallido")
+    baja_pendientes = sum(1 for f in filas if _es_baja(f) and f.get("resultado") == "pendiente")
 
     win_rate = (acertados / (acertados + fallidos) * 100
                 if (acertados + fallidos) > 0 else 0)
@@ -749,6 +737,21 @@ def obtener_estadisticas(liga: str = None) -> dict:
         "baja_pendientes":  baja_pendientes,
         "baja_win_rate":    round(baja_win_rate, 1),
     }
+
+
+def fechas_disponibles_csv() -> list[str]:
+    """Retorna lista de fechas únicas (ISO YYYY-MM-DD) presentes en el CSV."""
+    filas = _leer_todas()
+    def _parse_csv_date(val: str) -> str:
+        s = (val or "").strip()[:10]
+        if not s:
+            return ""
+        parts = s.replace("/", "-").split("-")
+        if len(parts) == 3 and len(parts[2]) == 4:
+            return f"{parts[2]}-{parts[1]}-{parts[0]}"
+        return s
+    fechas = sorted(set(_parse_csv_date(f.get("fecha_hora", "")) for f in filas if f.get("fecha_hora")))
+    return [f for f in fechas if f]
 
 
 # ─────────────────────────────────────────────────────────────────────────────

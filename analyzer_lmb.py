@@ -693,7 +693,7 @@ def analizar_lmb_dia(fecha: str = None) -> list[dict]:
 
         # ── Trigger Moneyline
         senal = "NO APOSTAR"
-        nivel_cert = ""
+        nivel_cert = "BAJA"
         try:
             from analyzer import calcular_trigger
             # LMB: sin datos de splits ni pitch_hand por ahora → defaults

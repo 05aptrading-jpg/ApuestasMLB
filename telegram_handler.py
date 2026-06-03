@@ -230,17 +230,20 @@ def _cmd_actualiza(chat_id: str):
 
     # ── Fútbol stats ──
     try:
-        sys.path.insert(0, config.FUTBOL_DIR)
-        from data_manager import obtener_estadisticas_soccer
-        fut_stats = obtener_estadisticas_soccer()
-        if fut_stats.get("total", 0) > 0:
-            lineas += ["", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"]
-            lineas.append("⚽ <b>FÚTBOL — RENDIMIENTO</b>")
-            lineas.append(f"🌐 Global: {fut_stats['acertados']}✅ {fut_stats['fallidos']}❌ ({fut_stats['total']}) → <b>{fut_stats['win_rate']}%</b>")
-            if fut_stats.get("ah0_total", 0) > 0:
-                lineas.append(f"🎯 AH0: {fut_stats['ah0_acertados']}✅ {fut_stats['ah0_fallidos']}❌ ({fut_stats['ah0_total']}) → <b>{fut_stats['ah0_win_rate']}%</b>")
-            if fut_stats.get("ou25_total", 0) > 0:
-                lineas.append(f"📈 O/U 2.5: {fut_stats['ou25_acertados']}✅ {fut_stats['ou25_fallidos']}❌ ({fut_stats['ou25_total']}) → <b>{fut_stats['ou25_win_rate']}%</b>")
+        import json as _json
+        soccer_json = os.path.join(config.FUTBOL_DIR, "soccer_data.json")
+        if os.path.exists(soccer_json):
+            with open(soccer_json, encoding="utf-8") as _f:
+                _sd = _json.load(_f)
+            fut_stats = _sd.get("stats", {})
+            if fut_stats.get("total", 0) > 0:
+                lineas += ["", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"]
+                lineas.append("⚽ <b>FÚTBOL — RENDIMIENTO</b>")
+                lineas.append(f"🌐 Global: {fut_stats.get('acertados',0)}✅ {fut_stats.get('fallidos',0)}❌ ({fut_stats.get('total',0)}) → <b>{fut_stats.get('win_rate',0)}%</b>")
+                if fut_stats.get("ah0_total", 0) > 0:
+                    lineas.append(f"🎯 AH0: {fut_stats.get('ah0_acertados',0)}✅ {fut_stats.get('ah0_fallidos',0)}❌ ({fut_stats.get('ah0_total',0)}) → <b>{fut_stats.get('ah0_win_rate',0)}%</b>")
+                if fut_stats.get("ou25_total", 0) > 0:
+                    lineas.append(f"📈 O/U 2.5: {fut_stats.get('ou25_acertados',0)}✅ {fut_stats.get('ou25_fallidos',0)}❌ ({fut_stats.get('ou25_total',0)}) → <b>{fut_stats.get('ou25_win_rate',0)}%</b>")
     except Exception:
         pass
 
@@ -311,17 +314,20 @@ def _cmd_futbol(chat_id: str):
 
     # Stats de fútbol
     try:
-        sys.path.insert(0, config.FUTBOL_DIR)
-        from data_manager import obtener_estadisticas_soccer
-        stats = obtener_estadisticas_soccer()
-        if stats.get("total", 0) > 0:
-            lineas += ["━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"]
-            lineas.append("📊 <b>FÚTBOL — RENDIMIENTO</b>")
-            lineas.append(f"🌐 Global: {stats['acertados']}✅ {stats['fallidos']}❌ ({stats['total']}) → <b>{stats['win_rate']}%</b>")
-            if stats.get("ah0_total", 0) > 0:
-                lineas.append(f"🎯 AH0: {stats['ah0_acertados']}✅ {stats['ah0_fallidos']}❌ ({stats['ah0_total']}) → <b>{stats['ah0_win_rate']}%</b>")
-            if stats.get("ou25_total", 0) > 0:
-                lineas.append(f"📈 O/U 2.5: {stats['ou25_acertados']}✅ {stats['ou25_fallidos']}❌ ({stats['ou25_total']}) → <b>{stats['ou25_win_rate']}%</b>")
+        import json as _json
+        soccer_json = os.path.join(config.FUTBOL_DIR, "soccer_data.json")
+        if os.path.exists(soccer_json):
+            with open(soccer_json, encoding="utf-8") as _f:
+                _sd = _json.load(_f)
+            stats = _sd.get("stats", {})
+            if stats.get("total", 0) > 0:
+                lineas += ["━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"]
+                lineas.append("📊 <b>FÚTBOL — RENDIMIENTO</b>")
+                lineas.append(f"🌐 Global: {stats.get('acertados',0)}✅ {stats.get('fallidos',0)}❌ ({stats.get('total',0)}) → <b>{stats.get('win_rate',0)}%</b>")
+                if stats.get("ah0_total", 0) > 0:
+                    lineas.append(f"🎯 AH0: {stats.get('ah0_acertados',0)}✅ {stats.get('ah0_fallidos',0)}❌ ({stats.get('ah0_total',0)}) → <b>{stats.get('ah0_win_rate',0)}%</b>")
+                if stats.get("ou25_total", 0) > 0:
+                    lineas.append(f"📈 O/U 2.5: {stats.get('ou25_acertados',0)}✅ {stats.get('ou25_fallidos',0)}❌ ({stats.get('ou25_total',0)}) → <b>{stats.get('ou25_win_rate',0)}%</b>")
     except Exception:
         pass
 
@@ -432,24 +438,20 @@ def _cmd_reiniciar(chat_id: int):
 
             # Fútbol
             try:
-                sys.path.insert(0, config.FUTBOL_DIR)
-                from generate_data_json import generar_soccer_data_json
-                from scraper_fbref import actualizar_base_datos_soccer
-                import data_manager as fut_dm
-                fut_dm.inicializar_csv()
-                df = actualizar_base_datos_soccer()
-                if not df.empty:
-                    from analyzer import generar_partidos_desde_cache, analizar_partido_soccer
-                    partidos = generar_partidos_desde_cache(df)
-                    analyses = [analizar_partido_soccer(m) for m in partidos]
-                    if analyses:
-                        fut_dm.guardar_analisis(analyses)
-                        generar_soccer_data_json()
-                        resultados.append(f"✅ Fútbol completado ({len(analyses)} partidos)")
-                    else:
-                        resultados.append("ℹ️ Fútbol: sin partidos para hoy")
+                import subprocess
+                result = subprocess.run(
+                    ["python", "main.py", "--ahora"],
+                    cwd=config.FUTBOL_DIR,
+                    capture_output=True, text=True, timeout=120, encoding="utf-8"
+                )
+                if result.returncode == 0:
+                    resultados.append(f"✅ Fútbol completado")
+                    if result.stdout:
+                        for line in result.stdout.strip().split('\n')[-3:]:
+                            resultados.append(f"  {line}")
                 else:
-                    resultados.append("⚠️ Fútbol: sin datos de Understat")
+                    resultados.append(f"❌ Fútbol error: {result.stderr[:200] if result.stderr else 'exit code ' + str(result.returncode)}")
+                    logger.error(f"Fútbol error: {result.stderr[:500]}")
             except Exception as e:
                 resultados.append(f"❌ Fútbol error: {e}")
                 logger.error(f"Fútbol reinicio error: {e}")
@@ -517,6 +519,109 @@ def _cmd_reload(chat_id: int):
 
 
 # ── Procesador de updates ─────────────────────────────────────────────
+def procesar_comando(chat_id, text: str):
+    """Procesa un comando de Telegram. Usado por polling y webhook."""
+    if not chat_id or not text:
+        return
+
+    # /start
+    if text.startswith("/start"):
+        if _esta_autorizado(chat_id):
+            data = _cargar_suscriptores()
+            es_admin = chat_id == data.get("admin_id", 0)
+            cmds = (
+                "📊 <b>Comandos disponibles:</b>\n"
+                "  /actualizar — Ver resultados del día (MLB + LMB + Fútbol)\n"
+                "  /futbol — Ver análisis de fútbol\n"
+                "  /suscribirse — Abrir Mini App\n"
+                "  /borrar — Eliminar mis datos del sistema"
+            )
+            if es_admin:
+                cmds += "\n  /suscriptores — Gestionar suscriptores"
+                cmds += "\n  /reiniciar — Reiniciar bot (MLB+LMB+Fútbol)"
+                cmds += "\n  /reload — Recargar código sin reiniciar"
+            _send_raw(str(chat_id),
+                "⚾ <b>MLB Analytics</b>\n\n"
+                "Bienvenido al sistema de análisis MLB.\n\n"
+                + cmds,
+                mini_app=True
+            )
+        else:
+            _send_raw(str(chat_id),
+                "⚾ <b>MLB Analytics</b>\n\n"
+                "Bienvenido.\n\n"
+                "🔒 Acceso exclusivo para suscriptores.\n"
+                f"Contacta a @{config.ADMIN_USERNAME} para obtener acceso.",
+                mini_app=True
+            )
+        return
+
+    # /actualizar
+    if text.startswith("/actualizar"):
+        if _esta_autorizado(chat_id):
+            _cmd_actualiza(str(chat_id))
+        else:
+            _send_raw(str(chat_id),
+                "🔒 Acceso restringido.\n"
+                f"Contacta a @{config.ADMIN_USERNAME} para obtener acceso.",
+                mini_app=True
+            )
+        return
+
+    # /futbol
+    if text.startswith("/futbol"):
+        if _esta_autorizado(chat_id):
+            _cmd_futbol(str(chat_id))
+        else:
+            _send_raw(str(chat_id),
+                "🔒 Acceso restringido.\n"
+                f"Contacta a @{config.ADMIN_USERNAME} para obtener acceso.",
+                mini_app=True
+            )
+        return
+
+    # /borrar o /delete
+    if text.startswith("/borrar") or text.startswith("/delete"):
+        if _eliminar_usuario(chat_id):
+            _send_raw(str(chat_id),
+                "🗑️ <b>Datos eliminados</b>\n\n"
+                "Tus datos han sido eliminados del sistema.\n"
+                "Gracias por usar el servicio.",
+                mini_app=True
+            )
+        else:
+            _send_raw(str(chat_id),
+                "ℹ️ No se encontraron datos asociados a tu cuenta.\n"
+                "Si eres el administrador, no puedes eliminarte desde aquí.",
+                mini_app=True
+            )
+        return
+
+    # /suscribirse
+    if text.startswith("/suscribirse"):
+        if chat_id:
+            _send_raw(str(chat_id),
+                "📱 <b>Abrir Mini App</b>\nToca el botón de abajo para ver el análisis en vivo.",
+                mini_app=True)
+        return
+
+    # /suscriptores — solo admin
+    if text.startswith("/suscriptores"):
+        if chat_id:
+            _cmd_suscriptores(chat_id, text[len("/suscriptores"):].strip())
+        return
+
+    # /reiniciar — solo admin
+    if text.startswith("/reiniciar"):
+        _cmd_reiniciar(chat_id)
+        return
+
+    # /reload — solo admin
+    if text.startswith("/reload"):
+        _cmd_reload(chat_id)
+        return
+
+
 def handle_updates():
     global _last_update_id
     logger.info("Telegram handler: polling iniciado")
@@ -544,102 +649,7 @@ def handle_updates():
                 if not text:
                     continue
 
-                # /start
-                if text.startswith("/start"):
-                    if _esta_autorizado(chat_id):
-                        data = _cargar_suscriptores()
-                        es_admin = chat_id == data.get("admin_id", 0)
-                        cmds = (
-                    "📊 <b>Comandos disponibles:</b>\n"
-                    "  /actualizar — Ver resultados del día (MLB + LMB + Fútbol)\n"
-                    "  /futbol — Ver análisis de fútbol\n"
-                    "  /suscribirse — Abrir Mini App\n"
-                    "  /borrar — Eliminar mis datos del sistema"
-                        )
-                        if es_admin:
-                            cmds += "\n  /suscriptores — Gestionar suscriptores"
-                            cmds += "\n  /reiniciar — Reiniciar bot (MLB+LMB+Fútbol)"
-                            cmds += "\n  /reload — Recargar código sin reiniciar"
-                        _send_raw(str(chat_id),
-                            "⚾ <b>MLB Analytics</b>\n\n"
-                            "Bienvenido al sistema de análisis MLB.\n\n"
-                            + cmds,
-                            mini_app=True
-                        )
-                    else:
-                        _send_raw(str(chat_id),
-                            "⚾ <b>MLB Analytics</b>\n\n"
-                            "Bienvenido.\n\n"
-                            "🔒 Acceso exclusivo para suscriptores.\n"
-                            f"Contacta a @{config.ADMIN_USERNAME} para obtener acceso.",
-                            mini_app=True
-                        )
-                    continue
-
-                # /actualizar
-                if text.startswith("/actualizar"):
-                    if _esta_autorizado(chat_id):
-                        _cmd_actualiza(str(chat_id))
-                    else:
-                        _send_raw(str(chat_id),
-                            "🔒 Acceso restringido.\n"
-                            f"Contacta a @{config.ADMIN_USERNAME} para obtener acceso.",
-                            mini_app=True
-                        )
-                    continue
-
-                # /futbol — mostrar análisis de fútbol
-                if text.startswith("/futbol"):
-                    if _esta_autorizado(chat_id):
-                        _cmd_futbol(str(chat_id))
-                    else:
-                        _send_raw(str(chat_id),
-                            "🔒 Acceso restringido.\n"
-                            f"Contacta a @{config.ADMIN_USERNAME} para obtener acceso.",
-                            mini_app=True
-                        )
-                    continue
-
-                # /borrar o /delete — eliminar datos personales
-                if text.startswith("/borrar") or text.startswith("/delete"):
-                    if _eliminar_usuario(chat_id):
-                        _send_raw(str(chat_id),
-                            "🗑️ <b>Datos eliminados</b>\n\n"
-                            "Tus datos han sido eliminados del sistema.\n"
-                            "Gracias por usar el servicio.",
-                            mini_app=True
-                        )
-                    else:
-                        _send_raw(str(chat_id),
-                            "ℹ️ No se encontraron datos asociados a tu cuenta.\n"
-                            "Si eres el administrador, no puedes eliminarte desde aquí.",
-                            mini_app=True
-                        )
-                    continue
-
-                # /suscribirse — abre Mini App para todos
-                if text.startswith("/suscribirse"):
-                    if chat_id:
-                        _send_raw(str(chat_id),
-                            "📱 <b>Abrir Mini App</b>\nToca el botón de abajo para ver el análisis en vivo.",
-                            mini_app=True)
-                    continue
-
-                # /suscriptores — solo admin
-                if text.startswith("/suscriptores"):
-                    if chat_id:
-                        _cmd_suscriptores(chat_id, text[len("/suscriptores"):].strip())
-                    continue
-
-                # /reiniciar — solo admin
-                if text.startswith("/reiniciar"):
-                    _cmd_reiniciar(chat_id)
-                    continue
-
-                # /reload — solo admin
-                if text.startswith("/reload"):
-                    _cmd_reload(chat_id)
-                    continue
+                procesar_comando(chat_id, text)
 
         except Exception as e:
             logger.error(f"Telegram handler error: {e}")
