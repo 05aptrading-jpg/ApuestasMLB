@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 22:00",
+  "fecha": "03/06/2026 22:03",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -826,7 +826,7 @@
       "opp_team": "New York Mets",
       "score_fav": "1",
       "score_opp": "7",
-      "state": "Middle 8th",
+      "state": "Bottom 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 823130,
@@ -866,9 +866,9 @@
           }
         ],
         "current_inning": 8,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "8th",
-        "outs": 3,
+        "outs": 1,
         "balls": 0,
         "strikes": 0,
         "away_runs": 7,
@@ -2153,7 +2153,7 @@
     "823130": {
       "is_live": true,
       "is_final": false,
-      "status": "Middle 8th",
+      "status": "Bottom 8th",
       "away_runs": 1,
       "home_runs": 7,
       "away_team_name": "New York Mets",
@@ -2194,9 +2194,9 @@
           }
         ],
         "current_inning": 8,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "8th",
-        "outs": 3,
+        "outs": 1,
         "balls": 0,
         "strikes": 0,
         "away_runs": 7,
@@ -2732,7 +2732,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 22:00",
+  "updated_at": "03/06/2026 22:03",
   "stats": {
     "total": 26,
     "acertados": 1,
