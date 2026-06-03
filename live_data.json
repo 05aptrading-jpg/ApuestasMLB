@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 22:03",
+  "fecha": "03/06/2026 22:18",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -821,13 +821,13 @@
     {
       "liga": "MLB",
       "game_date": "2026-06-03",
-      "status_emoji": "🔴",
+      "status_emoji": "❌",
       "fav_team": "Seattle Mariners",
       "opp_team": "New York Mets",
       "score_fav": "1",
       "score_opp": "7",
-      "state": "Bottom 8th",
-      "result": "live",
+      "state": "Final",
+      "result": "loss",
       "label": "📋",
       "game_pk": 823130,
       "linescore": {
@@ -863,20 +863,24 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": false,
-        "inning_ordinal": "8th",
-        "outs": 1,
-        "balls": 0,
-        "strikes": 0,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 3,
+        "strikes": 1,
         "away_runs": 7,
         "home_runs": 1,
         "away_hits": 14,
         "home_hits": 6,
         "away_errors": 0,
-        "home_errors": 1,
+        "home_errors": 2,
         "away_team_name": "New York Mets",
         "home_team_name": "Seattle Mariners",
         "bases": {
@@ -884,9 +888,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Game Over",
         "fav_score": "7",
         "opp_score": "1",
         "score_fav": "7",
@@ -1471,7 +1475,7 @@
     1992258520,
     8670833401
   ],
-  "has_live": true,
+  "has_live": false,
   "has_scheduled": true,
   "live_data": {
     "401815580": {
@@ -2151,9 +2155,9 @@
       }
     },
     "823130": {
-      "is_live": true,
-      "is_final": false,
-      "status": "Bottom 8th",
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
       "away_runs": 1,
       "home_runs": 7,
       "away_team_name": "New York Mets",
@@ -2191,20 +2195,24 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": false,
-        "inning_ordinal": "8th",
-        "outs": 1,
-        "balls": 0,
-        "strikes": 0,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 3,
+        "strikes": 1,
         "away_runs": 7,
         "home_runs": 1,
         "away_hits": 14,
         "home_hits": 6,
         "away_errors": 0,
-        "home_errors": 1,
+        "home_errors": 2,
         "away_team_name": "New York Mets",
         "home_team_name": "Seattle Mariners",
         "bases": {
@@ -2212,9 +2220,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Game Over",
         "fav_score": "7",
         "opp_score": "1",
         "score_fav": "7",
@@ -2732,7 +2740,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 22:03",
+  "updated_at": "03/06/2026 22:18",
   "stats": {
     "total": 26,
     "acertados": 1,
