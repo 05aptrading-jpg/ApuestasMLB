@@ -317,6 +317,33 @@
 
 </div>
 
+<div id="futbol-panel" style="display:none">
+
+  <div class="card">
+    <div class="card-title">⚽ Partidos de Fútbol</div>
+    <div class="futbol-filter-row">
+      <button class="futbol-filter-btn active" onclick="selectFutbolLiga('todas')">Todas</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolLiga('PREMIER_LEAGUE')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolLiga('LA_LIGA')">🇪🇸 La Liga</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolLiga('LIGA_MX')">🇲🇽 Liga MX</button>
+    </div>
+    <div class="futbol-filter-row">
+      <button class="futbol-filter-btn active" onclick="selectFutbolSenal('todas')">Todas</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolSenal('ah0')">AH0</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolSenal('ou25')">Over/Under 2.5</button>
+    </div>
+    <div id="futbol-games-list"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Rendimiento Fútbol</div>
+    <div id="futbol-stats-list" class="futbol-stats-grid"></div>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:#536471;margin-top:8px;padding-bottom:16px" id="futbol-update-info"></div>
+
+</div>
+
 <script>
 var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [], live_data: {}, autorizados: [] };
 var selectedLiga = 'general';
@@ -878,37 +905,7 @@ function renderScoreboard(g, container) {
     html += '<div class="sb-inning-label">' + arrow + ' ' + (ls.inning_ordinal || '') + '</div>';
   }
 
-  html += '
-</div>
-
-<div id="futbol-panel" style="display:none">
-
-  <div class="card">
-    <div class="card-title">⚽ Partidos de Fútbol</div>
-    <div class="futbol-filter-row">
-      <button class="futbol-filter-btn active" onclick="selectFutbolLiga('todas')">Todas</button>
-      <button class="futbol-filter-btn" onclick="selectFutbolLiga('PREMIER_LEAGUE')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</button>
-      <button class="futbol-filter-btn" onclick="selectFutbolLiga('LA_LIGA')">🇪🇸 La Liga</button>
-      <button class="futbol-filter-btn" onclick="selectFutbolLiga('LIGA_MX')">🇲🇽 Liga MX</button>
-    </div>
-    <div class="futbol-filter-row">
-      <button class="futbol-filter-btn active" onclick="selectFutbolSenal('todas')">Todas</button>
-      <button class="futbol-filter-btn" onclick="selectFutbolSenal('ah0')">AH0</button>
-      <button class="futbol-filter-btn" onclick="selectFutbolSenal('ou25')">Over/Under 2.5</button>
-    </div>
-    <div id="futbol-games-list"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">📊 Rendimiento Fútbol</div>
-    <div id="futbol-stats-list" class="futbol-stats-grid"></div>
-  </div>
-
-  <div style="text-align:center;font-size:12px;color:#536471;margin-top:8px;padding-bottom:16px" id="futbol-update-info"></div>
-
-</div>
-';
-
+  html += '</div>';
   container.innerHTML = html;
 }
 
