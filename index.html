@@ -64,6 +64,21 @@
   .stat-grid {
     display: grid; gap: 10px;
   }
+  .stats-filter { padding: 4px 0 8px 0; }
+  .filter-row { display: flex; gap: 6px; margin-bottom: 4px; flex-wrap: wrap; }
+  .filter-btn {
+    background: #1e2732; border: 1px solid #2f3336; border-radius: 6px;
+    color: #e1e8ed; font-size: 12px; padding: 4px 10px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .filter-btn:hover { background: #2a3340; }
+  .filter-btn.active { background: #1d9bf0; border-color: #1d9bf0; color: #fff; }
+  .filter-btn.sub { font-size: 11px; padding: 3px 8px; }
+  .stats-date-input {
+    background: #1e2732; border: 1px solid #2f3336; border-radius: 6px;
+    color: #e1e8ed; font-size: 12px; padding: 4px 8px;
+  }
+  .stats-date-input::-webkit-calendar-picker-indicator { filter: invert(0.7); }
   .stat-item {
     display: flex; justify-content: space-between;
     align-items: center; padding: 6px 0;
@@ -221,6 +236,20 @@
 
 <div class="card" id="stats-card">
   <div class="card-title">📊 Rendimiento</div>
+  <div class="stats-filter" id="stats-filter">
+    <div class="filter-row" id="filter-main">
+      <button class="filter-btn active" id="btn-todos" onclick="setStatsFilter(null)">Todos</button>
+      <button class="filter-btn" id="btn-dia" onclick="setStatsFilter('dia')">📅 Día</button>
+      <button class="filter-btn" id="btn-rango" onclick="setStatsFilter('rango')">📊 Rango</button>
+    </div>
+    <div class="filter-row" id="filter-dia" style="display:none">
+      <input type="date" id="stats-date-picker" class="stats-date-input" onchange="filterStatsByDate(this.value)">
+    </div>
+    <div class="filter-row" id="filter-rango" style="display:none">
+      <button class="filter-btn sub" id="btn-3dias" onclick="setStatsRange('3dias')">3 Días</button>
+      <button class="filter-btn sub" id="btn-semanal" onclick="setStatsRange('semanal')">Semanal</button>
+    </div>
+  </div>
   <div class="stat-grid" id="stats-list"></div>
 </div>
 
@@ -239,6 +268,8 @@ var selectedLiga = 'general';
 var selectedDate = '';
 var refreshTimer = 30;
 var refreshInterval = 30;
+var statsFilterMode = null;
+var statsRangeMode = null;
 
 function checkAuth() {
   var userId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
@@ -440,9 +471,62 @@ function renderGames() {
   gamesEl.innerHTML = html;
 }
 
+function setStatsFilter(mode) {
+  statsFilterMode = mode;
+  statsRangeMode = null;
+  document.getElementById('btn-todos').className = 'filter-btn' + (mode === null ? ' active' : '');
+  document.getElementById('btn-dia').className = 'filter-btn' + (mode === 'dia' ? ' active' : '');
+  document.getElementById('btn-rango').className = 'filter-btn' + (mode === 'rango' ? ' active' : '');
+  document.getElementById('filter-dia').style.display = mode === 'dia' ? '' : 'none';
+  document.getElementById('filter-rango').style.display = mode === 'rango' ? '' : 'none';
+  if (mode === 'dia') {
+    var picker = document.getElementById('stats-date-picker');
+    picker.max = new Date().toISOString().split('T')[0];
+    var fechas = DATA.fechas_disponibles || [];
+    if (fechas.length > 0 && !picker.value) {
+      picker.value = fechas[fechas.length - 1];
+    }
+  }
+  renderStats();
+}
+
+function setStatsRange(range) {
+  statsRangeMode = range;
+  document.getElementById('btn-3dias').className = 'filter-btn sub' + (range === '3dias' ? ' active' : '');
+  document.getElementById('btn-semanal').className = 'filter-btn sub' + (range === 'semanal' ? ' active' : '');
+  renderStats();
+}
+
+function filterStatsByDate(dateStr) {
+  statsRangeMode = null;
+  document.getElementById('btn-3dias').className = 'filter-btn sub';
+  document.getElementById('btn-semanal').className = 'filter-btn sub';
+  renderStats();
+}
+
+function getStatsForFilter() {
+  if (statsFilterMode === null) {
+    return getStatsForLiga(selectedLiga);
+  }
+  if (statsFilterMode === 'dia') {
+    var dateStr = document.getElementById('stats-date-picker').value;
+    if (!dateStr) return {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    if (selectedLiga === 'mlb') return (DATA.stats_por_fecha_mlb || {})[dateStr] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    if (selectedLiga === 'lmb') return (DATA.stats_por_fecha_lmb || {})[dateStr] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    return (DATA.stats_por_fecha || {})[dateStr] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+  }
+  if (statsFilterMode === 'rango' && statsRangeMode) {
+    var suffix = statsRangeMode === '3dias' ? '3dias' : 'semanal';
+    if (selectedLiga === 'mlb') return DATA['stats_' + suffix + '_mlb'] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    if (selectedLiga === 'lmb') return DATA['stats_' + suffix + '_lmb'] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    return DATA['stats_' + suffix] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+  }
+  return getStatsForLiga(selectedLiga);
+}
+
 function renderStats() {
   var statsEl = document.getElementById('stats-list');
-  var s = getStatsForLiga(selectedLiga);
+  var s = getStatsForFilter();
   if (!s) return;
   statsEl.innerHTML = '';
   var stats = [
