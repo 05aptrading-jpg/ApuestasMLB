@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 19:47",
+  "fecha": "03/06/2026 20:00",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -359,10 +359,15 @@
       "label": "🎯",
       "game_pk": 824917,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -558,7 +563,7 @@
       "fav_team": "Washington Nationals",
       "opp_team": "Miami Marlins",
       "score_fav": "1",
-      "score_opp": "3",
+      "score_opp": "4",
       "state": "Top 9th",
       "result": "live",
       "label": "🎯",
@@ -598,19 +603,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 9,
         "is_top": true,
         "inning_ordinal": "9th",
-        "outs": 0,
-        "balls": 1,
-        "strikes": 2,
-        "away_runs": 3,
+        "outs": 2,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 4,
         "home_runs": 1,
-        "away_hits": 8,
+        "away_hits": 10,
         "home_hits": 2,
         "away_errors": 1,
         "home_errors": 1,
@@ -624,9 +629,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "3",
+        "fav_score": "4",
         "opp_score": "1",
-        "score_fav": "3",
+        "score_fav": "4",
         "score_opp": "1"
       }
     },
@@ -809,31 +814,31 @@
       "status_emoji": "🔴",
       "fav_team": "Seattle Mariners",
       "opp_team": "New York Mets",
-      "score_fav": "0",
-      "score_opp": "0",
-      "state": "Top 1st",
+      "score_fav": "1",
+      "score_opp": "1",
+      "state": "Bottom 1st",
       "result": "live",
       "label": "📋",
       "game_pk": 823130,
       "linescore": {
         "innings": [
           {
-            "away_runs": 0,
-            "home_runs": 0
+            "away_runs": 1,
+            "home_runs": 1
           }
         ],
         "current_inning": 1,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 1,
-        "balls": 3,
-        "strikes": 2,
-        "away_runs": 0,
-        "home_runs": 0,
-        "away_hits": 0,
-        "home_hits": 0,
+        "outs": 2,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 1,
+        "home_runs": 1,
+        "away_hits": 2,
+        "home_hits": 1,
         "away_errors": 0,
-        "home_errors": 0,
+        "home_errors": 1,
         "away_team_name": "New York Mets",
         "home_team_name": "Seattle Mariners",
         "bases": {
@@ -844,10 +849,10 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
-        "opp_score": "0",
-        "score_fav": "0",
-        "score_opp": "0"
+        "fav_score": "1",
+        "opp_score": "1",
+        "score_fav": "1",
+        "score_opp": "1"
       }
     },
     {
@@ -863,10 +868,15 @@
       "label": "📋",
       "game_pk": 824755,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -905,10 +915,15 @@
       "label": "📋",
       "game_pk": 823540,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -941,8 +956,8 @@
       "fav_team": "Minnesota Twins",
       "opp_team": "Chicago White Sox",
       "score_fav": "0",
-      "score_opp": "5",
-      "state": "Top 8th",
+      "score_opp": "8",
+      "state": "Bottom 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 823701,
@@ -977,19 +992,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 3,
             "home_runs": 0
           }
         ],
         "current_inning": 8,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "8th",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
-        "away_runs": 5,
+        "away_runs": 8,
         "home_runs": 0,
-        "away_hits": 9,
+        "away_hits": 12,
         "home_hits": 3,
         "away_errors": 0,
         "home_errors": 3,
@@ -1003,9 +1018,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "5",
+        "fav_score": "8",
         "opp_score": "0",
-        "score_fav": "5",
+        "score_fav": "8",
         "score_opp": "0"
       }
     },
@@ -1666,10 +1681,15 @@
       "away_team_name": "Toronto Blue Jays",
       "home_team_name": "Atlanta Braves",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -1851,7 +1871,7 @@
       "is_final": false,
       "status": "Top 9th",
       "away_runs": 1,
-      "home_runs": 3,
+      "home_runs": 4,
       "away_team_name": "Miami Marlins",
       "home_team_name": "Washington Nationals",
       "linescore": {
@@ -1889,19 +1909,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 9,
         "is_top": true,
         "inning_ordinal": "9th",
-        "outs": 0,
-        "balls": 1,
-        "strikes": 2,
-        "away_runs": 3,
+        "outs": 2,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 4,
         "home_runs": 1,
-        "away_hits": 8,
+        "away_hits": 10,
         "home_hits": 2,
         "away_errors": 1,
         "home_errors": 1,
@@ -1915,9 +1935,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "3",
+        "fav_score": "4",
         "opp_score": "1",
-        "score_fav": "3",
+        "score_fav": "4",
         "score_opp": "1"
       }
     },
@@ -2081,30 +2101,30 @@
     "823130": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 1st",
-      "away_runs": 0,
-      "home_runs": 0,
+      "status": "Bottom 1st",
+      "away_runs": 1,
+      "home_runs": 1,
       "away_team_name": "New York Mets",
       "home_team_name": "Seattle Mariners",
       "linescore": {
         "innings": [
           {
-            "away_runs": 0,
-            "home_runs": 0
+            "away_runs": 1,
+            "home_runs": 1
           }
         ],
         "current_inning": 1,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 1,
-        "balls": 3,
-        "strikes": 2,
-        "away_runs": 0,
-        "home_runs": 0,
-        "away_hits": 0,
-        "home_hits": 0,
+        "outs": 2,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 1,
+        "home_runs": 1,
+        "away_hits": 2,
+        "home_hits": 1,
         "away_errors": 0,
-        "home_errors": 0,
+        "home_errors": 1,
         "away_team_name": "New York Mets",
         "home_team_name": "Seattle Mariners",
         "bases": {
@@ -2115,10 +2135,10 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
-        "opp_score": "0",
-        "score_fav": "0",
-        "score_opp": "0"
+        "fav_score": "1",
+        "opp_score": "1",
+        "score_fav": "1",
+        "score_opp": "1"
       }
     },
     "824755": {
@@ -2130,10 +2150,15 @@
       "away_team_name": "Baltimore Orioles",
       "home_team_name": "Boston Red Sox",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -2168,10 +2193,15 @@
       "away_team_name": "Cleveland Guardians",
       "home_team_name": "New York Yankees",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -2200,9 +2230,9 @@
     "823701": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 8th",
+      "status": "Bottom 8th",
       "away_runs": 0,
-      "home_runs": 5,
+      "home_runs": 8,
       "away_team_name": "Chicago White Sox",
       "home_team_name": "Minnesota Twins",
       "linescore": {
@@ -2236,19 +2266,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 3,
             "home_runs": 0
           }
         ],
         "current_inning": 8,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "8th",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
-        "away_runs": 5,
+        "away_runs": 8,
         "home_runs": 0,
-        "away_hits": 9,
+        "away_hits": 12,
         "home_hits": 3,
         "away_errors": 0,
         "home_errors": 3,
@@ -2262,9 +2292,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "5",
+        "fav_score": "8",
         "opp_score": "0",
-        "score_fav": "5",
+        "score_fav": "8",
         "score_opp": "0"
       }
     },
@@ -2618,7 +2648,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 19:47",
+  "updated_at": "03/06/2026 20:00",
   "stats": {
     "total": 26,
     "acertados": 1,
