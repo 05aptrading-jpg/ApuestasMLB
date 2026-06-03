@@ -1,5 +1,5 @@
 {
-  "fecha": "03/06/2026 09:04",
+  "fecha": "03/06/2026 09:07",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -490,10 +490,15 @@
       "label": "📋",
       "game_pk": 822727,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -1253,10 +1258,15 @@
       "away_team_name": "Washington Nationals",
       "home_team_name": "Miami Marlins",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -1594,7 +1604,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "03/06/2026 09:04",
+  "updated_at": "03/06/2026 09:07",
   "stats": {
     "total": 15,
     "acertados": 0,
