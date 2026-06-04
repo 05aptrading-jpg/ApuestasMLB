@@ -117,7 +117,7 @@ async def index():
         return HTMLResponse("<h1>Mini App no encontrada</h1>", status_code=404)
     with open(path, "r", encoding="utf-8") as f:
         html = f.read()
-    return HTMLResponse(html)
+    return HTMLResponse(html, headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
 
 
 @app.get("/data")
