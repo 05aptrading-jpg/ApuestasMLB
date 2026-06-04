@@ -228,11 +228,11 @@
     "away_pitcher": "Dinelson Lamet",
     "home_pitcher": "Joe Record",
     "favorito": "Piratas de Campeche",
-    "prob_favorito": 43.1,
+    "prob_favorito": 39.6,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "ALTA",
+    "nivel_certidumbre": "MEDIA",
     "resultado": "fallido",
     "marcador": null,
     "ganador": "El Aguila de Veracruz"
@@ -290,8 +290,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Conspiradores de Queretaro"
   },
   {
     "game_pk": 846072,
