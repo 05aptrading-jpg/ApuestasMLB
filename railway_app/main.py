@@ -49,26 +49,7 @@ async def startup():
 
     BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    # 1. Restaurar datos desde GitHub
-    logger.info("Restaurando datos desde GitHub...")
-    persistencia.restaurar_desde_github(BASE)
-
-    # 2. Run initial analysis (sync, in executor to avoid blocking)
-    loop = asyncio.get_event_loop()
-    await loop.run_in_executor(None, run_initial_analysis)
-
-    # 3. Start scheduler tasks (skip initial — already done above)
-    asyncio.create_task(iniciar_scheduler(run_initial=False))
-
-    # 4. Start live update cycle
-    asyncio.create_task(ciclo_actualizacion(ws_manager))
-
-    # 5. Broadcast initial data
-    data = _build_data()
-    await ws_manager.broadcast({"type": "full_update", "data": data})
-
-    # 6. Set Telegram webhook
-    # RAILWAY_URL from env, fallback to RAILWAY_PUBLIC_DOMAIN (set automatically by Railway)
+    # 1. Set Telegram webhook first (fast)
     railway_url = config.RAILWAY_URL or (
         f"https://{os.environ.get('RAILWAY_PUBLIC_DOMAIN', '')}"
         if os.environ.get("RAILWAY_PUBLIC_DOMAIN") else ""
@@ -89,10 +70,25 @@ async def startup():
                 logger.warning(f"Webhook registration failed: {resp.text[:200]}")
         except Exception as e:
             logger.error(f"Error registrando webhook: {e}")
-    else:
-        logger.warning("RAILWAY_URL no configurado — webhook no registrado")
 
-    logger.info("=== Railway App startup completado ===")
+    # 2. Start scheduler + live update immediately (no blocking)
+    asyncio.create_task(iniciar_scheduler(run_initial=True))
+    asyncio.create_task(ciclo_actualizacion(ws_manager))
+
+    # 3. Launch restore + analysis as background (non-blocking)
+    async def _background_init():
+        try:
+            loop = asyncio.get_event_loop()
+            await loop.run_in_executor(None, persistencia.restaurar_desde_github, BASE)
+            await loop.run_in_executor(None, run_initial_analysis)
+            data = _build_data()
+            await ws_manager.broadcast({"type": "full_update", "data": data})
+            logger.info("=== Background init completado ===")
+        except Exception as e:
+            logger.error(f"Background init error: {e}")
+
+    asyncio.create_task(_background_init())
+    logger.info("=== Railway App startup completado (analysis en background) ===")
 
 
 @app.on_event("shutdown")
