@@ -483,6 +483,67 @@ def _cmd_reiniciar(chat_id: int):
     t.start()
 
 
+def _cmd_deploy(chat_id: int):
+    """Trigger a Railway deployment via API."""
+    data = _cargar_suscriptores()
+    admin = data.get("admin_id", 0)
+    if chat_id != admin:
+        _send_raw(str(chat_id), "⛔ Solo el administrador puede desplegar.")
+        return
+
+    token = os.environ.get("RAILWAY_API_TOKEN", "")
+    project_id = os.environ.get("RAILWAY_PROJECT_ID", "")
+    service_id = os.environ.get("RAILWAY_SERVICE_ID", "")
+
+    if not token or not service_id:
+        _send_raw(str(chat_id),
+            "⚠️ Variables de Railway no configuradas.\n"
+            "Asegúrate de tener RAILWAY_API_TOKEN y RAILWAY_SERVICE_ID en las variables de entorno.")
+        return
+
+    _send_raw(str(chat_id), "🚀 Iniciando deploy en Railway...")
+
+    def _work():
+        try:
+            import requests as _req
+            url = "https://backboard.railway.app/graphql/v2"
+            headers = {
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
+            }
+            query = """
+            mutation {
+              serviceInstanceDeploy(input: {
+                serviceId: "%s"
+              }) {
+                id
+                status
+              }
+            }
+            """ % service_id
+
+            r = _req.post(url, json={"query": query}, headers=headers, timeout=15)
+            if r.status_code == 200:
+                resp = r.json()
+                if resp.get("data", {}).get("serviceInstanceDeploy"):
+                    dep = resp["data"]["serviceInstanceDeploy"]
+                    _send_raw(str(chat_id),
+                        f"✅ Deploy iniciado!\n"
+                        f"ID: <code>{dep['id'][:8]}</code>\n"
+                        f"Estado: {dep['status']}")
+                else:
+                    errors = resp.get("errors", [])
+                    msg = errors[0].get("message", "Error desconocido") if errors else "Error desconocido"
+                    _send_raw(str(chat_id), f"❌ Error de Railway API:\n<code>{msg[:200]}</code>")
+            else:
+                _send_raw(str(chat_id), f"❌ HTTP {r.status_code}: {r.text[:200]}")
+        except Exception as e:
+            _send_raw(str(chat_id), f"❌ Error: {e}")
+
+    t = threading.Thread(target=_work, daemon=True)
+    t.start()
+
+
 def _cmd_reload(chat_id: int):
     """Recarga módulos principales sin reiniciar el proceso."""
     data = _cargar_suscriptores()
@@ -541,6 +602,7 @@ def procesar_comando(chat_id, text: str):
             if es_admin:
                 cmds += "\n  /suscriptores — Gestionar suscriptores"
                 cmds += "\n  /reiniciar — Reiniciar bot (MLB+LMB+Fútbol)"
+                cmds += "\n  /deploy — Desplegar en Railway"
                 cmds += "\n  /reload — Recargar código sin reiniciar"
             _send_raw(str(chat_id),
                 "⚾ <b>MLB Analytics</b>\n\n"
@@ -616,6 +678,11 @@ def procesar_comando(chat_id, text: str):
     # /reiniciar — solo admin
     if text.startswith("/reiniciar"):
         _cmd_reiniciar(chat_id)
+        return
+
+    # /deploy — solo admin
+    if text.startswith("/deploy"):
+        _cmd_deploy(chat_id)
         return
 
     # /reload — solo admin
