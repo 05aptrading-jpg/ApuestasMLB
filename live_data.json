@@ -1,5 +1,5 @@
 {
-  "fecha": "04/06/2026 02:11",
+  "fecha": "04/06/2026 02:26",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -307,7 +307,7 @@
       "opp_team": "St. Louis Cardinals",
       "score_fav": "3",
       "score_opp": "5",
-      "state": "Bottom 7th",
+      "state": "Bottom 8th",
       "result": "live",
       "label": "🎯",
       "game_pk": 401815615,
@@ -506,14 +506,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
+        "current_inning": 4,
         "is_top": true,
-        "inning_ordinal": "3rd",
-        "outs": 3,
+        "inning_ordinal": "4th",
+        "outs": 1,
         "balls": 2,
-        "strikes": 3,
+        "strikes": 2,
         "away_runs": 4,
         "home_runs": 4,
         "away_hits": 7,
@@ -1001,9 +1005,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Game Over",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "5",
         "opp_score": "2",
         "score_fav": "5",
@@ -1043,14 +1047,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
+        "current_inning": 6,
         "is_top": true,
-        "inning_ordinal": "5th",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
+        "inning_ordinal": "6th",
+        "outs": 2,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 5,
         "away_hits": 3,
@@ -1102,17 +1110,21 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 2,
+        "inning_ordinal": "5th",
+        "outs": 1,
         "balls": 0,
-        "strikes": 0,
+        "strikes": 1,
         "away_runs": 5,
         "home_runs": 0,
-        "away_hits": 7,
+        "away_hits": 8,
         "home_hits": 1,
         "away_errors": 1,
         "home_errors": 0,
@@ -1139,7 +1151,7 @@
       "fav_team": "Caliente de Durango",
       "opp_team": "Dorados de Chihuahua",
       "score_fav": "0",
-      "score_opp": "0",
+      "score_opp": "1",
       "state": "In Progress",
       "result": "live",
       "label": "📋",
@@ -1157,17 +1169,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": false,
-        "inning_ordinal": "3rd",
-        "outs": 0,
-        "balls": 2,
-        "strikes": 2,
-        "away_runs": 0,
+        "current_inning": 4,
+        "is_top": true,
+        "inning_ordinal": "4th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 1,
         "home_runs": 0,
-        "away_hits": 5,
+        "away_hits": 7,
         "home_hits": 1,
         "away_errors": 0,
         "home_errors": 0,
@@ -1181,9 +1197,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "1",
         "opp_score": "0",
-        "score_fav": "0",
+        "score_fav": "1",
         "score_opp": "0"
       }
     },
@@ -1207,7 +1223,7 @@
       "status_emoji": "🔴",
       "fav_team": "Acereros del Norte",
       "opp_team": "Algodoneros Union Laguna",
-      "score_fav": "0",
+      "score_fav": "1",
       "score_opp": "1",
       "state": "In Progress",
       "result": "live",
@@ -1221,20 +1237,24 @@
           },
           {
             "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
         "outs": 0,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 1,
-        "home_runs": 0,
-        "away_hits": 1,
-        "home_hits": 0,
-        "away_errors": 0,
+        "home_runs": 1,
+        "away_hits": 2,
+        "home_hits": 1,
+        "away_errors": 1,
         "home_errors": 0,
         "away_team_name": "Algodoneros Union Laguna",
         "home_team_name": "Acereros del Norte",
@@ -1247,9 +1267,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "1",
-        "opp_score": "0",
+        "opp_score": "1",
         "score_fav": "1",
-        "score_opp": "0"
+        "score_opp": "1"
       }
     },
     {
@@ -1305,9 +1325,9 @@
       "status_emoji": "🔴",
       "fav_team": "Athletics",
       "opp_team": "Chicago Cubs",
-      "score_fav": "3",
+      "score_fav": "4",
       "score_opp": "4",
-      "state": "Top 8th",
+      "state": "Middle 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 401815611,
@@ -1319,9 +1339,9 @@
       "status_emoji": "🔴",
       "fav_team": "Pittsburgh Pirates",
       "opp_team": "Houston Astros",
-      "score_fav": "4",
+      "score_fav": "5",
       "score_opp": "3",
-      "state": "Top 6th",
+      "state": "Middle 6th",
       "result": "live",
       "label": "📋",
       "game_pk": 401815613,
@@ -1334,8 +1354,8 @@
       "fav_team": "Colorado Rockies",
       "opp_team": "Los Angeles Angels",
       "score_fav": "0",
-      "score_opp": "2",
-      "state": "Bottom 2nd",
+      "score_opp": "6",
+      "state": "Top 3rd",
       "result": "live",
       "label": "📋",
       "game_pk": 401815616,
@@ -1347,9 +1367,9 @@
       "status_emoji": "🔴",
       "fav_team": "Los Angeles Dodgers",
       "opp_team": "Arizona Diamondbacks",
-      "score_fav": "2",
+      "score_fav": "4",
       "score_opp": "0",
-      "state": "End 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "📋",
       "game_pk": 401815617,
@@ -1375,7 +1395,7 @@
       "status_emoji": "🔴",
       "fav_team": "Los Angeles Angels",
       "opp_team": "Colorado Rockies",
-      "score_fav": "2",
+      "score_fav": "6",
       "score_opp": "0",
       "state": "In Progress",
       "result": "live",
@@ -1389,20 +1409,24 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 2
+            "home_runs": 6
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 0,
-        "balls": 2,
-        "strikes": 1,
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
+        "outs": 2,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 0,
-        "home_runs": 2,
+        "home_runs": 6,
         "away_hits": 0,
-        "home_hits": 4,
-        "away_errors": 0,
+        "home_hits": 7,
+        "away_errors": 1,
         "home_errors": 0,
         "away_team_name": "Colorado Rockies",
         "home_team_name": "Los Angeles Angels",
@@ -1415,9 +1439,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "0",
-        "opp_score": "2",
+        "opp_score": "6",
         "score_fav": "0",
-        "score_opp": "2"
+        "score_opp": "6"
       }
     },
     {
@@ -2345,7 +2369,7 @@
     "401815615": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 7th",
+      "status": "Bottom 8th",
       "away_runs": 3,
       "home_runs": 5,
       "away_team_name": "St. Louis Cardinals",
@@ -2888,9 +2912,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Game Over",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "5",
         "opp_score": "2",
         "score_fav": "5",
@@ -2900,8 +2924,8 @@
     "401815611": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 8th",
-      "away_runs": 3,
+      "status": "Middle 8th",
+      "away_runs": 4,
       "home_runs": 4,
       "away_team_name": "Chicago Cubs",
       "home_team_name": "Athletics",
@@ -2910,8 +2934,8 @@
     "401815613": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 6th",
-      "away_runs": 4,
+      "status": "Middle 6th",
+      "away_runs": 5,
       "home_runs": 3,
       "away_team_name": "Houston Astros",
       "home_team_name": "Pittsburgh Pirates",
@@ -2920,9 +2944,9 @@
     "401815616": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 2nd",
+      "status": "Top 3rd",
       "away_runs": 0,
-      "home_runs": 2,
+      "home_runs": 6,
       "away_team_name": "Los Angeles Angels",
       "home_team_name": "Colorado Rockies",
       "linescore": {}
@@ -2930,8 +2954,8 @@
     "401815617": {
       "is_live": true,
       "is_final": false,
-      "status": "End 2nd",
-      "away_runs": 2,
+      "status": "Top 3rd",
+      "away_runs": 4,
       "home_runs": 0,
       "away_team_name": "Arizona Diamondbacks",
       "home_team_name": "Los Angeles Dodgers",
@@ -3566,7 +3590,7 @@
       }
     }
   },
-  "updated_at": "04/06/2026 02:11",
+  "updated_at": "04/06/2026 02:26",
   "stats": {
     "total": 44,
     "acertados": 1,
