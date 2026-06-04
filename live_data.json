@@ -1,5 +1,5 @@
 {
-  "fecha": "04/06/2026 01:59",
+  "fecha": "04/06/2026 02:00",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -305,7 +305,7 @@
       "status_emoji": "🔴",
       "fav_team": "Texas Rangers",
       "opp_team": "St. Louis Cardinals",
-      "score_fav": "1",
+      "score_fav": "3",
       "score_opp": "5",
       "state": "Top 7th",
       "result": "live",
@@ -335,7 +335,7 @@
       "opp_team": "Milwaukee Brewers",
       "score_fav": "1",
       "score_opp": "0",
-      "state": "Bottom 9th",
+      "state": "End 9th",
       "result": "live",
       "label": "🎯",
       "game_pk": 401815614,
@@ -497,14 +497,18 @@
           {
             "away_runs": 3,
             "home_runs": 4
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 3,
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 4,
         "away_hits": 5,
@@ -1007,7 +1011,7 @@
       "status_emoji": "🔴",
       "fav_team": "Tecos de los Dos Laredos",
       "opp_team": "Rieleros de Aguascalientes",
-      "score_fav": "3",
+      "score_fav": "4",
       "score_opp": "0",
       "state": "In Progress",
       "result": "live",
@@ -1029,19 +1033,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 4,
         "is_top": false,
         "inning_ordinal": "4th",
         "outs": 1,
-        "balls": 1,
-        "strikes": 0,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 0,
-        "home_runs": 3,
+        "home_runs": 4,
         "away_hits": 3,
-        "home_hits": 9,
+        "home_hits": 10,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Rieleros de Aguascalientes",
@@ -1055,9 +1059,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "0",
-        "opp_score": "3",
+        "opp_score": "4",
         "score_fav": "0",
-        "score_opp": "3"
+        "score_opp": "4"
       }
     },
     {
@@ -1067,7 +1071,7 @@
       "fav_team": "Diablos Rojos del Mexico",
       "opp_team": "Bravos de Leon",
       "score_fav": "0",
-      "score_opp": "4",
+      "score_opp": "5",
       "state": "In Progress",
       "result": "live",
       "label": "📋",
@@ -1087,17 +1091,17 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 4,
         "is_top": true,
         "inning_ordinal": "4th",
-        "outs": 1,
+        "outs": 2,
         "balls": 0,
         "strikes": 2,
-        "away_runs": 4,
+        "away_runs": 5,
         "home_runs": 0,
         "away_hits": 7,
         "home_hits": 1,
@@ -1113,9 +1117,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "4",
+        "fav_score": "5",
         "opp_score": "0",
-        "score_fav": "4",
+        "score_fav": "5",
         "score_opp": "0"
       }
     },
@@ -1150,8 +1154,8 @@
         "is_top": true,
         "inning_ordinal": "3rd",
         "outs": 1,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 5,
@@ -1205,13 +1209,17 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 2,
-        "balls": 2,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 0,
+        "balls": 0,
         "strikes": 0,
         "away_runs": 1,
         "home_runs": 0,
@@ -1290,7 +1298,7 @@
       "opp_team": "Chicago Cubs",
       "score_fav": "2",
       "score_opp": "4",
-      "state": "Middle 7th",
+      "state": "Bottom 7th",
       "result": "live",
       "label": "📋",
       "game_pk": 401815611,
@@ -1379,8 +1387,8 @@
         "is_top": true,
         "inning_ordinal": "2nd",
         "outs": 1,
-        "balls": 2,
-        "strikes": 3,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -2329,7 +2337,7 @@
       "is_live": true,
       "is_final": false,
       "status": "Top 7th",
-      "away_runs": 1,
+      "away_runs": 3,
       "home_runs": 5,
       "away_team_name": "St. Louis Cardinals",
       "home_team_name": "Texas Rangers",
@@ -2348,7 +2356,7 @@
     "401815614": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 9th",
+      "status": "End 9th",
       "away_runs": 1,
       "home_runs": 0,
       "away_team_name": "Milwaukee Brewers",
@@ -2883,7 +2891,7 @@
     "401815611": {
       "is_live": true,
       "is_final": false,
-      "status": "Middle 7th",
+      "status": "Bottom 7th",
       "away_runs": 2,
       "home_runs": 4,
       "away_team_name": "Chicago Cubs",
@@ -3549,7 +3557,7 @@
       }
     }
   },
-  "updated_at": "04/06/2026 01:59",
+  "updated_at": "04/06/2026 02:00",
   "stats": {
     "total": 44,
     "acertados": 1,
