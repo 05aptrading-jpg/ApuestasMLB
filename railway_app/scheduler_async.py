@@ -252,11 +252,6 @@ def tarea_analisis_mlb():
             dm.guardar_analisis(partidos)
             dm.guardar_estado(partidos)
             _backup()
-            try:
-                from miniapp_publisher import publicar
-                publicar()
-            except Exception:
-                pass
             logger.info(f"MLB: {len(partidos)} partidos analizados")
         else:
             logger.info("MLB: sin partidos para hoy")
@@ -312,11 +307,6 @@ def tarea_resultados():
         if actualizados:
             logger.info(f"Resultados actualizados: {actualizados}")
             _backup()
-            try:
-                from miniapp_publisher import publicar
-                publicar()
-            except Exception:
-                pass
     except Exception as e:
         logger.error(f"Error en tarea_resultados: {e}")
 
@@ -399,7 +389,6 @@ async def iniciar_scheduler(run_initial: bool = True):
         tarea_analisis_mlb()
         tarea_analisis_lmb()
         tarea_resultados()
-        tarea_publicar_miniapp()
 
     # Recalcular hora análisis dinámico cada día a las 05:00
     asyncio.create_task(ejecutar_en_horario(
@@ -408,17 +397,13 @@ async def iniciar_scheduler(run_initial: bool = True):
 
     # Re-análisis fijo MLB a las 08:00
     asyncio.create_task(ejecutar_en_horario(
-        config.REANALISIS_MLB_HORA, lambda: (
-            tarea_analisis_mlb(), tarea_publicar_miniapp()
-        ), "Re-análisis MLB"
+        config.REANALISIS_MLB_HORA, tarea_analisis_mlb, "Re-análisis MLB"
     ))
 
     # Re-análisis fijo LMB a las 12:30
     if getattr(config, "LMB_ACTIVO", False):
         asyncio.create_task(ejecutar_en_horario(
-            config.REANALISIS_LMB_HORA, lambda: (
-                tarea_analisis_lmb(), tarea_publicar_miniapp()
-            ), "Re-análisis LMB"
+            config.REANALISIS_LMB_HORA, tarea_analisis_lmb, "Re-análisis LMB"
         ))
 
     # Resultados cada 2 horas (sincronizado a la hora par)
@@ -432,14 +417,15 @@ async def iniciar_scheduler(run_initial: bool = True):
     if seg_primera < 0:
         seg_primera += 7200
     asyncio.create_task(ejecutar_cada_intervalo(
-        7200, lambda: (tarea_resultados(), tarea_publicar_miniapp()),
+        7200, tarea_resultados,
         "Resultados cada 2h", primera_vez=max(seg_primera, 60)
     ))
 
-    # Mini App cada 15 min
-    asyncio.create_task(ejecutar_cada_intervalo(
-        900, tarea_publicar_miniapp, "Mini App cada 15 min"
-    ))
+    # Mini App cada 15 min — DESHABILITADO: causa cascada infinita de deploys
+    # La publicación solo se ejecuta bajo demanda (/reiniciar)
+    # asyncio.create_task(ejecutar_cada_intervalo(
+    #     900, tarea_publicar_miniapp, "Mini App cada 15 min"
+    # ))
 
     # Análisis fútbol cada 20 min (live scores)
     asyncio.create_task(ejecutar_cada_intervalo(
