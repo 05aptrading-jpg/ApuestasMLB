@@ -1039,26 +1039,37 @@ function renderFutbol() {
 
 function renderFutbolDateTabs() {
   var container = document.getElementById('futbol-date-tabs');
+  var now = new Date();
+  var hoy = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var ayer = new Date(hoy); ayer.setDate(hoy.getDate() - 1);
+  var anteayer = new Date(hoy); anteayer.setDate(hoy.getDate() - 2);
+  function toISO(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+  var fechas = [
+    { iso: toISO(hoy), label: 'Hoy' },
+    { iso: toISO(ayer), label: 'Ayer' },
+    { iso: toISO(anteayer), label: 'Anteayer' }
+  ];
   var games = soccerData.games || [];
-  var fechas = {};
+  var fechasConJuegos = {};
   for (var i = 0; i < games.length; i++) {
-    var g = games[i];
-    if (g.fecha_partido) fechas[g.fecha_partido] = true;
+    if (games[i].fecha_partido) fechasConJuegos[games[i].fecha_partido] = true;
   }
-  var dias = Object.keys(fechas).sort().reverse();
-  if (dias.length <= 1) {
-    container.innerHTML = '';
-    if (dias.length === 1 && !selectedFutbolFecha) selectedFutbolFecha = dias[0];
-    return;
-  }
-  if (!selectedFutbolFecha || dias.indexOf(selectedFutbolFecha) === -1) {
-    selectedFutbolFecha = dias[0];
+  if (!selectedFutbolFecha || !fechasConJuegos[selectedFutbolFecha]) {
+    for (var k = 0; k < fechas.length; k++) {
+      if (fechasConJuegos[fechas[k].iso]) { selectedFutbolFecha = fechas[k].iso; break; }
+    }
+    if (!selectedFutbolFecha) selectedFutbolFecha = fechas[0].iso;
   }
   var html = '';
-  for (var j = 0; j < dias.length; j++) {
-    var d = dias[j];
-    var active = d === selectedFutbolFecha ? ' active' : '';
-    html += '<div class="date-tab' + active + '" onclick="selectFutbolFecha(\'' + d + '\')">' + formatearFecha(d) + '</div>';
+  for (var j = 0; j < fechas.length; j++) {
+    var f = fechas[j];
+    var count = 0;
+    for (var g = 0; g < games.length; g++) {
+      if (games[g].fecha_partido === f.iso) count++;
+    }
+    var active = f.iso === selectedFutbolFecha ? ' active' : '';
+    var badge = count > 0 ? ' <span style="opacity:0.6;font-size:11px">(' + count + ')</span>' : '';
+    html += '<div class="date-tab' + active + '" onclick="selectFutbolFecha(\'' + f.iso + '\')">' + f.label + badge + '</div>';
   }
   container.innerHTML = html;
 }
@@ -1073,8 +1084,9 @@ function renderFutbolGames() {
   var container = document.getElementById('futbol-games-list');
   var games = soccerData.games || [];
   if (!selectedFutbolFecha) {
-    var hoy = new Date().toISOString().slice(0, 10);
-    selectedFutbolFecha = hoy;
+    var now = new Date();
+    var hoy = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    selectedFutbolFecha = hoy.getFullYear() + '-' + String(hoy.getMonth()+1).padStart(2,'0') + '-' + String(hoy.getDate()).padStart(2,'0');
   }
   var dateGames = games.filter(function(g) { return g.fecha_partido === selectedFutbolFecha; });
   if (dateGames.length === 0) {
