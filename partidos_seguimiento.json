@@ -176,8 +176,9 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "acertado",
+    "marcador": null,
+    "ganador": "Tecos de los Dos Laredos"
   },
   {
     "game_pk": 846257,
