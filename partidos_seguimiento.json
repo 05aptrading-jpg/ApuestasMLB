@@ -111,7 +111,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Baltimore Orioles"
   },
   {
     "game_pk": 823698,
