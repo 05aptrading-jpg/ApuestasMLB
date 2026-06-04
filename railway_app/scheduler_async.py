@@ -322,6 +322,18 @@ def tarea_publicar_miniapp():
         logger.error(f"Error publicando Mini App: {e}")
 
 
+def tarea_publicar_datos():
+    """Push live_data.json + soccer_data.json a GitHub Pages (sin tocar HTML)."""
+    if not config.GITHUB_TOKEN:
+        return
+    try:
+        from miniapp_publisher import publicar_live_data
+        if publicar_live_data():
+            logger.info("Data publicada a GitHub Pages")
+    except Exception as e:
+        logger.error(f"Error publicando data: {e}")
+
+
 def tarea_analisis_futbol():
     try:
         import subprocess
@@ -421,11 +433,10 @@ async def iniciar_scheduler(run_initial: bool = True):
         "Resultados cada 2h", primera_vez=max(seg_primera, 60)
     ))
 
-    # Mini App cada 15 min — DESHABILITADO: causa cascada infinita de deploys
-    # La publicación solo se ejecuta bajo demanda (/reiniciar)
-    # asyncio.create_task(ejecutar_cada_intervalo(
-    #     900, tarea_publicar_miniapp, "Mini App cada 15 min"
-    # ))
+    # Mini App cada 15 min — solo data (HTML solo en deploy manual)
+    asyncio.create_task(ejecutar_cada_intervalo(
+        900, tarea_publicar_datos, "Mini App data cada 15 min"
+    ))
 
     # Análisis fútbol cada 20 min (live scores)
     asyncio.create_task(ejecutar_cada_intervalo(
