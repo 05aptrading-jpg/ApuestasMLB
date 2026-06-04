@@ -15,6 +15,24 @@ SOCCER_LEAGUES_V1 = {
         "short": "ESP",
         "teams": []
     },
+    "BUNDESLIGA": {
+        "understat_league": "Bundesliga",
+        "season": 2025,
+        "short": "GER",
+        "teams": []
+    },
+    "SERIE_A": {
+        "understat_league": "Serie_A",
+        "season": 2025,
+        "short": "ITA",
+        "teams": []
+    },
+    "LIGUE_1": {
+        "understat_league": "Ligue_1",
+        "season": 2025,
+        "short": "FRA",
+        "teams": []
+    },
     "LIGA_MX": {
         "source": "espn",
         "espn_slug": "mex.1",

@@ -65,6 +65,9 @@ def enviar_analisis_dia(analyses):
     liga_emoji = {
         "PREMIER_LEAGUE": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "LA_LIGA": "🇪🇸",
+        "BUNDESLIGA": "🇩🇪",
+        "SERIE_A": "🇮🇹",
+        "LIGUE_1": "🇫🇷",
         "LIGA_MX": "🇲🇽",
     }
 

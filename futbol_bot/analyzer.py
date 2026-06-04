@@ -14,6 +14,9 @@ logger = logging.getLogger(__name__)
 ESPN_LEAGUES = {
     "PREMIER_LEAGUE": "eng.1",
     "LA_LIGA": "esp.1",
+    "BUNDESLIGA": "ger.1",
+    "SERIE_A": "ita.1",
+    "LIGUE_1": "fra.1",
     "LIGA_MX": "mex.1",
 }
 ESPN_URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard"

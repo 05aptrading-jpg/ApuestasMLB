@@ -182,8 +182,9 @@ def obtener_estadisticas_soccer() -> dict:
         "ah0_total": 0, "ah0_acertados": 0, "ah0_fallidos": 0, "ah0_devueltos": 0, "ah0_win_rate": 0,
         "ou25_total": 0, "ou25_acertados": 0, "ou25_fallidos": 0, "ou25_devueltos": 0, "ou25_win_rate": 0,
     }
-    ligas = ["premier", "laliga", "ligamx"]
-    liga_map = {"PREMIER_LEAGUE": "premier", "LA_LIGA": "laliga", "LIGA_MX": "ligamx"}
+    ligas = ["premier", "laliga", "bundesliga", "seriea", "ligue1", "ligamx"]
+    liga_map = {"PREMIER_LEAGUE": "premier", "LA_LIGA": "laliga", "BUNDESLIGA": "bundesliga",
+                "SERIE_A": "seriea", "LIGUE_1": "ligue1", "LIGA_MX": "ligamx"}
     for l in ligas:
         for m in ["ah0", "ou25"]:
             stats[f"{l}_{m}_total"] = 0

@@ -8,6 +8,9 @@ import config
 LIGA_LABELS = {
     "PREMIER_LEAGUE": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League",
     "LA_LIGA": "🇪🇸 La Liga",
+    "BUNDESLIGA": "🇩🇪 Bundesliga",
+    "SERIE_A": "🇮🇹 Serie A",
+    "LIGUE_1": "🇫🇷 Ligue 1",
     "LIGA_MX": "🇲🇽 Liga MX",
 }
 
