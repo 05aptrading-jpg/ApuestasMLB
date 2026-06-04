@@ -1090,7 +1090,7 @@ function renderFutbolGames() {
   }
   var dateGames = games.filter(function(g) { return g.fecha_partido === selectedFutbolFecha; });
   if (dateGames.length === 0) {
-    container.innerHTML = '<div class="futbol-empty">📋 Sin partidos de fútbol para esta fecha</div>';
+    container.innerHTML = '<div class="futbol-empty">Sin juegos</div>';
     return;
   }
   var filtered = dateGames.filter(function(g) {
