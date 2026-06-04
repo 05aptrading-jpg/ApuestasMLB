@@ -12,6 +12,7 @@
 """
 
 import logging
+from datetime import datetime, timezone, timedelta
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -462,7 +463,14 @@ def analizar_partido(game: dict,
         home_name  = home_info["team"]["name"]
         game_pk       = game["gamePk"]
         raw_dt        = game.get("gameDate", "")
-        game_date     = raw_dt[:10]  # "YYYY-MM-DD"
+        # Convertir UTC a timezone local antes de extraer fecha
+        try:
+            utc_dt = datetime.fromisoformat(raw_dt.replace("Z", "+00:00"))
+            local_tz = timezone(timedelta(hours=-6))  # America/Ciudad_Juarez = UTC-6
+            local_dt = utc_dt.astimezone(local_tz)
+            game_date = local_dt.strftime("%Y-%m-%d")
+        except Exception:
+            game_date = raw_dt[:10]
         # Conservar ISO completo con hora si MLB lo trae; fallback a fecha sola
         game_datetime = raw_dt if "T" in raw_dt else game_date
 
@@ -954,8 +962,10 @@ def analizar_dia(game_date: str = None) -> list[GameAnalysis]:
     # Recopilar todos los juegos de todos los dates devueltos (la API a veces
     # agrupa varios días si se pide sin fecha explícita o hay dobleheaders).
     # Filtramos SOLO los de la fecha objetivo para no analizar partidos de mañana.
-    from datetime import date as _date
-    fecha_objetivo = game_date or _date.today().strftime("%Y-%m-%d")
+    if not game_date:
+        from datetime import date as _date
+        game_date = _date.today().strftime("%Y-%m-%d")  # fallback
+    fecha_objetivo = game_date
     games_raw = []
     for d in dates:
         for g in d.get("games", []):
@@ -1018,9 +1028,16 @@ def analizar_dia(game_date: str = None) -> list[GameAnalysis]:
                 away_info = teams.get("away", {}).get("team", {})
                 home_info = teams.get("home", {}).get("team", {})
                 raw_dt = game.get("gameDate", "")
+                try:
+                    utc_dt_fb = datetime.fromisoformat(raw_dt.replace("Z", "+00:00"))
+                    local_tz_fb = timezone(timedelta(hours=-6))
+                    local_dt_fb = utc_dt_fb.astimezone(local_tz_fb)
+                    fb_date = local_dt_fb.strftime("%Y-%m-%d")
+                except Exception:
+                    fb_date = raw_dt[:10]
                 fallback = GameAnalysis(
                     game_pk=game.get("gamePk", 0),
-                    game_date=raw_dt[:10],
+                    game_date=fb_date,
                     game_datetime=raw_dt,
                     away_team=away_info.get("name", "TBD"),
                     home_team=home_info.get("name", "TBD"),

@@ -212,7 +212,8 @@ class MLBStatsClient:
         URL: https://statsapi.mlb.com/api/v1/schedule
         """
         if not game_date:
-            game_date = date.today().strftime("%Y-%m-%d")
+            from datetime import timezone as _tz, timedelta as _td
+            game_date = datetime.now(_tz(_td(hours=-6))).strftime("%Y-%m-%d")
 
         data = _get(f"{self.BASE}/schedule", params={
             "sportId": 1, "date": game_date,
