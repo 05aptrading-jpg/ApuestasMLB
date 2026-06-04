@@ -103,12 +103,12 @@
     "game_datetime": "2026-06-04T17:35:00Z",
     "away_team": "Baltimore Orioles",
     "home_team": "Boston Red Sox",
-    "favorito": "Baltimore Orioles",
-    "prob_favorito": 50.91,
+    "favorito": "Boston Red Sox",
+    "prob_favorito": 51.08,
     "odds_mercado": null,
     "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
+    "senal_moneyline": "APRETA TRIGGER VISITANTE",
+    "nivel_certidumbre": "MEDIA",
     "resultado": "pendiente"
   },
   {
