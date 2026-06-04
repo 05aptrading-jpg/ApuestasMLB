@@ -1,5 +1,5 @@
 {
-  "fecha": "04/06/2026 20:52",
+  "fecha": "04/06/2026 21:07",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1932,10 +1932,15 @@
       "label": "📋",
       "game_pk": 401815623,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -2088,9 +2093,9 @@
       "status_emoji": "🔴",
       "fav_team": "Milwaukee Brewers",
       "opp_team": "San Francisco Giants",
-      "score_fav": "5",
+      "score_fav": "6",
       "score_opp": "12",
-      "state": "Bottom 7th",
+      "state": "Top 9th",
       "result": "live",
       "label": "📋",
       "game_pk": 823779,
@@ -2123,18 +2128,26 @@
           {
             "away_runs": 6,
             "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 1,
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 12,
-        "home_runs": 5,
+        "home_runs": 6,
         "away_hits": 19,
-        "home_hits": 7,
+        "home_hits": 8,
         "away_errors": 1,
         "home_errors": 0,
         "away_team_name": "San Francisco Giants",
@@ -2148,9 +2161,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "12",
-        "opp_score": "5",
+        "opp_score": "6",
         "score_fav": "12",
-        "score_opp": "5"
+        "score_opp": "6"
       }
     },
     {
@@ -3581,10 +3594,15 @@
       "away_team_name": "Athletics",
       "home_team_name": "Chicago Cubs",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -3726,8 +3744,8 @@
     "823779": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 7th",
-      "away_runs": 5,
+      "status": "Top 9th",
+      "away_runs": 6,
       "home_runs": 12,
       "away_team_name": "San Francisco Giants",
       "home_team_name": "Milwaukee Brewers",
@@ -3760,18 +3778,26 @@
           {
             "away_runs": 6,
             "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 1,
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 12,
-        "home_runs": 5,
+        "home_runs": 6,
         "away_hits": 19,
-        "home_hits": 7,
+        "home_hits": 8,
         "away_errors": 1,
         "home_errors": 0,
         "away_team_name": "San Francisco Giants",
@@ -3785,9 +3811,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "12",
-        "opp_score": "5",
+        "opp_score": "6",
         "score_fav": "12",
-        "score_opp": "5"
+        "score_opp": "6"
       }
     },
     "823698": {
@@ -4062,7 +4088,7 @@
       }
     }
   },
-  "updated_at": "04/06/2026 20:52",
+  "updated_at": "04/06/2026 21:07",
   "stats": {
     "total": 44,
     "acertados": 5,
