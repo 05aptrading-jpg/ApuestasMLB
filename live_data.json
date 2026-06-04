@@ -1,5 +1,5 @@
 {
-  "fecha": "04/06/2026 03:58",
+  "fecha": "04/06/2026 04:00",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780581600,
@@ -451,8 +451,8 @@
         "is_top": false,
         "inning_ordinal": "3rd",
         "outs": 0,
-        "balls": 1,
-        "strikes": 1,
+        "balls": 3,
+        "strikes": 2,
         "away_runs": 6,
         "home_runs": 5,
         "away_hits": 6,
@@ -541,7 +541,7 @@
         "inning_ordinal": "8th",
         "outs": 1,
         "balls": 0,
-        "strikes": 0,
+        "strikes": 2,
         "away_runs": 7,
         "home_runs": 4,
         "away_hits": 10,
@@ -1171,8 +1171,8 @@
         "current_inning": 9,
         "is_top": true,
         "inning_ordinal": "9th",
-        "outs": 0,
-        "balls": 0,
+        "outs": 1,
+        "balls": 2,
         "strikes": 2,
         "away_runs": 8,
         "home_runs": 4,
@@ -1246,8 +1246,8 @@
         "current_inning": 8,
         "is_top": false,
         "inning_ordinal": "8th",
-        "outs": 1,
-        "balls": 2,
+        "outs": 2,
+        "balls": 0,
         "strikes": 1,
         "away_runs": 3,
         "home_runs": 2,
@@ -1322,14 +1322,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
-        "is_top": false,
-        "inning_ordinal": "6th",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 1,
+        "current_inning": 7,
+        "is_top": true,
+        "inning_ordinal": "7th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 7,
         "home_runs": 3,
         "away_hits": 8,
@@ -1359,7 +1363,7 @@
       "fav_team": "Toros de Tijuana",
       "opp_team": "Charros de Jalisco",
       "score_fav": "4",
-      "score_opp": "2",
+      "score_opp": "5",
       "state": "In Progress",
       "result": "live",
       "label": "📋",
@@ -1383,7 +1387,7 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 3,
             "home_runs": 0
           }
         ],
@@ -1391,11 +1395,11 @@
         "is_top": true,
         "inning_ordinal": "5th",
         "outs": 1,
-        "balls": 1,
-        "strikes": 1,
-        "away_runs": 2,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 5,
         "home_runs": 4,
-        "away_hits": 6,
+        "away_hits": 8,
         "home_hits": 6,
         "away_errors": 0,
         "home_errors": 0,
@@ -1409,9 +1413,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "2",
+        "fav_score": "5",
         "opp_score": "4",
-        "score_fav": "2",
+        "score_fav": "5",
         "score_opp": "4"
       }
     },
@@ -1451,7 +1455,7 @@
       "opp_team": "Los Angeles Angels",
       "score_fav": "3",
       "score_opp": "11",
-      "state": "End 7th",
+      "state": "Top 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 401815616,
@@ -1526,14 +1530,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 3,
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
+        "outs": 0,
         "balls": 2,
-        "strikes": 2,
+        "strikes": 1,
         "away_runs": 3,
         "home_runs": 11,
         "away_hits": 4,
@@ -3056,7 +3064,7 @@
     "401815616": {
       "is_live": true,
       "is_final": false,
-      "status": "End 7th",
+      "status": "Top 8th",
       "away_runs": 3,
       "home_runs": 11,
       "away_team_name": "Los Angeles Angels",
@@ -3702,7 +3710,7 @@
       }
     }
   },
-  "updated_at": "04/06/2026 03:58",
+  "updated_at": "04/06/2026 04:00",
   "stats": {
     "total": 44,
     "acertados": 2,
