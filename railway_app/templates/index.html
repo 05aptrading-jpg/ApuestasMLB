@@ -22,26 +22,13 @@
   }
   .header .date { font-size: 13px; color: #71767b; margin-top: 4px; }
   .header .next-update { font-size: 22px; color: #f5a623; margin-top: 2px; }
-  .header .next-update .update-time { font-size: 16px; color: #f5a623; }
+.header .next-update .update-time { font-size: 16px; color: #f5a623; }
   .legend {
     display: flex; flex-wrap: wrap; gap: 6px;
     justify-content: center; margin: 12px 0;
     font-size: 12px; color: #71767b;
   }
   .legend span { display: inline-flex; align-items: center; gap: 3px; }
-  .live-indicator {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 11px; color: #00ba7c; margin-top: 4px;
-  }
-  .live-indicator .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #00ba7c; display: inline-block;
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
 
   .card {
     background: #1a1f2e; border-radius: 12px;
@@ -56,7 +43,7 @@
 
   .game-row {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     gap: 6px;
     align-items: center;
     padding: 6px 0;
@@ -73,14 +60,25 @@
     background: #262d3d; padding: 2px 8px;
     border-radius: 6px; text-align: center;
   }
-  .game-state.live {
-    background: #1a3a2a; color: #00ba7c;
-    font-weight: 600;
-  }
 
   .stat-grid {
     display: grid; gap: 10px;
   }
+  .stats-filter { padding: 4px 0 8px 0; }
+  .filter-row { display: flex; gap: 6px; margin-bottom: 4px; flex-wrap: wrap; }
+  .filter-btn {
+    background: #1e2732; border: 1px solid #2f3336; border-radius: 6px;
+    color: #e1e8ed; font-size: 12px; padding: 4px 10px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .filter-btn:hover { background: #2a3340; }
+  .filter-btn.active { background: #1d9bf0; border-color: #1d9bf0; color: #fff; }
+  .filter-btn.sub { font-size: 11px; padding: 3px 8px; }
+  .stats-date-input {
+    background: #1e2732; border: 1px solid #2f3336; border-radius: 6px;
+    color: #e1e8ed; font-size: 12px; padding: 4px 8px;
+  }
+  .stats-date-input::-webkit-calendar-picker-indicator { filter: invert(0.7); }
   .stat-item {
     display: flex; justify-content: space-between;
     align-items: center; padding: 6px 0;
@@ -114,13 +112,23 @@
     background: #f59e0b; color: #fff; border-color: #f59e0b;
   }
 
+  .game-state.live {
+    background: #1a3a2a; color: #00ba7c;
+    font-weight: 600;
+    animation: pulse-live 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-live {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
   .game-wrapper { margin-bottom: 0; }
   .game-row { cursor: pointer; transition: background 0.15s; border-radius: 6px; }
   .game-row:hover { background: #1f2538; }
   .expand-icon { font-size: 10px; color: #536471; transition: transform 0.2s; margin-left: 4px; }
   .expand-icon.open { transform: rotate(180deg); }
   .scoreboard-expand {
-    display: none; overflow: hidden;
+    display: none; overflow-x: auto;
     background: #131827; border-radius: 8px;
     margin: 2px 0 6px 0; padding: 10px;
     border: 1px solid #2a3040;
@@ -132,7 +140,8 @@
   .sb-status.final { color: #f5a623; }
   .sb-grid {
     display: grid;
-    grid-template-columns: 100px repeat(auto-fit, minmax(24px, 1fr)) 32px 32px 32px;
+    min-width: 500px;
+    grid-template-columns: 80px repeat(auto-fit, minmax(22px, 1fr)) 32px 32px 32px;
     gap: 2px; font-size: 12px; font-family: 'Courier New', monospace;
     margin-bottom: 8px;
   }
@@ -156,14 +165,6 @@
     font-size: 18px; line-height: 1;
   }
   .sb-bases-row { display: flex; gap: 8px; }
-  .sb-base { width: 14px; height: 14px; border-radius: 2px; display: inline-block; }
-  .sb-base.occupied { background: #f5a623; }
-  .sb-base.empty { background: #2a3040; }
-  .sb-diamond {
-    display: flex; flex-direction: column; align-items: center;
-    width: 40px;
-  }
-  .sb-diamond-row { display: flex; justify-content: center; gap: 6px; }
   .sb-diamond-base {
     width: 10px; height: 10px; border-radius: 2px;
     border: 2px solid #536471;
@@ -180,22 +181,115 @@
   .sb-out-dot.recorded { background: #e1e8ed; border-color: #e1e8ed; }
   .sb-count { font-size: 13px; color: #8b98a5; }
   .sb-count span { font-weight: 600; color: #e1e8ed; }
-  .sb-pitcher { font-size: 12px; color: #8b98a5; margin-top: 2px; }
   .sb-inning-label { font-size: 14px; font-weight: 600; color: #f5a623; }
   .sb-loading { text-align: center; padding: 10px; color: #536471; font-size: 12px; }
+  .sb-pitcher { font-size: 12px; color: #8b98a5; margin-top: 2px; }
 
   .footer {
     text-align: center; padding: 16px 0;
     font-size: 12px; color: #e1e8ed;
   }
+
+  #blocked-screen {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: #0f1419; z-index: 9999;
+    flex-direction: column; align-items: center; justify-content: center;
+    padding: 32px; text-align: center;
+  }
+  #blocked-screen .icon { font-size: 64px; margin-bottom: 16px; }
+  #blocked-screen h2 { font-size: 20px; color: #e1e8ed; margin-bottom: 8px; }
+  #blocked-screen p { font-size: 14px; color: #71767b; max-width: 300px; line-height: 1.5; }
+  #main-content { display: block; }
+
+  .main-tabs { display: flex; gap: 8px; justify-content: center; margin: 4px 0 12px 0; }
+  .main-tab {
+    background: #1a1f2e; color: #8b98a5; border: 1px solid #2a3040;
+    border-radius: 10px; padding: 8px 20px; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.15s; flex: 1; max-width: 160px; text-align: center;
+  }
+  .main-tab:hover { background: #262d3d; }
+  .main-tab.active { background: #1d9bf0; border-color: #1d9bf0; color: #fff; }
+  .main-tab.active.futbol { background: #10b981; border-color: #10b981; }
+
+  .futbol-filter-row { display: flex; gap: 6px; margin: 8px 0; flex-wrap: wrap; justify-content: center; }
+  .futbol-filter-btn {
+    background: #1e2732; border: 1px solid #2f3336; border-radius: 6px;
+    color: #e1e8ed; font-size: 12px; padding: 4px 10px; cursor: pointer;
+  }
+  .futbol-filter-btn:hover { background: #2a3340; }
+  .futbol-filter-btn.active { background: #10b981; border-color: #10b981; color: #fff; }
+
+  .futbol-game-row {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 4px; padding: 6px 0; border-bottom: 1px solid #2a3040; font-size: 12px;
+  }
+  .futbol-game-row:last-child { border-bottom: none; }
+  .futbol-teams { color: #e1e8ed; font-weight: 500; }
+  .futbol-xg { color: #8b98a5; font-size: 11px; }
+  .futbol-signal { text-align: right; }
+  .futbol-signal .senal-tag {
+    display: inline-block; font-size: 10px; padding: 1px 6px;
+    border-radius: 4px; font-weight: 600;
+  }
+  .futbol-signal .senal-tag.ah0 { background: #1a3a5c; color: #60a5fa; }
+  .futbol-signal .senal-tag.ou25 { background: #3a1a3a; color: #f472b6; }
+  .futbol-signal .senal-tag.no-apostar { background: #2a2030; color: #71767b; }
+  .futbol-signal .confianza { font-size: 10px; margin-left: 4px; }
+  .futbol-signal .confianza.alta { color: #00ba7c; }
+  .futbol-signal .confianza.media { color: #f5a623; }
+  .futbol-signal .confianza.baja { color: #71767b; }
+
+  .futbol-stats-grid { display: grid; gap: 6px; }
+  .futbol-stat-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 4px 0; border-bottom: 1px solid #2a3040; font-size: 12px;
+  }
+  .futbol-stat-item:last-child { border-bottom: none; }
+  .futbol-stat-label { color: #e1e8ed; }
+  .futbol-stat-value { color: #00ba7c; font-weight: 600; }
+  .futbol-stat-sub { color: #8b98a5; font-size: 11px; margin-left: 6px; }
+  .futbol-empty { color: #71767b; text-align: center; padding: 16px; font-size: 13px; }
+
+  .futbol-game-wrapper { margin-bottom: 0; }
+  .futbol-game-row { cursor: pointer; transition: background 0.15s; border-radius: 6px; display: grid; grid-template-columns: auto 1fr auto auto; gap: 6px; align-items: center; padding: 6px 0; border-bottom: 1px solid #2a3040; font-size: 12px; }
+  .futbol-game-row:last-child { border-bottom: none; }
+  .futbol-game-row:hover { background: #1f2538; }
+  .futbol-game-status { width: 20px; text-align: center; font-size: 13px; }
+  .futbol-expand-icon { font-size: 10px; color: #536471; transition: transform 0.2s; }
+  .futbol-expand-icon.open { transform: rotate(180deg); }
+  .futbol-game-detail {
+    display: none; background: #131827; border-radius: 8px;
+    margin: 2px 0 6px 0; padding: 10px; border: 1px solid #2a3040;
+  }
+  .futbol-game-detail.open { display: block; }
+  .futbol-detail-row { display: flex; justify-content: space-between; padding: 2px 0; font-size: 12px; }
+  .futbol-detail-label { color: #8b98a5; }
+  .futbol-detail-value { color: #e1e8ed; font-weight: 500; }
+  .futbol-detail-acertado { color: #00ba7c; }
+  .futbol-detail-fallido { color: #ef4444; }
+  .futbol-detail-devuelto { color: #f5a623; }
+  .futbol-detail-pendiente { color: #71767b; }
 </style>
 </head>
 <body>
 
+<div id="blocked-screen">
+  <div class="icon">⛔</div>
+  <h2>Acceso exclusivo</h2>
+  <p>Esta Mini App es solo para suscriptores autorizados. Contacte al administrador para obtener acceso.</p>
+</div>
+<div id="main-content"><div class="main-tabs">
+  <div class="main-tab active" id="tab-beisbol" onclick="selectMainTab('beisbol')">⚾ Béisbol</div>
+  <div class="main-tab" id="tab-futbol" onclick="selectMainTab('futbol')">⚽ Fútbol</div>
+</div>
+
+<div id="beisbol-panel">
+
+
 <div class="header">
+
   <div class="date" id="fecha">—</div>
   <div class="next-update" id="next-update">⏳ Próxima actualización<br><span class="update-time" id="countdown-display">📡 MLB: — | 🇲🇽 LMB: —</span></div>
-  <div class="live-indicator" id="live-indicator" style="display:none"><span class="dot"></span> En vivo</div>
 </div>
 
 <div class="legend">
@@ -217,82 +311,145 @@
 
 <div class="card" id="stats-card">
   <div class="card-title">📊 Rendimiento</div>
+  <div class="stats-filter" id="stats-filter">
+    <div class="filter-row" id="filter-main">
+      <button class="filter-btn active" id="btn-todos" onclick="setStatsFilter(null)">Todos</button>
+      <button class="filter-btn" id="btn-dia" onclick="setStatsFilter('dia')">📅 Día</button>
+      <button class="filter-btn" id="btn-rango" onclick="setStatsFilter('rango')">📊 Rango</button>
+    </div>
+    <div class="filter-row" id="filter-dia" style="display:none">
+      <input type="date" id="stats-date-picker" class="stats-date-input" onchange="filterStatsByDate(this.value)">
+    </div>
+    <div class="filter-row" id="filter-rango" style="display:none">
+      <button class="filter-btn sub" id="btn-3dias" onclick="setStatsRange('3dias')">3 Días</button>
+      <button class="filter-btn sub" id="btn-semanal" onclick="setStatsRange('semanal')">Semanal</button>
+    </div>
+  </div>
   <div class="stat-grid" id="stats-list"></div>
 </div>
 
-<div style="text-align:center;font-size:12px;color:#536471;margin-top:8px">🟢 Tiempo real — actualización automática cada 60s</div>
+<div id="refresh-countdown" style="text-align:center;font-size:12px;color:#536471;margin-top:8px">⏳ Próxima actualización: 30s</div>
 
 <div class="footer">
   MLB &amp; LMB Analytics — Análisis académico. No constituye consejo financiero ni de apuestas.<br>
   <a href="privacy.html" style="color:#8b98a5;text-decoration:none">Privacidad</a> · <a href="terms.html" style="color:#8b98a5;text-decoration:none">Términos</a>
 </div>
 
+</div>
+
+<div id="futbol-panel" style="display:none">
+
+  <div class="header">
+    <div class="date" id="futbol-fecha">—</div>
+    <div class="next-update" id="futbol-next-update">⏳ Próxima actualización<br><span class="update-time" id="futbol-countdown-display">📡 Futbol: —</span></div>
+  </div>
+
+  <div class="legend">
+    <span>✅ Acertado</span>
+    <span>❌ Fallido</span>
+    <span>🔄 Devuelto</span>
+    <span>⏳ Pendiente</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚽ Partidos de Fútbol - Asian Handicap</div>
+    <div class="futbol-filter-row">
+      <button class="futbol-filter-btn active" onclick="selectFutbolLiga('todas')">Todas</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolLiga('PREMIER_LEAGUE')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolLiga('LA_LIGA')">🇪🇸 La Liga</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolLiga('LIGA_MX')">🇲🇽 Liga MX</button>
+    </div>
+    <div class="futbol-filter-row">
+      <button class="futbol-filter-btn active" onclick="selectFutbolSenal('todas')">Todas</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolSenal('ah0')">AH0</button>
+      <button class="futbol-filter-btn" onclick="selectFutbolSenal('ou25')">Over/Under 2.5</button>
+    </div>
+    <div id="futbol-date-tabs" class="date-tabs" style="margin:8px 0"></div>
+    <div id="futbol-games-list"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Rendimiento Fútbol</div>
+    <div class="stats-filter" id="futbol-stats-filter">
+      <div class="filter-row">
+        <button class="filter-btn active" id="fbtn-todos" onclick="setFutbolStatsFilter(null)">Todos</button>
+        <button class="filter-btn" id="fbtn-dia" onclick="setFutbolStatsFilter('dia')">📅 Día</button>
+        <button class="filter-btn" id="fbtn-rango" onclick="setFutbolStatsFilter('rango')">📊 Rango</button>
+      </div>
+      <div class="filter-row" id="futbol-filter-dia" style="display:none">
+        <input type="date" id="futbol-stats-date-picker" class="stats-date-input" onchange="filterFutbolStatsByDate(this.value)">
+      </div>
+      <div class="filter-row" id="futbol-filter-rango" style="display:none">
+        <button class="filter-btn sub" id="fbtn-3dias" onclick="setFutbolStatsRange('3dias')">3 Días</button>
+        <button class="filter-btn sub" id="fbtn-semanal" onclick="setFutbolStatsRange('semanal')">Semanal</button>
+      </div>
+    </div>
+    <div id="futbol-stats-list" class="futbol-stats-grid"></div>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:#536471;margin-top:8px;padding-bottom:16px" id="futbol-update-info"></div>
+
+</div>
+
 <script>
-var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [] };
+var DATA = { games: [], stats: {}, stats_mlb: {}, stats_lmb: {}, dias: [], live_data: {}, autorizados: [] };
 var selectedLiga = 'general';
 var selectedDate = '';
-var ws = null;
-var wsReconnectTimer = null;
+var refreshTimer = 30;
+var refreshInterval = 30;
+var statsFilterMode = null;
+var statsRangeMode = null;
 
-// ── WebSocket ──────────────────────────────────────────────────────────
-function connectWS() {
-  var proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
-  var url = proto + '//' + location.host + '/ws';
-  try {
-    ws = new WebSocket(url);
-    ws.onopen = function() {
-      document.getElementById('live-indicator').style.display = 'inline-flex';
-      if (wsReconnectTimer) { clearTimeout(wsReconnectTimer); wsReconnectTimer = null; }
-    };
-    ws.onmessage = function(ev) {
-      try {
-        var msg = JSON.parse(ev.data);
-        if (msg.type === 'full_update' && msg.data) {
-          DATA = msg.data;
-          if (!selectedDate && DATA.dias && DATA.dias.length > 0) selectedDate = DATA.dias[0];
-          renderAll();
-        }
-      } catch(e) { console.error('WS msg error', e); }
-    };
-    ws.onclose = function() {
-      document.getElementById('live-indicator').style.display = 'none';
-      wsReconnectTimer = setTimeout(connectWS, 5000);
-    };
-    ws.onerror = function() { ws.close(); };
-  } catch(e) {
-    wsReconnectTimer = setTimeout(connectWS, 5000);
-  }
+function checkAuth() {
+  var userId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+  if (!userId) return true;
+  var autorizados = DATA.autorizados || [];
+  var ok = autorizados.includes(userId);
+  document.getElementById('blocked-screen').style.display = ok ? 'none' : 'flex';
+  document.getElementById('main-content').style.display = ok ? 'block' : 'none';
+  return ok;
 }
 
-// ── Fetch initial data from /data endpoint ────────────────────────────
-function fetchInitialData() {
-  fetch('/data?' + Date.now())
+function updateRefreshCountdown() {
+  refreshTimer--;
+  if (refreshTimer <= 0) refreshTimer = refreshInterval;
+  var el = document.getElementById('refresh-countdown');
+  if (el) el.textContent = '⏳ Próxima actualización: ' + refreshTimer + 's';
+}
+setInterval(updateRefreshCountdown, 1000);
+
+function fetchScores() {
+  fetch('live_data.json?t=' + Date.now())
     .then(function(r) { return r.json(); })
     .then(function(data) {
       DATA = data;
       if (!selectedDate && DATA.dias && DATA.dias.length > 0) selectedDate = DATA.dias[0];
+      if (!checkAuth()) return;
       renderAll();
-      connectWS();
+      if (DATA.has_live) {
+        refreshInterval = 30;
+        setTimeout(fetchScores, 30000);
+      } else if (DATA.has_scheduled) {
+        refreshInterval = 300;
+        setTimeout(fetchScores, 300000);
+      } else {
+        refreshInterval = 600;
+        setTimeout(fetchScores, 600000);
+      }
+      refreshTimer = refreshInterval;
     })
     .catch(function() {
-      document.getElementById('games-list').innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Conectando...</div>';
-      setTimeout(fetchInitialData, 3000);
+      document.getElementById('games-list').innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">Sin conexión...</div>';
+      setTimeout(fetchScores, 30000);
     });
 }
 
-// ── Helpers ────────────────────────────────────────────────────────────
 function renderAll() {
   renderLigaTabs();
   renderDateTabs();
   renderDateLabel();
   renderGames();
   renderStats();
-  renderNextUpdate();
-}
-
-function hasGamesForLiga(liga) {
-  if (liga === 'general') return DATA.games && DATA.games.length > 0;
-  return DATA.games && DATA.games.some(function(g) { return (g.liga || 'MLB').toLowerCase() === liga; });
 }
 
 function getStatsForLiga(liga) {
@@ -301,11 +458,16 @@ function getStatsForLiga(liga) {
   return DATA.stats || {total:0,acertados:0,fallidos:0,win_rate:0};
 }
 
+function hasGamesForLiga(liga) {
+  if (liga === 'general') return DATA.games && DATA.games.length > 0;
+  return DATA.games && DATA.games.some(function(g) { return (g.liga || 'MLB').toLowerCase() === liga; });
+}
+
 function formatearFecha(iso) {
   if (!iso) return iso;
   var partes = iso.split('-');
   if (partes.length !== 3) return iso;
-  var diasSem = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  var diasSem = ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
   var meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   var d = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
   var hoy = new Date();
@@ -320,7 +482,6 @@ function formatearFecha(iso) {
   return label;
 }
 
-// ── Render tabs ────────────────────────────────────────────────────────
 function renderLigaTabs() {
   var container = document.getElementById('liga-tabs');
   var tabs = [
@@ -359,14 +520,17 @@ function renderDateTabs() {
   for (var j = 0; j < dias.length; j++) {
     var d = dias[j];
     var active = d === selectedDate ? ' active' : '';
-    html += '<div class="date-tab' + active + '" onclick="selectDate(\'' + d + '\')">' + formatearFecha(d) + '</div>';
+    html += '<div class="date-tab' + active + '" data-date="' + d + '" onclick="selectDate(\'' + d + '\')">' + formatearFecha(d) + '</div>';
   }
   container.innerHTML = html;
 }
 
 function selectLiga(liga) {
   selectedLiga = liga;
-  renderAll();
+  renderLigaTabs();
+  renderDateTabs();
+  renderGames();
+  renderStats();
 }
 
 function selectDate(date) {
@@ -384,7 +548,134 @@ function renderDateLabel() {
   }
 }
 
-// ── Countdown ──────────────────────────────────────────────────────────
+function renderGameRow(g) {
+  var score = g.score_fav !== '—' && g.score_opp !== ''
+    ? g.score_fav + '-' + g.score_opp
+    : '';
+  var sep = score ? score : 'Vs';
+  var teamHtml;
+  if (g.label === '🎯') {
+    teamHtml = '<span style="font-weight:700;color:#f5a623">' + g.fav_team + '</span>'
+      + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
+  } else {
+    teamHtml = '<span style="color:#58a6ff">' + g.fav_team + '</span>'
+      + ' <span style="color:#71767b">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
+  }
+  var stateClass = g.result === 'live' ? 'live' : '';
+  var idx = (g.game_pk || 0) + '-' + (DATA.games.indexOf(g));
+  return '<div class="game-wrapper">'
+    + '<div class="game-row" onclick="toggleScoreboard(\'' + idx + '\', this)" data-idx="' + idx + '">'
+    + '<div class="game-status">' + g.status_emoji + '</div>'
+    + '<div class="game-team">' + teamHtml + '</div>'
+    + '<div class="game-state ' + stateClass + '">' + g.state + '</div>'
+
+    + '</div>'
+    + '<div class="scoreboard-expand" id="sb-' + idx + '"></div>'
+    + '</div>';
+}
+
+function renderGames() {
+  var gamesEl = document.getElementById('games-list');
+  var filtered = DATA.games.filter(function(g) {
+    if (g.game_date !== selectedDate) return false;
+    if (selectedLiga === 'general') return true;
+    return (g.liga || 'MLB').toLowerCase() === selectedLiga;
+  });
+  if (filtered.length === 0) {
+    var msg = 'Sin partidos';
+    if (selectedLiga === 'lmb') msg = 'Sin partidos LMB — prox. actualizacion: ' + (DATA.proxima_actualizacion_lmb || '10:00') + ' MT';
+    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">' + msg + '</div>';
+    return;
+  }
+  var recs  = filtered.filter(function(g) { return g.label === '🎯'; });
+  var infos = filtered.filter(function(g) { return g.label === '📋'; });
+  var html = '';
+  if (recs.length > 0) {
+    html += '<div style="font-size:11px;font-weight:600;color:#f5a623;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin-bottom:2px">🎯 ALTA CONFIANZA</div>';
+    html += recs.map(renderGameRow).join('');
+  }
+  if (infos.length > 0) {
+    html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📋 BAJA CONFIANZA</div>';
+    html += infos.map(renderGameRow).join('');
+  }
+  gamesEl.innerHTML = html;
+}
+
+function setStatsFilter(mode) {
+  statsFilterMode = mode;
+  statsRangeMode = null;
+  document.getElementById('btn-todos').className = 'filter-btn' + (mode === null ? ' active' : '');
+  document.getElementById('btn-dia').className = 'filter-btn' + (mode === 'dia' ? ' active' : '');
+  document.getElementById('btn-rango').className = 'filter-btn' + (mode === 'rango' ? ' active' : '');
+  document.getElementById('filter-dia').style.display = mode === 'dia' ? '' : 'none';
+  document.getElementById('filter-rango').style.display = mode === 'rango' ? '' : 'none';
+  if (mode === 'dia') {
+    var picker = document.getElementById('stats-date-picker');
+    picker.max = new Date().toISOString().split('T')[0];
+    var fechas = DATA.fechas_disponibles || [];
+    if (fechas.length > 0 && !picker.value) {
+      picker.value = fechas[fechas.length - 1];
+    }
+  }
+  renderStats();
+}
+
+function setStatsRange(range) {
+  statsRangeMode = range;
+  document.getElementById('btn-3dias').className = 'filter-btn sub' + (range === '3dias' ? ' active' : '');
+  document.getElementById('btn-semanal').className = 'filter-btn sub' + (range === 'semanal' ? ' active' : '');
+  renderStats();
+}
+
+function filterStatsByDate(dateStr) {
+  statsRangeMode = null;
+  document.getElementById('btn-3dias').className = 'filter-btn sub';
+  document.getElementById('btn-semanal').className = 'filter-btn sub';
+  renderStats();
+}
+
+function getStatsForFilter() {
+  if (statsFilterMode === null) {
+    return getStatsForLiga(selectedLiga);
+  }
+  if (statsFilterMode === 'dia') {
+    var dateStr = document.getElementById('stats-date-picker').value;
+    if (!dateStr) return {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    if (selectedLiga === 'mlb') return (DATA.stats_por_fecha_mlb || {})[dateStr] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    if (selectedLiga === 'lmb') return (DATA.stats_por_fecha_lmb || {})[dateStr] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    return (DATA.stats_por_fecha || {})[dateStr] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+  }
+  if (statsFilterMode === 'rango' && statsRangeMode) {
+    var suffix = statsRangeMode === '3dias' ? '3dias' : 'semanal';
+    if (selectedLiga === 'mlb') return DATA['stats_' + suffix + '_mlb'] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    if (selectedLiga === 'lmb') return DATA['stats_' + suffix + '_lmb'] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+    return DATA['stats_' + suffix] || {total:0,acertados:0,fallidos:0,win_rate:0,alta_total:0,alta_acertados:0,alta_fallidos:0,alta_win_rate:0,media_total:0,media_acertados:0,media_fallidos:0,media_win_rate:0,baja_total:0,baja_acertados:0,baja_fallidos:0,baja_win_rate:0,valor_ok:0,valor_total:0,valor_rate:0};
+  }
+  return getStatsForLiga(selectedLiga);
+}
+
+function renderStats() {
+  var statsEl = document.getElementById('stats-list');
+  var s = getStatsForFilter();
+  if (!s) return;
+  statsEl.innerHTML = '';
+  var stats = [
+    { label: '🌐 Global', value: s.acertados + '✅ ' + s.fallidos + '❌', sub: '(' + s.total + ') ' + s.win_rate + '%' },
+    { label: '🎯 Alta Confianza', value: s.alta_acertados + '✅ ' + s.alta_fallidos + '❌', sub: '(' + s.alta_total + ') ' + s.alta_win_rate + '%', fire: s.alta_win_rate >= 65 },
+    { label: '📋 Baja Confianza', value: s.baja_acertados + '✅ ' + s.baja_fallidos + '❌', sub: '(' + s.baja_total + ') ' + s.baja_win_rate + '%' },
+    { label: '⭐ Señales Valor', value: s.valor_ok + '/' + s.valor_total, sub: s.valor_rate + '%' },
+  ];
+  for (var i = 0; i < stats.length; i++) {
+    var st = stats[i];
+    if (!st.sub.startsWith('(0)') || st.label === '🌐 Global') {
+      statsEl.innerHTML += '<div class="stat-item">'
+        + '<span class="stat-label">' + st.label + '</span>'
+        + '<span class="stat-value">' + st.value + ' <span class="stat-sub">' + st.sub + '</span>' + (st.fire ? '<span class="fire">🔥</span>' : '') + '</span>'
+        + '</div>';
+    }
+  }
+}
+
 function formatCountdown(seconds) {
   if (seconds <= 0) return 'ahora';
   var h = Math.floor(seconds / 3600);
@@ -401,108 +692,24 @@ function updateCountdown() {
   var lmbTs = DATA.proxima_actualizacion_lmb_ts || 0;
   var mlbLabel = DATA.proxima_actualizacion || '—';
   var lmbLabel = DATA.proxima_actualizacion_lmb || '—';
+
   var mlbRem = mlbTs - now;
   var lmbRem = lmbTs - now;
+
   var mlbStr = mlbRem > 0 ? ('en ' + formatCountdown(mlbRem)) : mlbLabel + ' MT';
   var lmbStr = lmbRem > 0 ? ('en ' + formatCountdown(lmbRem)) : lmbLabel + ' MT';
+
   var el = document.getElementById('countdown-display');
   if (el) el.innerHTML = '📡 MLB: ' + mlbStr + ' | 🇲🇽 LMB: ' + lmbStr;
 }
 
-function renderNextUpdate() {
-  updateCountdown();
-}
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
-// ── Render games ───────────────────────────────────────────────────────
-function renderGameRow(g) {
-  var score = g.score_fav !== '—' && g.score_opp !== ''
-    ? g.score_fav + '-' + g.score_opp
-    : '';
-  var sep = score ? score : 'Vs';
-  var teamHtml;
-  if (g.label === '🎯') {
-    teamHtml = '<span style="font-weight:700;color:#f5a623">' + g.fav_team + '</span>'
-      + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
-  } else if (g.label === '📊') {
-    teamHtml = '<span style="font-weight:600;color:#ffd866">' + g.fav_team + '</span>'
-      + ' <span style="color:#8b98a5">' + sep + '</span> <span style="color:#8b98a5">' + g.opp_team + '</span>';
-  } else {
-    teamHtml = g.fav_team + ' ' + sep + ' ' + g.opp_team;
-  }
-  var stateClass = g.result === 'live' ? 'live' : '';
-  var pk = g.game_pk || 0;
-  return '<div class="game-wrapper">'
-    + '<div class="game-row" onclick="toggleScoreboard(' + pk + ', this)" data-pk="' + pk + '">'
-    + '<div class="game-status">' + g.status_emoji + '</div>'
-    + '<div class="game-team">' + teamHtml + '</div>'
-    + '<div class="game-state ' + stateClass + '">' + g.state + '</div>'
-    + '<div class="expand-icon">▼</div>'
-    + '</div>'
-    + '<div class="scoreboard-expand" id="sb-' + pk + '"></div>'
-    + '</div>';
-}
-
-function renderGames() {
-  var gamesEl = document.getElementById('games-list');
-  var filtered = DATA.games.filter(function(g) {
-    if (g.game_date !== selectedDate) return false;
-    if (selectedLiga === 'general') return true;
-    return (g.liga || 'MLB').toLowerCase() === selectedLiga;
-  });
-  if (filtered.length === 0) {
-    var msg = 'Sin partidos';
-    if (selectedLiga === 'lmb') msg = 'Sin partidos LMB — próx. actualización: ' + (DATA.proxima_actualizacion_lmb || '10:00') + ' MT';
-    gamesEl.innerHTML = '<div class="game-row" style="color:#71767b;justify-content:center">' + msg + '</div>';
-    return;
-  }
-  var recs  = filtered.filter(function(g) { return g.label === '🎯'; });
-  var meds  = filtered.filter(function(g) { return g.label === '📊'; });
-  var infos = filtered.filter(function(g) { return g.label === '📋'; });
-  var html = '';
-  if (recs.length > 0) {
-    html += '<div style="font-size:11px;font-weight:600;color:#f5a623;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin-bottom:2px">🎯 ALTA CONFIANZA</div>';
-    html += recs.map(renderGameRow).join('');
-  }
-  if (meds.length > 0) {
-    html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📊 CONFIANZA MEDIA</div>';
-    html += meds.map(renderGameRow).join('');
-  }
-  if (infos.length > 0) {
-    html += '<div style="font-size:11px;font-weight:600;color:#8b98a5;padding:6px 0 3px 0;border-bottom:1px solid #2f3336;margin:4px 0 2px 0">📋 SOLO INFORMATIVOS</div>';
-    html += infos.map(renderGameRow).join('');
-  }
-  gamesEl.innerHTML = html;
-}
-
-// ── Render stats ───────────────────────────────────────────────────────
-function renderStats() {
-  var statsEl = document.getElementById('stats-list');
-  var s = getStatsForLiga(selectedLiga);
-  if (!s) return;
-  statsEl.innerHTML = '';
-  var stats = [
-    { label: '🌐 Global', value: s.acertados + '✅ ' + s.fallidos + '❌', sub: '(' + s.total + ') ' + s.win_rate + '%' },
-    { label: '🎯 Alta Confianza', value: s.alta_acertados + '✅ ' + s.alta_fallidos + '❌', sub: '(' + s.alta_total + ') ' + s.alta_win_rate + '%', fire: s.alta_win_rate >= 65 },
-    { label: '📊 Conf. Media', value: s.media_acertados + '✅ ' + s.media_fallidos + '❌', sub: '(' + s.media_total + ') ' + s.media_win_rate + '%' },
-    { label: '📋 Solo Inform.', value: s.baja_acertados + '✅ ' + s.baja_fallidos + '❌', sub: '(' + s.baja_total + ') ' + s.baja_win_rate + '%' },
-    { label: '⭐ Señales Valor', value: s.valor_ok + '/' + s.valor_total, sub: s.valor_rate + '%' },
-  ];
-  for (var i = 0; i < stats.length; i++) {
-    var st = stats[i];
-    if (!st.sub.startsWith('(0)') || st.label === '🌐 Global') {
-      statsEl.innerHTML += '<div class="stat-item">'
-        + '<span class="stat-label">' + st.label + '</span>'
-        + '<span class="stat-value">' + st.value + ' <span class="stat-sub">' + st.sub + '</span>' + (st.fire ? '<span class="fire">🔥</span>' : '') + '</span>'
-        + '</div>';
-    }
-  }
-}
-
-// ── Scoreboard Expandible ──────────────────────────────────────────────
 var sbTimers = {};
 
-function toggleScoreboard(gamePk, rowEl) {
-  var container = document.getElementById('sb-' + gamePk);
+function toggleScoreboard(idx, rowEl) {
+  var container = document.getElementById('sb-' + idx);
   if (!container) return;
   var isOpen = container.classList.contains('open');
   var icon = rowEl.querySelector('.expand-icon');
@@ -510,41 +717,156 @@ function toggleScoreboard(gamePk, rowEl) {
   if (isOpen) {
     container.classList.remove('open');
     if (icon) icon.classList.remove('open');
-    if (sbTimers[gamePk]) { clearInterval(sbTimers[gamePk]); delete sbTimers[gamePk]; }
+    if (sbTimers[idx]) { clearInterval(sbTimers[idx]); delete sbTimers[idx]; }
     return;
   }
 
   container.classList.add('open');
   if (icon) icon.classList.add('open');
-  fetchLinescore(gamePk, container);
 
-  // Auto-refresh every 15 seconds while open
-  if (sbTimers[gamePk]) clearInterval(sbTimers[gamePk]);
-  sbTimers[gamePk] = setInterval(function() {
-    var c = document.getElementById('sb-' + gamePk);
+  var g = null;
+  for (var i = 0; i < DATA.games.length; i++) {
+    var pk = (DATA.games[i].game_pk || 0) + '-' + i;
+    if (pk == idx) { g = DATA.games[i]; break; }
+  }
+
+  var liveData = DATA.live_data || {};
+  var liveGame = null;
+  if (g) {
+    var gamePkStr = String(g.game_pk);
+    liveGame = liveData[gamePkStr] || null;
+    if (!liveGame) {
+      var awayLower = (g.opp_team || '').toLowerCase();
+      var homeLower = (g.fav_team || '').toLowerCase();
+      for (var lpk in liveData) {
+        var ld = liveData[lpk];
+        var at = (ld.away_team_name || '').toLowerCase();
+        var ht = (ld.home_team_name || '').toLowerCase();
+        if ((awayLower in at || at in awayLower) && (homeLower in ht || ht in homeLower)) {
+          liveGame = ld;
+          break;
+        }
+      }
+    }
+  }
+
+  if (g && liveGame) {
+    renderScoreboardFromLive(g, liveGame, container);
+  } else if (g && g.linescore && g.linescore.innings) {
+    renderScoreboard(g, container);
+  } else {
+    container.innerHTML = '<div class="sb-loading" style="color:#8b98a5">Scoreboard no disponible</div>';
+  }
+
+  if (sbTimers[idx]) clearInterval(sbTimers[idx]);
+  sbTimers[idx] = setInterval(function() {
+    var c = document.getElementById('sb-' + idx);
     if (c && c.classList.contains('open')) {
-      fetchLinescore(gamePk, c);
+      fetchScores();
     } else {
-      clearInterval(sbTimers[gamePk]);
-      delete sbTimers[gamePk];
+      clearInterval(sbTimers[idx]);
+      delete sbTimers[idx];
     }
   }, 15000);
 }
 
-function fetchLinescore(gamePk, container) {
-  container.innerHTML = '<div class="sb-loading">⏳ Cargando scoreboard...</div>';
-  fetch('/linescore/' + gamePk + '?' + Date.now())
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      renderScoreboard(data, container);
-    })
-    .catch(function() {
-      container.innerHTML = '<div class="sb-loading" style="color:#f85149">Error al cargar scoreboard</div>';
-    });
+function renderScoreboardFromLive(g, live, container) {
+  var ls = live.linescore || {};
+  var innings = ls.innings || [];
+  var totalInnings = Math.max(innings.length, 9);
+  for (var i = innings.length - 1; i >= 8; i--) {
+    if (innings[i] && innings[i].away_runs === 0 && innings[i].home_runs === 0 && i >= 9) {
+      totalInnings = i;
+    } else { break; }
+  }
+  if (totalInnings < 9) totalInnings = 9;
+
+  var isLive = live.is_live;
+  var isFinal = live.is_final;
+  var statusClass = isLive ? 'live' : (isFinal ? 'final' : '');
+  var statusText = live.status || '';
+  if (ls.inning_ordinal && isLive) {
+    statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
+  }
+
+  var topTeam = live.away_team_name || g.opp_team || 'Away';
+  var botTeam = live.home_team_name || g.fav_team || 'Home';
+  var topRuns = live.away_runs || 0;
+  var botRuns = live.home_runs || 0;
+  var topHits = live.away_hits || 0;
+  var botHits = live.home_hits || 0;
+  var topErr = live.away_errors || 0;
+  var botErr = live.home_errors || 0;
+  var topInn = 'away';
+  var botInn = 'home';
+  var topAbbr = topTeam.split(' ').pop();
+  var botAbbr = botTeam.split(' ').pop();
+
+  var html = '<div class="sb-header"><span class="sb-status ' + statusClass + '">' + statusText + '</span></div>';
+  var numCols = Math.max(totalInnings, 9);
+  html += '<div class="sb-grid" style="grid-template-columns:80px repeat(' + numCols + ', minmax(22px,1fr)) 32px 32px 32px">';
+
+  html += '<div class="sb-label sb-header-row"></div>';
+  for (var i = 1; i <= numCols; i++) {
+    var isCurrentInning = (i === ls.current_inning && isLive);
+    html += '<div class="sb-inning sb-header-row' + (isCurrentInning ? ' current' : '') + '">' + i + '</div>';
+  }
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">R</div>';
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
+  html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
+
+  html += '<div class="sb-label">' + topAbbr + '</div>';
+  for (var i = 0; i < numCols; i++) {
+    var inn = innings[i] || {};
+    var runs = inn[topInn + '_runs'];
+    var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
+    html += '<div class="sb-score away' + cls + '">' + (runs !== undefined ? runs : '') + '</div>';
+  }
+  html += '<div class="sb-total away">' + topRuns + '</div>';
+  html += '<div class="sb-total away">' + topHits + '</div>';
+  html += '<div class="sb-total away">' + topErr + '</div>';
+
+  html += '<div class="sb-label">' + botAbbr + '</div>';
+  for (var i = 0; i < numCols; i++) {
+    var inn = innings[i] || {};
+    var runs = inn[botInn + '_runs'];
+    var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
+    html += '<div class="sb-score home' + cls + '">' + (runs !== undefined ? runs : '') + '</div>';
+  }
+  html += '<div class="sb-total home">' + botRuns + '</div>';
+  html += '<div class="sb-total home">' + botHits + '</div>';
+  html += '<div class="sb-total home">' + botErr + '</div>';
+  html += '</div>';
+
+  var bases = ls.bases || {};
+  var first = bases.first === true || bases.first === 'true' || bases.first === 1;
+  var second = bases.second === true || bases.second === 'true' || bases.second === 1;
+  var third = bases.third === true || bases.third === 'true' || bases.third === 1;
+  html += '<div class="sb-meta">';
+  html += '<div class="sb-bases">';
+  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (second ? ' occupied' : '') + '"></span></div>';
+  html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (first ? ' occupied' : '') + '"></span><span class="sb-diamond-base' + (third ? ' occupied' : '') + '"></span></div>';
+  html += '</div>';
+
+  var outs = ls.outs || 0;
+  html += '<div class="sb-outs">';
+  for (var o = 0; o < 3; o++) {
+    html += '<span class="sb-out-dot' + (o < outs ? ' recorded' : '') + '"></span>';
+  }
+  html += '</div>';
+
+  if (isLive) {
+    html += '<div class="sb-count">B: <span>' + (ls.balls || 0) + '</span>  S: <span>' + (ls.strikes || 0) + '</span></div>';
+    var arrow = ls.is_top ? '↑' : '↓';
+    html += '<div class="sb-inning-label">' + arrow + ' ' + (ls.inning_ordinal || '') + '</div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
 }
 
-function renderScoreboard(data, container) {
-  var ls = data.linescore || {};
+function renderScoreboard(g, container) {
+  var ls = g.linescore || {};
   var innings = ls.innings || [];
   var maxInnings = innings.length;
   var totalInnings = maxInnings;
@@ -557,34 +879,26 @@ function renderScoreboard(data, container) {
   }
   if (totalInnings < 9) totalInnings = 9;
 
-  var isLive = data.is_live;
-  var isFinal = data.is_final;
+  var isLive = g.result === 'live';
+  var isFinal = g.result === 'win' || g.result === 'loss' || g.result === 'completed';
   var statusClass = isLive ? 'live' : (isFinal ? 'final' : '');
-
-  var statusText = data.status || '';
+  var statusText = g.state || '';
   if (ls.inning_ordinal && isLive) {
-    statusText = ls.inning_half === 'top' ? '↑' : '↓';
-    statusText += ' ' + ls.inning_ordinal;
+    statusText = (ls.is_top ? '↑' : '↓') + ' ' + ls.inning_ordinal;
   }
 
-  var html = '';
-
-  // Header: status + team abbrev
-  var awayName = data.away_team_name || 'Away';
-  var homeName = data.home_team_name || 'Home';
+  var awayName = g.opp_team || 'Away';
+  var homeName = g.fav_team || 'Home';
   var awayAbbr = awayName.split(' ').pop();
   var homeAbbr = homeName.split(' ').pop();
 
-  html += '<div class="sb-header">';
+  var html = '<div class="sb-header">';
   html += '<span class="sb-status ' + statusClass + '">' + statusText + '</span>';
   html += '</div>';
 
-  // Build inning grid: columns = inning labels + R H E
   var numCols = Math.max(totalInnings, 9);
-
   html += '<div class="sb-grid" style="grid-template-columns:80px repeat(' + numCols + ', minmax(22px,1fr)) 32px 32px 32px">';
 
-  // Header row: empty cell + inning numbers + R H E labels
   html += '<div class="sb-label sb-header-row"></div>';
   for (var i = 1; i <= numCols; i++) {
     var isCurrentInning = (i === ls.current_inning && isLive);
@@ -594,40 +908,35 @@ function renderScoreboard(data, container) {
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">H</div>';
   html += '<div class="sb-inning sb-header-row" style="font-weight:700">E</div>';
 
-  // Away row
   html += '<div class="sb-label">' + awayAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
     var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
     html += '<div class="sb-score away' + cls + '">' + (inn.away_runs !== undefined ? inn.away_runs : '') + '</div>';
   }
-  html += '<div class="sb-total away">' + (data.away_runs || 0) + '</div>';
-  html += '<div class="sb-total away">' + (data.away_hits || 0) + '</div>';
-  html += '<div class="sb-total away">' + (data.away_errors || 0) + '</div>';
+  html += '<div class="sb-total away">' + (ls.away_runs !== undefined ? ls.away_runs : 0) + '</div>';
+  html += '<div class="sb-total away">' + (ls.away_hits || 0) + '</div>';
+  html += '<div class="sb-total away">' + (ls.away_errors || 0) + '</div>';
 
-  // Home row
   html += '<div class="sb-label">' + homeAbbr + '</div>';
   for (var i = 0; i < numCols; i++) {
     var inn = innings[i] || {};
     var cls = (i === ls.current_inning - 1 && isLive) ? ' current' : '';
     html += '<div class="sb-score home' + cls + '">' + (inn.home_runs !== undefined ? inn.home_runs : '') + '</div>';
   }
-  html += '<div class="sb-total home">' + (data.home_runs || 0) + '</div>';
-  html += '<div class="sb-total home">' + (data.home_hits || 0) + '</div>';
-  html += '<div class="sb-total home">' + (data.home_errors || 0) + '</div>';
+  html += '<div class="sb-total home">' + (ls.home_runs !== undefined ? ls.home_runs : 0) + '</div>';
+  html += '<div class="sb-total home">' + (ls.home_hits || 0) + '</div>';
+  html += '<div class="sb-total home">' + (ls.home_errors || 0) + '</div>';
   html += '</div>';
 
-  // Meta row: bases + outs + count + inning
   var bases = ls.bases || {};
   html += '<div class="sb-meta">';
 
-  // Bases diamond
   html += '<div class="sb-bases">';
   html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.second ? ' occupied' : ' empty') + '"></span></div>';
   html += '<div class="sb-bases-row"><span class="sb-diamond-base' + (bases.first ? ' occupied' : ' empty') + '"></span><span class="sb-diamond-base' + (bases.third ? ' occupied' : ' empty') + '"></span></div>';
   html += '</div>';
 
-  // Outs
   var outs = ls.outs || 0;
   html += '<div class="sb-outs">';
   for (var o = 0; o < 3; o++) {
@@ -635,27 +944,324 @@ function renderScoreboard(data, container) {
   }
   html += '</div>';
 
-  // Balls/Strikes (only if live)
   if (isLive) {
     html += '<div class="sb-count">B: <span>' + (ls.balls || 0) + '</span>  S: <span>' + (ls.strikes || 0) + '</span></div>';
   }
 
-  // inning label
   if (isLive) {
     var arrow = ls.is_top ? '↑' : '↓';
     html += '<div class="sb-inning-label">' + arrow + ' ' + (ls.inning_ordinal || '') + '</div>';
   }
 
-  html += '</div>'; // sb-meta
-
+  html += '</div>';
   container.innerHTML = html;
 }
 
-// ── Countdown interval ────────────────────────────────────────────────
-setInterval(updateCountdown, 1000);
+renderLigaTabs();
+renderDateTabs();
+renderDateLabel();
+renderGames();
+renderStats();
 
-// ── Init ───────────────────────────────────────────────────────────────
-fetchInitialData();
-</script>
+fetchScores();
+
+// -- FUTBOL -------------------------------------------------------------
+
+var soccerData = null;
+var selectedFutbolLiga = 'todas';
+var selectedFutbolSenal = 'todas';
+var selectedFutbolFecha = '';
+var futbolStatsFilterMode = null;
+var futbolStatsRangeMode = null;
+
+function selectMainTab(tab) {
+  var beisbolPanel = document.getElementById('beisbol-panel');
+  var futbolPanel = document.getElementById('futbol-panel');
+  var tabBeisbol = document.getElementById('tab-beisbol');
+  var tabFutbol = document.getElementById('tab-futbol');
+  if (tab === 'beisbol') {
+    beisbolPanel.style.display = '';
+    futbolPanel.style.display = 'none';
+    tabBeisbol.className = 'main-tab active';
+    tabFutbol.className = 'main-tab';
+  } else {
+    beisbolPanel.style.display = 'none';
+    futbolPanel.style.display = '';
+    tabBeisbol.className = 'main-tab';
+    tabFutbol.className = 'main-tab active futbol';
+    if (!soccerData) fetchSoccerData();
+  }
+}
+
+function fetchSoccerData() {
+  fetch('soccer_data.json?t=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      soccerData = data;
+      renderFutbol();
+      var fechaEl = document.getElementById('futbol-fecha');
+      if (fechaEl) fechaEl.textContent = soccerData.fecha || '—';
+      var info = document.getElementById('futbol-update-info');
+      if (info) info.textContent = 'Actualizado: ' + (soccerData.fecha || '') + ' - ' + (soccerData.games ? soccerData.games.length : 0) + ' partidos';
+    })
+    .catch(function() {
+      document.getElementById('futbol-games-list').innerHTML = '<div class="futbol-empty">Sin datos de futbol disponibles</div>';
+    });
+}
+
+function selectFutbolLiga(liga) {
+  selectedFutbolLiga = liga;
+  var btns = document.querySelectorAll('#futbol-panel .futbol-filter-row:first-child .futbol-filter-btn');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].className = 'futbol-filter-btn' + (btns[i].getAttribute('onclick').includes("'" + liga + "'") ? ' active' : '');
+  }
+  renderFutbol();
+}
+
+function selectFutbolSenal(senal) {
+  selectedFutbolSenal = senal;
+  var btns = document.querySelectorAll('#futbol-panel .futbol-filter-row:nth-child(3) .futbol-filter-btn');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].className = 'futbol-filter-btn' + (btns[i].getAttribute('onclick').includes("'" + senal + "'") ? ' active' : '');
+  }
+  renderFutbol();
+}
+
+function renderFutbol() {
+  if (!soccerData) return;
+  renderFutbolDateTabs();
+  renderFutbolGames();
+  renderFutbolStats();
+}
+
+function renderFutbolDateTabs() {
+  var container = document.getElementById('futbol-date-tabs');
+  var games = soccerData.games || [];
+  var fechas = {};
+  for (var i = 0; i < games.length; i++) {
+    var g = games[i];
+    if (g.fecha_partido) fechas[g.fecha_partido] = true;
+  }
+  var dias = Object.keys(fechas).sort().reverse();
+  if (dias.length <= 1) {
+    container.innerHTML = '';
+    if (dias.length === 1 && !selectedFutbolFecha) selectedFutbolFecha = dias[0];
+    return;
+  }
+  if (!selectedFutbolFecha || dias.indexOf(selectedFutbolFecha) === -1) {
+    selectedFutbolFecha = dias[0];
+  }
+  var html = '';
+  for (var j = 0; j < dias.length; j++) {
+    var d = dias[j];
+    var active = d === selectedFutbolFecha ? ' active' : '';
+    html += '<div class="date-tab' + active + '" onclick="selectFutbolFecha(\'' + d + '\')">' + formatearFecha(d) + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function selectFutbolFecha(fecha) {
+  selectedFutbolFecha = fecha;
+  renderFutbolDateTabs();
+  renderFutbolGames();
+}
+
+function renderFutbolGames() {
+  var container = document.getElementById('futbol-games-list');
+  var games = soccerData.games || [];
+  if (!selectedFutbolFecha) {
+    var hoy = new Date().toISOString().slice(0, 10);
+    selectedFutbolFecha = hoy;
+  }
+  var dateGames = games.filter(function(g) { return g.fecha_partido === selectedFutbolFecha; });
+  if (dateGames.length === 0) {
+    container.innerHTML = '<div class="futbol-empty">📋 Sin partidos de fútbol para esta fecha</div>';
+    return;
+  }
+  var filtered = dateGames.filter(function(g) {
+    if (selectedFutbolLiga !== 'todas' && g.liga_key !== selectedFutbolLiga) return false;
+    if (selectedFutbolSenal === 'ah0') return g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR';
+    if (selectedFutbolSenal === 'ou25') return g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR';
+    return true;
+  });
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="futbol-empty">Sin partidos con estos filtros</div>';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < filtered.length; i++) {
+    var g = filtered[i];
+    var idx = i;
+    var statusEmoji = '⏳';
+    var hasAh0 = g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR';
+    var hasOu = g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR';
+    var ah0 = g.resultado_ah0 || 'pendiente';
+    var ou = g.resultado_ou25 || 'pendiente';
+    if (hasAh0 && hasOu) {
+      if (ah0 === 'acertado' && ou === 'acertado') statusEmoji = '✅';
+      else if (ah0 === 'devuelto' || ou === 'devuelto') statusEmoji = '🔄';
+      else if (ah0 === 'fallido' || ou === 'fallido') statusEmoji = '❌';
+    } else if (hasAh0) {
+      if (ah0 === 'acertado') statusEmoji = '✅';
+      else if (ah0 === 'devuelto') statusEmoji = '🔄';
+      else if (ah0 === 'fallido') statusEmoji = '❌';
+    } else if (hasOu) {
+      if (ou === 'acertado') statusEmoji = '✅';
+      else if (ou === 'devuelto') statusEmoji = '🔄';
+      else if (ou === 'fallido') statusEmoji = '❌';
+    }
+    var senalHtml = '';
+    if (g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR') {
+      var cls = g.confianza_ah0 === 'ALTA' ? 'alta' : (g.confianza_ah0 === 'MEDIA' ? 'media' : 'baja');
+      senalHtml += '<span class="senal-tag ah0">AH0</span><span class="confianza ' + cls + '">' + g.confianza_ah0 + '</span> ';
+    }
+    if (g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR') {
+      var cls = g.confianza_ou25 === 'ALTA' ? 'alta' : (g.confianza_ou25 === 'MEDIA' ? 'media' : 'baja');
+      senalHtml += '<span class="senal-tag ou25">O/U 2.5</span><span class="confianza ' + cls + '">' + g.confianza_ou25 + '</span>';
+    }
+    if (!senalHtml) {
+      senalHtml = '<span class="senal-tag no-apostar">No apostar</span>';
+    }
+    var favText = g.favorito ? ' - ' + g.favorito : '';
+    var fechaText = g.fecha_partido ? g.fecha_partido : '';
+    var horaText = g.hora_partido ? ' ' + g.hora_partido : '';
+    html += '<div class="futbol-game-wrapper">'
+      + '<div class="futbol-game-row" onclick="toggleFutbolDetail(' + idx + ', this)">'
+      + '<div class="futbol-game-status">' + statusEmoji + '</div>'
+      + '<div><div class="futbol-teams">' + g.local + ' vs ' + g.visitante + favText + '</div>'
+      + '<div class="futbol-xg">xG: ' + g.xg_local.toFixed(1) + ' - ' + g.xg_visit.toFixed(1) + ' | Total: ' + g.xg_total.toFixed(1) + ' | Diff: ' + (g.diff_xg >= 0 ? '+' : '') + g.diff_xg.toFixed(2) + '</div></div>'
+      + '<div class="futbol-signal">' + senalHtml + '</div>'
+      + '<div class="futbol-expand-icon">▼</div>'
+      + '</div>'
+      + '<div class="futbol-game-detail" id="fd-' + idx + '">'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">📅 Fecha</span><span class="futbol-detail-value">' + (fechaText || '—') + (horaText || '') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">⚽ Marcador</span><span class="futbol-detail-value">' + (g.marcador_final || 'Pendiente') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">🎯 Señal AH0</span><span class="futbol-detail-value">' + (g.senal_ah0 !== 'NO_APOSTAR' ? g.senal_ah0 : '—') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">📊 Resultado AH0</span><span class="futbol-detail-value futbol-detail-' + g.resultado_ah0 + '">' + (g.resultado_ah0 || 'pendiente') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">📈 Señal O/U 2.5</span><span class="futbol-detail-value">' + (g.senal_ou25 !== 'NO_APOSTAR' ? g.senal_ou25 : '—') + '</span></div>'
+      + '<div class="futbol-detail-row"><span class="futbol-detail-label">📊 Resultado O/U 2.5</span><span class="futbol-detail-value futbol-detail-' + g.resultado_ou25 + '">' + (g.resultado_ou25 || 'pendiente') + '</span></div>'
+      + '</div>'
+      + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function toggleFutbolDetail(idx, rowEl) {
+  var container = document.getElementById('fd-' + idx);
+  if (!container) return;
+  var isOpen = container.classList.contains('open');
+  var icon = rowEl.querySelector('.futbol-expand-icon');
+  if (isOpen) {
+    container.classList.remove('open');
+    if (icon) icon.classList.remove('open');
+  } else {
+    container.classList.add('open');
+    if (icon) icon.classList.add('open');
+  }
+}
+
+function setFutbolStatsFilter(mode) {
+  futbolStatsFilterMode = mode;
+  futbolStatsRangeMode = null;
+  document.getElementById('fbtn-todos').className = 'filter-btn' + (mode === null ? ' active' : '');
+  document.getElementById('fbtn-dia').className = 'filter-btn' + (mode === 'dia' ? ' active' : '');
+  document.getElementById('fbtn-rango').className = 'filter-btn' + (mode === 'rango' ? ' active' : '');
+  document.getElementById('futbol-filter-dia').style.display = mode === 'dia' ? '' : 'none';
+  document.getElementById('futbol-filter-rango').style.display = mode === 'rango' ? '' : 'none';
+  if (mode === 'dia') {
+    var picker = document.getElementById('futbol-stats-date-picker');
+    picker.max = new Date().toISOString().split('T')[0];
+  }
+  renderFutbolStats();
+}
+
+function setFutbolStatsRange(range) {
+  futbolStatsRangeMode = range;
+  document.getElementById('fbtn-3dias').className = 'filter-btn sub' + (range === '3dias' ? ' active' : '');
+  document.getElementById('fbtn-semanal').className = 'filter-btn sub' + (range === 'semanal' ? ' active' : '');
+  renderFutbolStats();
+}
+
+function filterFutbolStatsByDate(dateStr) {
+  futbolStatsRangeMode = null;
+  document.getElementById('fbtn-3dias').className = 'filter-btn sub';
+  document.getElementById('fbtn-semanal').className = 'filter-btn sub';
+  renderFutbolStats();
+}
+
+function calcFutbolStatsForGames(games) {
+  var stats = { ah0_total:0, ah0_acertados:0, ah0_fallidos:0, ah0_devueltos:0, ah0_win_rate:0,
+                ou25_total:0, ou25_acertados:0, ou25_fallidos:0, ou25_devueltos:0, ou25_win_rate:0,
+                total:0, acertados:0, fallidos:0, win_rate:0 };
+  for (var i = 0; i < games.length; i++) {
+    var g = games[i];
+    if (!g.marcador_final) continue;
+    if (g.senal_ah0 && g.senal_ah0 !== 'NO_APOSTAR') {
+      stats.ah0_total++;
+      if (g.resultado_ah0 === 'acertado') stats.ah0_acertados++;
+      else if (g.resultado_ah0 === 'fallido') stats.ah0_fallidos++;
+      else if (g.resultado_ah0 === 'devuelto') stats.ah0_devueltos++;
+    }
+    if (g.senal_ou25 && g.senal_ou25 !== 'NO_APOSTAR') {
+      stats.ou25_total++;
+      if (g.resultado_ou25 === 'acertado') stats.ou25_acertados++;
+      else if (g.resultado_ou25 === 'fallido') stats.ou25_fallidos++;
+      else if (g.resultado_ou25 === 'devuelto') stats.ou25_devueltos++;
+    }
+  }
+  stats.ah0_win_rate = stats.ah0_total > 0 ? Math.round(stats.ah0_acertados * 100 / stats.ah0_total) : 0;
+  stats.ou25_win_rate = stats.ou25_total > 0 ? Math.round(stats.ou25_acertados * 100 / stats.ou25_total) : 0;
+  stats.total = stats.ah0_total + stats.ou25_total;
+  stats.acertados = stats.ah0_acertados + stats.ou25_acertados;
+  stats.fallidos = stats.ah0_fallidos + stats.ou25_fallidos;
+  stats.win_rate = stats.total > 0 ? Math.round(stats.acertados * 100 / stats.total) : 0;
+  return stats;
+}
+
+function getFutbolStatsFiltered() {
+  var games = (soccerData && soccerData.games) || [];
+  if (futbolStatsFilterMode === null) {
+    return calcFutbolStatsForGames(games);
+  }
+  if (futbolStatsFilterMode === 'dia') {
+    var dateStr = document.getElementById('futbol-stats-date-picker').value;
+    if (!dateStr) return calcFutbolStatsForGames([]);
+    var filtered = games.filter(function(g) { return g.fecha_partido === dateStr; });
+    return calcFutbolStatsForGames(filtered);
+  }
+  if (futbolStatsFilterMode === 'rango' && futbolStatsRangeMode) {
+    var now = new Date();
+    var days = futbolStatsRangeMode === '3dias' ? 3 : 7;
+    var cutoff = new Date(now);
+    cutoff.setDate(cutoff.getDate() - days);
+    var cutoffStr = cutoff.toISOString().slice(0, 10);
+    var filtered = games.filter(function(g) { return g.fecha_partido >= cutoffStr; });
+    return calcFutbolStatsForGames(filtered);
+  }
+  return calcFutbolStatsForGames(games);
+}
+
+function renderFutbolStats() {
+  var container = document.getElementById('futbol-stats-list');
+  var stats = getFutbolStatsFiltered();
+  var items = [
+    { label: '🌐 Global', total: stats.total, ok: stats.acertados, fail: stats.fallidos, push: 0, rate: stats.win_rate },
+    { label: '🎯 AH0', total: stats.ah0_total, ok: stats.ah0_acertados, fail: stats.ah0_fallidos, push: stats.ah0_devueltos, rate: stats.ah0_win_rate },
+    { label: '📈 O/U 2.5', total: stats.ou25_total, ok: stats.ou25_acertados, fail: stats.ou25_fallidos, push: stats.ou25_devueltos, rate: stats.ou25_win_rate },
+  ];
+  var html = '';
+  for (var i = 0; i < items.length; i++) {
+    var it = items[i];
+    if (it.total === null || it.total === undefined || it.total === 0) continue;
+    if (it.rate !== undefined) {
+      var pushText = it.push ? ' <span style="color:#f5a623">🔄' + it.push + '</span>' : '';
+      html += '<div class="futbol-stat-item"><span class="futbol-stat-label">' + it.label + '</span><span class="futbol-stat-value">' + (it.ok || 0) + '✅ ' + (it.fail || 0) + '❌' + pushText + ' <span class="futbol-stat-sub">(' + it.total + ') ' + it.rate + '%</span></span></div>';
+    }
+  }
+  if (!html) html = '<div class="futbol-empty">No hay estadisticas de futbol aun. Los datos se acumularan cuando los partidos tengan resultados.</div>';
+  container.innerHTML = html;
+}
+
+  fetchSoccerData();</script>
 </body>
 </html>

@@ -733,8 +733,13 @@ def publicar() -> bool:
     os.chdir(bot_dir)
     miniapp_dir = os.path.join(bot_dir, "miniapp")
 
-    # Subir index.html con datos dinámicos
-    html = generar_html()
+    # Subir index.html desde railway_app/templates (fuente canonical)
+    railway_tpl = os.path.join(bot_dir, "railway_app", "templates", "index.html")
+    if os.path.exists(railway_tpl):
+        with open(railway_tpl, "r", encoding="utf-8") as f:
+            html = f.read()
+    else:
+        html = generar_html()
     if not pushear_a_github(html):
         return False
 
