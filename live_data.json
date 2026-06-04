@@ -1,5 +1,5 @@
 {
-  "fecha": "04/06/2026 16:51",
+  "fecha": "04/06/2026 17:06",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1675,13 +1675,13 @@
     {
       "liga": "MLB",
       "game_date": "2026-06-04",
-      "status_emoji": "⏳",
+      "status_emoji": "🔴",
       "fav_team": "Philadelphia Phillies",
       "opp_team": "San Diego Padres",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Pre-Game",
-      "result": "pending",
+      "state": "In Progress",
+      "result": "live",
       "label": "🎯",
       "game_pk": 823457,
       "linescore": {
@@ -1710,9 +1710,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Pre-Game",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -2330,7 +2330,7 @@
     1992258520,
     8670833401
   ],
-  "has_live": false,
+  "has_live": true,
   "has_scheduled": true,
   "live_data": {
     "401815591": {
@@ -3212,9 +3212,9 @@
       }
     },
     "823457": {
-      "is_live": false,
+      "is_live": true,
       "is_final": false,
-      "status": "Pre-Game",
+      "status": "In Progress",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "San Diego Padres",
@@ -3245,9 +3245,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Pre-Game",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -3802,7 +3802,7 @@
       }
     }
   },
-  "updated_at": "04/06/2026 16:51",
+  "updated_at": "04/06/2026 17:06",
   "stats": {
     "total": 44,
     "acertados": 3,
