@@ -107,7 +107,7 @@ LOG_PATH              = os.path.join(BASE_DIR, "mlb_bot.log")
 LOG_LEVEL             = "INFO"    # DEBUG | INFO | WARNING | ERROR
 
 # ── Fútbol (CSV y cache) ─────────────────────────────────────────────
-FUTBOL_DIR            = os.path.normpath(os.path.join(BASE_DIR, "..", "futbol_bot"))
+FUTBOL_DIR            = os.path.normpath(os.path.join(BASE_DIR, "futbol_bot"))
 CSV_SOCCER_PATH       = os.path.join(FUTBOL_DIR, "apuestas_soccer.csv")
 SOCCER_DATA_JSON      = os.path.join(BASE_DIR, "soccer_data.json")
 
