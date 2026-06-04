@@ -16,6 +16,8 @@ ARCHIVOS = [
     "partidos_seguimiento.json",
     "suscriptores.json",
     "soccer_data.json",
+    "futbol_bot/apuestas_soccer.csv",
+    "futbol_bot/stats_soccer_equipos.csv",
 ]
 
 def _get_github_token():
