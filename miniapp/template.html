@@ -354,10 +354,15 @@
   <div class="card">
     <div class="card-title">⚽ Partidos de Fútbol - Asian Handicap</div>
     <div class="futbol-filter-row">
-      <button class="futbol-filter-btn active" onclick="selectFutbolLiga('todas')">Todas</button>
-      <button class="futbol-filter-btn" onclick="selectFutbolLiga('PREMIER_LEAGUE')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</button>
-      <button class="futbol-filter-btn" onclick="selectFutbolLiga('LA_LIGA')">🇪🇸 La Liga</button>
-      <button class="futbol-filter-btn" onclick="selectFutbolLiga('LIGA_MX')">🇲🇽 Liga MX</button>
+      <select id="futbol-liga-select" onchange="selectFutbolLiga(this.value)" style="background:#1a2030;color:#e1e8ed;border:1px solid #3a4550;border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer;min-width:140px;">
+        <option value="todas">🌍 Todas las ligas</option>
+        <option value="PREMIER_LEAGUE">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+        <option value="LA_LIGA">🇪🇸 La Liga</option>
+        <option value="BUNDESLIGA">🇩🇪 Bundesliga</option>
+        <option value="SERIE_A">🇮🇹 Serie A</option>
+        <option value="LIGUE_1">🇫🇷 Ligue 1</option>
+        <option value="LIGA_MX">🇲🇽 Liga MX</option>
+      </select>
     </div>
     <div class="futbol-filter-row">
       <button class="futbol-filter-btn active" onclick="selectFutbolSenal('todas')">Todas</button>
@@ -1011,10 +1016,8 @@ function fetchSoccerData() {
 
 function selectFutbolLiga(liga) {
   selectedFutbolLiga = liga;
-  var btns = document.querySelectorAll('#futbol-panel .futbol-filter-row:first-child .futbol-filter-btn');
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].className = 'futbol-filter-btn' + (btns[i].getAttribute('onclick').includes("'" + liga + "'") ? ' active' : '');
-  }
+  var sel = document.getElementById('futbol-liga-select');
+  if (sel) sel.value = liga;
   renderFutbol();
 }
 
