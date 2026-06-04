@@ -1,5 +1,5 @@
 {
-  "fecha": "04/06/2026 19:07",
+  "fecha": "04/06/2026 19:22",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1638,7 +1638,7 @@
       "opp_team": "Toronto Blue Jays",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Scheduled",
+      "state": "Pre-Game",
       "result": "pending",
       "label": "🎯",
       "game_pk": 824919,
@@ -1665,7 +1665,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -1678,9 +1678,9 @@
       "status_emoji": "🔴",
       "fav_team": "Philadelphia Phillies",
       "opp_team": "San Diego Padres",
-      "score_fav": "3",
+      "score_fav": "6",
       "score_opp": "2",
-      "state": "Bottom 7th",
+      "state": "End 7th",
       "result": "live",
       "label": "🎯",
       "game_pk": 823457,
@@ -1712,19 +1712,19 @@
           },
           {
             "away_runs": 2,
-            "home_runs": 1
+            "home_runs": 3
           }
         ],
         "current_inning": 7,
         "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 1,
-        "balls": 2,
-        "strikes": 2,
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 2,
-        "home_runs": 4,
+        "home_runs": 6,
         "away_hits": 2,
-        "home_hits": 8,
+        "home_hits": 10,
         "away_errors": 2,
         "home_errors": 0,
         "away_team_name": "San Diego Padres",
@@ -1738,9 +1738,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "2",
-        "opp_score": "4",
+        "opp_score": "6",
         "score_fav": "2",
-        "score_opp": "4"
+        "score_opp": "6"
       }
     },
     {
@@ -1751,7 +1751,7 @@
       "opp_team": "Baltimore Orioles",
       "score_fav": "0",
       "score_opp": "8",
-      "state": "Bottom 5th",
+      "state": "Bottom 6th",
       "result": "live",
       "label": "🎯",
       "game_pk": 824753,
@@ -1776,18 +1776,22 @@
           {
             "away_runs": 2,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
+        "current_inning": 6,
         "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 0,
+        "inning_ordinal": "6th",
+        "outs": 2,
+        "balls": 0,
+        "strikes": 2,
         "away_runs": 8,
         "home_runs": 0,
-        "away_hits": 7,
-        "home_hits": 1,
+        "away_hits": 8,
+        "home_hits": 3,
         "away_errors": 0,
         "home_errors": 1,
         "away_team_name": "Baltimore Orioles",
@@ -1982,7 +1986,7 @@
       "opp_team": "Cleveland Guardians",
       "score_fav": "1",
       "score_opp": "1",
-      "state": "Middle 6th",
+      "state": "Top 7th",
       "result": "live",
       "label": "📋",
       "game_pk": 823542,
@@ -2011,11 +2015,15 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
+        "current_inning": 7,
         "is_top": true,
-        "inning_ordinal": "6th",
+        "inning_ordinal": "7th",
         "outs": 3,
         "balls": 2,
         "strikes": 2,
@@ -2048,8 +2056,8 @@
       "fav_team": "Milwaukee Brewers",
       "opp_team": "San Francisco Giants",
       "score_fav": "1",
-      "score_opp": "5",
-      "state": "Top 3rd",
+      "score_opp": "6",
+      "state": "Bottom 4th",
       "result": "live",
       "label": "📋",
       "game_pk": 823779,
@@ -2064,17 +2072,21 @@
             "home_runs": 0
           },
           {
-            "away_runs": 2,
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": true,
-        "inning_ordinal": "3rd",
+        "current_inning": 4,
+        "is_top": false,
+        "inning_ordinal": "4th",
         "outs": 1,
-        "balls": 0,
+        "balls": 1,
         "strikes": 1,
-        "away_runs": 5,
+        "away_runs": 6,
         "home_runs": 1,
         "away_hits": 9,
         "home_hits": 1,
@@ -2090,9 +2102,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "5",
+        "fav_score": "6",
         "opp_score": "1",
-        "score_fav": "5",
+        "score_fav": "6",
         "score_opp": "1"
       }
     },
@@ -3244,7 +3256,7 @@
     "824919": {
       "is_live": false,
       "is_final": false,
-      "status": "Scheduled",
+      "status": "Pre-Game",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Toronto Blue Jays",
@@ -3272,7 +3284,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -3282,8 +3294,8 @@
     "823457": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 7th",
-      "away_runs": 3,
+      "status": "End 7th",
+      "away_runs": 6,
       "home_runs": 2,
       "away_team_name": "San Diego Padres",
       "home_team_name": "Philadelphia Phillies",
@@ -3315,19 +3327,19 @@
           },
           {
             "away_runs": 2,
-            "home_runs": 1
+            "home_runs": 3
           }
         ],
         "current_inning": 7,
         "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 1,
-        "balls": 2,
-        "strikes": 2,
+        "outs": 3,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 2,
-        "home_runs": 4,
+        "home_runs": 6,
         "away_hits": 2,
-        "home_hits": 8,
+        "home_hits": 10,
         "away_errors": 2,
         "home_errors": 0,
         "away_team_name": "San Diego Padres",
@@ -3341,15 +3353,15 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "2",
-        "opp_score": "4",
+        "opp_score": "6",
         "score_fav": "2",
-        "score_opp": "4"
+        "score_opp": "6"
       }
     },
     "824753": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 5th",
+      "status": "Bottom 6th",
       "away_runs": 0,
       "home_runs": 8,
       "away_team_name": "Baltimore Orioles",
@@ -3375,18 +3387,22 @@
           {
             "away_runs": 2,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
+        "current_inning": 6,
         "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 0,
+        "inning_ordinal": "6th",
+        "outs": 2,
+        "balls": 0,
+        "strikes": 2,
         "away_runs": 8,
         "home_runs": 0,
-        "away_hits": 7,
-        "home_hits": 1,
+        "away_hits": 8,
+        "home_hits": 3,
         "away_errors": 0,
         "home_errors": 1,
         "away_team_name": "Baltimore Orioles",
@@ -3560,7 +3576,7 @@
     "823542": {
       "is_live": true,
       "is_final": false,
-      "status": "Middle 6th",
+      "status": "Top 7th",
       "away_runs": 1,
       "home_runs": 1,
       "away_team_name": "Cleveland Guardians",
@@ -3590,11 +3606,15 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
+        "current_inning": 7,
         "is_top": true,
-        "inning_ordinal": "6th",
+        "inning_ordinal": "7th",
         "outs": 3,
         "balls": 2,
         "strikes": 2,
@@ -3623,9 +3643,9 @@
     "823779": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 3rd",
+      "status": "Bottom 4th",
       "away_runs": 1,
-      "home_runs": 5,
+      "home_runs": 6,
       "away_team_name": "San Francisco Giants",
       "home_team_name": "Milwaukee Brewers",
       "linescore": {
@@ -3639,17 +3659,21 @@
             "home_runs": 0
           },
           {
-            "away_runs": 2,
+            "away_runs": 3,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": true,
-        "inning_ordinal": "3rd",
+        "current_inning": 4,
+        "is_top": false,
+        "inning_ordinal": "4th",
         "outs": 1,
-        "balls": 0,
+        "balls": 1,
         "strikes": 1,
-        "away_runs": 5,
+        "away_runs": 6,
         "home_runs": 1,
         "away_hits": 9,
         "home_hits": 1,
@@ -3665,9 +3689,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "5",
+        "fav_score": "6",
         "opp_score": "1",
-        "score_fav": "5",
+        "score_fav": "6",
         "score_opp": "1"
       }
     },
@@ -3938,7 +3962,7 @@
       }
     }
   },
-  "updated_at": "04/06/2026 19:07",
+  "updated_at": "04/06/2026 19:22",
   "stats": {
     "total": 44,
     "acertados": 3,
