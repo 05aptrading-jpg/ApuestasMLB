@@ -1,5 +1,5 @@
 {
-  "fecha": "04/06/2026 17:52",
+  "fecha": "04/06/2026 18:07",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1678,9 +1678,9 @@
       "status_emoji": "🔴",
       "fav_team": "Philadelphia Phillies",
       "opp_team": "San Diego Padres",
-      "score_fav": "0",
+      "score_fav": "1",
       "score_opp": "0",
-      "state": "Top 4th",
+      "state": "Top 5th",
       "result": "live",
       "label": "🎯",
       "game_pk": 823457,
@@ -1700,19 +1700,23 @@
           },
           {
             "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": true,
-        "inning_ordinal": "4th",
-        "outs": 2,
-        "balls": 3,
-        "strikes": 3,
+        "inning_ordinal": "5th",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 0,
         "away_runs": 0,
-        "home_runs": 0,
+        "home_runs": 1,
         "away_hits": 0,
-        "home_hits": 2,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "San Diego Padres",
@@ -1726,9 +1730,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "0",
-        "opp_score": "0",
+        "opp_score": "1",
         "score_fav": "0",
-        "score_opp": "0"
+        "score_opp": "1"
       }
     },
     {
@@ -1738,30 +1742,34 @@
       "fav_team": "Boston Red Sox",
       "opp_team": "Baltimore Orioles",
       "score_fav": "0",
-      "score_opp": "5",
-      "state": "Top 1st",
+      "score_opp": "6",
+      "state": "Top 2nd",
       "result": "live",
       "label": "🎯",
       "game_pk": 824753,
       "linescore": {
         "innings": [
           {
-            "away_runs": 5,
+            "away_runs": 6,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 1,
+        "current_inning": 2,
         "is_top": true,
-        "inning_ordinal": "1st",
-        "outs": 2,
-        "balls": 4,
-        "strikes": 2,
-        "away_runs": 5,
+        "inning_ordinal": "2nd",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 6,
         "home_runs": 0,
-        "away_hits": 4,
+        "away_hits": 5,
         "home_hits": 0,
         "away_errors": 0,
-        "home_errors": 0,
+        "home_errors": 1,
         "away_team_name": "Baltimore Orioles",
         "home_team_name": "Boston Red Sox",
         "bases": {
@@ -1772,9 +1780,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "5",
+        "fav_score": "6",
         "opp_score": "0",
-        "score_fav": "5",
+        "score_fav": "6",
         "score_opp": "0"
       }
     },
@@ -1954,7 +1962,7 @@
       "opp_team": "Cleveland Guardians",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Bottom 1st",
+      "state": "Bottom 2nd",
       "result": "live",
       "label": "📋",
       "game_pk": 823542,
@@ -1970,11 +1978,11 @@
           }
         ],
         "current_inning": 2,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "2nd",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
+        "outs": 2,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -3230,8 +3238,8 @@
     "823457": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 4th",
-      "away_runs": 0,
+      "status": "Top 5th",
+      "away_runs": 1,
       "home_runs": 0,
       "away_team_name": "San Diego Padres",
       "home_team_name": "Philadelphia Phillies",
@@ -3251,19 +3259,23 @@
           },
           {
             "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": true,
-        "inning_ordinal": "4th",
-        "outs": 2,
-        "balls": 3,
-        "strikes": 3,
+        "inning_ordinal": "5th",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 0,
         "away_runs": 0,
-        "home_runs": 0,
+        "home_runs": 1,
         "away_hits": 0,
-        "home_hits": 2,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "San Diego Padres",
@@ -3277,38 +3289,42 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "0",
-        "opp_score": "0",
+        "opp_score": "1",
         "score_fav": "0",
-        "score_opp": "0"
+        "score_opp": "1"
       }
     },
     "824753": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 1st",
+      "status": "Top 2nd",
       "away_runs": 0,
-      "home_runs": 5,
+      "home_runs": 6,
       "away_team_name": "Baltimore Orioles",
       "home_team_name": "Boston Red Sox",
       "linescore": {
         "innings": [
           {
-            "away_runs": 5,
+            "away_runs": 6,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 1,
+        "current_inning": 2,
         "is_top": true,
-        "inning_ordinal": "1st",
-        "outs": 2,
-        "balls": 4,
-        "strikes": 2,
-        "away_runs": 5,
+        "inning_ordinal": "2nd",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 6,
         "home_runs": 0,
-        "away_hits": 4,
+        "away_hits": 5,
         "home_hits": 0,
         "away_errors": 0,
-        "home_errors": 0,
+        "home_errors": 1,
         "away_team_name": "Baltimore Orioles",
         "home_team_name": "Boston Red Sox",
         "bases": {
@@ -3319,9 +3335,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "5",
+        "fav_score": "6",
         "opp_score": "0",
-        "score_fav": "5",
+        "score_fav": "6",
         "score_opp": "0"
       }
     },
@@ -3480,7 +3496,7 @@
     "823542": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 1st",
+      "status": "Bottom 2nd",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Cleveland Guardians",
@@ -3497,11 +3513,11 @@
           }
         ],
         "current_inning": 2,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "2nd",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
+        "outs": 2,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -3834,7 +3850,7 @@
       }
     }
   },
-  "updated_at": "04/06/2026 17:52",
+  "updated_at": "04/06/2026 18:07",
   "stats": {
     "total": 44,
     "acertados": 3,
