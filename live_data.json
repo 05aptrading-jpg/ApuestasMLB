@@ -1,5 +1,5 @@
 {
-  "fecha": "04/06/2026 17:21",
+  "fecha": "04/06/2026 17:37",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1680,7 +1680,7 @@
       "opp_team": "San Diego Padres",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Top 2nd",
+      "state": "End 2nd",
       "result": "live",
       "label": "🎯",
       "game_pk": 823457,
@@ -1693,18 +1693,22 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
+        "current_inning": 3,
         "is_top": true,
-        "inning_ordinal": "2nd",
-        "outs": 2,
+        "inning_ordinal": "3rd",
+        "outs": 0,
         "balls": 0,
         "strikes": 1,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
-        "home_hits": 1,
+        "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "San Diego Padres",
@@ -1726,13 +1730,13 @@
     {
       "liga": "MLB",
       "game_date": "2026-06-04",
-      "status_emoji": "⏳",
+      "status_emoji": "🔴",
       "fav_team": "Boston Red Sox",
       "opp_team": "Baltimore Orioles",
-      "score_fav": "—",
-      "score_opp": "",
-      "state": "Warmup",
-      "result": "pending",
+      "score_fav": "0",
+      "score_opp": "0",
+      "state": "Top 1st",
+      "result": "live",
       "label": "🎯",
       "game_pk": 824753,
       "linescore": {
@@ -1761,9 +1765,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Warmup",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -3218,7 +3222,7 @@
     "823457": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 2nd",
+      "status": "End 2nd",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "San Diego Padres",
@@ -3232,18 +3236,22 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
+        "current_inning": 3,
         "is_top": true,
-        "inning_ordinal": "2nd",
-        "outs": 2,
+        "inning_ordinal": "3rd",
+        "outs": 0,
         "balls": 0,
         "strikes": 1,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
-        "home_hits": 1,
+        "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "San Diego Padres",
@@ -3263,9 +3271,9 @@
       }
     },
     "824753": {
-      "is_live": false,
+      "is_live": true,
       "is_final": false,
-      "status": "Warmup",
+      "status": "Top 1st",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Baltimore Orioles",
@@ -3296,9 +3304,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Warmup",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -3810,7 +3818,7 @@
       }
     }
   },
-  "updated_at": "04/06/2026 17:21",
+  "updated_at": "04/06/2026 17:37",
   "stats": {
     "total": 44,
     "acertados": 3,
