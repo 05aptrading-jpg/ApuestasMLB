@@ -4,6 +4,7 @@ Serves Mini App HTML + WebSocket updates + Telegram webhook.
 """
 
 import asyncio
+import json
 import logging
 import os
 import sys
@@ -165,6 +166,21 @@ async def terms():
 @app.get("/health")
 async def health():
     return {"status": "ok", "games_cached": len(_cache.get("live_data", {}))}
+
+
+@app.get("/soccer_data.json")
+async def soccer_data():
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "futbol_bot", "soccer_data.json")
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as f:
+            return JSONResponse(json.loads(f.read()))
+    return JSONResponse({"games": [], "fecha": ""})
+
+
+@app.get("/live_data.json")
+async def live_data():
+    data = _build_data()
+    return JSONResponse(data)
 
 
 # ── Telegram webhook ───────────────────────────────────────────────────
