@@ -90,7 +90,7 @@
     "away_team": "Athletics",
     "home_team": "Chicago Cubs",
     "favorito": "Chicago Cubs",
-    "prob_favorito": 52.53,
+    "prob_favorito": 52.66,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
@@ -176,8 +176,9 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "acertado",
+    "marcador": null,
+    "ganador": "Tecos de los Dos Laredos"
   },
   {
     "game_pk": 846257,
@@ -213,8 +214,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Bravos de Leon"
   },
   {
     "game_pk": 846534,
@@ -231,8 +233,9 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "ALTA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "El Aguila de Veracruz"
   },
   {
     "game_pk": 846124,
@@ -249,8 +252,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Dorados de Chihuahua"
   },
   {
     "game_pk": 846633,
