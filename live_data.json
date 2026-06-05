@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 19:59",
+  "fecha": "05/06/2026 20:02",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780754400,
@@ -2572,7 +2572,7 @@
       "opp_team": "San Francisco Giants",
       "score_fav": "0",
       "score_opp": "2",
-      "state": "End 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "🎯",
       "game_pk": 824673,
@@ -2585,13 +2585,17 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 3,
-        "balls": 2,
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
+        "outs": 1,
+        "balls": 1,
         "strikes": 2,
         "away_runs": 2,
         "home_runs": 0,
@@ -3357,10 +3361,15 @@
       "label": "📋",
       "game_pk": 823699,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -4721,7 +4730,7 @@
     "824673": {
       "is_live": true,
       "is_final": false,
-      "status": "End 2nd",
+      "status": "Top 3rd",
       "away_runs": 0,
       "home_runs": 2,
       "away_team_name": "San Francisco Giants",
@@ -4735,13 +4744,17 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 3,
-        "balls": 2,
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
+        "outs": 1,
+        "balls": 1,
         "strikes": 2,
         "away_runs": 2,
         "home_runs": 0,
@@ -5435,10 +5448,15 @@
       "away_team_name": "Minnesota Twins",
       "home_team_name": "Kansas City Royals",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5541,7 +5559,7 @@
       }
     }
   },
-  "updated_at": "05/06/2026 19:59",
+  "updated_at": "05/06/2026 20:02",
   "stats": {
     "total": 69,
     "acertados": 6,
