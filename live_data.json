@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 21:46",
+  "fecha": "05/06/2026 21:49",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780754400,
@@ -2577,7 +2577,7 @@
       "opp_team": "San Francisco Giants",
       "score_fav": "1",
       "score_opp": "16",
-      "state": "End 7th",
+      "state": "Top 8th",
       "result": "live",
       "label": "🎯",
       "game_pk": 824673,
@@ -2610,14 +2610,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 3,
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
+        "outs": 0,
         "balls": 1,
-        "strikes": 1,
+        "strikes": 2,
         "away_runs": 16,
         "home_runs": 1,
         "away_hits": 17,
@@ -4786,7 +4790,7 @@
     "824673": {
       "is_live": true,
       "is_final": false,
-      "status": "End 7th",
+      "status": "Top 8th",
       "away_runs": 1,
       "home_runs": 16,
       "away_team_name": "San Francisco Giants",
@@ -4820,14 +4824,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 3,
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
+        "outs": 0,
         "balls": 1,
-        "strikes": 1,
+        "strikes": 2,
         "away_runs": 16,
         "home_runs": 1,
         "away_hits": 17,
@@ -5661,7 +5669,7 @@
       }
     }
   },
-  "updated_at": "05/06/2026 21:46",
+  "updated_at": "05/06/2026 21:49",
   "stats": {
     "total": 69,
     "acertados": 6,
