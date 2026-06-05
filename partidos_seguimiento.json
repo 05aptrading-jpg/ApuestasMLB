@@ -11,8 +11,7 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "fallido",
-    "ganador": "Arizona Diamondbacks"
+    "resultado": "pendiente"
   },
   {
     "game_pk": 824185,
@@ -26,8 +25,7 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "fallido",
-    "ganador": "Pittsburgh Pirates"
+    "resultado": "pendiente"
   },
   {
     "game_pk": 824672,
@@ -41,8 +39,7 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "acertado",
-    "ganador": "Chicago Cubs"
+    "resultado": "pendiente"
   },
   {
     "game_pk": 846258,
