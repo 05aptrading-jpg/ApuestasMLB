@@ -39,8 +39,7 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "acertado",
-    "ganador": "Chicago Cubs"
+    "resultado": "pendiente"
   },
   {
     "game_pk": 846258,
@@ -88,7 +87,7 @@
     "away_pitcher": "?",
     "home_pitcher": "?",
     "favorito": "Olmecas de Tabasco",
-    "prob_favorito": 75.3,
+    "prob_favorito": 74.1,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
