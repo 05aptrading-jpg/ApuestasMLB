@@ -119,7 +119,7 @@ REANALISIS_LMB_HORA = "12:30"   # Re-análisis LMB (hora fija)
 GITHUB_TOKEN          = os.environ.get("GITHUB_TOKEN", "")
 TELEGRAM_BOT_USERNAME = os.environ.get("TELEGRAM_BOT_USERNAME", "MLBAnalyticsRailwayBot")
 # La Mini App se publica en:
-# https://05aptrading-jpg.github.io/ApuestasMLB/
+# https://apuestasmlb-production.up.railway.app/
 
 # ─────────────────────────────────────────────────────────────────────────────
 # OTROS
