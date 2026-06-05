@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 03:59",
+  "fecha": "05/06/2026 04:14",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1316,13 +1316,13 @@
     {
       "liga": "MLB",
       "game_date": "2026-06-04",
-      "status_emoji": "🔴",
+      "status_emoji": "❌",
       "fav_team": "Los Angeles Dodgers",
       "opp_team": "Arizona Diamondbacks",
       "score_fav": "2",
-      "score_opp": "2",
-      "state": "Bottom 9th",
-      "result": "live",
+      "score_opp": "3",
+      "state": "Final",
+      "result": "loss",
       "label": "🎯",
       "game_pk": 825076,
       "linescore": {
@@ -1361,19 +1361,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 9,
         "is_top": false,
         "inning_ordinal": "9th",
-        "outs": 0,
+        "outs": 1,
         "balls": 0,
         "strikes": 0,
         "away_runs": 2,
-        "home_runs": 2,
+        "home_runs": 3,
         "away_hits": 6,
-        "home_hits": 10,
+        "home_hits": 11,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Los Angeles Dodgers",
@@ -1383,13 +1383,13 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "2",
-        "opp_score": "2",
+        "opp_score": "3",
         "score_fav": "2",
-        "score_opp": "2"
+        "score_opp": "3"
       }
     },
     {
@@ -2108,18 +2108,22 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
+        "current_inning": 4,
         "is_top": false,
-        "inning_ordinal": "3rd",
-        "outs": 2,
-        "balls": 0,
-        "strikes": 0,
+        "inning_ordinal": "4th",
+        "outs": 3,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 3,
         "away_hits": 3,
-        "home_hits": 6,
+        "home_hits": 7,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Pericos de Puebla",
@@ -2216,19 +2220,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 1
+            "home_runs": 4
           }
         ],
         "current_inning": 6,
         "is_top": false,
         "inning_ordinal": "6th",
-        "outs": 0,
+        "outs": 2,
         "balls": 3,
         "strikes": 2,
         "away_runs": 7,
-        "home_runs": 11,
+        "home_runs": 14,
         "away_hits": 11,
-        "home_hits": 15,
+        "home_hits": 18,
         "away_errors": 3,
         "home_errors": 0,
         "away_team_name": "Bravos de Leon",
@@ -2242,9 +2246,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "7",
-        "opp_score": "11",
+        "opp_score": "14",
         "score_fav": "7",
-        "score_opp": "11"
+        "score_opp": "14"
       }
     },
     {
@@ -2295,15 +2299,15 @@
           }
         ],
         "current_inning": 8,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "8th",
-        "outs": 2,
-        "balls": 0,
+        "outs": 3,
+        "balls": 1,
         "strikes": 2,
         "away_runs": 4,
         "home_runs": 3,
-        "away_hits": 8,
-        "home_hits": 6,
+        "away_hits": 9,
+        "home_hits": 7,
         "away_errors": 1,
         "home_errors": 0,
         "away_team_name": "Dorados de Chihuahua",
@@ -2372,19 +2376,27 @@
           },
           {
             "away_runs": 0,
+            "home_runs": 2
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 6,
+        "current_inning": 8,
         "is_top": true,
-        "inning_ordinal": "6th",
-        "outs": 0,
+        "inning_ordinal": "8th",
+        "outs": 2,
         "balls": 0,
         "strikes": 0,
-        "away_runs": 5,
-        "home_runs": 2,
-        "away_hits": 7,
-        "home_hits": 4,
+        "away_runs": 6,
+        "home_runs": 4,
+        "away_hits": 12,
+        "home_hits": 7,
         "away_errors": 1,
         "home_errors": 1,
         "away_team_name": "Conspiradores de Queretaro",
@@ -2397,10 +2409,10 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "5",
-        "opp_score": "2",
-        "score_fav": "5",
-        "score_opp": "2"
+        "fav_score": "6",
+        "opp_score": "4",
+        "score_fav": "6",
+        "score_opp": "4"
       }
     },
     {
@@ -3774,11 +3786,11 @@
       "linescore": {}
     },
     "825076": {
-      "is_live": true,
-      "is_final": false,
-      "status": "Bottom 9th",
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
       "away_runs": 2,
-      "home_runs": 2,
+      "home_runs": 3,
       "away_team_name": "Arizona Diamondbacks",
       "home_team_name": "Los Angeles Dodgers",
       "linescore": {
@@ -3817,19 +3829,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 9,
         "is_top": false,
         "inning_ordinal": "9th",
-        "outs": 0,
+        "outs": 1,
         "balls": 0,
         "strikes": 0,
         "away_runs": 2,
-        "home_runs": 2,
+        "home_runs": 3,
         "away_hits": 6,
-        "home_hits": 10,
+        "home_hits": 11,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Los Angeles Dodgers",
@@ -3839,13 +3851,13 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "2",
-        "opp_score": "2",
+        "opp_score": "3",
         "score_fav": "2",
-        "score_opp": "2"
+        "score_opp": "3"
       }
     },
     "824185": {
@@ -4849,12 +4861,12 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 03:59",
+  "updated_at": "05/06/2026 04:14",
   "stats": {
     "total": 54,
     "acertados": 7,
-    "fallidos": 10,
-    "win_rate": 41.2,
+    "fallidos": 11,
+    "win_rate": 38.9,
     "alta_total": 22,
     "alta_acertados": 5,
     "alta_fallidos": 4,
@@ -4865,8 +4877,8 @@
     "media_win_rate": 0,
     "baja_total": 32,
     "baja_acertados": 2,
-    "baja_fallidos": 6,
-    "baja_win_rate": 25.0,
+    "baja_fallidos": 7,
+    "baja_win_rate": 22.2,
     "valor_ok": 0,
     "valor_total": 0,
     "valor_rate": 0
@@ -4874,8 +4886,8 @@
   "stats_mlb": {
     "total": 24,
     "acertados": 5,
-    "fallidos": 5,
-    "win_rate": 50.0,
+    "fallidos": 6,
+    "win_rate": 45.5,
     "alta_total": 14,
     "alta_acertados": 4,
     "alta_fallidos": 3,
@@ -4886,8 +4898,8 @@
     "media_win_rate": 0,
     "baja_total": 10,
     "baja_acertados": 1,
-    "baja_fallidos": 2,
-    "baja_win_rate": 33.3,
+    "baja_fallidos": 3,
+    "baja_win_rate": 25.0,
     "valor_ok": 0,
     "valor_total": 0,
     "valor_rate": 0
@@ -4979,8 +4991,8 @@
   "stats_3dias": {
     "total": 54,
     "acertados": 7,
-    "fallidos": 10,
-    "win_rate": 41.2,
+    "fallidos": 11,
+    "win_rate": 38.9,
     "alta_total": 22,
     "alta_acertados": 5,
     "alta_fallidos": 4,
@@ -4991,8 +5003,8 @@
     "media_win_rate": 0,
     "baja_total": 32,
     "baja_acertados": 2,
-    "baja_fallidos": 6,
-    "baja_win_rate": 25.0,
+    "baja_fallidos": 7,
+    "baja_win_rate": 22.2,
     "valor_ok": 0,
     "valor_total": 0,
     "valor_rate": 0
@@ -5000,8 +5012,8 @@
   "stats_3dias_mlb": {
     "total": 24,
     "acertados": 5,
-    "fallidos": 5,
-    "win_rate": 50.0,
+    "fallidos": 6,
+    "win_rate": 45.5,
     "alta_total": 14,
     "alta_acertados": 4,
     "alta_fallidos": 3,
@@ -5012,8 +5024,8 @@
     "media_win_rate": 0,
     "baja_total": 10,
     "baja_acertados": 1,
-    "baja_fallidos": 2,
-    "baja_win_rate": 33.3,
+    "baja_fallidos": 3,
+    "baja_win_rate": 25.0,
     "valor_ok": 0,
     "valor_total": 0,
     "valor_rate": 0
@@ -5042,8 +5054,8 @@
   "stats_semanal": {
     "total": 54,
     "acertados": 7,
-    "fallidos": 10,
-    "win_rate": 41.2,
+    "fallidos": 11,
+    "win_rate": 38.9,
     "alta_total": 22,
     "alta_acertados": 5,
     "alta_fallidos": 4,
@@ -5054,8 +5066,8 @@
     "media_win_rate": 0,
     "baja_total": 32,
     "baja_acertados": 2,
-    "baja_fallidos": 6,
-    "baja_win_rate": 25.0,
+    "baja_fallidos": 7,
+    "baja_win_rate": 22.2,
     "valor_ok": 0,
     "valor_total": 0,
     "valor_rate": 0
@@ -5063,8 +5075,8 @@
   "stats_semanal_mlb": {
     "total": 24,
     "acertados": 5,
-    "fallidos": 5,
-    "win_rate": 50.0,
+    "fallidos": 6,
+    "win_rate": 45.5,
     "alta_total": 14,
     "alta_acertados": 4,
     "alta_fallidos": 3,
@@ -5075,8 +5087,8 @@
     "media_win_rate": 0,
     "baja_total": 10,
     "baja_acertados": 1,
-    "baja_fallidos": 2,
-    "baja_win_rate": 33.3,
+    "baja_fallidos": 3,
+    "baja_win_rate": 25.0,
     "valor_ok": 0,
     "valor_total": 0,
     "valor_rate": 0
@@ -5132,8 +5144,8 @@
     "2026-06-04": {
       "total": 23,
       "acertados": 6,
-      "fallidos": 7,
-      "win_rate": 46.2,
+      "fallidos": 8,
+      "win_rate": 42.9,
       "alta_total": 11,
       "alta_acertados": 4,
       "alta_fallidos": 3,
@@ -5144,8 +5156,8 @@
       "media_win_rate": 0,
       "baja_total": 12,
       "baja_acertados": 2,
-      "baja_fallidos": 4,
-      "baja_win_rate": 33.3,
+      "baja_fallidos": 5,
+      "baja_win_rate": 28.6,
       "valor_ok": 0,
       "valor_total": 0,
       "valor_rate": 0
@@ -5197,8 +5209,8 @@
     "2026-06-04": {
       "total": 13,
       "acertados": 4,
-      "fallidos": 2,
-      "win_rate": 66.7,
+      "fallidos": 3,
+      "win_rate": 57.1,
       "alta_total": 9,
       "alta_acertados": 3,
       "alta_fallidos": 2,
@@ -5209,8 +5221,8 @@
       "media_win_rate": 0,
       "baja_total": 4,
       "baja_acertados": 1,
-      "baja_fallidos": 0,
-      "baja_win_rate": 100.0,
+      "baja_fallidos": 1,
+      "baja_win_rate": 50.0,
       "valor_ok": 0,
       "valor_total": 0,
       "valor_rate": 0
