@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 00:53",
+  "fecha": "05/06/2026 00:54",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1466,8 +1466,8 @@
         "is_top": false,
         "inning_ordinal": "2nd",
         "outs": 2,
-        "balls": 1,
-        "strikes": 0,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 2,
@@ -1481,9 +1481,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Umpire review",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "1",
         "opp_score": "0",
         "score_fav": "1",
@@ -1498,7 +1498,7 @@
       "opp_team": "Toronto Blue Jays",
       "score_fav": "1",
       "score_opp": "3",
-      "state": "End 5th",
+      "state": "Top 6th",
       "result": "live",
       "label": "🎯",
       "game_pk": 401815622,
@@ -1523,13 +1523,17 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 3,
-        "balls": 2,
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 0,
+        "balls": 1,
         "strikes": 1,
         "away_runs": 3,
         "home_runs": 1,
@@ -1920,7 +1924,7 @@
         "inning_ordinal": "4th",
         "outs": 2,
         "balls": 2,
-        "strikes": 0,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 2,
@@ -2040,10 +2044,15 @@
       "label": "📋",
       "game_pk": 0,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -3596,8 +3605,8 @@
         "is_top": false,
         "inning_ordinal": "2nd",
         "outs": 2,
-        "balls": 1,
-        "strikes": 0,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 2,
@@ -3611,9 +3620,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Umpire review",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "1",
         "opp_score": "0",
         "score_fav": "1",
@@ -3623,7 +3632,7 @@
     "401815622": {
       "is_live": true,
       "is_final": false,
-      "status": "End 5th",
+      "status": "Top 6th",
       "away_runs": 1,
       "home_runs": 3,
       "away_team_name": "Toronto Blue Jays",
@@ -3649,13 +3658,17 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 3,
-        "balls": 2,
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 0,
+        "balls": 1,
         "strikes": 1,
         "away_runs": 3,
         "home_runs": 1,
@@ -3936,7 +3949,7 @@
         "inning_ordinal": "4th",
         "outs": 2,
         "balls": 2,
-        "strikes": 0,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 2,
@@ -4510,7 +4523,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 00:53",
+  "updated_at": "05/06/2026 00:54",
   "stats": {
     "total": 54,
     "acertados": 6,
