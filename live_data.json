@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 21:40",
+  "fecha": "05/06/2026 21:46",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780754400,
@@ -2577,7 +2577,7 @@
       "opp_team": "San Francisco Giants",
       "score_fav": "1",
       "score_opp": "16",
-      "state": "Top 7th",
+      "state": "End 7th",
       "result": "live",
       "label": "🎯",
       "game_pk": 824673,
@@ -2613,15 +2613,15 @@
           }
         ],
         "current_inning": 7,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 2,
-        "balls": 2,
-        "strikes": 2,
+        "outs": 3,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 16,
         "home_runs": 1,
         "away_hits": 17,
-        "home_hits": 4,
+        "home_hits": 5,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "San Francisco Giants",
@@ -2878,10 +2878,15 @@
       "label": "🎯",
       "game_pk": 824350,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -3444,10 +3449,15 @@
       "label": "📋",
       "game_pk": 822892,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -4776,7 +4786,7 @@
     "824673": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 7th",
+      "status": "End 7th",
       "away_runs": 1,
       "home_runs": 16,
       "away_team_name": "San Francisco Giants",
@@ -4813,15 +4823,15 @@
           }
         ],
         "current_inning": 7,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 2,
-        "balls": 2,
-        "strikes": 2,
+        "outs": 3,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 16,
         "home_runs": 1,
         "away_hits": 17,
-        "home_hits": 4,
+        "home_hits": 5,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "San Francisco Giants",
@@ -5054,10 +5064,15 @@
       "away_team_name": "Milwaukee Brewers",
       "home_team_name": "Colorado Rockies",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5568,10 +5583,15 @@
       "away_team_name": "Cleveland Guardians",
       "home_team_name": "Texas Rangers",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5641,7 +5661,7 @@
       }
     }
   },
-  "updated_at": "05/06/2026 21:40",
+  "updated_at": "05/06/2026 21:46",
   "stats": {
     "total": 69,
     "acertados": 6,
