@@ -15,6 +15,20 @@
     "ganador": "Philadelphia Phillies"
   },
   {
+    "game_pk": 824919,
+    "game_date": "2026-06-04",
+    "game_datetime": "2026-06-04T23:15:00Z",
+    "away_team": "Toronto Blue Jays",
+    "home_team": "Atlanta Braves",
+    "favorito": "Atlanta Braves",
+    "prob_favorito": 65.37,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "APRETA TRIGGER LOCAL",
+    "nivel_certidumbre": "ALTA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 823542,
     "game_date": "2026-06-04",
     "game_datetime": "2026-06-04T17:35:00Z",
@@ -28,20 +42,6 @@
     "nivel_certidumbre": "BAJA",
     "resultado": "acertado",
     "ganador": "New York Yankees"
-  },
-  {
-    "game_pk": 824919,
-    "game_date": "2026-06-04",
-    "game_datetime": "2026-06-04T23:15:00Z",
-    "away_team": "Toronto Blue Jays",
-    "home_team": "Atlanta Braves",
-    "favorito": "Atlanta Braves",
-    "prob_favorito": 61.75,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
   },
   {
     "game_pk": 825076,
@@ -86,6 +86,20 @@
     "resultado": "pendiente"
   },
   {
+    "game_pk": 823698,
+    "game_date": "2026-06-04",
+    "game_datetime": "2026-06-04T23:40:00Z",
+    "away_team": "Kansas City Royals",
+    "home_team": "Minnesota Twins",
+    "favorito": "Kansas City Royals",
+    "prob_favorito": 51.3,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 824753,
     "game_date": "2026-06-04",
     "game_datetime": "2026-06-04T17:35:00Z",
@@ -99,20 +113,6 @@
     "nivel_certidumbre": "MEDIA",
     "resultado": "fallido",
     "ganador": "Baltimore Orioles"
-  },
-  {
-    "game_pk": 823698,
-    "game_date": "2026-06-04",
-    "game_datetime": "2026-06-04T23:40:00Z",
-    "away_team": "Kansas City Royals",
-    "home_team": "Minnesota Twins",
-    "favorito": "Kansas City Royals",
-    "prob_favorito": 50.99,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
   },
   {
     "game_pk": 823779,
