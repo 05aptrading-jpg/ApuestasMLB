@@ -25,7 +25,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Pittsburgh Pirates"
   },
   {
     "game_pk": 824672,
@@ -39,7 +40,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Chicago Cubs"
   },
   {
     "game_pk": 846258,
