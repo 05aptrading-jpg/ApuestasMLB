@@ -42,20 +42,6 @@
     "resultado": "pendiente"
   },
   {
-    "game_pk": 824673,
-    "game_date": "2026-06-05",
-    "game_datetime": "2026-06-05T18:20:00Z",
-    "away_team": "San Francisco Giants",
-    "home_team": "Chicago Cubs",
-    "favorito": "Chicago Cubs",
-    "prob_favorito": 57.31,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
-  },
-  {
     "game_pk": 823455,
     "game_date": "2026-06-05",
     "game_datetime": "2026-06-05T22:40:00Z",
@@ -67,6 +53,34 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
+    "resultado": "pendiente"
+  },
+  {
+    "game_pk": 825073,
+    "game_date": "2026-06-05",
+    "game_datetime": "2026-06-06T01:40:00Z",
+    "away_team": "Washington Nationals",
+    "home_team": "Arizona Diamondbacks",
+    "favorito": "Washington Nationals",
+    "prob_favorito": 56.71,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "APRETA TRIGGER VISITANTE",
+    "nivel_certidumbre": "MEDIA",
+    "resultado": "pendiente"
+  },
+  {
+    "game_pk": 824673,
+    "game_date": "2026-06-05",
+    "game_datetime": "2026-06-05T18:20:00Z",
+    "away_team": "San Francisco Giants",
+    "home_team": "Chicago Cubs",
+    "favorito": "Chicago Cubs",
+    "prob_favorito": 56.66,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "APRETA TRIGGER LOCAL",
+    "nivel_certidumbre": "MEDIA",
     "resultado": "pendiente"
   },
   {
@@ -95,20 +109,6 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
-  },
-  {
-    "game_pk": 825073,
-    "game_date": "2026-06-05",
-    "game_datetime": "2026-06-06T01:40:00Z",
-    "away_team": "Washington Nationals",
-    "home_team": "Arizona Diamondbacks",
-    "favorito": "Washington Nationals",
-    "prob_favorito": 55.61,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER VISITANTE",
-    "nivel_certidumbre": "MEDIA",
     "resultado": "pendiente"
   },
   {
