@@ -417,22 +417,23 @@ def _cmd_reiniciar(chat_id: int):
     def _work():
         try:
             import data_manager as dm
-            import scheduler as sch
             resultados = []
 
             dm.inicializar_csv()
 
-            # MLB — igual que tarea_analisis_manana()
+            # MLB
             try:
-                sch.tarea_analisis_manana()
+                from railway_app.scheduler_async import tarea_analisis_mlb
+                tarea_analisis_mlb()
                 resultados.append("✅ MLB completado")
             except Exception as e:
                 resultados.append(f"❌ MLB error: {e}")
                 logger.error(f"MLB reinicio error: {e}")
 
-            # LMB — igual que tarea_analisis_lmb()
+            # LMB
             try:
-                sch.tarea_analisis_lmb()
+                from railway_app.scheduler_async import tarea_analisis_lmb
+                tarea_analisis_lmb()
                 resultados.append("✅ LMB completado")
             except Exception as e:
                 resultados.append(f"❌ LMB error: {e}")

@@ -195,6 +195,10 @@ def _build_data() -> dict:
             "valor_ok": s["valor_ok"], "valor_total": s["valor_total"], "valor_rate": s["valor_rate"],
         }
 
+    has_live = any(g.get("result") == "live" for g in games)
+    has_scheduled = any(g.get("result") == "pending" for g in games)
+    has_lmb = any(g.get("liga") == "LMB" for g in games)
+
     return {
         "fecha": ahora_str,
         "proxima_actualizacion": prox,
@@ -203,6 +207,9 @@ def _build_data() -> dict:
         "proxima_actualizacion_lmb_ts": _hoy_a_ts(prox_lmb),
         "dias": dias_disponibles,
         "games": games,
+        "has_live": has_live,
+        "has_scheduled": has_scheduled,
+        "has_lmb": has_lmb,
         "bot_username": config.TELEGRAM_BOT_USERNAME,
         "autorizados": _cargar_suscriptores(),
         "stats": bs(stats),
