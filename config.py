@@ -32,7 +32,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # ─────────────────────────────────────────────────────────────────────────────
 # CREDENCIALES
 # ─────────────────────────────────────────────────────────────────────────────
-TELEGRAM_TOKEN   = os.environ.get("TELEGRAM_TOKEN", "8903351042:AAHo5SqCZNI4m9g-GsIsUmLPDYKf5qKemqE")
+TELEGRAM_TOKEN   = os.environ.get("TELEGRAM_TOKEN", "8862582497:AAF7o5RX1NH7OI26sG0RyC5hFzNyYSiBjpA")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "6099564810")
 
 ODDS_API_KEY     = os.environ.get("ODDS_API_KEY", "a6466e5654475830ce2a3667dc76bd90")
