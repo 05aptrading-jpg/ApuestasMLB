@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 05:30",
+  "fecha": "05/06/2026 05:45",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -2450,13 +2450,13 @@
     {
       "liga": "LMB",
       "game_date": "2026-06-04",
-      "status_emoji": "🔴",
+      "status_emoji": "🏁",
       "fav_team": "Toros de Tijuana",
       "opp_team": "Charros de Jalisco",
       "score_fav": "5",
       "score_opp": "4",
-      "state": "In Progress",
-      "result": "live",
+      "state": "Final",
+      "result": "completed",
       "label": "📋",
       "game_pk": 0,
       "linescore": {
@@ -2501,8 +2501,8 @@
         "current_inning": 9,
         "is_top": true,
         "inning_ordinal": "9th",
-        "outs": 2,
-        "balls": 0,
+        "outs": 3,
+        "balls": 2,
         "strikes": 0,
         "away_runs": 4,
         "home_runs": 5,
@@ -2517,9 +2517,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "4",
         "opp_score": "5",
         "score_fav": "4",
@@ -3164,7 +3164,7 @@
     1992258520,
     8670833401
   ],
-  "has_live": true,
+  "has_live": false,
   "has_scheduled": true,
   "live_data": {
     "401815610": {
@@ -4913,7 +4913,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 05:30",
+  "updated_at": "05/06/2026 05:45",
   "stats": {
     "total": 54,
     "acertados": 7,
