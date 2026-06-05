@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 00:37",
+  "fecha": "05/06/2026 00:38",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1447,7 +1447,7 @@
       "opp_team": "Houston Astros",
       "score_fav": "1",
       "score_opp": "0",
-      "state": "End 1st",
+      "state": "Top 2nd",
       "result": "live",
       "label": "🎯",
       "game_pk": 824185,
@@ -1456,14 +1456,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 3,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 2,
@@ -1990,7 +1994,7 @@
       "opp_team": "Minnesota Twins",
       "score_fav": "2",
       "score_opp": "3",
-      "state": "Bottom 3rd",
+      "state": "End 3rd",
       "result": "live",
       "label": "📋",
       "game_pk": 401815624,
@@ -3554,7 +3558,7 @@
     "824185": {
       "is_live": true,
       "is_final": false,
-      "status": "End 1st",
+      "status": "Top 2nd",
       "away_runs": 1,
       "home_runs": 0,
       "away_team_name": "Houston Astros",
@@ -3564,14 +3568,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 3,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 0,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 2,
@@ -3938,7 +3946,7 @@
     "401815624": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 3rd",
+      "status": "End 3rd",
       "away_runs": 2,
       "home_runs": 3,
       "away_team_name": "Minnesota Twins",
@@ -4476,7 +4484,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 00:37",
+  "updated_at": "05/06/2026 00:38",
   "stats": {
     "total": 54,
     "acertados": 6,
