@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 22:57",
+  "fecha": "05/06/2026 23:01",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780754400,
@@ -2797,7 +2797,7 @@
       "opp_team": "Detroit Tigers",
       "score_fav": "1",
       "score_opp": "0",
-      "state": "Bottom 1st",
+      "state": "Top 2nd",
       "result": "live",
       "label": "🎯",
       "game_pk": 824271,
@@ -2806,14 +2806,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 3,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 3,
@@ -3331,7 +3335,7 @@
       "opp_team": "Philadelphia Phillies",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Bottom 1st",
+      "state": "End 1st",
       "result": "live",
       "label": "📋",
       "game_pk": 823455,
@@ -3345,9 +3349,9 @@
         "current_inning": 1,
         "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 1,
+        "outs": 3,
+        "balls": 3,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -5018,7 +5022,7 @@
     "824271": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 1st",
+      "status": "Top 2nd",
       "away_runs": 1,
       "home_runs": 0,
       "away_team_name": "Detroit Tigers",
@@ -5028,14 +5032,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 3,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 3,
@@ -5504,7 +5512,7 @@
     "823455": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 1st",
+      "status": "End 1st",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Philadelphia Phillies",
@@ -5519,9 +5527,9 @@
         "current_inning": 1,
         "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 1,
+        "outs": 3,
+        "balls": 3,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -5717,7 +5725,7 @@
       }
     }
   },
-  "updated_at": "05/06/2026 22:57",
+  "updated_at": "05/06/2026 23:01",
   "stats": {
     "total": 69,
     "acertados": 6,
