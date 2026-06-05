@@ -137,7 +137,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "San Francisco Giants"
   },
   {
     "game_pk": 823293,
