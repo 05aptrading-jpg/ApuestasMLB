@@ -11,7 +11,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Arizona Diamondbacks"
   },
   {
     "game_pk": 824185,
