@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 04:14",
+  "fecha": "05/06/2026 04:29",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -2089,7 +2089,7 @@
       "status_emoji": "🔴",
       "fav_team": "Olmecas de Tabasco",
       "opp_team": "Pericos de Puebla",
-      "score_fav": "3",
+      "score_fav": "5",
       "score_opp": "1",
       "state": "In Progress",
       "result": "live",
@@ -2112,18 +2112,22 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 2,
+        "inning_ordinal": "5th",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 1,
-        "home_runs": 3,
-        "away_hits": 3,
-        "home_hits": 7,
+        "home_runs": 5,
+        "away_hits": 4,
+        "home_hits": 9,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Pericos de Puebla",
@@ -2137,9 +2141,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "1",
-        "opp_score": "3",
+        "opp_score": "5",
         "score_fav": "1",
-        "score_opp": "3"
+        "score_opp": "5"
       }
     },
     {
@@ -2220,19 +2224,23 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 4
+            "home_runs": 6
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
+        "current_inning": 7,
         "is_top": false,
-        "inning_ordinal": "6th",
-        "outs": 2,
-        "balls": 3,
+        "inning_ordinal": "7th",
+        "outs": 1,
+        "balls": 0,
         "strikes": 2,
         "away_runs": 7,
-        "home_runs": 14,
+        "home_runs": 16,
         "away_hits": 11,
-        "home_hits": 18,
+        "home_hits": 19,
         "away_errors": 3,
         "home_errors": 0,
         "away_team_name": "Bravos de Leon",
@@ -2246,9 +2254,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "7",
-        "opp_score": "14",
+        "opp_score": "16",
         "score_fav": "7",
-        "score_opp": "14"
+        "score_opp": "16"
       }
     },
     {
@@ -2296,17 +2304,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": false,
-        "inning_ordinal": "8th",
-        "outs": 3,
-        "balls": 1,
-        "strikes": 2,
+        "inning_ordinal": "9th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 4,
         "home_runs": 3,
-        "away_hits": 9,
+        "away_hits": 10,
         "home_hits": 7,
         "away_errors": 1,
         "home_errors": 0,
@@ -2388,16 +2400,16 @@
           }
         ],
         "current_inning": 8,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "8th",
         "outs": 2,
-        "balls": 0,
+        "balls": 1,
         "strikes": 0,
         "away_runs": 6,
         "home_runs": 4,
         "away_hits": 12,
         "home_hits": 7,
-        "away_errors": 1,
+        "away_errors": 2,
         "home_errors": 1,
         "away_team_name": "Conspiradores de Queretaro",
         "home_team_name": "Leones de Yucatan",
@@ -2422,7 +2434,7 @@
       "fav_team": "Toros de Tijuana",
       "opp_team": "Charros de Jalisco",
       "score_fav": "4",
-      "score_opp": "2",
+      "score_opp": "4",
       "state": "In Progress",
       "result": "live",
       "label": "📋",
@@ -2444,20 +2456,24 @@
           {
             "away_runs": 0,
             "home_runs": 1
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 0,
+        "inning_ordinal": "5th",
+        "outs": 2,
         "balls": 0,
         "strikes": 0,
-        "away_runs": 2,
+        "away_runs": 4,
         "home_runs": 4,
-        "away_hits": 5,
-        "home_hits": 8,
+        "away_hits": 8,
+        "home_hits": 9,
         "away_errors": 2,
-        "home_errors": 0,
+        "home_errors": 1,
         "away_team_name": "Charros de Jalisco",
         "home_team_name": "Toros de Tijuana",
         "bases": {
@@ -2468,9 +2484,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "2",
+        "fav_score": "4",
         "opp_score": "4",
-        "score_fav": "2",
+        "score_fav": "4",
         "score_opp": "4"
       }
     },
@@ -4861,7 +4877,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 04:14",
+  "updated_at": "05/06/2026 04:29",
   "stats": {
     "total": 54,
     "acertados": 7,
