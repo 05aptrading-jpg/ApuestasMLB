@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 01:19",
+  "fecha": "05/06/2026 01:34",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1447,7 +1447,7 @@
       "opp_team": "Houston Astros",
       "score_fav": "1",
       "score_opp": "0",
-      "state": "End 4th",
+      "state": "Bottom 5th",
       "result": "live",
       "label": "🎯",
       "game_pk": 824185,
@@ -1468,17 +1468,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 3,
-        "balls": 0,
-        "strikes": 0,
+        "inning_ordinal": "5th",
+        "outs": 0,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 0,
-        "away_hits": 2,
+        "away_hits": 3,
         "home_hits": 3,
         "away_errors": 0,
         "home_errors": 0,
@@ -1506,7 +1510,7 @@
       "opp_team": "Toronto Blue Jays",
       "score_fav": "1",
       "score_opp": "3",
-      "state": "Top 7th",
+      "state": "Top 8th",
       "result": "live",
       "label": "🎯",
       "game_pk": 401815622,
@@ -1539,14 +1543,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
+        "current_inning": 8,
         "is_top": true,
-        "inning_ordinal": "7th",
-        "outs": 1,
-        "balls": 0,
-        "strikes": 0,
+        "inning_ordinal": "8th",
+        "outs": 2,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 3,
         "home_runs": 1,
         "away_hits": 11,
@@ -1823,18 +1831,22 @@
           {
             "away_runs": 2,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 2
           }
         ],
-        "current_inning": 1,
+        "current_inning": 2,
         "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 2,
+        "inning_ordinal": "2nd",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 2,
-        "home_runs": 0,
+        "home_runs": 2,
         "away_hits": 2,
-        "home_hits": 2,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Rieleros de Aguascalientes",
@@ -1848,9 +1860,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "2",
-        "opp_score": "0",
+        "opp_score": "2",
         "score_fav": "2",
-        "score_opp": "0"
+        "score_opp": "2"
       }
     },
     {
@@ -1869,19 +1881,23 @@
         "innings": [
           {
             "away_runs": 0,
-            "home_runs": 2
+            "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
         "outs": 1,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 0,
-        "home_runs": 2,
+        "home_runs": 3,
         "away_hits": 1,
-        "home_hits": 1,
+        "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "El Aguila de Veracruz",
@@ -1895,9 +1911,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "0",
-        "opp_score": "2",
+        "opp_score": "3",
         "score_fav": "0",
-        "score_opp": "2"
+        "score_opp": "3"
       }
     },
     {
@@ -1906,9 +1922,9 @@
       "status_emoji": "🔴",
       "fav_team": "Chicago Cubs",
       "opp_team": "Athletics",
-      "score_fav": "0",
-      "score_opp": "1",
-      "state": "Top 6th",
+      "score_fav": "1",
+      "score_opp": "4",
+      "state": "Bottom 6th",
       "result": "live",
       "label": "📋",
       "game_pk": 824672,
@@ -1935,20 +1951,20 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
-            "home_runs": 0
+            "away_runs": 3,
+            "home_runs": 1
           }
         ],
         "current_inning": 6,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "6th",
-        "outs": 1,
+        "outs": 2,
         "balls": 1,
         "strikes": 1,
-        "away_runs": 1,
-        "home_runs": 0,
-        "away_hits": 2,
-        "home_hits": 1,
+        "away_runs": 4,
+        "home_runs": 1,
+        "away_hits": 4,
+        "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Athletics",
@@ -1961,10 +1977,10 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
-        "opp_score": "0",
-        "score_fav": "1",
-        "score_opp": "0"
+        "fav_score": "4",
+        "opp_score": "1",
+        "score_fav": "4",
+        "score_opp": "1"
       }
     },
     {
@@ -2029,9 +2045,9 @@
       "status_emoji": "🔴",
       "fav_team": "Kansas City Royals",
       "opp_team": "Minnesota Twins",
-      "score_fav": "3",
+      "score_fav": "6",
       "score_opp": "5",
-      "state": "Top 6th",
+      "state": "Rain Delay, Bottom 6th",
       "result": "live",
       "label": "📋",
       "game_pk": 401815624,
@@ -2068,18 +2084,22 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 1,
-        "balls": 3,
-        "strikes": 2,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 2,
+        "balls": 0,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 0,
-        "away_hits": 3,
-        "home_hits": 0,
+        "away_hits": 4,
+        "home_hits": 1,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Bravos de Leon",
@@ -2114,20 +2134,20 @@
         "innings": [
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 1,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 1,
-        "balls": 2,
-        "strikes": 3,
+        "outs": 2,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 0,
-        "home_runs": 0,
+        "home_runs": 1,
         "away_hits": 0,
-        "home_hits": 0,
-        "away_errors": 0,
+        "home_hits": 1,
+        "away_errors": 1,
         "home_errors": 0,
         "away_team_name": "Dorados de Chihuahua",
         "home_team_name": "Caliente de Durango",
@@ -2140,9 +2160,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "0",
-        "opp_score": "0",
+        "opp_score": "1",
         "score_fav": "0",
-        "score_opp": "0"
+        "score_opp": "1"
       }
     },
     {
@@ -2183,10 +2203,10 @@
         "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
-        "strikes": 0,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
-        "away_hits": 0,
+        "away_hits": 1,
         "home_hits": 0,
         "away_errors": 0,
         "home_errors": 0,
@@ -2197,9 +2217,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Warmup",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -3605,7 +3625,7 @@
     "824185": {
       "is_live": true,
       "is_final": false,
-      "status": "End 4th",
+      "status": "Bottom 5th",
       "away_runs": 1,
       "home_runs": 0,
       "away_team_name": "Houston Astros",
@@ -3627,17 +3647,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 3,
-        "balls": 0,
-        "strikes": 0,
+        "inning_ordinal": "5th",
+        "outs": 0,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 0,
-        "away_hits": 2,
+        "away_hits": 3,
         "home_hits": 3,
         "away_errors": 0,
         "home_errors": 0,
@@ -3660,7 +3684,7 @@
     "401815622": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 7th",
+      "status": "Top 8th",
       "away_runs": 1,
       "home_runs": 3,
       "away_team_name": "Toronto Blue Jays",
@@ -3694,14 +3718,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
+        "current_inning": 8,
         "is_top": true,
-        "inning_ordinal": "7th",
-        "outs": 1,
-        "balls": 0,
-        "strikes": 0,
+        "inning_ordinal": "8th",
+        "outs": 2,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 3,
         "home_runs": 1,
         "away_hits": 11,
@@ -3952,9 +3980,9 @@
     "824672": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 6th",
-      "away_runs": 0,
-      "home_runs": 1,
+      "status": "Bottom 6th",
+      "away_runs": 1,
+      "home_runs": 4,
       "away_team_name": "Athletics",
       "home_team_name": "Chicago Cubs",
       "linescore": {
@@ -3980,20 +4008,20 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
-            "home_runs": 0
+            "away_runs": 3,
+            "home_runs": 1
           }
         ],
         "current_inning": 6,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "6th",
-        "outs": 1,
+        "outs": 2,
         "balls": 1,
         "strikes": 1,
-        "away_runs": 1,
-        "home_runs": 0,
-        "away_hits": 2,
-        "home_hits": 1,
+        "away_runs": 4,
+        "home_runs": 1,
+        "away_hits": 4,
+        "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Athletics",
@@ -4006,10 +4034,10 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
-        "opp_score": "0",
-        "score_fav": "1",
-        "score_opp": "0"
+        "fav_score": "4",
+        "opp_score": "1",
+        "score_fav": "4",
+        "score_opp": "1"
       }
     },
     "401815626": {
@@ -4025,8 +4053,8 @@
     "401815624": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 6th",
-      "away_runs": 3,
+      "status": "Rain Delay, Bottom 6th",
+      "away_runs": 6,
       "home_runs": 5,
       "away_team_name": "Minnesota Twins",
       "home_team_name": "Kansas City Royals",
@@ -4563,7 +4591,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 01:19",
+  "updated_at": "05/06/2026 01:34",
   "stats": {
     "total": 54,
     "acertados": 6,
