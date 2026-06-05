@@ -213,10 +213,12 @@ def fetch_fixtures_dia() -> dict:
     Consulta ESPN para obtener fixtures reales de hoy.
     Retorna dict: { (liga, local_norm, visitante_norm): { home_name, away_name, date, time } }
     """
+    from datetime import date as _date
+    hoy_str = _date.today().strftime("%Y%m%d")
     fixtures = {}
     for liga_key, slug in ESPN_LEAGUES.items():
         try:
-            url = ESPN_URL.format(slug=slug)
+            url = ESPN_URL.format(slug=slug) + f"?dates={hoy_str}"
             r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
             if r.status_code != 200:
                 continue
@@ -262,6 +264,10 @@ def generar_partidos_desde_cache(df_stats: pd.DataFrame) -> list[SoccerMatch]:
 
         for (fk_liga, fk_away, fk_home), fixture_info in fixtures.items():
             if fk_liga != liga_name:
+                continue
+
+            if fixture_info["date"] != hoy:
+                logger.debug(f"Fixture fecha {fixture_info['date']} ≠ hoy {hoy}, saltando")
                 continue
 
             local_row = None

@@ -1,7 +1,7 @@
 import csv
 import json
 import os
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
 import config
 
@@ -21,10 +21,17 @@ MLB_BOT_DIR = os.path.normpath(os.path.join(config.BASE_DIR, "..", "mlb_bot"))
 def generar_soccer_data_json():
     if not os.path.exists(config.CSV_SOCCER_PATH):
         return {}
+    hoy = date.today()
+    ayer = hoy - timedelta(days=1)
+    manana = hoy + timedelta(days=1)
+    fechas_validas = {hoy.isoformat(), ayer.isoformat(), manana.isoformat()}
     rows = []
     with open(config.CSV_SOCCER_PATH, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
+            fecha_partido = row.get("fecha_partido", "")
+            if fecha_partido and fecha_partido not in fechas_validas:
+                continue
             liga_label = LIGA_LABELS.get(row["liga"], row["liga"])
             favorito = ""
             ah0 = row.get("senal_ah0", "NO_APOSTAR")
