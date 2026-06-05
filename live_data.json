@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 00:10",
+  "fecha": "05/06/2026 00:25",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1445,29 +1445,29 @@
       "status_emoji": "🔴",
       "fav_team": "Pittsburgh Pirates",
       "opp_team": "Houston Astros",
-      "score_fav": "0",
+      "score_fav": "1",
       "score_opp": "0",
-      "state": "Top 1st",
+      "state": "Bottom 1st",
       "result": "live",
       "label": "🎯",
       "game_pk": 824185,
       "linescore": {
         "innings": [
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 1,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
-        "away_runs": 0,
+        "away_runs": 1,
         "home_runs": 0,
-        "away_hits": 0,
-        "home_hits": 0,
+        "away_hits": 2,
+        "home_hits": 1,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Pittsburgh Pirates",
@@ -1480,9 +1480,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "1",
         "opp_score": "0",
-        "score_fav": "0",
+        "score_fav": "1",
         "score_opp": "0"
       }
     },
@@ -1492,9 +1492,9 @@
       "status_emoji": "🔴",
       "fav_team": "Atlanta Braves",
       "opp_team": "Toronto Blue Jays",
-      "score_fav": "0",
+      "score_fav": "1",
       "score_opp": "3",
-      "state": "Middle 3rd",
+      "state": "End 3rd",
       "result": "live",
       "label": "🎯",
       "game_pk": 401815622,
@@ -1510,19 +1510,19 @@
           },
           {
             "away_runs": 3,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 3,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "3rd",
-        "outs": 1,
-        "balls": 2,
+        "outs": 3,
+        "balls": 3,
         "strikes": 2,
         "away_runs": 3,
-        "home_runs": 0,
+        "home_runs": 1,
         "away_hits": 7,
-        "home_hits": 1,
+        "home_hits": 3,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Toronto Blue Jays",
@@ -1536,9 +1536,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "3",
-        "opp_score": "0",
+        "opp_score": "1",
         "score_fav": "3",
-        "score_opp": "0"
+        "score_opp": "1"
       }
     },
     {
@@ -1791,10 +1791,15 @@
       "label": "🎯",
       "game_pk": 0,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -1813,7 +1818,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -1870,7 +1875,7 @@
       "opp_team": "Athletics",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Bottom 1st",
+      "state": "Top 2nd",
       "result": "live",
       "label": "📋",
       "game_pk": 824672,
@@ -1879,14 +1884,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 2,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -1972,8 +1981,8 @@
       "fav_team": "Kansas City Royals",
       "opp_team": "Minnesota Twins",
       "score_fav": "2",
-      "score_opp": "1",
-      "state": "Top 2nd",
+      "score_opp": "2",
+      "state": "Top 3rd",
       "result": "live",
       "label": "📋",
       "game_pk": 401815624,
@@ -3537,28 +3546,28 @@
     "824185": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 1st",
-      "away_runs": 0,
+      "status": "Bottom 1st",
+      "away_runs": 1,
       "home_runs": 0,
       "away_team_name": "Houston Astros",
       "home_team_name": "Pittsburgh Pirates",
       "linescore": {
         "innings": [
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 1,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
-        "away_runs": 0,
+        "away_runs": 1,
         "home_runs": 0,
-        "away_hits": 0,
-        "home_hits": 0,
+        "away_hits": 2,
+        "home_hits": 1,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Pittsburgh Pirates",
@@ -3571,17 +3580,17 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "1",
         "opp_score": "0",
-        "score_fav": "0",
+        "score_fav": "1",
         "score_opp": "0"
       }
     },
     "401815622": {
       "is_live": true,
       "is_final": false,
-      "status": "Middle 3rd",
-      "away_runs": 0,
+      "status": "End 3rd",
+      "away_runs": 1,
       "home_runs": 3,
       "away_team_name": "Toronto Blue Jays",
       "home_team_name": "Atlanta Braves",
@@ -3597,19 +3606,19 @@
           },
           {
             "away_runs": 3,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 3,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "3rd",
-        "outs": 1,
-        "balls": 2,
+        "outs": 3,
+        "balls": 3,
         "strikes": 2,
         "away_runs": 3,
-        "home_runs": 0,
+        "home_runs": 1,
         "away_hits": 7,
-        "home_hits": 1,
+        "home_hits": 3,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Toronto Blue Jays",
@@ -3623,9 +3632,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "3",
-        "opp_score": "0",
+        "opp_score": "1",
         "score_fav": "3",
-        "score_opp": "0"
+        "score_opp": "1"
       }
     },
     "401815621": {
@@ -3856,7 +3865,7 @@
     "824672": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 1st",
+      "status": "Top 2nd",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Athletics",
@@ -3866,14 +3875,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 2,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -3909,9 +3922,9 @@
     "401815624": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 2nd",
+      "status": "Top 3rd",
       "away_runs": 2,
-      "home_runs": 1,
+      "home_runs": 2,
       "away_team_name": "Minnesota Twins",
       "home_team_name": "Kansas City Royals",
       "linescore": {}
@@ -4447,7 +4460,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 00:10",
+  "updated_at": "05/06/2026 00:25",
   "stats": {
     "total": 54,
     "acertados": 6,
