@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 04:59",
+  "fecha": "05/06/2026 05:14",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -2086,13 +2086,13 @@
     {
       "liga": "LMB",
       "game_date": "2026-06-04",
-      "status_emoji": "🔴",
+      "status_emoji": "🏁",
       "fav_team": "Olmecas de Tabasco",
       "opp_team": "Pericos de Puebla",
       "score_fav": "5",
       "score_opp": "2",
-      "state": "In Progress",
-      "result": "live",
+      "state": "Final",
+      "result": "completed",
       "label": "📋",
       "game_pk": 0,
       "linescore": {
@@ -2129,12 +2129,12 @@
         "current_inning": 7,
         "is_top": true,
         "inning_ordinal": "7th",
-        "outs": 2,
+        "outs": 3,
         "balls": 1,
-        "strikes": 0,
+        "strikes": 2,
         "away_runs": 2,
         "home_runs": 5,
-        "away_hits": 8,
+        "away_hits": 9,
         "home_hits": 9,
         "away_errors": 0,
         "home_errors": 0,
@@ -2145,9 +2145,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "2",
         "opp_score": "5",
         "score_fav": "2",
@@ -2241,18 +2241,22 @@
           {
             "away_runs": 5,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
-        "is_top": false,
-        "inning_ordinal": "8th",
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
         "outs": 2,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 12,
         "home_runs": 18,
         "away_hits": 18,
-        "home_hits": 21,
+        "home_hits": 22,
         "away_errors": 3,
         "home_errors": 0,
         "away_team_name": "Bravos de Leon",
@@ -2484,17 +2488,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
+        "current_inning": 8,
         "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 0,
+        "inning_ordinal": "8th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 2,
         "away_runs": 4,
         "home_runs": 4,
-        "away_hits": 8,
+        "away_hits": 9,
         "home_hits": 10,
         "away_errors": 2,
         "home_errors": 1,
@@ -4901,7 +4909,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 04:59",
+  "updated_at": "05/06/2026 05:14",
   "stats": {
     "total": 54,
     "acertados": 7,
