@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 21:57",
+  "fecha": "05/06/2026 22:19",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780754400,
@@ -2530,7 +2530,7 @@
       "opp_team": "Los Angeles Angels",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Scheduled",
+      "state": "Pre-Game",
       "result": "pending",
       "label": "🎯",
       "game_pk": 823943,
@@ -2557,7 +2557,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -2614,13 +2614,13 @@
     {
       "liga": "MLB",
       "game_date": "2026-06-05",
-      "status_emoji": "🔴",
+      "status_emoji": "❌",
       "fav_team": "Chicago Cubs",
       "opp_team": "San Francisco Giants",
-      "score_fav": "2",
-      "score_opp": "16",
-      "state": "Bottom 8th",
-      "result": "live",
+      "score_fav": "3",
+      "score_opp": "18",
+      "state": "Final",
+      "result": "loss",
       "label": "🎯",
       "game_pk": 824673,
       "linescore": {
@@ -2655,19 +2655,23 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 1
+            "home_runs": 2
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": false,
-        "inning_ordinal": "8th",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 16,
-        "home_runs": 2,
-        "away_hits": 17,
-        "home_hits": 7,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 1,
+        "away_runs": 18,
+        "home_runs": 3,
+        "away_hits": 19,
+        "home_hits": 8,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "San Francisco Giants",
@@ -2677,13 +2681,13 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
-        "fav_score": "16",
-        "opp_score": "2",
-        "score_fav": "16",
-        "score_opp": "2"
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Game Over",
+        "fav_score": "18",
+        "opp_score": "3",
+        "score_fav": "18",
+        "score_opp": "3"
       }
     },
     {
@@ -2746,10 +2750,15 @@
       "label": "🎯",
       "game_pk": 825073,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -3312,7 +3321,7 @@
       "opp_team": "Philadelphia Phillies",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Pre-Game",
+      "state": "Warmup",
       "result": "pending",
       "label": "📋",
       "game_pk": 823455,
@@ -3344,7 +3353,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Pre-Game",
+        "state": "Warmup",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -3547,7 +3556,7 @@
     1992258520,
     8670833401
   ],
-  "has_live": true,
+  "has_live": false,
   "has_scheduled": true,
   "live_data": {
     "401815610": {
@@ -4752,7 +4761,7 @@
     "823943": {
       "is_live": false,
       "is_final": false,
-      "status": "Scheduled",
+      "status": "Pre-Game",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Los Angeles Angels",
@@ -4780,7 +4789,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -4831,11 +4840,11 @@
       }
     },
     "824673": {
-      "is_live": true,
-      "is_final": false,
-      "status": "Bottom 8th",
-      "away_runs": 2,
-      "home_runs": 16,
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 3,
+      "home_runs": 18,
       "away_team_name": "San Francisco Giants",
       "home_team_name": "Chicago Cubs",
       "linescore": {
@@ -4870,19 +4879,23 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 1
+            "home_runs": 2
+          },
+          {
+            "away_runs": 2,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": false,
-        "inning_ordinal": "8th",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 16,
-        "home_runs": 2,
-        "away_hits": 17,
-        "home_hits": 7,
+        "inning_ordinal": "9th",
+        "outs": 3,
+        "balls": 1,
+        "strikes": 1,
+        "away_runs": 18,
+        "home_runs": 3,
+        "away_hits": 19,
+        "home_hits": 8,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "San Francisco Giants",
@@ -4892,13 +4905,13 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
-        "fav_score": "16",
-        "opp_score": "2",
-        "score_fav": "16",
-        "score_opp": "2"
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Game Over",
+        "fav_score": "18",
+        "opp_score": "3",
+        "score_fav": "18",
+        "score_opp": "3"
       }
     },
     "823049": {
@@ -4953,10 +4966,15 @@
       "away_team_name": "Arizona Diamondbacks",
       "home_team_name": "Washington Nationals",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5466,7 +5484,7 @@
     "823455": {
       "is_live": false,
       "is_final": false,
-      "status": "Pre-Game",
+      "status": "Warmup",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Philadelphia Phillies",
@@ -5499,7 +5517,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Pre-Game",
+        "state": "Warmup",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5679,7 +5697,7 @@
       }
     }
   },
-  "updated_at": "05/06/2026 21:57",
+  "updated_at": "05/06/2026 22:19",
   "stats": {
     "total": 69,
     "acertados": 6,
