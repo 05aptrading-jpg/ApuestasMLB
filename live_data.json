@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 05:14",
+  "fecha": "05/06/2026 05:30",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -2250,9 +2250,9 @@
         "current_inning": 9,
         "is_top": true,
         "inning_ordinal": "9th",
-        "outs": 2,
+        "outs": 3,
         "balls": 1,
-        "strikes": 1,
+        "strikes": 3,
         "away_runs": 12,
         "home_runs": 18,
         "away_hits": 18,
@@ -2266,9 +2266,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "12",
         "opp_score": "18",
         "score_fav": "12",
@@ -2453,7 +2453,7 @@
       "status_emoji": "🔴",
       "fav_team": "Toros de Tijuana",
       "opp_team": "Charros de Jalisco",
-      "score_fav": "4",
+      "score_fav": "5",
       "score_opp": "4",
       "state": "In Progress",
       "result": "live",
@@ -2491,19 +2491,23 @@
           },
           {
             "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
             "home_runs": 0
           }
         ],
-        "current_inning": 8,
-        "is_top": false,
-        "inning_ordinal": "8th",
-        "outs": 0,
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 2,
         "balls": 0,
-        "strikes": 2,
+        "strikes": 0,
         "away_runs": 4,
-        "home_runs": 4,
+        "home_runs": 5,
         "away_hits": 9,
-        "home_hits": 10,
+        "home_hits": 12,
         "away_errors": 2,
         "home_errors": 1,
         "away_team_name": "Charros de Jalisco",
@@ -2517,9 +2521,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "4",
-        "opp_score": "4",
+        "opp_score": "5",
         "score_fav": "4",
-        "score_opp": "4"
+        "score_opp": "5"
       }
     },
     {
@@ -4909,7 +4913,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 05:14",
+  "updated_at": "05/06/2026 05:30",
   "stats": {
     "total": 54,
     "acertados": 7,
