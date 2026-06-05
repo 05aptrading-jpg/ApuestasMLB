@@ -136,6 +136,7 @@ RAILWAY_API_TOKEN   = os.environ.get("RAILWAY_API_TOKEN", "")
 RAILWAY_PROJECT_ID  = os.environ.get("RAILWAY_PROJECT_ID", "")
 RAILWAY_SERVICE_ID  = os.environ.get("RAILWAY_SERVICE_ID", "")
 RAILWAY_URL         = os.environ.get("RAILWAY_URL", "")  # https://tu-proyecto.railway.app
+HOSTINGER_URL       = os.environ.get("HOSTINGER_URL", "")  # https://tu-dominio.com
 
 # ─────────────────────────────────────────────────────────────────────────────
 # LMB (Liga Mexicana de Béisbol)

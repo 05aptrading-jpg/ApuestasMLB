@@ -50,12 +50,12 @@ async def startup():
     BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     # 1. Set Telegram webhook first (fast)
-    railway_url = config.RAILWAY_URL or (
+    public_url = config.HOSTINGER_URL or config.RAILWAY_URL or (
         f"https://{os.environ.get('RAILWAY_PUBLIC_DOMAIN', '')}"
         if os.environ.get("RAILWAY_PUBLIC_DOMAIN") else ""
     )
-    if railway_url:
-        url_webhook = f"{railway_url.rstrip('/')}/webhook"
+    if public_url:
+        url_webhook = f"{public_url.rstrip('/')}/webhook"
         token = config.TELEGRAM_TOKEN
         try:
             import requests as _r
