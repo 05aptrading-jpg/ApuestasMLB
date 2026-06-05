@@ -963,8 +963,8 @@ def analizar_dia(game_date: str = None) -> list[GameAnalysis]:
     # agrupa varios días si se pide sin fecha explícita o hay dobleheaders).
     # Filtramos SOLO los de la fecha objetivo para no analizar partidos de mañana.
     if not game_date:
-        from datetime import date as _date
-        game_date = _date.today().strftime("%Y-%m-%d")  # fallback
+        from datetime import timezone as _tz, timedelta as _td
+        game_date = datetime.now(_tz(_td(hours=-6))).strftime("%Y-%m-%d")
     fecha_objetivo = game_date
     games_raw = []
     for d in dates:
