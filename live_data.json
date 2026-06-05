@@ -1,5 +1,5 @@
 {
-  "fecha": "05/06/2026 00:02",
+  "fecha": "05/06/2026 00:03",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780668000,
@@ -1493,7 +1493,7 @@
       "fav_team": "Atlanta Braves",
       "opp_team": "Toronto Blue Jays",
       "score_fav": "0",
-      "score_opp": "0",
+      "score_opp": "1",
       "state": "Top 3rd",
       "result": "live",
       "label": "🎯",
@@ -3577,7 +3577,7 @@
       "is_final": false,
       "status": "Top 3rd",
       "away_runs": 0,
-      "home_runs": 0,
+      "home_runs": 1,
       "away_team_name": "Toronto Blue Jays",
       "home_team_name": "Atlanta Braves",
       "linescore": {
@@ -4442,7 +4442,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "05/06/2026 00:02",
+  "updated_at": "05/06/2026 00:03",
   "stats": {
     "total": 54,
     "acertados": 6,
