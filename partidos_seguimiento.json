@@ -56,6 +56,20 @@
     "resultado": "pendiente"
   },
   {
+    "game_pk": 823048,
+    "game_date": "2026-06-06",
+    "game_datetime": "2026-06-06T18:15:00Z",
+    "away_team": "Cincinnati Reds",
+    "home_team": "St. Louis Cardinals",
+    "favorito": "St. Louis Cardinals",
+    "prob_favorito": 57.44,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "APRETA TRIGGER LOCAL",
+    "nivel_certidumbre": "MEDIA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 822808,
     "game_date": "2026-06-06",
     "game_datetime": "2026-06-06T19:07:00Z",
@@ -104,25 +118,11 @@
     "away_team": "San Francisco Giants",
     "home_team": "Chicago Cubs",
     "favorito": "Chicago Cubs",
-    "prob_favorito": 55.54,
+    "prob_favorito": 55.55,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
-  },
-  {
-    "game_pk": 823048,
-    "game_date": "2026-06-06",
-    "game_datetime": "2026-06-06T18:15:00Z",
-    "away_team": "Cincinnati Reds",
-    "home_team": "St. Louis Cardinals",
-    "favorito": "St. Louis Cardinals",
-    "prob_favorito": 55.32,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "MEDIA",
     "resultado": "pendiente"
   },
   {
@@ -146,7 +146,7 @@
     "away_team": "Seattle Mariners",
     "home_team": "Detroit Tigers",
     "favorito": "Seattle Mariners",
-    "prob_favorito": 54.78,
+    "prob_favorito": 54.82,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
