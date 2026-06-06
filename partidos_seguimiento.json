@@ -79,7 +79,7 @@
     "away_team": "Washington Nationals",
     "home_team": "Arizona Diamondbacks",
     "favorito": "Washington Nationals",
-    "prob_favorito": 56.32,
+    "prob_favorito": 56.45,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
@@ -145,6 +145,20 @@
     "resultado": "pendiente"
   },
   {
+    "game_pk": 823293,
+    "game_date": "2026-06-05",
+    "game_datetime": "2026-06-06T01:40:00Z",
+    "away_team": "New York Mets",
+    "home_team": "San Diego Padres",
+    "favorito": "New York Mets",
+    "prob_favorito": 53.28,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "APRETA TRIGGER VISITANTE",
+    "nivel_certidumbre": "MEDIA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 824271,
     "game_date": "2026-06-05",
     "game_datetime": "2026-06-05T22:40:00Z",
@@ -158,20 +172,6 @@
     "nivel_certidumbre": "MEDIA",
     "resultado": "fallido",
     "ganador": "Detroit Tigers"
-  },
-  {
-    "game_pk": 823293,
-    "game_date": "2026-06-05",
-    "game_datetime": "2026-06-06T01:40:00Z",
-    "away_team": "New York Mets",
-    "home_team": "San Diego Padres",
-    "favorito": "New York Mets",
-    "prob_favorito": 52.91,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER VISITANTE",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
   },
   {
     "game_pk": 824350,
