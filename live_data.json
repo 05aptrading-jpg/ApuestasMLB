@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 17:08",
+  "fecha": "06/06/2026 17:14",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2696,13 +2696,13 @@
     {
       "liga": "MLB",
       "game_date": "2026-06-06",
-      "status_emoji": "⏳",
+      "status_emoji": "🔴",
       "fav_team": "Seattle Mariners",
       "opp_team": "Detroit Tigers",
-      "score_fav": "—",
-      "score_opp": "",
-      "state": "Warmup",
-      "result": "pending",
+      "score_fav": "0",
+      "score_opp": "0",
+      "state": "Top 1st",
+      "result": "live",
       "label": "🎯",
       "game_pk": 824269,
       "linescore": {
@@ -2715,7 +2715,7 @@
         "current_inning": 1,
         "is_top": true,
         "inning_ordinal": "1st",
-        "outs": 0,
+        "outs": 2,
         "balls": 0,
         "strikes": 0,
         "away_runs": 0,
@@ -2733,7 +2733,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Warmup",
+        "state": "Manager challenge",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -3160,10 +3160,15 @@
       "label": "📋",
       "game_pk": 824915,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -3286,7 +3291,7 @@
     1992258520,
     8670833401
   ],
-  "has_live": false,
+  "has_live": true,
   "has_scheduled": true,
   "live_data": {
     "401815627": {
@@ -4807,9 +4812,9 @@
       }
     },
     "824269": {
-      "is_live": false,
+      "is_live": true,
       "is_final": false,
-      "status": "Warmup",
+      "status": "Top 1st",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Detroit Tigers",
@@ -4824,7 +4829,7 @@
         "current_inning": 1,
         "is_top": true,
         "inning_ordinal": "1st",
-        "outs": 0,
+        "outs": 2,
         "balls": 0,
         "strikes": 0,
         "away_runs": 0,
@@ -4842,7 +4847,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Warmup",
+        "state": "Manager challenge",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5225,10 +5230,15 @@
       "away_team_name": "Pittsburgh Pirates",
       "home_team_name": "Atlanta Braves",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5336,7 +5346,7 @@
       }
     }
   },
-  "updated_at": "06/06/2026 17:08",
+  "updated_at": "06/06/2026 17:14",
   "stats": {
     "total": 94,
     "acertados": 16,
