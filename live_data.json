@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 17:53",
+  "fecha": "06/06/2026 17:59",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2654,7 +2654,7 @@
       "opp_team": "Cincinnati Reds",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Pre-Game",
+      "state": "Warmup",
       "result": "pending",
       "label": "🎯",
       "game_pk": 823048,
@@ -2686,7 +2686,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Pre-Game",
+        "state": "Warmup",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -2699,7 +2699,7 @@
       "status_emoji": "🔴",
       "fav_team": "Seattle Mariners",
       "opp_team": "Detroit Tigers",
-      "score_fav": "1",
+      "score_fav": "3",
       "score_opp": "0",
       "state": "Top 3rd",
       "result": "live",
@@ -2716,7 +2716,7 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 2,
             "home_runs": 0
           }
         ],
@@ -2724,11 +2724,11 @@
         "is_top": true,
         "inning_ordinal": "3rd",
         "outs": 2,
-        "balls": 1,
+        "balls": 0,
         "strikes": 1,
-        "away_runs": 1,
+        "away_runs": 3,
         "home_runs": 0,
-        "away_hits": 1,
+        "away_hits": 4,
         "home_hits": 0,
         "away_errors": 0,
         "home_errors": 0,
@@ -2742,9 +2742,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
+        "fav_score": "3",
         "opp_score": "0",
-        "score_fav": "1",
+        "score_fav": "3",
         "score_opp": "0"
       }
     },
@@ -3027,7 +3027,7 @@
       "opp_team": "San Francisco Giants",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Pre-Game",
+      "state": "Warmup",
       "result": "pending",
       "label": "📋",
       "game_pk": 824669,
@@ -3059,7 +3059,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Pre-Game",
+        "state": "Warmup",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -4789,7 +4789,7 @@
     "823048": {
       "is_live": false,
       "is_final": false,
-      "status": "Pre-Game",
+      "status": "Warmup",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Cincinnati Reds",
@@ -4822,7 +4822,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Pre-Game",
+        "state": "Warmup",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -4833,7 +4833,7 @@
       "is_live": true,
       "is_final": false,
       "status": "Top 3rd",
-      "away_runs": 1,
+      "away_runs": 3,
       "home_runs": 0,
       "away_team_name": "Detroit Tigers",
       "home_team_name": "Seattle Mariners",
@@ -4848,7 +4848,7 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 2,
             "home_runs": 0
           }
         ],
@@ -4856,11 +4856,11 @@
         "is_top": true,
         "inning_ordinal": "3rd",
         "outs": 2,
-        "balls": 1,
+        "balls": 0,
         "strikes": 1,
-        "away_runs": 1,
+        "away_runs": 3,
         "home_runs": 0,
-        "away_hits": 1,
+        "away_hits": 4,
         "home_hits": 0,
         "away_errors": 0,
         "home_errors": 0,
@@ -4874,9 +4874,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
+        "fav_score": "3",
         "opp_score": "0",
-        "score_fav": "1",
+        "score_fav": "3",
         "score_opp": "0"
       }
     },
@@ -5126,7 +5126,7 @@
     "824669": {
       "is_live": false,
       "is_final": false,
-      "status": "Pre-Game",
+      "status": "Warmup",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "San Francisco Giants",
@@ -5159,7 +5159,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Pre-Game",
+        "state": "Warmup",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5382,7 +5382,7 @@
       }
     }
   },
-  "updated_at": "06/06/2026 17:53",
+  "updated_at": "06/06/2026 17:59",
   "stats": {
     "total": 94,
     "acertados": 16,
