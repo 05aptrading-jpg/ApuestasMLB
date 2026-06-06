@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 04:55",
+  "fecha": "06/06/2026 05:09",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780754400,
@@ -1148,13 +1148,17 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": true,
-        "inning_ordinal": "8th",
-        "outs": 3,
-        "balls": 3,
+        "inning_ordinal": "9th",
+        "outs": 2,
+        "balls": 0,
         "strikes": 2,
         "away_runs": 0,
         "home_runs": 1,
@@ -1887,13 +1891,17 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 9,
+        "current_inning": 10,
         "is_top": false,
-        "inning_ordinal": "9th",
-        "outs": 1,
-        "balls": 3,
+        "inning_ordinal": "10th",
+        "outs": 0,
+        "balls": 0,
         "strikes": 0,
         "away_runs": 5,
         "home_runs": 5,
@@ -2094,9 +2102,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Game Over",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "0",
         "opp_score": "1",
         "score_fav": "0",
@@ -4279,9 +4287,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Game Over",
+        "status_emoji": "🏁",
+        "result": "completed",
+        "state": "Final",
         "fav_score": "0",
         "opp_score": "1",
         "score_fav": "0",
@@ -5320,7 +5328,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "06/06/2026 04:55",
+  "updated_at": "06/06/2026 05:09",
   "stats": {
     "total": 79,
     "acertados": 16,
