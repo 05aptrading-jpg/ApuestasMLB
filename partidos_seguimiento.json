@@ -6,7 +6,7 @@
     "away_team": "Tampa Bay Rays",
     "home_team": "Miami Marlins",
     "favorito": "Tampa Bay Rays",
-    "prob_favorito": 59.16,
+    "prob_favorito": 59.25,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -48,7 +48,7 @@
     "away_team": "Athletics",
     "home_team": "Houston Astros",
     "favorito": "Houston Astros",
-    "prob_favorito": 57.15,
+    "prob_favorito": 57.27,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -133,7 +133,7 @@
     "away_team": "Seattle Mariners",
     "home_team": "Detroit Tigers",
     "favorito": "Seattle Mariners",
-    "prob_favorito": 53.57,
+    "prob_favorito": 53.61,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
@@ -169,6 +169,20 @@
     "resultado": "pendiente"
   },
   {
+    "game_pk": 822892,
+    "game_date": "2026-06-05",
+    "game_datetime": "2026-06-06T00:15:00Z",
+    "away_team": "Cleveland Guardians",
+    "home_team": "Texas Rangers",
+    "favorito": "Texas Rangers",
+    "prob_favorito": 51.74,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 824350,
     "game_date": "2026-06-05",
     "game_datetime": "2026-06-06T00:40:00Z",
@@ -180,20 +194,6 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
-  },
-  {
-    "game_pk": 822892,
-    "game_date": "2026-06-05",
-    "game_datetime": "2026-06-06T00:15:00Z",
-    "away_team": "Cleveland Guardians",
-    "home_team": "Texas Rangers",
-    "favorito": "Texas Rangers",
-    "prob_favorito": 51.72,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
     "resultado": "pendiente"
   },
   {
