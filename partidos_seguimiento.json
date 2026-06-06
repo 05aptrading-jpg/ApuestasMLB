@@ -198,7 +198,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Washington Nationals"
   },
   {
     "game_pk": 823859,
