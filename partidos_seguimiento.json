@@ -11,7 +11,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Tampa Bay Rays"
   },
   {
     "game_pk": 823943,
@@ -39,7 +40,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Atlanta Braves"
   },
   {
     "game_pk": 824186,
@@ -67,7 +69,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Philadelphia Phillies"
   },
   {
     "game_pk": 825073,
@@ -109,7 +112,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Boston Red Sox"
   },
   {
     "game_pk": 824673,
@@ -152,7 +156,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Detroit Tigers"
   },
   {
     "game_pk": 823293,
