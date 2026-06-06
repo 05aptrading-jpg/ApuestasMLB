@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 19:16",
+  "fecha": "06/06/2026 19:27",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2653,8 +2653,8 @@
       "fav_team": "St. Louis Cardinals",
       "opp_team": "Cincinnati Reds",
       "score_fav": "3",
-      "score_opp": "3",
-      "state": "Top 4th",
+      "score_opp": "5",
+      "state": "Bottom 4th",
       "result": "live",
       "label": "🎯",
       "game_pk": 823048,
@@ -2673,19 +2673,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 2,
             "home_runs": 0
           }
         ],
         "current_inning": 4,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "4th",
         "outs": 1,
         "balls": 2,
-        "strikes": 1,
-        "away_runs": 3,
+        "strikes": 2,
+        "away_runs": 5,
         "home_runs": 3,
-        "away_hits": 2,
+        "away_hits": 3,
         "home_hits": 7,
         "away_errors": 0,
         "home_errors": 1,
@@ -2699,9 +2699,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "3",
+        "fav_score": "5",
         "opp_score": "3",
-        "score_fav": "3",
+        "score_fav": "5",
         "score_opp": "3"
       }
     },
@@ -2713,7 +2713,7 @@
       "opp_team": "Detroit Tigers",
       "score_fav": "4",
       "score_opp": "0",
-      "state": "Bottom 7th",
+      "state": "Top 8th",
       "result": "live",
       "label": "🎯",
       "game_pk": 824269,
@@ -2746,17 +2746,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
         "outs": 2,
         "balls": 0,
         "strikes": 0,
         "away_runs": 4,
         "home_runs": 0,
-        "away_hits": 7,
+        "away_hits": 9,
         "home_hits": 1,
         "away_errors": 0,
         "home_errors": 0,
@@ -3008,7 +3012,7 @@
       "opp_team": "Toronto Blue Jays",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Top 1st",
+      "state": "Top 2nd",
       "result": "live",
       "label": "📋",
       "game_pk": 822808,
@@ -3017,14 +3021,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
+        "current_inning": 2,
         "is_top": true,
-        "inning_ordinal": "1st",
-        "outs": 3,
+        "inning_ordinal": "2nd",
+        "outs": 0,
         "balls": 1,
-        "strikes": 3,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 1,
@@ -3055,7 +3063,7 @@
       "opp_team": "San Francisco Giants",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Bottom 4th",
+      "state": "Top 5th",
       "result": "live",
       "label": "📋",
       "game_pk": 824669,
@@ -3076,14 +3084,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
-        "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 0,
+        "current_inning": 5,
+        "is_top": true,
+        "inning_ordinal": "5th",
+        "outs": 1,
         "balls": 1,
-        "strikes": 1,
+        "strikes": 0,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 1,
@@ -3114,7 +3126,7 @@
       "opp_team": "Kansas City Royals",
       "score_fav": "0",
       "score_opp": "1",
-      "state": "Bottom 4th",
+      "state": "Bottom 5th",
       "result": "live",
       "label": "📋",
       "game_pk": 823697,
@@ -3135,14 +3147,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 2,
+        "inning_ordinal": "5th",
+        "outs": 0,
         "balls": 1,
-        "strikes": 1,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 4,
@@ -4841,9 +4857,9 @@
     "823048": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 4th",
+      "status": "Bottom 4th",
       "away_runs": 3,
-      "home_runs": 3,
+      "home_runs": 5,
       "away_team_name": "Cincinnati Reds",
       "home_team_name": "St. Louis Cardinals",
       "linescore": {
@@ -4861,19 +4877,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 2,
             "home_runs": 0
           }
         ],
         "current_inning": 4,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "4th",
         "outs": 1,
         "balls": 2,
-        "strikes": 1,
-        "away_runs": 3,
+        "strikes": 2,
+        "away_runs": 5,
         "home_runs": 3,
-        "away_hits": 2,
+        "away_hits": 3,
         "home_hits": 7,
         "away_errors": 0,
         "home_errors": 1,
@@ -4887,16 +4903,16 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "3",
+        "fav_score": "5",
         "opp_score": "3",
-        "score_fav": "3",
+        "score_fav": "5",
         "score_opp": "3"
       }
     },
     "824269": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 7th",
+      "status": "Top 8th",
       "away_runs": 4,
       "home_runs": 0,
       "away_team_name": "Detroit Tigers",
@@ -4930,17 +4946,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
         "outs": 2,
         "balls": 0,
         "strikes": 0,
         "away_runs": 4,
         "home_runs": 0,
-        "away_hits": 7,
+        "away_hits": 9,
         "home_hits": 1,
         "away_errors": 0,
         "home_errors": 0,
@@ -5163,7 +5183,7 @@
     "822808": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 1st",
+      "status": "Top 2nd",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Toronto Blue Jays",
@@ -5173,14 +5193,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
+        "current_inning": 2,
         "is_top": true,
-        "inning_ordinal": "1st",
-        "outs": 3,
+        "inning_ordinal": "2nd",
+        "outs": 0,
         "balls": 1,
-        "strikes": 3,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 1,
@@ -5206,7 +5230,7 @@
     "824669": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 4th",
+      "status": "Top 5th",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "San Francisco Giants",
@@ -5228,14 +5252,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
-        "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 0,
+        "current_inning": 5,
+        "is_top": true,
+        "inning_ordinal": "5th",
+        "outs": 1,
         "balls": 1,
-        "strikes": 1,
+        "strikes": 0,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 1,
@@ -5261,7 +5289,7 @@
     "823697": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 4th",
+      "status": "Bottom 5th",
       "away_runs": 0,
       "home_runs": 1,
       "away_team_name": "Kansas City Royals",
@@ -5283,14 +5311,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": false,
-        "inning_ordinal": "4th",
-        "outs": 2,
+        "inning_ordinal": "5th",
+        "outs": 0,
         "balls": 1,
-        "strikes": 1,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 0,
         "away_hits": 4,
@@ -5486,7 +5518,7 @@
       }
     }
   },
-  "updated_at": "06/06/2026 19:16",
+  "updated_at": "06/06/2026 19:27",
   "stats": {
     "total": 94,
     "acertados": 16,
