@@ -151,7 +151,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Seattle Mariners"
   },
   {
     "game_pk": 824915,
