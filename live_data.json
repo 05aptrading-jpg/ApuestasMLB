@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 17:14",
+  "fecha": "06/06/2026 17:17",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2717,7 +2717,7 @@
         "inning_ordinal": "1st",
         "outs": 2,
         "balls": 0,
-        "strikes": 0,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -2731,9 +2731,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Manager challenge",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -4831,7 +4831,7 @@
         "inning_ordinal": "1st",
         "outs": 2,
         "balls": 0,
-        "strikes": 0,
+        "strikes": 2,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -4845,9 +4845,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Manager challenge",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5346,7 +5346,7 @@
       }
     }
   },
-  "updated_at": "06/06/2026 17:14",
+  "updated_at": "06/06/2026 17:17",
   "stats": {
     "total": 94,
     "acertados": 16,
