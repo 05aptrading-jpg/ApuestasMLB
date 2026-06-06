@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 05:21",
+  "fecha": "06/06/2026 05:29",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780754400,
@@ -1849,7 +1849,7 @@
       "fav_team": "Sultanes de Monterrey",
       "opp_team": "Acereros del Norte",
       "score_fav": "5",
-      "score_opp": "5",
+      "score_opp": "6",
       "state": "In Progress",
       "result": "live",
       "label": "📋",
@@ -1897,19 +1897,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 11,
         "is_top": true,
         "inning_ordinal": "11th",
-        "outs": 0,
-        "balls": 1,
-        "strikes": 2,
-        "away_runs": 5,
+        "outs": 1,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 6,
         "home_runs": 5,
-        "away_hits": 7,
+        "away_hits": 8,
         "home_hits": 10,
         "away_errors": 1,
         "home_errors": 0,
@@ -1923,9 +1923,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "5",
+        "fav_score": "6",
         "opp_score": "5",
-        "score_fav": "5",
+        "score_fav": "6",
         "score_opp": "5"
       }
     },
@@ -5332,7 +5332,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "06/06/2026 05:21",
+  "updated_at": "06/06/2026 05:29",
   "stats": {
     "total": 79,
     "acertados": 16,
