@@ -84,20 +84,6 @@
     "resultado": "pendiente"
   },
   {
-    "game_pk": 822808,
-    "game_date": "2026-06-06",
-    "game_datetime": "2026-06-06T19:07:00Z",
-    "away_team": "Baltimore Orioles",
-    "home_team": "Toronto Blue Jays",
-    "favorito": "Baltimore Orioles",
-    "prob_favorito": 55.73,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
-  },
-  {
     "game_pk": 823539,
     "game_date": "2026-06-06",
     "game_datetime": "2026-06-06T23:35:00Z",
@@ -109,6 +95,20 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
+    "resultado": "pendiente"
+  },
+  {
+    "game_pk": 822808,
+    "game_date": "2026-06-06",
+    "game_datetime": "2026-06-06T19:07:00Z",
+    "away_team": "Baltimore Orioles",
+    "home_team": "Toronto Blue Jays",
+    "favorito": "Baltimore Orioles",
+    "prob_favorito": 55.47,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
     "resultado": "pendiente"
   },
   {
