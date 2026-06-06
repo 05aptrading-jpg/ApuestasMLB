@@ -69,7 +69,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Houston Astros"
   },
   {
     "game_pk": 823455,
@@ -98,7 +99,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "St. Louis Cardinals"
   },
   {
     "game_pk": 823538,
@@ -185,7 +187,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Texas Rangers"
   },
   {
     "game_pk": 822810,
