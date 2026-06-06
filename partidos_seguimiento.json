@@ -44,31 +44,31 @@
     "ganador": "Atlanta Braves"
   },
   {
-    "game_pk": 824186,
-    "game_date": "2026-06-05",
-    "game_datetime": "2026-06-06T00:10:00Z",
-    "away_team": "Athletics",
-    "home_team": "Houston Astros",
-    "favorito": "Houston Astros",
-    "prob_favorito": 57.24,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
-  },
-  {
     "game_pk": 825073,
     "game_date": "2026-06-05",
     "game_datetime": "2026-06-06T01:40:00Z",
     "away_team": "Washington Nationals",
     "home_team": "Arizona Diamondbacks",
     "favorito": "Washington Nationals",
-    "prob_favorito": 57.07,
+    "prob_favorito": 57.26,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
+    "resultado": "pendiente"
+  },
+  {
+    "game_pk": 824186,
+    "game_date": "2026-06-05",
+    "game_datetime": "2026-06-06T00:10:00Z",
+    "away_team": "Athletics",
+    "home_team": "Houston Astros",
+    "favorito": "Houston Astros",
+    "prob_favorito": 57.21,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
     "resultado": "pendiente"
   },
   {
@@ -116,6 +116,20 @@
     "ganador": "Boston Red Sox"
   },
   {
+    "game_pk": 823293,
+    "game_date": "2026-06-05",
+    "game_datetime": "2026-06-06T01:40:00Z",
+    "away_team": "New York Mets",
+    "home_team": "San Diego Padres",
+    "favorito": "New York Mets",
+    "prob_favorito": 54.38,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "APRETA TRIGGER VISITANTE",
+    "nivel_certidumbre": "MEDIA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 824673,
     "game_date": "2026-06-05",
     "game_datetime": "2026-06-05T18:20:00Z",
@@ -129,20 +143,6 @@
     "nivel_certidumbre": "MEDIA",
     "resultado": "fallido",
     "ganador": "San Francisco Giants"
-  },
-  {
-    "game_pk": 823293,
-    "game_date": "2026-06-05",
-    "game_datetime": "2026-06-06T01:40:00Z",
-    "away_team": "New York Mets",
-    "home_team": "San Diego Padres",
-    "favorito": "New York Mets",
-    "prob_favorito": 53.6,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER VISITANTE",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
   },
   {
     "game_pk": 824350,
