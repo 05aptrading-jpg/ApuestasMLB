@@ -311,8 +311,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Conspiradores de Queretaro"
   },
   {
     "game_pk": 846830,
@@ -347,8 +348,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Dorados de Chihuahua"
   },
   {
     "game_pk": 846489,
@@ -365,8 +367,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "acertado",
+    "marcador": null,
+    "ganador": "Charros de Jalisco"
   },
   {
     "game_pk": 846536,
@@ -383,8 +386,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Piratas de Campeche"
   },
   {
     "game_pk": 846726,
@@ -401,8 +405,9 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Algodoneros Union Laguna"
   },
   {
     "game_pk": 846070,
