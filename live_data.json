@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 16:42",
+  "fecha": "06/06/2026 16:47",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2696,7 +2696,7 @@
       "opp_team": "Detroit Tigers",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Pre-Game",
+      "state": "Warmup",
       "result": "pending",
       "label": "🎯",
       "game_pk": 824269,
@@ -2728,7 +2728,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Pre-Game",
+        "state": "Warmup",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -4794,7 +4794,7 @@
     "824269": {
       "is_live": false,
       "is_final": false,
-      "status": "Pre-Game",
+      "status": "Warmup",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Detroit Tigers",
@@ -4827,7 +4827,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Pre-Game",
+        "state": "Warmup",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5316,7 +5316,7 @@
       }
     }
   },
-  "updated_at": "06/06/2026 16:42",
+  "updated_at": "06/06/2026 16:47",
   "stats": {
     "total": 94,
     "acertados": 16,
