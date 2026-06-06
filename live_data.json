@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 16:47",
+  "fecha": "06/06/2026 17:03",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2486,10 +2486,15 @@
       "label": "🎯",
       "game_pk": 823454,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -3197,10 +3202,15 @@
       "label": "📋",
       "game_pk": 824184,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -4605,10 +4615,15 @@
       "away_team_name": "Philadelphia Phillies",
       "home_team_name": "Chicago White Sox",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5248,10 +5263,15 @@
       "away_team_name": "Athletics",
       "home_team_name": "Houston Astros",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5316,7 +5336,7 @@
       }
     }
   },
-  "updated_at": "06/06/2026 16:47",
+  "updated_at": "06/06/2026 17:03",
   "stats": {
     "total": 94,
     "acertados": 16,
