@@ -69,7 +69,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Houston Astros"
   },
   {
     "game_pk": 823455,
@@ -98,7 +99,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "St. Louis Cardinals"
   },
   {
     "game_pk": 823538,
@@ -127,7 +129,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "New York Mets"
   },
   {
     "game_pk": 824673,
@@ -156,7 +159,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Milwaukee Brewers"
   },
   {
     "game_pk": 824271,
@@ -185,7 +189,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Texas Rangers"
   },
   {
     "game_pk": 822810,
@@ -214,7 +219,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Minnesota Twins"
   },
   {
     "game_pk": 846443,
@@ -303,8 +309,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Conspiradores de Queretaro"
   },
   {
     "game_pk": 846830,
@@ -375,8 +382,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Piratas de Campeche"
   },
   {
     "game_pk": 846726,
@@ -393,8 +401,9 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Algodoneros Union Laguna"
   },
   {
     "game_pk": 846070,
