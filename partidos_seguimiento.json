@@ -112,6 +112,20 @@
     "resultado": "pendiente"
   },
   {
+    "game_pk": 823697,
+    "game_date": "2026-06-06",
+    "game_datetime": "2026-06-06T18:10:00Z",
+    "away_team": "Kansas City Royals",
+    "home_team": "Minnesota Twins",
+    "favorito": "Minnesota Twins",
+    "prob_favorito": 55.14,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 824669,
     "game_date": "2026-06-06",
     "game_datetime": "2026-06-06T18:20:00Z",
@@ -137,20 +151,6 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
-  },
-  {
-    "game_pk": 823697,
-    "game_date": "2026-06-06",
-    "game_datetime": "2026-06-06T18:10:00Z",
-    "away_team": "Kansas City Royals",
-    "home_team": "Minnesota Twins",
-    "favorito": "Minnesota Twins",
-    "prob_favorito": 54.63,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
     "resultado": "pendiente"
   },
   {
