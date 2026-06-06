@@ -53,7 +53,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Chicago White Sox"
   },
   {
     "game_pk": 824184,
@@ -171,7 +172,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Atlanta Braves"
   },
   {
     "game_pk": 822891,
