@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 21:56",
+  "fecha": "06/06/2026 21:59",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2485,7 +2485,7 @@
       "fav_team": "Chicago White Sox",
       "opp_team": "Philadelphia Phillies",
       "score_fav": "6",
-      "score_opp": "1",
+      "score_opp": "2",
       "state": "Bottom 6th",
       "result": "live",
       "label": "🎯",
@@ -2514,19 +2514,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 6,
         "is_top": false,
         "inning_ordinal": "6th",
         "outs": 2,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 3,
+        "strikes": 1,
         "away_runs": 6,
-        "home_runs": 1,
+        "home_runs": 2,
         "away_hits": 8,
-        "home_hits": 2,
+        "home_hits": 3,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Chicago White Sox",
@@ -2540,9 +2540,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "6",
-        "opp_score": "1",
+        "opp_score": "2",
         "score_fav": "6",
-        "score_opp": "1"
+        "score_opp": "2"
       }
     },
     {
@@ -2845,7 +2845,7 @@
       "status_emoji": "🔴",
       "fav_team": "Houston Astros",
       "opp_team": "Athletics",
-      "score_fav": "9",
+      "score_fav": "10",
       "score_opp": "2",
       "state": "Bottom 5th",
       "result": "live",
@@ -2871,7 +2871,7 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 2
+            "home_runs": 3
           }
         ],
         "current_inning": 5,
@@ -2881,9 +2881,9 @@
         "balls": 1,
         "strikes": 1,
         "away_runs": 2,
-        "home_runs": 9,
+        "home_runs": 10,
         "away_hits": 5,
-        "home_hits": 10,
+        "home_hits": 11,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Athletics",
@@ -2897,9 +2897,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "2",
-        "opp_score": "9",
+        "opp_score": "10",
         "score_fav": "2",
-        "score_opp": "9"
+        "score_opp": "10"
       }
     },
     {
@@ -3375,7 +3375,7 @@
       "opp_team": "Washington Nationals",
       "score_fav": "1",
       "score_opp": "4",
-      "state": "Bottom 7th",
+      "state": "End 7th",
       "result": "live",
       "label": "📋",
       "game_pk": 825075,
@@ -3413,7 +3413,7 @@
         "current_inning": 7,
         "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 2,
+        "outs": 3,
         "balls": 0,
         "strikes": 2,
         "away_runs": 4,
@@ -3446,7 +3446,7 @@
       "opp_team": "Pittsburgh Pirates",
       "score_fav": "6",
       "score_opp": "3",
-      "state": "Bottom 6th",
+      "state": "Top 7th",
       "result": "live",
       "label": "📋",
       "game_pk": 824915,
@@ -3475,14 +3475,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
-        "is_top": false,
-        "inning_ordinal": "6th",
-        "outs": 2,
-        "balls": 2,
-        "strikes": 2,
+        "current_inning": 7,
+        "is_top": true,
+        "inning_ordinal": "7th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 6,
         "away_hits": 5,
@@ -3513,7 +3517,7 @@
       "opp_team": "Miami Marlins",
       "score_fav": "0",
       "score_opp": "4",
-      "state": "Middle 7th",
+      "state": "Bottom 7th",
       "result": "live",
       "label": "📋",
       "game_pk": 823859,
@@ -3549,11 +3553,11 @@
           }
         ],
         "current_inning": 7,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 3,
+        "outs": 0,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 4,
         "away_hits": 2,
@@ -4914,7 +4918,7 @@
       "is_final": false,
       "status": "Bottom 6th",
       "away_runs": 6,
-      "home_runs": 1,
+      "home_runs": 2,
       "away_team_name": "Philadelphia Phillies",
       "home_team_name": "Chicago White Sox",
       "linescore": {
@@ -4941,19 +4945,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 6,
         "is_top": false,
         "inning_ordinal": "6th",
         "outs": 2,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 3,
+        "strikes": 1,
         "away_runs": 6,
-        "home_runs": 1,
+        "home_runs": 2,
         "away_hits": 8,
-        "home_hits": 2,
+        "home_hits": 3,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Chicago White Sox",
@@ -4967,9 +4971,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "6",
-        "opp_score": "1",
+        "opp_score": "2",
         "score_fav": "6",
-        "score_opp": "1"
+        "score_opp": "2"
       }
     },
     "823292": {
@@ -5250,7 +5254,7 @@
       "is_live": true,
       "is_final": false,
       "status": "Bottom 5th",
-      "away_runs": 9,
+      "away_runs": 10,
       "home_runs": 2,
       "away_team_name": "Athletics",
       "home_team_name": "Houston Astros",
@@ -5274,7 +5278,7 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 2
+            "home_runs": 3
           }
         ],
         "current_inning": 5,
@@ -5284,9 +5288,9 @@
         "balls": 1,
         "strikes": 1,
         "away_runs": 2,
-        "home_runs": 9,
+        "home_runs": 10,
         "away_hits": 5,
-        "home_hits": 10,
+        "home_hits": 11,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Athletics",
@@ -5300,9 +5304,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "2",
-        "opp_score": "9",
+        "opp_score": "10",
         "score_fav": "2",
-        "score_opp": "9"
+        "score_opp": "10"
       }
     },
     "846445": {
@@ -5737,7 +5741,7 @@
     "825075": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 7th",
+      "status": "End 7th",
       "away_runs": 1,
       "home_runs": 4,
       "away_team_name": "Washington Nationals",
@@ -5776,7 +5780,7 @@
         "current_inning": 7,
         "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 2,
+        "outs": 3,
         "balls": 0,
         "strikes": 2,
         "away_runs": 4,
@@ -5804,7 +5808,7 @@
     "824915": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 6th",
+      "status": "Top 7th",
       "away_runs": 6,
       "home_runs": 3,
       "away_team_name": "Pittsburgh Pirates",
@@ -5834,14 +5838,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
-        "is_top": false,
-        "inning_ordinal": "6th",
-        "outs": 2,
-        "balls": 2,
-        "strikes": 2,
+        "current_inning": 7,
+        "is_top": true,
+        "inning_ordinal": "7th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 6,
         "away_hits": 5,
@@ -5867,7 +5875,7 @@
     "823859": {
       "is_live": true,
       "is_final": false,
-      "status": "Middle 7th",
+      "status": "Bottom 7th",
       "away_runs": 0,
       "home_runs": 4,
       "away_team_name": "Miami Marlins",
@@ -5904,11 +5912,11 @@
           }
         ],
         "current_inning": 7,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 3,
+        "outs": 0,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 4,
         "away_hits": 2,
@@ -5932,7 +5940,7 @@
       }
     }
   },
-  "updated_at": "06/06/2026 21:56",
+  "updated_at": "06/06/2026 21:59",
   "stats": {
     "total": 94,
     "acertados": 19,
