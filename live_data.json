@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 22:06",
+  "fecha": "06/06/2026 22:14",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2490,8 +2490,8 @@
       "fav_team": "Chicago White Sox",
       "opp_team": "Philadelphia Phillies",
       "score_fav": "6",
-      "score_opp": "2",
-      "state": "Bottom 6th",
+      "score_opp": "3",
+      "state": "Top 7th",
       "result": "live",
       "label": "🎯",
       "game_pk": 823454,
@@ -2519,19 +2519,23 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 1
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
-        "is_top": false,
-        "inning_ordinal": "6th",
+        "current_inning": 7,
+        "is_top": true,
+        "inning_ordinal": "7th",
         "outs": 2,
-        "balls": 2,
-        "strikes": 2,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 6,
-        "home_runs": 2,
+        "home_runs": 3,
         "away_hits": 8,
-        "home_hits": 3,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Chicago White Sox",
@@ -2545,9 +2549,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "6",
-        "opp_score": "2",
+        "opp_score": "3",
         "score_fav": "6",
-        "score_opp": "2"
+        "score_opp": "3"
       }
     },
     {
@@ -2852,7 +2856,7 @@
       "opp_team": "Athletics",
       "score_fav": "13",
       "score_opp": "2",
-      "state": "Bottom 5th",
+      "state": "Middle 6th",
       "result": "live",
       "label": "🎯",
       "game_pk": 824184,
@@ -2877,14 +2881,18 @@
           {
             "away_runs": 0,
             "home_runs": 6
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 1,
-        "balls": 1,
-        "strikes": 2,
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 1,
         "away_runs": 2,
         "home_runs": 13,
         "away_hits": 5,
@@ -3380,7 +3388,7 @@
       "opp_team": "Washington Nationals",
       "score_fav": "1",
       "score_opp": "4",
-      "state": "Top 8th",
+      "state": "Top 9th",
       "result": "live",
       "label": "📋",
       "game_pk": 825075,
@@ -3417,14 +3425,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": true,
-        "inning_ordinal": "8th",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 2,
+        "inning_ordinal": "9th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 4,
         "home_runs": 1,
         "away_hits": 6,
@@ -3455,7 +3467,7 @@
       "opp_team": "Pittsburgh Pirates",
       "score_fav": "6",
       "score_opp": "3",
-      "state": "Middle 7th",
+      "state": "Top 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 824915,
@@ -3488,14 +3500,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
+        "current_inning": 8,
         "is_top": true,
-        "inning_ordinal": "7th",
-        "outs": 3,
+        "inning_ordinal": "8th",
+        "outs": 0,
         "balls": 0,
-        "strikes": 3,
+        "strikes": 2,
         "away_runs": 3,
         "home_runs": 6,
         "away_hits": 5,
@@ -3524,9 +3540,9 @@
       "status_emoji": "🔴",
       "fav_team": "Tampa Bay Rays",
       "opp_team": "Miami Marlins",
-      "score_fav": "0",
+      "score_fav": "1",
       "score_opp": "4",
-      "state": "Bottom 7th",
+      "state": "Top 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 823859,
@@ -3559,17 +3575,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 2,
-        "away_runs": 0,
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 1,
         "home_runs": 4,
-        "away_hits": 2,
+        "away_hits": 3,
         "home_hits": 9,
         "away_errors": 1,
         "home_errors": 1,
@@ -3583,9 +3603,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "1",
         "opp_score": "4",
-        "score_fav": "0",
+        "score_fav": "1",
         "score_opp": "4"
       }
     }
@@ -4930,9 +4950,9 @@
     "823454": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 6th",
+      "status": "Top 7th",
       "away_runs": 6,
-      "home_runs": 2,
+      "home_runs": 3,
       "away_team_name": "Philadelphia Phillies",
       "home_team_name": "Chicago White Sox",
       "linescore": {
@@ -4959,19 +4979,23 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 1
+            "home_runs": 2
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 6,
-        "is_top": false,
-        "inning_ordinal": "6th",
+        "current_inning": 7,
+        "is_top": true,
+        "inning_ordinal": "7th",
         "outs": 2,
-        "balls": 2,
-        "strikes": 2,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 6,
-        "home_runs": 2,
+        "home_runs": 3,
         "away_hits": 8,
-        "home_hits": 3,
+        "home_hits": 4,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Chicago White Sox",
@@ -4985,9 +5009,9 @@
         "result": "live",
         "state": "In Progress",
         "fav_score": "6",
-        "opp_score": "2",
+        "opp_score": "3",
         "score_fav": "6",
-        "score_opp": "2"
+        "score_opp": "3"
       }
     },
     "823292": {
@@ -5267,7 +5291,7 @@
     "824184": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 5th",
+      "status": "Middle 6th",
       "away_runs": 13,
       "home_runs": 2,
       "away_team_name": "Athletics",
@@ -5293,14 +5317,18 @@
           {
             "away_runs": 0,
             "home_runs": 6
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 1,
-        "balls": 1,
-        "strikes": 2,
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 3,
+        "balls": 0,
+        "strikes": 1,
         "away_runs": 2,
         "home_runs": 13,
         "away_hits": 5,
@@ -5755,7 +5783,7 @@
     "825075": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 8th",
+      "status": "Top 9th",
       "away_runs": 1,
       "home_runs": 4,
       "away_team_name": "Washington Nationals",
@@ -5793,14 +5821,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
+        "current_inning": 9,
         "is_top": true,
-        "inning_ordinal": "8th",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 2,
+        "inning_ordinal": "9th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 4,
         "home_runs": 1,
         "away_hits": 6,
@@ -5826,7 +5858,7 @@
     "824915": {
       "is_live": true,
       "is_final": false,
-      "status": "Middle 7th",
+      "status": "Top 8th",
       "away_runs": 6,
       "home_runs": 3,
       "away_team_name": "Pittsburgh Pirates",
@@ -5860,14 +5892,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
+        "current_inning": 8,
         "is_top": true,
-        "inning_ordinal": "7th",
-        "outs": 3,
+        "inning_ordinal": "8th",
+        "outs": 0,
         "balls": 0,
-        "strikes": 3,
+        "strikes": 2,
         "away_runs": 3,
         "home_runs": 6,
         "away_hits": 5,
@@ -5893,8 +5929,8 @@
     "823859": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 7th",
-      "away_runs": 0,
+      "status": "Top 8th",
+      "away_runs": 1,
       "home_runs": 4,
       "away_team_name": "Miami Marlins",
       "home_team_name": "Tampa Bay Rays",
@@ -5927,17 +5963,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
           }
         ],
-        "current_inning": 7,
-        "is_top": false,
-        "inning_ordinal": "7th",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 2,
-        "away_runs": 0,
+        "current_inning": 8,
+        "is_top": true,
+        "inning_ordinal": "8th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 1,
         "home_runs": 4,
-        "away_hits": 2,
+        "away_hits": 3,
         "home_hits": 9,
         "away_errors": 1,
         "home_errors": 1,
@@ -5951,14 +5991,14 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "1",
         "opp_score": "4",
-        "score_fav": "0",
+        "score_fav": "1",
         "score_opp": "4"
       }
     }
   },
-  "updated_at": "06/06/2026 22:06",
+  "updated_at": "06/06/2026 22:14",
   "stats": {
     "total": 94,
     "acertados": 19,
