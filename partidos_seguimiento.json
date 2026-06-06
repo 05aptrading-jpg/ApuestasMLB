@@ -25,7 +25,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "ALTA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Chicago White Sox"
   },
   {
     "game_pk": 823292,
@@ -67,7 +68,8 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Houston Astros"
   },
   {
     "game_pk": 823048,
@@ -184,7 +186,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Atlanta Braves"
   },
   {
     "game_pk": 825075,
@@ -213,7 +216,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Miami Marlins"
   },
   {
     "game_pk": 846443,
