@@ -1,5 +1,5 @@
 {
-  "fecha": "06/06/2026 17:17",
+  "fecha": "06/06/2026 17:22",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2701,7 +2701,7 @@
       "opp_team": "Detroit Tigers",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Top 1st",
+      "state": "Bottom 1st",
       "result": "live",
       "label": "🎯",
       "game_pk": 824269,
@@ -2713,11 +2713,11 @@
           }
         ],
         "current_inning": 1,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 2,
-        "balls": 0,
-        "strikes": 2,
+        "outs": 1,
+        "balls": 3,
+        "strikes": 3,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -4814,7 +4814,7 @@
     "824269": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 1st",
+      "status": "Bottom 1st",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Detroit Tigers",
@@ -4827,11 +4827,11 @@
           }
         ],
         "current_inning": 1,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "1st",
-        "outs": 2,
-        "balls": 0,
-        "strikes": 2,
+        "outs": 1,
+        "balls": 3,
+        "strikes": 3,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -5346,7 +5346,7 @@
       }
     }
   },
-  "updated_at": "06/06/2026 17:17",
+  "updated_at": "06/06/2026 17:22",
   "stats": {
     "total": 94,
     "acertados": 16,
