@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 05:28",
+  "fecha": "07/06/2026 05:31",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -1341,8 +1341,8 @@
         "is_top": false,
         "inning_ordinal": "8th",
         "outs": 2,
-        "balls": 0,
-        "strikes": 1,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 3,
         "home_runs": 7,
         "away_hits": 9,
@@ -5751,7 +5751,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "07/06/2026 05:28",
+  "updated_at": "07/06/2026 05:31",
   "stats": {
     "total": 104,
     "acertados": 26,
