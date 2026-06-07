@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 19:45",
+  "fecha": "07/06/2026 19:51",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780927200,
@@ -2507,7 +2507,7 @@
       "opp_team": "Cincinnati Reds",
       "score_fav": "3",
       "score_opp": "2",
-      "state": "End 5th",
+      "state": "Top 6th",
       "result": "live",
       "label": "🎯",
       "game_pk": 823047,
@@ -2532,12 +2532,16 @@
           {
             "away_runs": 0,
             "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 3,
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 2,
         "balls": 2,
         "strikes": 2,
         "away_runs": 2,
@@ -2570,7 +2574,7 @@
       "opp_team": "Colorado Rockies",
       "score_fav": "1",
       "score_opp": "2",
-      "state": "Bottom 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "🎯",
       "game_pk": 824349,
@@ -2583,17 +2587,21 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
         "outs": 1,
-        "balls": 2,
-        "strikes": 1,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 2,
-        "away_hits": 3,
+        "away_hits": 4,
         "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
@@ -2619,7 +2627,7 @@
       "status_emoji": "🔴",
       "fav_team": "Texas Rangers",
       "opp_team": "Cleveland Guardians",
-      "score_fav": "6",
+      "score_fav": "7",
       "score_opp": "0",
       "state": "Bottom 4th",
       "result": "live",
@@ -2641,19 +2649,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 4,
         "is_top": false,
         "inning_ordinal": "4th",
-        "outs": 1,
-        "balls": 3,
-        "strikes": 1,
+        "outs": 2,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 0,
-        "home_runs": 6,
+        "home_runs": 7,
         "away_hits": 1,
-        "home_hits": 7,
+        "home_hits": 8,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Cleveland Guardians",
@@ -2663,13 +2671,13 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Player challenge",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
-        "opp_score": "6",
+        "opp_score": "7",
         "score_fav": "0",
-        "score_opp": "6"
+        "score_opp": "7"
       }
     },
     {
@@ -2680,7 +2688,7 @@
       "opp_team": "Boston Red Sox",
       "score_fav": "1",
       "score_opp": "1",
-      "state": "Top 7th",
+      "state": "Middle 7th",
       "result": "live",
       "label": "🎯",
       "game_pk": 823537,
@@ -2718,12 +2726,12 @@
         "current_inning": 7,
         "is_top": true,
         "inning_ordinal": "7th",
-        "outs": 1,
-        "balls": 0,
-        "strikes": 0,
+        "outs": 3,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 1,
-        "away_hits": 5,
+        "away_hits": 6,
         "home_hits": 6,
         "away_errors": 0,
         "home_errors": 0,
@@ -2798,7 +2806,7 @@
       "opp_team": "Arizona Diamondbacks",
       "score_fav": "1",
       "score_opp": "1",
-      "state": "Bottom 2nd",
+      "state": "Top 3rd",
       "result": "live",
       "label": "🎯",
       "game_pk": 825074,
@@ -2811,18 +2819,22 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 2,
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
+        "outs": 1,
         "balls": 0,
         "strikes": 2,
         "away_runs": 1,
         "home_runs": 1,
         "away_hits": 1,
-        "home_hits": 2,
+        "home_hits": 3,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Washington Nationals",
@@ -2838,69 +2850,6 @@
         "fav_score": "1",
         "opp_score": "1",
         "score_fav": "1",
-        "score_opp": "1"
-      }
-    },
-    {
-      "liga": "MLB",
-      "game_date": "2026-06-07",
-      "status_emoji": "🔴",
-      "fav_team": "Kansas City Royals",
-      "opp_team": "Minnesota Twins",
-      "score_fav": "5",
-      "score_opp": "1",
-      "state": "Bottom 5th",
-      "result": "live",
-      "label": "🎯",
-      "game_pk": 823696,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 4,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 1,
-        "balls": 3,
-        "strikes": 2,
-        "away_runs": 5,
-        "home_runs": 1,
-        "away_hits": 7,
-        "home_hits": 3,
-        "away_errors": 2,
-        "home_errors": 0,
-        "away_team_name": "Kansas City Royals",
-        "home_team_name": "Minnesota Twins",
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
-        "fav_score": "5",
-        "opp_score": "1",
-        "score_fav": "5",
         "score_opp": "1"
       }
     },
@@ -3169,7 +3118,7 @@
       "opp_team": "Pittsburgh Pirates",
       "score_fav": "3",
       "score_opp": "2",
-      "state": "Top 8th",
+      "state": "Bottom 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 824916,
@@ -3211,9 +3160,9 @@
         "current_inning": 8,
         "is_top": true,
         "inning_ordinal": "8th",
-        "outs": 2,
-        "balls": 2,
-        "strikes": 1,
+        "outs": 3,
+        "balls": 3,
+        "strikes": 2,
         "away_runs": 2,
         "home_runs": 3,
         "away_hits": 3,
@@ -3291,7 +3240,7 @@
       "opp_team": "Philadelphia Phillies",
       "score_fav": "5",
       "score_opp": "7",
-      "state": "End 5th",
+      "state": "Top 6th",
       "result": "live",
       "label": "📋",
       "game_pk": 823453,
@@ -3316,12 +3265,16 @@
           {
             "away_runs": 2,
             "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 3,
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 1,
         "balls": 0,
         "strikes": 0,
         "away_runs": 5,
@@ -3344,6 +3297,73 @@
         "opp_score": "7",
         "score_fav": "5",
         "score_opp": "7"
+      }
+    },
+    {
+      "liga": "MLB",
+      "game_date": "2026-06-07",
+      "status_emoji": "🔴",
+      "fav_team": "Kansas City Royals",
+      "opp_team": "Minnesota Twins",
+      "score_fav": "5",
+      "score_opp": "1",
+      "state": "Top 6th",
+      "result": "live",
+      "label": "📋",
+      "game_pk": 823696,
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 4,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 5,
+        "home_runs": 1,
+        "away_hits": 7,
+        "home_hits": 3,
+        "away_errors": 2,
+        "home_errors": 0,
+        "away_team_name": "Kansas City Royals",
+        "home_team_name": "Minnesota Twins",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
+        "fav_score": "5",
+        "opp_score": "1",
+        "score_fav": "5",
+        "score_opp": "1"
       }
     },
     {
@@ -3394,7 +3414,7 @@
       "status_emoji": "🔴",
       "fav_team": "Seattle Mariners",
       "opp_team": "Detroit Tigers",
-      "score_fav": "3",
+      "score_fav": "4",
       "score_opp": "1",
       "state": "Top 7th",
       "result": "live",
@@ -3427,19 +3447,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 7,
         "is_top": true,
         "inning_ordinal": "7th",
-        "outs": 1,
-        "balls": 2,
-        "strikes": 2,
-        "away_runs": 3,
+        "outs": 2,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 4,
         "home_runs": 1,
-        "away_hits": 6,
+        "away_hits": 7,
         "home_hits": 2,
         "away_errors": 1,
         "home_errors": 1,
@@ -3453,9 +3473,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "3",
+        "fav_score": "4",
         "opp_score": "1",
-        "score_fav": "3",
+        "score_fav": "4",
         "score_opp": "1"
       }
     },
@@ -3467,7 +3487,7 @@
       "opp_team": "Miami Marlins",
       "score_fav": "1",
       "score_opp": "4",
-      "state": "Top 8th",
+      "state": "Middle 8th",
       "result": "live",
       "label": "📋",
       "game_pk": 823857,
@@ -3509,9 +3529,9 @@
         "current_inning": 8,
         "is_top": true,
         "inning_ordinal": "8th",
-        "outs": 0,
-        "balls": 1,
-        "strikes": 0,
+        "outs": 3,
+        "balls": 3,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 4,
         "away_hits": 5,
@@ -3580,9 +3600,9 @@
         "current_inning": 7,
         "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 0,
+        "outs": 2,
         "balls": 0,
-        "strikes": 1,
+        "strikes": 0,
         "away_runs": 4,
         "home_runs": 5,
         "away_hits": 7,
@@ -3613,7 +3633,7 @@
       "opp_team": "Houston Astros",
       "score_fav": "5",
       "score_opp": "0",
-      "state": "Bottom 5th",
+      "state": "Top 6th",
       "result": "live",
       "label": "📋",
       "game_pk": 824183,
@@ -3638,14 +3658,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
         "outs": 2,
-        "balls": 0,
-        "strikes": 1,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 5,
         "home_runs": 0,
         "away_hits": 8,
@@ -5247,7 +5271,7 @@
     "823047": {
       "is_live": true,
       "is_final": false,
-      "status": "End 5th",
+      "status": "Top 6th",
       "away_runs": 3,
       "home_runs": 2,
       "away_team_name": "Cincinnati Reds",
@@ -5273,12 +5297,16 @@
           {
             "away_runs": 0,
             "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 3,
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 2,
         "balls": 2,
         "strikes": 2,
         "away_runs": 2,
@@ -5306,7 +5334,7 @@
     "824349": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 2nd",
+      "status": "Top 3rd",
       "away_runs": 1,
       "home_runs": 2,
       "away_team_name": "Colorado Rockies",
@@ -5320,17 +5348,21 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
         "outs": 1,
-        "balls": 2,
-        "strikes": 1,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 2,
-        "away_hits": 3,
+        "away_hits": 4,
         "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
@@ -5354,7 +5386,7 @@
       "is_live": true,
       "is_final": false,
       "status": "Bottom 4th",
-      "away_runs": 6,
+      "away_runs": 7,
       "home_runs": 0,
       "away_team_name": "Cleveland Guardians",
       "home_team_name": "Texas Rangers",
@@ -5374,19 +5406,19 @@
           },
           {
             "away_runs": 0,
-            "home_runs": 0
+            "home_runs": 1
           }
         ],
         "current_inning": 4,
         "is_top": false,
         "inning_ordinal": "4th",
-        "outs": 1,
-        "balls": 3,
-        "strikes": 1,
+        "outs": 2,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 0,
-        "home_runs": 6,
+        "home_runs": 7,
         "away_hits": 1,
-        "home_hits": 7,
+        "home_hits": 8,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Cleveland Guardians",
@@ -5396,19 +5428,19 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Player challenge",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
-        "opp_score": "6",
+        "opp_score": "7",
         "score_fav": "0",
-        "score_opp": "6"
+        "score_opp": "7"
       }
     },
     "823537": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 7th",
+      "status": "Middle 7th",
       "away_runs": 1,
       "home_runs": 1,
       "away_team_name": "Boston Red Sox",
@@ -5447,12 +5479,12 @@
         "current_inning": 7,
         "is_top": true,
         "inning_ordinal": "7th",
-        "outs": 1,
-        "balls": 0,
-        "strikes": 0,
+        "outs": 3,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 1,
         "home_runs": 1,
-        "away_hits": 5,
+        "away_hits": 6,
         "home_hits": 6,
         "away_errors": 0,
         "home_errors": 0,
@@ -5518,7 +5550,7 @@
     "825074": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 2nd",
+      "status": "Top 3rd",
       "away_runs": 1,
       "home_runs": 1,
       "away_team_name": "Arizona Diamondbacks",
@@ -5532,18 +5564,22 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 2,
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
+        "outs": 1,
         "balls": 0,
         "strikes": 2,
         "away_runs": 1,
         "home_runs": 1,
         "away_hits": 1,
-        "home_hits": 2,
+        "home_hits": 3,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Washington Nationals",
@@ -5559,65 +5595,6 @@
         "fav_score": "1",
         "opp_score": "1",
         "score_fav": "1",
-        "score_opp": "1"
-      }
-    },
-    "823696": {
-      "is_live": true,
-      "is_final": false,
-      "status": "Bottom 5th",
-      "away_runs": 5,
-      "home_runs": 1,
-      "away_team_name": "Minnesota Twins",
-      "home_team_name": "Kansas City Royals",
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 1
-          },
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 4,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 1,
-        "balls": 3,
-        "strikes": 2,
-        "away_runs": 5,
-        "home_runs": 1,
-        "away_hits": 7,
-        "home_hits": 3,
-        "away_errors": 2,
-        "home_errors": 0,
-        "away_team_name": "Kansas City Royals",
-        "home_team_name": "Minnesota Twins",
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
-        "fav_score": "5",
-        "opp_score": "1",
-        "score_fav": "5",
         "score_opp": "1"
       }
     },
@@ -5857,7 +5834,7 @@
     "824916": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 8th",
+      "status": "Bottom 8th",
       "away_runs": 3,
       "home_runs": 2,
       "away_team_name": "Pittsburgh Pirates",
@@ -5900,9 +5877,9 @@
         "current_inning": 8,
         "is_top": true,
         "inning_ordinal": "8th",
-        "outs": 2,
-        "balls": 2,
-        "strikes": 1,
+        "outs": 3,
+        "balls": 3,
+        "strikes": 2,
         "away_runs": 2,
         "home_runs": 3,
         "away_hits": 3,
@@ -5971,7 +5948,7 @@
     "823453": {
       "is_live": true,
       "is_final": false,
-      "status": "End 5th",
+      "status": "Top 6th",
       "away_runs": 5,
       "home_runs": 7,
       "away_team_name": "Philadelphia Phillies",
@@ -5997,12 +5974,16 @@
           {
             "away_runs": 2,
             "home_runs": 3
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
-        "outs": 3,
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 1,
         "balls": 0,
         "strikes": 0,
         "away_runs": 5,
@@ -6025,6 +6006,69 @@
         "opp_score": "7",
         "score_fav": "5",
         "score_opp": "7"
+      }
+    },
+    "823696": {
+      "is_live": true,
+      "is_final": false,
+      "status": "Top 6th",
+      "away_runs": 5,
+      "home_runs": 1,
+      "away_team_name": "Minnesota Twins",
+      "home_team_name": "Kansas City Royals",
+      "linescore": {
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 1
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 4,
+            "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
+        "outs": 1,
+        "balls": 0,
+        "strikes": 1,
+        "away_runs": 5,
+        "home_runs": 1,
+        "away_hits": 7,
+        "home_hits": 3,
+        "away_errors": 2,
+        "home_errors": 0,
+        "away_team_name": "Kansas City Royals",
+        "home_team_name": "Minnesota Twins",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
+        "fav_score": "5",
+        "opp_score": "1",
+        "score_fav": "5",
+        "score_opp": "1"
       }
     },
     "824670": {
@@ -6069,7 +6113,7 @@
       "is_live": true,
       "is_final": false,
       "status": "Top 7th",
-      "away_runs": 3,
+      "away_runs": 4,
       "home_runs": 1,
       "away_team_name": "Detroit Tigers",
       "home_team_name": "Seattle Mariners",
@@ -6100,19 +6144,19 @@
             "home_runs": 0
           },
           {
-            "away_runs": 0,
+            "away_runs": 1,
             "home_runs": 0
           }
         ],
         "current_inning": 7,
         "is_top": true,
         "inning_ordinal": "7th",
-        "outs": 1,
-        "balls": 2,
-        "strikes": 2,
-        "away_runs": 3,
+        "outs": 2,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 4,
         "home_runs": 1,
-        "away_hits": 6,
+        "away_hits": 7,
         "home_hits": 2,
         "away_errors": 1,
         "home_errors": 1,
@@ -6126,16 +6170,16 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "3",
+        "fav_score": "4",
         "opp_score": "1",
-        "score_fav": "3",
+        "score_fav": "4",
         "score_opp": "1"
       }
     },
     "823857": {
       "is_live": true,
       "is_final": false,
-      "status": "Top 8th",
+      "status": "Middle 8th",
       "away_runs": 1,
       "home_runs": 4,
       "away_team_name": "Miami Marlins",
@@ -6178,9 +6222,9 @@
         "current_inning": 8,
         "is_top": true,
         "inning_ordinal": "8th",
-        "outs": 0,
-        "balls": 1,
-        "strikes": 0,
+        "outs": 3,
+        "balls": 3,
+        "strikes": 1,
         "away_runs": 1,
         "home_runs": 4,
         "away_hits": 5,
@@ -6245,9 +6289,9 @@
         "current_inning": 7,
         "is_top": false,
         "inning_ordinal": "7th",
-        "outs": 0,
+        "outs": 2,
         "balls": 0,
-        "strikes": 1,
+        "strikes": 0,
         "away_runs": 4,
         "home_runs": 5,
         "away_hits": 7,
@@ -6273,7 +6317,7 @@
     "824183": {
       "is_live": true,
       "is_final": false,
-      "status": "Bottom 5th",
+      "status": "Top 6th",
       "away_runs": 5,
       "home_runs": 0,
       "away_team_name": "Houston Astros",
@@ -6299,14 +6343,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 5,
-        "is_top": false,
-        "inning_ordinal": "5th",
+        "current_inning": 6,
+        "is_top": true,
+        "inning_ordinal": "6th",
         "outs": 2,
-        "balls": 0,
-        "strikes": 1,
+        "balls": 2,
+        "strikes": 2,
         "away_runs": 5,
         "home_runs": 0,
         "away_hits": 8,
@@ -6330,13 +6378,13 @@
       }
     }
   },
-  "updated_at": "07/06/2026 19:45",
+  "updated_at": "07/06/2026 19:51",
   "stats": {
     "total": 119,
     "acertados": 26,
     "fallidos": 31,
     "win_rate": 45.6,
-    "alta_total": 52,
+    "alta_total": 51,
     "alta_acertados": 15,
     "alta_fallidos": 10,
     "alta_win_rate": 60.0,
@@ -6344,7 +6392,7 @@
     "media_acertados": 0,
     "media_fallidos": 0,
     "media_win_rate": 0,
-    "baja_total": 67,
+    "baja_total": 68,
     "baja_acertados": 11,
     "baja_fallidos": 21,
     "baja_win_rate": 34.4,
@@ -6357,7 +6405,7 @@
     "acertados": 21,
     "fallidos": 16,
     "win_rate": 56.8,
-    "alta_total": 37,
+    "alta_total": 36,
     "alta_acertados": 13,
     "alta_fallidos": 7,
     "alta_win_rate": 65.0,
@@ -6365,7 +6413,7 @@
     "media_acertados": 0,
     "media_fallidos": 0,
     "media_win_rate": 0,
-    "baja_total": 32,
+    "baja_total": 33,
     "baja_acertados": 8,
     "baja_fallidos": 9,
     "baja_win_rate": 47.1,
@@ -6399,7 +6447,7 @@
     "acertados": 2,
     "fallidos": 6,
     "win_rate": 25.0,
-    "alta_total": 12,
+    "alta_total": 11,
     "alta_acertados": 1,
     "alta_fallidos": 1,
     "alta_win_rate": 50.0,
@@ -6407,7 +6455,7 @@
     "media_acertados": 0,
     "media_fallidos": 0,
     "media_win_rate": 0,
-    "baja_total": 15,
+    "baja_total": 16,
     "baja_acertados": 1,
     "baja_fallidos": 5,
     "baja_win_rate": 16.7,
@@ -6420,7 +6468,7 @@
     "acertados": 0,
     "fallidos": 0,
     "win_rate": 0,
-    "alta_total": 7,
+    "alta_total": 6,
     "alta_acertados": 0,
     "alta_fallidos": 0,
     "alta_win_rate": 0,
@@ -6428,7 +6476,7 @@
     "media_acertados": 0,
     "media_fallidos": 0,
     "media_win_rate": 0,
-    "baja_total": 8,
+    "baja_total": 9,
     "baja_acertados": 0,
     "baja_fallidos": 0,
     "baja_win_rate": 0,
@@ -6462,7 +6510,7 @@
     "acertados": 20,
     "fallidos": 22,
     "win_rate": 47.6,
-    "alta_total": 33,
+    "alta_total": 32,
     "alta_acertados": 11,
     "alta_fallidos": 7,
     "alta_win_rate": 61.1,
@@ -6470,7 +6518,7 @@
     "media_acertados": 0,
     "media_fallidos": 0,
     "media_win_rate": 0,
-    "baja_total": 42,
+    "baja_total": 43,
     "baja_acertados": 9,
     "baja_fallidos": 15,
     "baja_win_rate": 37.5,
@@ -6483,7 +6531,7 @@
     "acertados": 17,
     "fallidos": 12,
     "win_rate": 58.6,
-    "alta_total": 23,
+    "alta_total": 22,
     "alta_acertados": 10,
     "alta_fallidos": 5,
     "alta_win_rate": 66.7,
@@ -6491,7 +6539,7 @@
     "media_acertados": 0,
     "media_fallidos": 0,
     "media_win_rate": 0,
-    "baja_total": 22,
+    "baja_total": 23,
     "baja_acertados": 7,
     "baja_fallidos": 7,
     "baja_win_rate": 50.0,
@@ -6525,7 +6573,7 @@
     "acertados": 26,
     "fallidos": 31,
     "win_rate": 45.6,
-    "alta_total": 52,
+    "alta_total": 51,
     "alta_acertados": 15,
     "alta_fallidos": 10,
     "alta_win_rate": 60.0,
@@ -6533,7 +6581,7 @@
     "media_acertados": 0,
     "media_fallidos": 0,
     "media_win_rate": 0,
-    "baja_total": 67,
+    "baja_total": 68,
     "baja_acertados": 11,
     "baja_fallidos": 21,
     "baja_win_rate": 34.4,
@@ -6546,7 +6594,7 @@
     "acertados": 21,
     "fallidos": 16,
     "win_rate": 56.8,
-    "alta_total": 37,
+    "alta_total": 36,
     "alta_acertados": 13,
     "alta_fallidos": 7,
     "alta_win_rate": 65.0,
@@ -6554,7 +6602,7 @@
     "media_acertados": 0,
     "media_fallidos": 0,
     "media_win_rate": 0,
-    "baja_total": 32,
+    "baja_total": 33,
     "baja_acertados": 8,
     "baja_fallidos": 9,
     "baja_win_rate": 47.1,
@@ -6680,7 +6728,7 @@
       "acertados": 2,
       "fallidos": 6,
       "win_rate": 25.0,
-      "alta_total": 12,
+      "alta_total": 11,
       "alta_acertados": 1,
       "alta_fallidos": 1,
       "alta_win_rate": 50.0,
@@ -6688,7 +6736,7 @@
       "media_acertados": 0,
       "media_fallidos": 0,
       "media_win_rate": 0,
-      "baja_total": 15,
+      "baja_total": 16,
       "baja_acertados": 1,
       "baja_fallidos": 5,
       "baja_win_rate": 16.7,
@@ -6787,7 +6835,7 @@
       "acertados": 0,
       "fallidos": 0,
       "win_rate": 0,
-      "alta_total": 7,
+      "alta_total": 6,
       "alta_acertados": 0,
       "alta_fallidos": 0,
       "alta_win_rate": 0,
@@ -6795,7 +6843,7 @@
       "media_acertados": 0,
       "media_fallidos": 0,
       "media_win_rate": 0,
-      "baja_total": 8,
+      "baja_total": 9,
       "baja_acertados": 0,
       "baja_fallidos": 0,
       "baja_win_rate": 0,
