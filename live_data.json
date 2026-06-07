@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 16:28",
+  "fecha": "07/06/2026 16:39",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780927200,
@@ -2559,10 +2559,15 @@
       "label": "🎯",
       "game_pk": 824349,
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5054,10 +5059,15 @@
       "away_team_name": "Colorado Rockies",
       "home_team_name": "Milwaukee Brewers",
       "linescore": {
-        "innings": [],
+        "innings": [
+          {
+            "away_runs": 0,
+            "home_runs": 0
+          }
+        ],
         "current_inning": 1,
         "is_top": true,
-        "inning_ordinal": "",
+        "inning_ordinal": "1st",
         "outs": 0,
         "balls": 0,
         "strikes": 0,
@@ -5846,7 +5856,7 @@
       }
     }
   },
-  "updated_at": "07/06/2026 16:28",
+  "updated_at": "07/06/2026 16:39",
   "stats": {
     "total": 119,
     "acertados": 26,
