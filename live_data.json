@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 00:10",
+  "fecha": "07/06/2026 00:14",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -1220,13 +1220,13 @@
     {
       "liga": "LMB",
       "game_date": "2026-06-06",
-      "status_emoji": "🔴",
+      "status_emoji": "⏳",
       "fav_team": "Guerreros de Oaxaca",
       "opp_team": "El Aguila de Veracruz",
       "score_fav": "0",
       "score_opp": "3",
-      "state": "In Progress",
-      "result": "live",
+      "state": "Delayed",
+      "result": "pending",
       "label": "🎯",
       "game_pk": 0,
       "linescore": {
@@ -1242,14 +1242,18 @@
           {
             "away_runs": 2,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": false,
-        "inning_ordinal": "3rd",
-        "outs": 3,
+        "current_inning": 4,
+        "is_top": true,
+        "inning_ordinal": "4th",
+        "outs": 0,
         "balls": 0,
-        "strikes": 1,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 0,
         "away_hits": 6,
@@ -1263,9 +1267,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Delayed",
         "fav_score": "3",
         "opp_score": "0",
         "score_fav": "3",
@@ -1556,7 +1560,7 @@
       "opp_team": "Cleveland Guardians",
       "score_fav": "0",
       "score_opp": "0",
-      "state": "Middle 3rd",
+      "state": "Bottom 3rd",
       "result": "live",
       "label": "🎯",
       "game_pk": 822891,
@@ -1576,9 +1580,9 @@
           }
         ],
         "current_inning": 3,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "3rd",
-        "outs": 3,
+        "outs": 2,
         "balls": 1,
         "strikes": 1,
         "away_runs": 0,
@@ -1950,14 +1954,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
-        "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 2,
+        "current_inning": 2,
+        "is_top": true,
+        "inning_ordinal": "2nd",
+        "outs": 1,
         "balls": 2,
-        "strikes": 0,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 0,
@@ -2009,7 +2017,7 @@
       "linescore": {
         "innings": [
           {
-            "away_runs": 0,
+            "away_runs": 3,
             "home_runs": 0
           }
         ],
@@ -2017,11 +2025,11 @@
         "is_top": true,
         "inning_ordinal": "1st",
         "outs": 2,
-        "balls": 3,
+        "balls": 0,
         "strikes": 1,
-        "away_runs": 0,
+        "away_runs": 3,
         "home_runs": 0,
-        "away_hits": 2,
+        "away_hits": 3,
         "home_hits": 0,
         "away_errors": 0,
         "home_errors": 0,
@@ -2035,9 +2043,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "0",
+        "fav_score": "3",
         "opp_score": "0",
-        "score_fav": "0",
+        "score_fav": "3",
         "score_opp": "0"
       }
     },
@@ -4069,7 +4077,7 @@
     "822891": {
       "is_live": true,
       "is_final": false,
-      "status": "Middle 3rd",
+      "status": "Bottom 3rd",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Cleveland Guardians",
@@ -4090,9 +4098,9 @@
           }
         ],
         "current_inning": 3,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "3rd",
-        "outs": 3,
+        "outs": 2,
         "balls": 1,
         "strikes": 1,
         "away_runs": 0,
@@ -5402,7 +5410,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "07/06/2026 00:10",
+  "updated_at": "07/06/2026 00:14",
   "stats": {
     "total": 104,
     "acertados": 22,
