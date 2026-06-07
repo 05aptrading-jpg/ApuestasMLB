@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 01:46",
+  "fecha": "07/06/2026 01:54",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -1392,7 +1392,7 @@
       "opp_team": "Colorado Rockies",
       "score_fav": "2",
       "score_opp": "0",
-      "state": "End 2nd",
+      "state": "Middle 3rd",
       "result": "live",
       "label": "🎯",
       "game_pk": 824351,
@@ -1405,14 +1405,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
         "outs": 3,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 2,
         "home_runs": 0,
         "away_hits": 3,
@@ -1612,14 +1616,14 @@
         "is_top": true,
         "inning_ordinal": "8th",
         "outs": 0,
-        "balls": 1,
-        "strikes": 1,
+        "balls": 0,
+        "strikes": 2,
         "away_runs": 5,
         "home_runs": 0,
         "away_hits": 8,
         "home_hits": 3,
         "away_errors": 0,
-        "home_errors": 1,
+        "home_errors": 2,
         "away_team_name": "Cleveland Guardians",
         "home_team_name": "Texas Rangers",
         "bases": {
@@ -2006,15 +2010,15 @@
           }
         ],
         "current_inning": 6,
-        "is_top": true,
+        "is_top": false,
         "inning_ordinal": "6th",
-        "outs": 2,
-        "balls": 0,
-        "strikes": 0,
+        "outs": 0,
+        "balls": 1,
+        "strikes": 2,
         "away_runs": 2,
         "home_runs": 1,
         "away_hits": 5,
-        "home_hits": 6,
+        "home_hits": 7,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Conspiradores de Queretaro",
@@ -3965,7 +3969,7 @@
     "824351": {
       "is_live": true,
       "is_final": false,
-      "status": "End 2nd",
+      "status": "Middle 3rd",
       "away_runs": 2,
       "home_runs": 0,
       "away_team_name": "Colorado Rockies",
@@ -3979,14 +3983,18 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
-        "is_top": false,
-        "inning_ordinal": "2nd",
+        "current_inning": 3,
+        "is_top": true,
+        "inning_ordinal": "3rd",
         "outs": 3,
-        "balls": 0,
-        "strikes": 0,
+        "balls": 2,
+        "strikes": 1,
         "away_runs": 2,
         "home_runs": 0,
         "away_hits": 3,
@@ -4174,14 +4182,14 @@
         "is_top": true,
         "inning_ordinal": "8th",
         "outs": 0,
-        "balls": 1,
-        "strikes": 1,
+        "balls": 0,
+        "strikes": 2,
         "away_runs": 5,
         "home_runs": 0,
         "away_hits": 8,
         "home_hits": 3,
         "away_errors": 0,
-        "home_errors": 1,
+        "home_errors": 2,
         "away_team_name": "Cleveland Guardians",
         "home_team_name": "Texas Rangers",
         "bases": {
@@ -5483,7 +5491,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "07/06/2026 01:46",
+  "updated_at": "07/06/2026 01:54",
   "stats": {
     "total": 104,
     "acertados": 22,
