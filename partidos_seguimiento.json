@@ -103,20 +103,6 @@
     "ganador": "Philadelphia Phillies"
   },
   {
-    "game_pk": 823291,
-    "game_date": "2026-06-07",
-    "game_datetime": "2026-06-07T20:10:00Z",
-    "away_team": "New York Mets",
-    "home_team": "San Diego Padres",
-    "favorito": "San Diego Padres",
-    "prob_favorito": 52.81,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
-  },
-  {
     "game_pk": 825074,
     "game_date": "2026-06-07",
     "game_datetime": "2026-06-07T19:15:00Z",
@@ -124,6 +110,20 @@
     "home_team": "Arizona Diamondbacks",
     "favorito": "Washington Nationals",
     "prob_favorito": 52.79,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "pendiente"
+  },
+  {
+    "game_pk": 823291,
+    "game_date": "2026-06-07",
+    "game_datetime": "2026-06-07T20:10:00Z",
+    "away_team": "New York Mets",
+    "home_team": "San Diego Padres",
+    "favorito": "San Diego Padres",
+    "prob_favorito": 52.76,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
