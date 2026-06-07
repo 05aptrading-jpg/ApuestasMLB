@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 05:31",
+  "fecha": "07/06/2026 05:33",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -1220,65 +1220,6 @@
     {
       "liga": "LMB",
       "game_date": "2026-06-06",
-      "status_emoji": "🔴",
-      "fav_team": "Guerreros de Oaxaca",
-      "opp_team": "El Aguila de Veracruz",
-      "score_fav": "0",
-      "score_opp": "5",
-      "state": "Suspended",
-      "result": "live",
-      "label": "🎯",
-      "game_pk": 0,
-      "linescore": {
-        "innings": [
-          {
-            "away_runs": 0,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 1,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 2,
-            "home_runs": 0
-          },
-          {
-            "away_runs": 2,
-            "home_runs": 0
-          }
-        ],
-        "current_inning": 4,
-        "is_top": true,
-        "inning_ordinal": "4th",
-        "outs": 2,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 5,
-        "home_runs": 0,
-        "away_hits": 8,
-        "home_hits": 2,
-        "away_errors": 0,
-        "home_errors": 1,
-        "away_team_name": "El Aguila de Veracruz",
-        "home_team_name": "Guerreros de Oaxaca",
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "Suspended",
-        "fav_score": "5",
-        "opp_score": "0",
-        "score_fav": "5",
-        "score_opp": "0"
-      }
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-06-06",
       "status_emoji": "❌",
       "fav_team": "Caliente de Durango",
       "opp_team": "Algodoneros Union Laguna",
@@ -1335,13 +1276,17 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 8,
-        "is_top": false,
-        "inning_ordinal": "8th",
-        "outs": 2,
-        "balls": 2,
+        "current_inning": 9,
+        "is_top": true,
+        "inning_ordinal": "9th",
+        "outs": 0,
+        "balls": 1,
         "strikes": 2,
         "away_runs": 3,
         "home_runs": 7,
@@ -2779,48 +2724,6 @@
     {
       "liga": "LMB",
       "game_date": "2026-06-07",
-      "status_emoji": "❌",
-      "fav_team": "Sultanes de Monterrey",
-      "opp_team": "Acereros del Norte",
-      "score_fav": "2",
-      "score_opp": "13",
-      "state": "Final",
-      "result": "loss",
-      "label": "🎯",
-      "game_pk": 846300,
-      "linescore": {
-        "innings": [],
-        "current_inning": 1,
-        "is_top": true,
-        "inning_ordinal": "",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 0,
-        "home_runs": 0,
-        "away_hits": 0,
-        "home_hits": 0,
-        "away_errors": 0,
-        "home_errors": 0,
-        "away_team_name": "Acereros del Norte",
-        "home_team_name": "Sultanes de Monterrey",
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Scheduled",
-        "fav_score": "0",
-        "opp_score": "0",
-        "score_fav": "0",
-        "score_opp": "0"
-      }
-    },
-    {
-      "liga": "LMB",
-      "game_date": "2026-06-07",
       "status_emoji": "⏳",
       "fav_team": "Guerreros de Oaxaca",
       "opp_team": "El Aguila de Veracruz",
@@ -2846,6 +2749,48 @@
         "home_errors": 0,
         "away_team_name": "El Aguila de Veracruz",
         "home_team_name": "Guerreros de Oaxaca",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Scheduled",
+        "fav_score": "0",
+        "opp_score": "0",
+        "score_fav": "0",
+        "score_opp": "0"
+      }
+    },
+    {
+      "liga": "LMB",
+      "game_date": "2026-06-07",
+      "status_emoji": "❌",
+      "fav_team": "Sultanes de Monterrey",
+      "opp_team": "Acereros del Norte",
+      "score_fav": "2",
+      "score_opp": "13",
+      "state": "Final",
+      "result": "loss",
+      "label": "🎯",
+      "game_pk": 846300,
+      "linescore": {
+        "innings": [],
+        "current_inning": 1,
+        "is_top": true,
+        "inning_ordinal": "",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 0,
+        "home_runs": 0,
+        "away_hits": 0,
+        "home_hits": 0,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "Acereros del Norte",
+        "home_team_name": "Sultanes de Monterrey",
         "bases": {
           "first": false,
           "second": false,
@@ -5220,44 +5165,6 @@
         "score_opp": "4"
       }
     },
-    "846300": {
-      "is_live": false,
-      "is_final": true,
-      "status": "Final",
-      "away_runs": 2,
-      "home_runs": 13,
-      "away_team_name": "Acereros del Norte",
-      "home_team_name": "Sultanes de Monterrey",
-      "linescore": {
-        "innings": [],
-        "current_inning": 1,
-        "is_top": true,
-        "inning_ordinal": "",
-        "outs": 0,
-        "balls": 0,
-        "strikes": 0,
-        "away_runs": 0,
-        "home_runs": 0,
-        "away_hits": 0,
-        "home_hits": 0,
-        "away_errors": 0,
-        "home_errors": 0,
-        "away_team_name": "Acereros del Norte",
-        "home_team_name": "Sultanes de Monterrey",
-        "bases": {
-          "first": false,
-          "second": false,
-          "third": false
-        },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Scheduled",
-        "fav_score": "0",
-        "opp_score": "0",
-        "score_fav": "0",
-        "score_opp": "0"
-      }
-    },
     "846173": {
       "is_live": false,
       "is_final": false,
@@ -5282,6 +5189,44 @@
         "home_errors": 0,
         "away_team_name": "El Aguila de Veracruz",
         "home_team_name": "Guerreros de Oaxaca",
+        "bases": {
+          "first": false,
+          "second": false,
+          "third": false
+        },
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Scheduled",
+        "fav_score": "0",
+        "opp_score": "0",
+        "score_fav": "0",
+        "score_opp": "0"
+      }
+    },
+    "846300": {
+      "is_live": false,
+      "is_final": true,
+      "status": "Final",
+      "away_runs": 2,
+      "home_runs": 13,
+      "away_team_name": "Acereros del Norte",
+      "home_team_name": "Sultanes de Monterrey",
+      "linescore": {
+        "innings": [],
+        "current_inning": 1,
+        "is_top": true,
+        "inning_ordinal": "",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
+        "away_runs": 0,
+        "home_runs": 0,
+        "away_hits": 0,
+        "home_hits": 0,
+        "away_errors": 0,
+        "home_errors": 0,
+        "away_team_name": "Acereros del Norte",
+        "home_team_name": "Sultanes de Monterrey",
         "bases": {
           "first": false,
           "second": false,
@@ -5751,7 +5696,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "07/06/2026 05:31",
+  "updated_at": "07/06/2026 05:33",
   "stats": {
     "total": 104,
     "acertados": 26,
@@ -5816,11 +5761,11 @@
     "valor_rate": 0
   },
   "stats_hoy": {
-    "total": 11,
+    "total": 12,
     "acertados": 2,
     "fallidos": 5,
     "win_rate": 28.6,
-    "alta_total": 4,
+    "alta_total": 5,
     "alta_acertados": 1,
     "alta_fallidos": 1,
     "alta_win_rate": 50.0,
@@ -5858,11 +5803,11 @@
     "valor_rate": 0
   },
   "stats_hoy_lmb": {
-    "total": 11,
+    "total": 12,
     "acertados": 2,
     "fallidos": 5,
     "win_rate": 28.6,
-    "alta_total": 4,
+    "alta_total": 5,
     "alta_acertados": 1,
     "alta_fallidos": 1,
     "alta_win_rate": 50.0,
@@ -6076,11 +6021,11 @@
       "valor_rate": 0
     },
     "2026-06-06": {
-      "total": 25,
+      "total": 24,
       "acertados": 9,
       "fallidos": 10,
       "win_rate": 47.4,
-      "alta_total": 13,
+      "alta_total": 12,
       "alta_acertados": 6,
       "alta_fallidos": 3,
       "alta_win_rate": 66.7,
@@ -6097,11 +6042,11 @@
       "valor_rate": 0
     },
     "2026-06-07": {
-      "total": 11,
+      "total": 12,
       "acertados": 2,
       "fallidos": 5,
       "win_rate": 28.6,
-      "alta_total": 4,
+      "alta_total": 5,
       "alta_acertados": 1,
       "alta_fallidos": 1,
       "alta_win_rate": 50.0,
@@ -6290,11 +6235,11 @@
       "valor_rate": 0
     },
     "2026-06-06": {
-      "total": 10,
+      "total": 9,
       "acertados": 1,
       "fallidos": 4,
       "win_rate": 20.0,
-      "alta_total": 4,
+      "alta_total": 3,
       "alta_acertados": 0,
       "alta_fallidos": 1,
       "alta_win_rate": 0.0,
@@ -6311,11 +6256,11 @@
       "valor_rate": 0
     },
     "2026-06-07": {
-      "total": 11,
+      "total": 12,
       "acertados": 2,
       "fallidos": 5,
       "win_rate": 28.6,
-      "alta_total": 4,
+      "alta_total": 5,
       "alta_acertados": 1,
       "alta_fallidos": 1,
       "alta_win_rate": 50.0,
