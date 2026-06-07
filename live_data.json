@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 15:43",
+  "fecha": "07/06/2026 15:47",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780927200,
@@ -3199,7 +3199,7 @@
       "opp_team": "Minnesota Twins",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Scheduled",
+      "state": "Pre-Game",
       "result": "pending",
       "label": "📋",
       "game_pk": 823696,
@@ -3226,7 +3226,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5623,7 +5623,7 @@
     "823696": {
       "is_live": false,
       "is_final": false,
-      "status": "Scheduled",
+      "status": "Pre-Game",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Minnesota Twins",
@@ -5651,7 +5651,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5826,7 +5826,7 @@
       }
     }
   },
-  "updated_at": "07/06/2026 15:43",
+  "updated_at": "07/06/2026 15:47",
   "stats": {
     "total": 119,
     "acertados": 26,
