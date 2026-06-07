@@ -11,7 +11,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Atlanta Braves"
   },
   {
     "game_pk": 824349,
@@ -193,7 +194,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Toronto Blue Jays"
   },
   {
     "game_pk": 823857,
@@ -207,7 +209,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Miami Marlins"
   },
   {
     "game_pk": 846445,
@@ -224,8 +227,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Diablos Rojos del Mexico"
   },
   {
     "game_pk": 846438,
