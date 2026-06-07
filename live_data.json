@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 13:52",
+  "fecha": "07/06/2026 13:54",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -2675,7 +2675,7 @@
       "opp_team": "Boston Red Sox",
       "score_fav": "—",
       "score_opp": "",
-      "state": "Scheduled",
+      "state": "Pre-Game",
       "result": "pending",
       "label": "🎯",
       "game_pk": 823537,
@@ -2702,7 +2702,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5112,7 +5112,7 @@
     "823537": {
       "is_live": false,
       "is_final": false,
-      "status": "Scheduled",
+      "status": "Pre-Game",
       "away_runs": 0,
       "home_runs": 0,
       "away_team_name": "Boston Red Sox",
@@ -5140,7 +5140,7 @@
         },
         "status_emoji": "⏳",
         "result": "pending",
-        "state": "Scheduled",
+        "state": "Pre-Game",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -5756,7 +5756,7 @@
       }
     }
   },
-  "updated_at": "07/06/2026 13:52",
+  "updated_at": "07/06/2026 13:54",
   "stats": {
     "total": 119,
     "acertados": 26,
