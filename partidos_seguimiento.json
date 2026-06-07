@@ -239,8 +239,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "acertado",
+    "marcador": null,
+    "ganador": "Tigres de Quintana Roo"
   },
   {
     "game_pk": 846300,
@@ -257,8 +258,9 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Acereros del Norte"
   },
   {
     "game_pk": 846628,
@@ -311,8 +313,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Bravos de Leon"
   },
   {
     "game_pk": 846491,
@@ -329,8 +332,9 @@
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "acertado",
+    "marcador": null,
+    "ganador": "Charros de Jalisco"
   },
   {
     "game_pk": 846535,
@@ -347,8 +351,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Piratas de Campeche"
   },
   {
     "game_pk": 846723,
@@ -365,8 +370,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Algodoneros Union Laguna"
   },
   {
     "game_pk": 846073,
