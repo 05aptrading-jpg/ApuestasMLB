@@ -11,8 +11,7 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "acertado",
-    "ganador": "Atlanta Braves"
+    "resultado": "pendiente"
   },
   {
     "game_pk": 824349,
@@ -21,7 +20,7 @@
     "away_team": "Milwaukee Brewers",
     "home_team": "Colorado Rockies",
     "favorito": "Milwaukee Brewers",
-    "prob_favorito": 59.63,
+    "prob_favorito": 59.75,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER VISITANTE",
@@ -35,7 +34,7 @@
     "away_team": "Cleveland Guardians",
     "home_team": "Texas Rangers",
     "favorito": "Texas Rangers",
-    "prob_favorito": 58.98,
+    "prob_favorito": 59.15,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
@@ -77,25 +76,11 @@
     "away_team": "Los Angeles Angels",
     "home_team": "Los Angeles Dodgers",
     "favorito": "Los Angeles Dodgers",
-    "prob_favorito": 55.97,
+    "prob_favorito": 56.14,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
-  },
-  {
-    "game_pk": 825074,
-    "game_date": "2026-06-07",
-    "game_datetime": "2026-06-07T19:15:00Z",
-    "away_team": "Washington Nationals",
-    "home_team": "Arizona Diamondbacks",
-    "favorito": "Washington Nationals",
-    "prob_favorito": 53.81,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER VISITANTE",
-    "nivel_certidumbre": "MEDIA",
+    "nivel_certidumbre": "ALTA",
     "resultado": "pendiente"
   },
   {
@@ -113,13 +98,27 @@
     "resultado": "pendiente"
   },
   {
+    "game_pk": 825074,
+    "game_date": "2026-06-07",
+    "game_datetime": "2026-06-07T19:15:00Z",
+    "away_team": "Washington Nationals",
+    "home_team": "Arizona Diamondbacks",
+    "favorito": "Washington Nationals",
+    "prob_favorito": 53.58,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 823291,
     "game_date": "2026-06-07",
     "game_datetime": "2026-06-07T20:10:00Z",
     "away_team": "New York Mets",
     "home_team": "San Diego Padres",
     "favorito": "San Diego Padres",
-    "prob_favorito": 53.01,
+    "prob_favorito": 52.8,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -175,7 +174,7 @@
     "away_team": "Athletics",
     "home_team": "Houston Astros",
     "favorito": "Athletics",
-    "prob_favorito": 50.78,
+    "prob_favorito": 50.63,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -189,7 +188,7 @@
     "away_team": "Baltimore Orioles",
     "home_team": "Toronto Blue Jays",
     "favorito": "Baltimore Orioles",
-    "prob_favorito": 50.17,
+    "prob_favorito": 50.27,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -208,7 +207,6 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "fallido",
-    "ganador": "Miami Marlins"
+    "resultado": "pendiente"
   }
 ]
