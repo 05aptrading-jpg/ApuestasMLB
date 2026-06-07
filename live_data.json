@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 00:30",
+  "fecha": "07/06/2026 00:45",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -1559,8 +1559,8 @@
       "fav_team": "Texas Rangers",
       "opp_team": "Cleveland Guardians",
       "score_fav": "0",
-      "score_opp": "1",
-      "state": "Middle 4th",
+      "score_opp": "2",
+      "state": "Top 5th",
       "result": "live",
       "label": "🎯",
       "game_pk": 822891,
@@ -1581,18 +1581,22 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": true,
-        "inning_ordinal": "4th",
-        "outs": 3,
+        "inning_ordinal": "5th",
+        "outs": 1,
         "balls": 1,
-        "strikes": 1,
-        "away_runs": 1,
+        "strikes": 2,
+        "away_runs": 2,
         "home_runs": 0,
-        "away_hits": 2,
-        "home_hits": 1,
+        "away_hits": 3,
+        "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Cleveland Guardians",
@@ -1605,9 +1609,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
+        "fav_score": "2",
         "opp_score": "0",
-        "score_fav": "1",
+        "score_fav": "2",
         "score_opp": "0"
       }
     },
@@ -1962,17 +1966,21 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 2,
+        "current_inning": 3,
         "is_top": false,
-        "inning_ordinal": "2nd",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 2,
+        "inning_ordinal": "3rd",
+        "outs": 2,
+        "balls": 1,
+        "strikes": 1,
         "away_runs": 0,
         "home_runs": 0,
-        "away_hits": 1,
+        "away_hits": 2,
         "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
@@ -1983,9 +1991,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "⏳",
-        "result": "pending",
-        "state": "Manager challenge",
+        "status_emoji": "🔴",
+        "result": "live",
+        "state": "In Progress",
         "fav_score": "0",
         "opp_score": "0",
         "score_fav": "0",
@@ -2023,14 +2031,18 @@
           {
             "away_runs": 3,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 1,
+        "current_inning": 2,
         "is_top": false,
-        "inning_ordinal": "1st",
-        "outs": 3,
-        "balls": 2,
-        "strikes": 2,
+        "inning_ordinal": "2nd",
+        "outs": 2,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 0,
         "away_hits": 3,
@@ -2044,9 +2056,9 @@
           "second": false,
           "third": false
         },
-        "status_emoji": "🔴",
-        "result": "live",
-        "state": "In Progress",
+        "status_emoji": "⏳",
+        "result": "pending",
+        "state": "Delayed",
         "fav_score": "3",
         "opp_score": "0",
         "score_fav": "3",
@@ -4081,9 +4093,9 @@
     "822891": {
       "is_live": true,
       "is_final": false,
-      "status": "Middle 4th",
+      "status": "Top 5th",
       "away_runs": 0,
-      "home_runs": 1,
+      "home_runs": 2,
       "away_team_name": "Cleveland Guardians",
       "home_team_name": "Texas Rangers",
       "linescore": {
@@ -4103,18 +4115,22 @@
           {
             "away_runs": 1,
             "home_runs": 0
+          },
+          {
+            "away_runs": 1,
+            "home_runs": 0
           }
         ],
-        "current_inning": 4,
+        "current_inning": 5,
         "is_top": true,
-        "inning_ordinal": "4th",
-        "outs": 3,
+        "inning_ordinal": "5th",
+        "outs": 1,
         "balls": 1,
-        "strikes": 1,
-        "away_runs": 1,
+        "strikes": 2,
+        "away_runs": 2,
         "home_runs": 0,
-        "away_hits": 2,
-        "home_hits": 1,
+        "away_hits": 3,
+        "home_hits": 2,
         "away_errors": 0,
         "home_errors": 0,
         "away_team_name": "Cleveland Guardians",
@@ -4127,9 +4143,9 @@
         "status_emoji": "🔴",
         "result": "live",
         "state": "In Progress",
-        "fav_score": "1",
+        "fav_score": "2",
         "opp_score": "0",
-        "score_fav": "1",
+        "score_fav": "2",
         "score_opp": "0"
       }
     },
@@ -5418,7 +5434,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "07/06/2026 00:30",
+  "updated_at": "07/06/2026 00:45",
   "stats": {
     "total": 104,
     "acertados": 22,
