@@ -1,16 +1,44 @@
 [
   {
+    "game_pk": 824351,
+    "game_date": "2026-06-06",
+    "game_datetime": "2026-06-07T01:10:00Z",
+    "away_team": "Milwaukee Brewers",
+    "home_team": "Colorado Rockies",
+    "favorito": "Milwaukee Brewers",
+    "prob_favorito": 60.98,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "pendiente"
+  },
+  {
     "game_pk": 823942,
     "game_date": "2026-06-06",
     "game_datetime": "2026-06-07T02:10:00Z",
     "away_team": "Los Angeles Angels",
     "home_team": "Los Angeles Dodgers",
     "favorito": "Los Angeles Dodgers",
-    "prob_favorito": 66.3,
+    "prob_favorito": 58.73,
     "odds_mercado": null,
     "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "ALTA",
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "pendiente"
+  },
+  {
+    "game_pk": 823292,
+    "game_date": "2026-06-06",
+    "game_datetime": "2026-06-07T02:10:00Z",
+    "away_team": "New York Mets",
+    "home_team": "San Diego Padres",
+    "favorito": "New York Mets",
+    "prob_favorito": 57.38,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
     "resultado": "pendiente"
   },
   {
@@ -29,34 +57,6 @@
     "ganador": "Chicago White Sox"
   },
   {
-    "game_pk": 823292,
-    "game_date": "2026-06-06",
-    "game_datetime": "2026-06-07T02:10:00Z",
-    "away_team": "New York Mets",
-    "home_team": "San Diego Padres",
-    "favorito": "New York Mets",
-    "prob_favorito": 62.36,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER VISITANTE",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
-  },
-  {
-    "game_pk": 824351,
-    "game_date": "2026-06-06",
-    "game_datetime": "2026-06-07T01:10:00Z",
-    "away_team": "Milwaukee Brewers",
-    "home_team": "Colorado Rockies",
-    "favorito": "Milwaukee Brewers",
-    "prob_favorito": 59.94,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER VISITANTE",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
-  },
-  {
     "game_pk": 824184,
     "game_date": "2026-06-06",
     "game_datetime": "2026-06-06T20:10:00Z",
@@ -72,33 +72,19 @@
     "ganador": "Houston Astros"
   },
   {
-    "game_pk": 823048,
+    "game_pk": 825075,
     "game_date": "2026-06-06",
-    "game_datetime": "2026-06-06T18:15:00Z",
-    "away_team": "Cincinnati Reds",
-    "home_team": "St. Louis Cardinals",
-    "favorito": "St. Louis Cardinals",
-    "prob_favorito": 56.07,
+    "game_datetime": "2026-06-06T20:10:00Z",
+    "away_team": "Washington Nationals",
+    "home_team": "Arizona Diamondbacks",
+    "favorito": "Arizona Diamondbacks",
+    "prob_favorito": 52.01,
     "odds_mercado": null,
     "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "acertado",
-    "ganador": "St. Louis Cardinals"
-  },
-  {
-    "game_pk": 822891,
-    "game_date": "2026-06-06",
-    "game_datetime": "2026-06-06T23:35:00Z",
-    "away_team": "Cleveland Guardians",
-    "home_team": "Texas Rangers",
-    "favorito": "Texas Rangers",
-    "prob_favorito": 55.97,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "fallido",
+    "ganador": "Washington Nationals"
   },
   {
     "game_pk": 822808,
@@ -116,6 +102,21 @@
     "ganador": "Toronto Blue Jays"
   },
   {
+    "game_pk": 823048,
+    "game_date": "2026-06-06",
+    "game_datetime": "2026-06-06T18:15:00Z",
+    "away_team": "Cincinnati Reds",
+    "home_team": "St. Louis Cardinals",
+    "favorito": "St. Louis Cardinals",
+    "prob_favorito": 56.07,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "APRETA TRIGGER LOCAL",
+    "nivel_certidumbre": "MEDIA",
+    "resultado": "acertado",
+    "ganador": "St. Louis Cardinals"
+  },
+  {
     "game_pk": 823697,
     "game_date": "2026-06-06",
     "game_datetime": "2026-06-06T18:10:00Z",
@@ -129,21 +130,6 @@
     "nivel_certidumbre": "BAJA",
     "resultado": "fallido",
     "ganador": "Kansas City Royals"
-  },
-  {
-    "game_pk": 824669,
-    "game_date": "2026-06-06",
-    "game_datetime": "2026-06-06T18:20:00Z",
-    "away_team": "San Francisco Giants",
-    "home_team": "Chicago Cubs",
-    "favorito": "Chicago Cubs",
-    "prob_favorito": 55.08,
-    "odds_mercado": null,
-    "es_valor": false,
-    "senal_moneyline": "NO APOSTAR",
-    "nivel_certidumbre": "BAJA",
-    "resultado": "acertado",
-    "ganador": "Chicago Cubs"
   },
   {
     "game_pk": 824269,
@@ -161,6 +147,21 @@
     "ganador": "Seattle Mariners"
   },
   {
+    "game_pk": 824669,
+    "game_date": "2026-06-06",
+    "game_datetime": "2026-06-06T18:20:00Z",
+    "away_team": "San Francisco Giants",
+    "home_team": "Chicago Cubs",
+    "favorito": "Chicago Cubs",
+    "prob_favorito": 55.08,
+    "odds_mercado": null,
+    "es_valor": false,
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
+    "resultado": "acertado",
+    "ganador": "Chicago Cubs"
+  },
+  {
     "game_pk": 824915,
     "game_date": "2026-06-06",
     "game_datetime": "2026-06-06T20:10:00Z",
@@ -176,19 +177,18 @@
     "ganador": "Atlanta Braves"
   },
   {
-    "game_pk": 825075,
+    "game_pk": 822891,
     "game_date": "2026-06-06",
-    "game_datetime": "2026-06-06T20:10:00Z",
-    "away_team": "Washington Nationals",
-    "home_team": "Arizona Diamondbacks",
-    "favorito": "Arizona Diamondbacks",
-    "prob_favorito": 52.01,
+    "game_datetime": "2026-06-06T23:35:00Z",
+    "away_team": "Cleveland Guardians",
+    "home_team": "Texas Rangers",
+    "favorito": "Texas Rangers",
+    "prob_favorito": 52.04,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "fallido",
-    "ganador": "Washington Nationals"
+    "resultado": "pendiente"
   },
   {
     "game_pk": 823859,
