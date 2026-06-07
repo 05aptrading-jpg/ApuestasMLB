@@ -34,7 +34,7 @@
     "away_team": "Cleveland Guardians",
     "home_team": "Texas Rangers",
     "favorito": "Texas Rangers",
-    "prob_favorito": 58.89,
+    "prob_favorito": 58.8,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
@@ -146,11 +146,11 @@
     "away_team": "Kansas City Royals",
     "home_team": "Minnesota Twins",
     "favorito": "Kansas City Royals",
-    "prob_favorito": 51.73,
+    "prob_favorito": 51.82,
     "odds_mercado": null,
     "es_valor": false,
-    "senal_moneyline": "APRETA TRIGGER LOCAL",
-    "nivel_certidumbre": "MEDIA",
+    "senal_moneyline": "NO APOSTAR",
+    "nivel_certidumbre": "BAJA",
     "resultado": "pendiente"
   },
   {
