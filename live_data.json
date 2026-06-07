@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 00:45",
+  "fecha": "07/06/2026 00:47",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -1590,9 +1590,9 @@
         "current_inning": 5,
         "is_top": true,
         "inning_ordinal": "5th",
-        "outs": 1,
-        "balls": 1,
-        "strikes": 2,
+        "outs": 2,
+        "balls": 2,
+        "strikes": 0,
         "away_runs": 2,
         "home_runs": 0,
         "away_hits": 3,
@@ -1970,14 +1970,18 @@
           {
             "away_runs": 0,
             "home_runs": 0
+          },
+          {
+            "away_runs": 0,
+            "home_runs": 0
           }
         ],
-        "current_inning": 3,
-        "is_top": false,
-        "inning_ordinal": "3rd",
-        "outs": 2,
-        "balls": 1,
-        "strikes": 1,
+        "current_inning": 4,
+        "is_top": true,
+        "inning_ordinal": "4th",
+        "outs": 0,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 0,
         "home_runs": 0,
         "away_hits": 2,
@@ -4124,9 +4128,9 @@
         "current_inning": 5,
         "is_top": true,
         "inning_ordinal": "5th",
-        "outs": 1,
-        "balls": 1,
-        "strikes": 2,
+        "outs": 2,
+        "balls": 2,
+        "strikes": 0,
         "away_runs": 2,
         "home_runs": 0,
         "away_hits": 3,
@@ -5434,7 +5438,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "07/06/2026 00:45",
+  "updated_at": "07/06/2026 00:47",
   "stats": {
     "total": 104,
     "acertados": 22,
