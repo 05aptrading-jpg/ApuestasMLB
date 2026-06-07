@@ -1,5 +1,5 @@
 {
-  "fecha": "07/06/2026 05:33",
+  "fecha": "07/06/2026 05:37",
   "proxima_actualizacion": "08:00",
   "proxima_actualizacion_lmb": "12:30",
   "proxima_actualizacion_ts": 1780840800,
@@ -1286,11 +1286,11 @@
         "is_top": true,
         "inning_ordinal": "9th",
         "outs": 0,
-        "balls": 1,
-        "strikes": 2,
+        "balls": 0,
+        "strikes": 0,
         "away_runs": 3,
         "home_runs": 7,
-        "away_hits": 9,
+        "away_hits": 10,
         "home_hits": 7,
         "away_errors": 0,
         "home_errors": 1,
@@ -5696,7 +5696,7 @@
       "linescore": {}
     }
   },
-  "updated_at": "07/06/2026 05:33",
+  "updated_at": "07/06/2026 05:37",
   "stats": {
     "total": 104,
     "acertados": 26,
