@@ -11,7 +11,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Atlanta Braves"
   },
   {
     "game_pk": 824349,
@@ -62,12 +63,13 @@
     "away_team": "Boston Red Sox",
     "home_team": "New York Yankees",
     "favorito": "New York Yankees",
-    "prob_favorito": 56.17,
+    "prob_favorito": 56.14,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "APRETA TRIGGER LOCAL",
     "nivel_certidumbre": "MEDIA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "New York Yankees"
   },
   {
     "game_pk": 823941,
@@ -104,7 +106,7 @@
     "away_team": "Washington Nationals",
     "home_team": "Arizona Diamondbacks",
     "favorito": "Washington Nationals",
-    "prob_favorito": 52.99,
+    "prob_favorito": 52.89,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -118,7 +120,7 @@
     "away_team": "New York Mets",
     "home_team": "San Diego Padres",
     "favorito": "San Diego Padres",
-    "prob_favorito": 52.52,
+    "prob_favorito": 52.57,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -132,7 +134,7 @@
     "away_team": "Seattle Mariners",
     "home_team": "Detroit Tigers",
     "favorito": "Seattle Mariners",
-    "prob_favorito": 52.24,
+    "prob_favorito": 52.4,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -174,7 +176,7 @@
     "away_team": "Athletics",
     "home_team": "Houston Astros",
     "favorito": "Athletics",
-    "prob_favorito": 50.63,
+    "prob_favorito": 50.64,
     "odds_mercado": null,
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
@@ -193,7 +195,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Toronto Blue Jays"
   },
   {
     "game_pk": 823857,
@@ -207,6 +210,7 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Miami Marlins"
   }
 ]
