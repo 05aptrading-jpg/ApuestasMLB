@@ -139,7 +139,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "fallido",
+    "ganador": "Detroit Tigers"
   },
   {
     "game_pk": 823696,
@@ -181,7 +182,8 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente"
+    "resultado": "acertado",
+    "ganador": "Athletics"
   },
   {
     "game_pk": 822807,
@@ -228,8 +230,9 @@
     "es_valor": false,
     "senal_moneyline": "NO APOSTAR",
     "nivel_certidumbre": "BAJA",
-    "resultado": "pendiente",
-    "marcador": null
+    "resultado": "fallido",
+    "marcador": null,
+    "ganador": "Diablos Rojos del Mexico"
   },
   {
     "game_pk": 846438,
